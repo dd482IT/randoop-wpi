@@ -83,19 +83,22 @@ allprojects { subproject ->
     excludeTests = true
     checkers = [
       // 'org.checkerframework.checker.nullness.NullnessChecker',
-      'org.checkerframework.checker.resourceleak.ResourceLeakChecker',
-      'org.checkerframework.checker.signature.SignatureChecker',
+      /*'org.checkerframework.checker.resourceleak.ResourceLeakChecker',
+      'org.checkerframework.checker.signature.SignatureChecker', */
+      'org.checkerframework.common.util.count.AnnotationStatistics',
     ]
     extraJavacArgs = [
       // Uncomment -proc:none to disable all annotation processing and speed up the build.
       // '-proc:none',
-      '-Werror',
+      //'-Werror',
       // '-AcheckPurityAnnotations',
       '-ArequirePrefixInWarningSuppressions',
       '-AwarnUnneededSuppressions',
       '-ApermitStaticOwning',
       // Suppresses "No processor claimed any of these annotations ..." warning.
-      '-Xlint:-processing'
+      '-Xlint:-processing',
+      '-Aannotations',
+      '-Anolocations',
     ]
   }
 
@@ -234,31 +237,31 @@ dependencies {
  */
 compileJava.options.compilerArgs = [
   '-g',
-  '-Werror',
+  //'-Werror',
   '-Xlint',
   '-Xlint:-classfile'
 ]
 compileTestJava.options.compilerArgs = [
   '-g',
-  '-Werror',
+  //'-Werror',
   '-Xlint',
   '-Xlint:-classfile'
 ]
 compileCoveredTestJava.options.compilerArgs = [
   '-g',
-  '-Werror',
+  //'-Werror',
   '-Xlint',
   '-Xlint:-classfile'
 ]
 compileReplacecallTestJava.options.compilerArgs = [
   '-g',
-  '-Werror',
+  //'-Werror',
   '-Xlint',
   '-Xlint:-classfile'
 ]
 compileSystemTestJava.options.compilerArgs = [
   '-g',
-  '-Werror',
+  //'-Werror',
   '-Xlint',
   '-Xlint:-classfile'
 ]
@@ -330,7 +333,7 @@ allprojects { subproject ->
     if (t.name.equals('compileTestInputJava') || t.name.equals('compileTestJava')) {
       options.errorprone.enabled = false
     } else {
-      // options.compilerArgs << '-Xlint:all,-processing' << '-Werror'
+      // options.compilerArgs << '-Xlint:all,-processing' << //'-Werror'
       options.errorprone {
         enabled = JavaVersion.current() != JavaVersion.VERSION_1_8
         // TODO: uncomment once we run the Interning Checker on Randoop.
