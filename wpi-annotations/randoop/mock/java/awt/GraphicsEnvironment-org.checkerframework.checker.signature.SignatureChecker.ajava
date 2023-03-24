@@ -1,0 +1,32 @@
+package randoop.mock.java.awt;
+
+/**
+ * Class of mock methods for {@code java.awt.GraphicsEnvironment}.
+ *
+ * <p>The original is an abstract class that provides methods that manage the graphical display for
+ * AWT. The relevant behavior of the class for Randoop is indicating whether the environment is
+ * headless. Certain interface objects may not be created in a headless environment. Since other
+ * mocks prevent the display of these objects, these methods pretend that all environments are not
+ * headless.
+ *
+ * <p>Default replacement for {@link randoop.instrument.ReplaceCallAgent}. Replacement should be
+ * specified in {@code "resources/default-replacements.txt"}
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class GraphicsEnvironment {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isHeadless() {
+        return false;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isHeadlessInstance(java.awt.GraphicsEnvironment graphicsEnvironment) {
+        return false;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static void checkHeadless() {
+        // original throws HeadlessException if isHeadless(), do nothing
+    }
+}

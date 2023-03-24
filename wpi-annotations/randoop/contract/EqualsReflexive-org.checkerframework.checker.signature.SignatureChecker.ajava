@@ -1,0 +1,65 @@
+package randoop.contract;
+
+import java.util.Arrays;
+import randoop.types.JavaTypes;
+import randoop.types.TypeTuple;
+
+/**
+ * The contract: {@code x0.equals(x0)==true}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public final class EqualsReflexive extends ObjectContract {
+
+    private static final @org.checkerframework.checker.signature.qual.SignatureUnknown EqualsReflexive instance = new EqualsReflexive();
+
+    private EqualsReflexive() {
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown EqualsReflexive getInstance() {
+        return instance;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean evaluate(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsReflexive this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object@org.checkerframework.checker.signature.qual.SignatureUnknown ... objects) {
+        assert objects != null && objects.length == 1;
+        Object o = objects[0];
+        assert o != null;
+        // noinspection EqualsWithItself
+        return o.equals(o);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int getArity(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsReflexive this) {
+        return 1;
+    }
+
+    /**
+     * The arguments to which this contract can be applied.
+     */
+    static @org.checkerframework.checker.signature.qual.SignatureUnknown TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE));
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown TypeTuple getInputTypes(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsReflexive this) {
+        return inputTypes;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toCommentString(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsReflexive this) {
+        return "x0.equals(x0)";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.Identifier String get_observer_str(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsReflexive this) {
+        return "EqualsReflexive";
+    }
+
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toCodeString(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsReflexive this) {
+        StringBuilder b = new StringBuilder();
+        b.append("org.junit.Assert.assertTrue(");
+        b.append("\"Contract failed: " + toCommentString() + "\", ");
+        b.append("x0.equals(x0)");
+        b.append(");");
+        return b.toString();
+    }
+}

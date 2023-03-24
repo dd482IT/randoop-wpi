@@ -1,0 +1,27 @@
+package randoop.test;
+
+import java.util.Set;
+import java.util.function.Predicate;
+import randoop.sequence.ExecutableSequence;
+import randoop.sequence.Sequence;
+
+/**
+ * Forbids certain sequences. Returns true if the sequence is not in the exclusion set.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public class ExcludeTestPredicate implements Predicate<ExecutableSequence> {
+
+    /**
+     * The sequences to forbid.
+     */
+    private @org.checkerframework.checker.mustcall.qual.MustCall({}) Set<Sequence> excludeSet;
+
+    public ExcludeTestPredicate(@org.checkerframework.checker.mustcall.qual.MustCall({}) Set<Sequence> excludeSet) {
+        this.excludeSet = excludeSet;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean test(@org.checkerframework.checker.mustcall.qual.MustCall({}) ExcludeTestPredicate this, @org.checkerframework.checker.mustcall.qual.MustCall({}) ExecutableSequence eseq) {
+        return !excludeSet.contains(eseq.sequence);
+    }
+}

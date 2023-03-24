@@ -1,0 +1,15 @@
+package randoop.types;
+
+/**
+ * Exception used to indicate when a type problem has occurred in Randoop.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class RandoopTypeException extends Throwable {
+
+    private static final  @org.checkerframework.checker.signature.qual.SignatureUnknown long serialVersionUID = 1777971534091630396L;
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public RandoopTypeException(String msg) {
+        super(msg);
+    }
+}

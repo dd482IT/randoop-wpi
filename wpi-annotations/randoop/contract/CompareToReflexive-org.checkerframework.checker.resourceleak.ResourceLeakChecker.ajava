@@ -1,0 +1,70 @@
+package randoop.contract;
+
+import java.util.Arrays;
+import randoop.types.JavaTypes;
+import randoop.types.TypeTuple;
+
+/**
+ * The contract: Checks that an object is reflexive over compareTo. {@code x0.compareTo(x0) == 0}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class CompareToReflexive extends ObjectContract {
+
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToReflexive instance = new CompareToReflexive();
+
+    private CompareToReflexive() {
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToReflexive getInstance() {
+        return instance;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToReflexive this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objects) {
+        assert objects != null && objects.length == 1;
+        // Get first and only object
+        Object o1 = objects[0];
+        assert o1 != null;
+        if (o1 instanceof Comparable) {
+            Comparable compObj1 = (Comparable) o1;
+            return (compObj1.compareTo(compObj1) == 0);
+        }
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int getArity(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToReflexive this) {
+        return 1;
+    }
+
+    /**
+     * The arguments to which this contract can be applied.
+     */
+    static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.COMPARABLE_TYPE));
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeTuple getInputTypes(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToReflexive this) {
+        return inputTypes;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toCommentString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToReflexive this) {
+        return "compareTo-reflexive on x0";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String get_observer_str(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToReflexive this) {
+        return "CompareToReflexive";
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "toCommentString" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toCodeString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToReflexive this) {
+        StringBuilder b = new StringBuilder();
+        b.append("org.junit.Assert.assertTrue(");
+        b.append("\"Contract failed: " + toCommentString() + "\", ");
+        b.append("x0.compareTo(x0) == 0");
+        b.append(");");
+        return b.toString();
+    }
+}

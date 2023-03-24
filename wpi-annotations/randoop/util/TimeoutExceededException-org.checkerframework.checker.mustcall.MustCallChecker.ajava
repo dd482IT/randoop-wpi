@@ -1,0 +1,19 @@
+package randoop.util;
+
+/**
+ * Indicates that a test execution timed out.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public final class TimeoutExceededException extends RuntimeException {
+
+    private static final  @org.checkerframework.checker.mustcall.qual.MustCall({}) long serialVersionUID = 7932531804127083492L;
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public TimeoutExceededException() {
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public TimeoutExceededException(String string) {
+        super(string);
+    }
+}

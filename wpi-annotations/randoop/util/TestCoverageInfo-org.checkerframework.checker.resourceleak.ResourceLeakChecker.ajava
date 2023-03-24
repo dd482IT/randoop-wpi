@@ -1,0 +1,106 @@
+package randoop.util;
+
+import java.lang.reflect.Field;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
+import randoop.Globals;
+import randoop.main.RandoopBug;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class TestCoverageInfo {
+
+    public final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) [] branchTrue;
+
+    public final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) [] branchFalse;
+
+    public final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Map<String, Set<Integer>> methodToIndices;
+
+    // A pair of: branches covered, total branches in method
+    private static class BranchCov {
+
+        final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int covered;
+
+        final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int inMethod;
+
+        BranchCov( @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int covered,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int inMethod) {
+            this.covered = covered;
+            this.inMethod = inMethod;
+        }
+    }
+
+    public TestCoverageInfo(int totalBranches, Map<String, Set<Integer>> map) {
+        if (totalBranches < 0)
+            throw new IllegalArgumentException();
+        branchTrue = new int[totalBranches];
+        branchFalse = new int[totalBranches];
+        methodToIndices = Collections.unmodifiableMap(map);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getCoverageInfo" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.methodToIndices" }, methods = { "entrySet" })
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getCoverageInfo(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TestCoverageInfo this) {
+        StringBuilder b = new StringBuilder();
+        int totalBranchesCovered = 0;
+        int totalBranches = 0;
+        for (Map.Entry<String, Set<Integer>> entry : methodToIndices.entrySet()) {
+            String methodSignature = entry.getKey();
+            BranchCov covAndTot = getCoverageInfo(methodSignature);
+            int branchesCovered = covAndTot.covered;
+            int branchesInMethod = covAndTot.inMethod;
+            totalBranchesCovered += branchesCovered;
+            totalBranches += branchesInMethod;
+            double percentCovered = ((double) branchesCovered) / ((double) branchesInMethod);
+            b.append((methodSignature == null ? "other" : methodSignature) + ": " + branchesCovered + "/" + branchesInMethod + " (" + percentCovered + "%)" + Globals.lineSep);
+        }
+        double totalPercent = ((double) totalBranchesCovered) / ((double) totalBranches);
+        b.append("TOTAL :" + totalBranchesCovered + "/" + totalBranches + " (" + totalPercent + "%)" + Globals.lineSep);
+        return b.toString();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.methodToIndices" }, methods = { "get" })
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) BranchCov getCoverageInfo(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TestCoverageInfo this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String methodSignature) {
+        Set<Integer> indices = methodToIndices.get(methodSignature);
+        int totalBranches = indices.size() * 2;
+        int branchesCovered = 0;
+        for (Integer i : indices) {
+            if (branchTrue[i] > 0) {
+                branchesCovered++;
+            }
+            if (branchFalse[i] > 0) {
+                branchesCovered++;
+            }
+        }
+        assert branchesCovered <= totalBranches;
+        return new BranchCov(branchesCovered, totalBranches);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getDeclaredFields" })
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getCoverageInfo(Class<?> clazz) {
+        if (!isInstrumented(clazz)) {
+            return "Class<?> not instrumented for branch coverage: " + clazz.getName();
+        }
+        try {
+            return getCoverageInfoObject(clazz).getCoverageInfo();
+        } catch (Exception e) {
+            throw new RandoopBug(e);
+        }
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getDeclaredField", "getDeclaredFields" })
+    private static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TestCoverageInfo getCoverageInfoObject(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getDeclaredFields" }) Class<?> clazz) throws IllegalArgumentException, SecurityException, IllegalAccessException, NoSuchFieldException {
+        Field f = clazz.getDeclaredField("randoopCoverageInfo");
+        f.setAccessible(true);
+        return (TestCoverageInfo) f.get(null);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getDeclaredFields" })
+    private static  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isInstrumented(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Class<?> clazz) {
+        for (Field f : clazz.getDeclaredFields()) {
+            if (f.getName().equals("randoopCoverageInfo")) {
+                return true;
+            }
+        }
+        return false;
+    }
+}

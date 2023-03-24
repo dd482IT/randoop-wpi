@@ -1,0 +1,66 @@
+package randoop.contract;
+
+import java.util.Arrays;
+import randoop.types.JavaTypes;
+import randoop.types.TypeTuple;
+
+/**
+ * The contract: {@code o1.equals(o2) ==> o1.hashCode() == o2.hashCode()}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public final class EqualsHashcode extends ObjectContract {
+
+    private static final @org.checkerframework.checker.signature.qual.SignatureUnknown EqualsHashcode instance = new EqualsHashcode();
+
+    private EqualsHashcode() {
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown EqualsHashcode getInstance() {
+        return instance;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean evaluate(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsHashcode this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object@org.checkerframework.checker.signature.qual.SignatureUnknown ... objects) {
+        Object o1 = objects[0];
+        Object o2 = objects[1];
+        if (o1.equals(o2)) {
+            return o1.hashCode() == o2.hashCode();
+        }
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int getArity(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsHashcode this) {
+        return 2;
+    }
+
+    /**
+     * The arguments to which this contract can be applied.
+     */
+    static @org.checkerframework.checker.signature.qual.SignatureUnknown TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE, JavaTypes.OBJECT_TYPE));
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown TypeTuple getInputTypes(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsHashcode this) {
+        return inputTypes;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toCommentString(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsHashcode this) {
+        return "equals-hashcode on x0 and x1";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.Identifier String get_observer_str(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsHashcode this) {
+        return "EqualsHashcode";
+    }
+
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toCodeString(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsHashcode this) {
+        StringBuilder b = new StringBuilder();
+        b.append("org.junit.Assert.assertTrue(");
+        b.append("\"Contract failed: ").append(toCommentString()).append("\", ");
+        b.append("x0.equals(x1) ? x0.hashCode() == x1.hashCode() : true");
+        b.append(");");
+        return b.toString();
+    }
+}

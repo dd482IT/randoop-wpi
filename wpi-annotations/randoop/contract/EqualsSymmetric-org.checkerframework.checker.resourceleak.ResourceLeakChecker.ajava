@@ -1,0 +1,68 @@
+package randoop.contract;
+
+import java.util.Arrays;
+import randoop.Globals;
+import randoop.types.JavaTypes;
+import randoop.types.TypeTuple;
+
+/**
+ * The contract: {@code o1.equals(o2) ==> o2.equals(o1)}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public final class EqualsSymmetric extends ObjectContract {
+
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EqualsSymmetric instance = new EqualsSymmetric();
+
+    private EqualsSymmetric() {
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EqualsSymmetric getInstance() {
+        return instance;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EqualsSymmetric this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objects) {
+        Object o1 = objects[0];
+        Object o2 = objects[1];
+        return o1.equals(o2) == o2.equals(o1);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int getArity(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EqualsSymmetric this) {
+        return 2;
+    }
+
+    /**
+     * The arguments to which this contract can be applied.
+     */
+    static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE, JavaTypes.OBJECT_TYPE));
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeTuple getInputTypes(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EqualsSymmetric this) {
+        return inputTypes;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toCommentString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EqualsSymmetric this) {
+        return "equals-symmetric on x0 and x1.";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String get_observer_str(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EqualsSymmetric this) {
+        return "equals-symmetric";
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "toCommentString" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toCodeString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EqualsSymmetric this) {
+        StringBuilder b = new StringBuilder();
+        b.append(Globals.lineSep);
+        b.append("// This assertion (symmetry of equals) fails ");
+        b.append(Globals.lineSep);
+        b.append("org.junit.Assert.assertTrue(");
+        b.append("\"Contract failed: " + toCommentString() + "\", ");
+        b.append("x0.equals(x1) == x1.equals(x0)");
+        b.append(");");
+        return b.toString();
+    }
+}

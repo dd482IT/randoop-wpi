@@ -1,0 +1,87 @@
+package randoop.types;
+
+import java.util.Objects;
+
+/**
+ * Represents a bound on a type variable where the bound is a {@link ReferenceType}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public abstract class ReferenceBound extends ParameterBound {
+
+    /**
+     * The type for this bound.
+     */
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceType boundType;
+
+    /**
+     * Creates a {@link ReferenceBound} with the given bound type.
+     *
+     * @param boundType the {@link ReferenceType} of this bound
+     */
+    ReferenceBound(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceType boundType) {
+        this.boundType = boundType;
+    }
+
+    /**
+     * Returns the {@link ReferenceType} bound of this type.
+     *
+     * @return the type for this bound
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceType getBoundType(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceBound this) {
+        return boundType;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean equals(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceBound this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ReferenceBound)) {
+            return false;
+        }
+        ReferenceBound bound = (ReferenceBound) obj;
+        return this.boundType.equals(bound.boundType);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int hashCode(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceBound this) {
+        return Objects.hash(boundType);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toString(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceBound this) {
+        return boundType.toString();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public abstract @org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceBound substitute(Substitution substitution);
+
+    @org.checkerframework.dataflow.qual.Pure
+    public abstract @org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceBound applyCaptureConversion();
+
+    @org.checkerframework.dataflow.qual.Pure
+     @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasWildcard(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceBound this) {
+        return boundType.hasWildcard();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasCaptureVariable(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceBound this) {
+        return boundType.hasCaptureVariable();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isGeneric(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceBound this,  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean ignoreWildcards) {
+        return boundType.isGeneric(ignoreWildcards);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isObject(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceBound this) {
+        return boundType.isObject();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isVariable(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceBound this) {
+        return boundType.isVariable();
+    }
+}

@@ -1,0 +1,49 @@
+package randoop.test;
+
+import randoop.Globals;
+
+/**
+ * An {@code ExceptionCheck} that doesn't enforce the expectation of an exception by the statement
+ * at the statement index. Allows for execution of the statement to be either normal or throw an
+ * exception.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public class EmptyExceptionCheck extends ExceptionCheck {
+
+    /**
+     * Creates an exception check for the given statement index.
+     *
+     * @param exception the exception thrown by statement
+     * @param statementIndex the position of statement in sequence
+     * @param catchClassName the name of the exception class to be caught
+     */
+    EmptyExceptionCheck(@org.checkerframework.checker.mustcall.qual.MustCall({}) Throwable exception,  @org.checkerframework.checker.mustcall.qual.MustCall({}) int statementIndex, @org.checkerframework.checker.mustcall.qual.MustCall({}) String catchClassName) {
+        super(exception, statementIndex, catchClassName);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>Appends comment indicating that catch is being ignored.
+     */
+    protected void appendCatchBehavior(@org.checkerframework.checker.mustcall.qual.MustCall({}) EmptyExceptionCheck this, @org.checkerframework.checker.mustcall.qual.MustCall({}) StringBuilder b) {
+        String message = "expected exception caught " + getExceptionName();
+        if (exception.getClass().isAnonymousClass()) {
+            message = "anonymous exception caught";
+        }
+        b.append("  // ").append(message).append(Globals.lineSep);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>Appends comment indicating that failure to throw exception being ignored.
+     */
+    protected void appendTryBehavior(@org.checkerframework.checker.mustcall.qual.MustCall({}) EmptyExceptionCheck this, @org.checkerframework.checker.mustcall.qual.MustCall({}) StringBuilder b) {
+        String message = "expected exception " + getExceptionName();
+        if (exception.getClass().isAnonymousClass()) {
+            message = "expected anonymous exception";
+        }
+        b.append("  // ").append(message).append(" not thrown").append(Globals.lineSep);
+    }
+}

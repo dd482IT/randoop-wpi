@@ -1,0 +1,70 @@
+package randoop.sequence;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+import randoop.ExecutionOutcome;
+import randoop.NotExecuted;
+
+/**
+ * Represents the unfolding execution of a sequence.
+ *
+ * <p>This is essentially a wrapper around {@code List<ExecutionOutcome>}. Stores information in a
+ * list of ExecutionOutcome objects, one for each statement in the sequence.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public final class Execution {
+
+    // The execution outcome of each statement.
+    final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ExecutionOutcome> outcomes;
+
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<Class<?>> coveredClasses;
+
+    /**
+     * Create an Execution to store the execution results of the given sequence. The list of outcomes
+     * is initialized to NotExecuted for every statement.
+     *
+     * @param owner the executed sequence
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "size" })
+    public Execution(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence owner) {
+        // The `outcomes` list will be modified later.  (Collections.nCopies is immutable.)
+        this.outcomes = new ArrayList<>(Collections.nCopies(owner.size(), NotExecuted.create()));
+        this.coveredClasses = new LinkedHashSet<>();
+    }
+
+    /**
+     * The size of the list.
+     *
+     * @return the size of the list
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.outcomes" }, methods = { "size" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int size(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Execution this) {
+        return outcomes.size();
+    }
+
+    /**
+     * Get the outcome in the i-th slot.
+     *
+     * @param i the statement position
+     * @return the outcome of the ith statement
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.outcomes" }, methods = { "get" })
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutionOutcome get(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Execution this,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int i) {
+        return outcomes.get(i);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.coveredClasses" }, methods = { "add" })
+    void addCoveredClass(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Execution this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Class<?> c) {
+        coveredClasses.add(c);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<Class<?>> getCoveredClasses(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Execution this) {
+        return coveredClasses;
+    }
+}

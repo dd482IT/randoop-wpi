@@ -1,0 +1,212 @@
+package randoop.util;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
+
+/**
+ * Implements an IMultiMap with a java.util.LinkedHashMap.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class MultiMap<K, V> implements IMultiMap<K, V> {
+
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown Map<K, Set<V>> map;
+
+    public MultiMap() {
+        map = new LinkedHashMap<>();
+    }
+
+    public MultiMap( @org.checkerframework.checker.signature.qual.SignatureUnknown int initialCapacity) {
+        map = new LinkedHashMap<>(initialCapacity);
+    }
+
+    /**
+     * Returns an immutable, empty multimap.
+     *
+     * @return an immutable, empty multimap
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public static <K, V> @org.checkerframework.checker.signature.qual.SignatureUnknown MultiMap<K, V> empty() {
+        return EmptyMultiMap.instance;
+    }
+
+    /**
+     * Adds a key-values mapping to this multimap
+     *
+     * @param key the key
+     * @param values the values
+     */
+    public void put(K key, Collection<? extends V> values) {
+        if (contains(key))
+            remove(key);
+        map.put(key, new LinkedHashSet<V>(values));
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public void addAll(Map<? extends K, ? extends V> m) {
+        for (K t1 : m.keySet()) {
+            add(t1, m.get(t1));
+        }
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void addAll(@org.checkerframework.checker.signature.qual.SignatureUnknown MultiMap<K, V> this, K key, @org.checkerframework.checker.signature.qual.SignatureUnknown Collection<? extends V> values) {
+        for (V t2 : values) {
+            add(key, t2);
+        }
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public void addAll(MultiMap<K, V> mmap) {
+        for (Map.Entry<K, Set<V>> entry : mmap.map.entrySet()) {
+            addAll(entry.getKey(), entry.getValue());
+        }
+    }
+
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean add(@org.checkerframework.checker.signature.qual.SignatureUnknown MultiMap<K, V> this, K key, V value) {
+        Set<V> values = map.computeIfAbsent(key, __ -> new LinkedHashSet<>(1));
+        return values.add(value);
+    }
+
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean remove(@org.checkerframework.checker.signature.qual.SignatureUnknown MultiMap<K, V> this, K key, V value) {
+        Set<V> values = map.get(key);
+        if (values == null) {
+            throw new IllegalStateException("No values were found when trying to remove from multiset. Key: " + key + " Variable: " + value);
+        }
+        return values.remove(value);
+    }
+
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean remove(@org.checkerframework.checker.signature.qual.SignatureUnknown MultiMap<K, V> this, K key) {
+        Set<V> values = map.get(key);
+        if (values == null) {
+            throw new IllegalStateException("No values were found when trying to remove from multiset. Key: " + key);
+        }
+        return map.remove(key) != null;
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown Set<V> getValues(@org.checkerframework.checker.signature.qual.SignatureUnknown MultiMap<K, V> this, K key) {
+        return map.getOrDefault(key, Collections.emptySet());
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown Set<K> keySet(@org.checkerframework.checker.signature.qual.SignatureUnknown MultiMap<K, V> this) {
+        return map.keySet();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean contains(@org.checkerframework.checker.signature.qual.SignatureUnknown MultiMap<K, V> this, K obj) {
+        return map.containsKey(obj);
+    }
+
+    public void clear() {
+        map.clear();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int size(@org.checkerframework.checker.signature.qual.SignatureUnknown MultiMap<K, V> this) {
+        return map.size();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isEmpty() {
+        return map.isEmpty();
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toString(@org.checkerframework.checker.signature.qual.SignatureUnknown MultiMap<K, V> this) {
+        return map.toString();
+    }
+
+    /**
+     * An immutable, empty multimap.
+     */
+    private static class EmptyMultiMap<K, V> extends MultiMap<K, V> {
+
+        /**
+         * The canonical EmptyMultiMap.
+         */
+        public static @org.checkerframework.checker.signature.qual.SignatureUnknown EmptyMultiMap instance = new EmptyMultiMap();
+
+        /**
+         * Creates an immutable, empty multimap. Should only be called once, because all EmptyMultiMaps
+         * are the same.
+         */
+        private EmptyMultiMap() {
+            super(0);
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public void put(@org.checkerframework.checker.signature.qual.SignatureUnknown EmptyMultiMap<K, V> this, K key, @org.checkerframework.checker.signature.qual.SignatureUnknown Collection<? extends V> values) {
+            throw new UnsupportedOperationException("EmptyMultiMap.put");
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public void addAll(@org.checkerframework.checker.signature.qual.SignatureUnknown EmptyMultiMap<K, V> this, @org.checkerframework.checker.signature.qual.SignatureUnknown Map<? extends K, ? extends V> m) {
+            throw new UnsupportedOperationException("EmptyMultiMap.addAll");
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public void addAll(@org.checkerframework.checker.signature.qual.SignatureUnknown EmptyMultiMap<K, V> this, K key, @org.checkerframework.checker.signature.qual.SignatureUnknown Collection<? extends V> values) {
+            throw new UnsupportedOperationException("EmptyMultiMap.addAll");
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public void addAll(@org.checkerframework.checker.signature.qual.SignatureUnknown EmptyMultiMap<K, V> this, @org.checkerframework.checker.signature.qual.SignatureUnknown MultiMap<K, V> mmap) {
+            throw new UnsupportedOperationException("EmptyMultiMap.addAll");
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public boolean add(@org.checkerframework.checker.signature.qual.SignatureUnknown EmptyMultiMap<K, V> this, K key, V value) {
+            throw new UnsupportedOperationException("EmptyMultiMap.add");
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public boolean remove(@org.checkerframework.checker.signature.qual.SignatureUnknown EmptyMultiMap<K, V> this, K key, V value) {
+            throw new UnsupportedOperationException("EmptyMultiMap.remove");
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public boolean remove(@org.checkerframework.checker.signature.qual.SignatureUnknown EmptyMultiMap<K, V> this, K key) {
+            throw new UnsupportedOperationException("EmptyMultiMap.remove");
+        }
+
+        @org.checkerframework.dataflow.qual.SideEffectFree
+        public @org.checkerframework.checker.signature.qual.SignatureUnknown Set<V> getValues(@org.checkerframework.checker.signature.qual.SignatureUnknown EmptyMultiMap<K, V> this, K key) {
+            return Collections.emptySet();
+        }
+
+        @org.checkerframework.dataflow.qual.SideEffectFree
+        public @org.checkerframework.checker.signature.qual.SignatureUnknown Set<K> keySet(@org.checkerframework.checker.signature.qual.SignatureUnknown EmptyMultiMap<K, V> this) {
+            return Collections.emptySet();
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean contains(@org.checkerframework.checker.signature.qual.SignatureUnknown EmptyMultiMap<K, V> this, K obj) {
+            return false;
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public void clear(@org.checkerframework.checker.signature.qual.SignatureUnknown EmptyMultiMap<K, V> this) {
+            throw new UnsupportedOperationException("EmptyMultiMap.clear");
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public  @org.checkerframework.checker.signature.qual.SignatureUnknown int size(@org.checkerframework.checker.signature.qual.SignatureUnknown EmptyMultiMap<K, V> this) {
+            return 0;
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isEmpty(@org.checkerframework.checker.signature.qual.SignatureUnknown EmptyMultiMap<K, V> this) {
+            return true;
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public @org.checkerframework.checker.signature.qual.SignatureUnknown String toString(@org.checkerframework.checker.signature.qual.SignatureUnknown EmptyMultiMap<K, V> this) {
+            return "{}";
+        }
+    }
+}

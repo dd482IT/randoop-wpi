@@ -1,0 +1,98 @@
+package randoop.types;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import org.plumelib.util.CollectionsPlume;
+
+/**
+ * Represents a parameterized type. A <i>parameterized type</i> is a type {@code C<T1,...,Tk>} where
+ * {@code C<F1,...,Fk>} is a generic class instantiated by a substitution {@code [Fi:=Ti]}, and
+ * {@code Ti} is a subtype of the upper bound {@code Bi} of the type parameter {@code Fi}.
+ *
+ * @see GenericClassType
+ * @see InstantiatedType
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public abstract class ParameterizedType extends ClassOrInterfaceType {
+
+    /**
+     * A cache of all ParameterizedTypes that have been created.
+     */
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Map<Class<?>, GenericClassType> cache = new HashMap<>();
+
+    /**
+     * Creates a {@link GenericClassType} for the given reflective {@link Class} object.
+     *
+     * @param typeClass the class type
+     * @return a generic class type for the given type
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getTypeParameters" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "randoop.types.ParameterizedType.cache" }, methods = { "get" })
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenericClassType forClass(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Class<?> typeClass) {
+        if (typeClass.getTypeParameters().length == 0) {
+            throw new IllegalArgumentException("class must be a generic type, have " + typeClass.getName());
+        }
+        // This cannot be
+        //   return cache.computeIfAbsent(typeClass, GenericClassType::new);
+        // because of a recursive call that might side-effect `cache`.
+        GenericClassType cached = cache.get(typeClass);
+        if (cached == null) {
+            cached = new GenericClassType(typeClass);
+            cache.put(typeClass, cached);
+        }
+        return cached;
+    }
+
+    /**
+     * Performs the conversion of {@code java.lang.reflect.ParameterizedType} to a {@code
+     * ParameterizedType} .
+     *
+     * @param type the reflective type object
+     * @return an object of type {@code ParameterizedType}
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "randoop.types.ParameterizedType.cache" }, methods = { "get" })
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ParameterizedType forType(java.lang.reflect.@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type type) {
+        if (!(type instanceof java.lang.reflect.ParameterizedType)) {
+            throw new IllegalArgumentException("type must be java.lang.reflect.ParameterizedType");
+        }
+        java.lang.reflect.ParameterizedType t = (java.lang.reflect.ParameterizedType) type;
+        Type rawType = t.getRawType();
+        assert (rawType instanceof Class<?>) : "rawtype not an instance of Class<?> type ";
+        // Categorize the type arguments as either a type variable or other kind of argument
+        List<TypeArgument> typeArguments = CollectionsPlume.mapList(TypeArgument::forType, t.getActualTypeArguments());
+        // When building parameterized type, first create generic class from the
+        // rawtype, and then instantiate with the arguments collected from the
+        // java.lang.reflect.ParameterizedType interface.
+        GenericClassType genericClass = ParameterizedType.forClass((Class<?>) rawType);
+        return new InstantiatedType(genericClass, typeArguments);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public abstract @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ParameterizedType substitute(Substitution substitution);
+
+    /**
+     * Returns the {@link GenericClassType} for this parameterized type.
+     *
+     * @return the generic class type for this type
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public abstract @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenericClassType getGenericClassType(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ParameterizedType this);
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getFqName", "getRuntimeClass", "getTypeArguments", "isNestedClass" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getFqName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ParameterizedType this) {
+        return super.getFqName() + "<" + getTypeArguments().stream().map(TypeArgument::getFqName).collect(Collectors.joining(",")) + ">";
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getBinaryName", "getRuntimeClass", "getTypeArguments", "isNestedClass" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getBinaryName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ParameterizedType this) {
+        return super.getBinaryName() + "<" + getTypeArguments().stream().map(TypeArgument::getBinaryName).collect(Collectors.joining(",")) + ">";
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getRuntimeClass", "getSimpleName", "getTypeArguments", "getUnqualifiedBinaryName", "isNestedClass" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getUnqualifiedBinaryName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ParameterizedType this) {
+        return super.getUnqualifiedBinaryName() + "<" + getTypeArguments().stream().map(TypeArgument::getBinaryName).collect(Collectors.joining(",")) + ">";
+    }
+}

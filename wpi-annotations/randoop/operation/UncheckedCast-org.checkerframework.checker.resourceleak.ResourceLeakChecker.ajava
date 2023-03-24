@@ -1,0 +1,86 @@
+package randoop.operation;
+
+import java.util.List;
+import randoop.ExecutionOutcome;
+import randoop.NormalExecution;
+import randoop.sequence.Variable;
+import randoop.types.Type;
+import randoop.types.TypeTuple;
+
+/**
+ * An {@link Operation} to perform an explicit cast. NOTE: there is no actual checking of the types
+ * being done. This operation is only used in contexts where the cast is known to be unchecked.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+class UncheckedCast extends CallableOperation {
+
+    /**
+     * The result type of the cast.
+     */
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type type;
+
+    /**
+     * Creates an operation that performs a cast. Intended for use in generated sequences where an
+     * unchecked cast is needed.
+     *
+     * @param type the cast type
+     */
+    UncheckedCast(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type type) {
+        this.type = type;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>Performs this cast on the first value of the input array.
+     *
+     * @param input array containing appropriate inputs to operation
+     * @return the value cast to the type of this cast
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.type" }, methods = { "getRuntimeClass" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutionOutcome execute(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) UncheckedCast this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) [] input) {
+        assert input.length == 1 : "cast only takes one input";
+        return new NormalExecution(type.getRuntimeClass().cast(input[0]), 0);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>Appends the code for this cast applied to the given input to the given {@code
+     * StringBuilder}.
+     *
+     * @param declaringType the declaring type for this operation
+     * @param inputTypes the input types for this operation
+     * @param outputType the output type for this operation
+     * @param inputVars the list of variables that are inputs to operation
+     * @param b the {@link StringBuilder} to which code is added
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#4" }, methods = { "get" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#5" }, methods = { "append" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getArgumentString" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.type" }, methods = { "getFqName" })
+    public void appendCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) UncheckedCast this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type declaringType, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeTuple inputTypes, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type outputType, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<Variable> inputVars, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) StringBuilder b) {
+        b.append("(").append(type.getFqName()).append(")");
+        int i = 0;
+        String param = getArgumentString(inputVars.get(i));
+        b.append(param);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isUncheckedCast(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) UncheckedCast this) {
+        return true;
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "get" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.type" }, methods = { "getBinaryName" })
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toParsableString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) UncheckedCast this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type declaringType, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeTuple inputTypes, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type outputType) {
+        return "(" + type.getBinaryName() + ")" + inputTypes.get(0);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.type" }, methods = { "getBinaryName" })
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) UncheckedCast this) {
+        return "(" + type.getBinaryName() + ")";
+    }
+}

@@ -1,0 +1,15 @@
+package randoop.test;
+
+import randoop.sequence.ExecutableSequence;
+
+/**
+ * Returns an empty TestChecks.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public class DummyCheckGenerator extends TestCheckGenerator {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) TestChecks<?> generateTestChecks(@org.checkerframework.checker.mustcall.qual.MustCall({}) DummyCheckGenerator this, @org.checkerframework.checker.mustcall.qual.MustCall({}) ExecutableSequence eseq) {
+        return RegressionChecks.EMPTY;
+    }
+}

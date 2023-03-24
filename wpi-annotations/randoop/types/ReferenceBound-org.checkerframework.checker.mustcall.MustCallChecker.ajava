@@ -1,0 +1,87 @@
+package randoop.types;
+
+import java.util.Objects;
+
+/**
+ * Represents a bound on a type variable where the bound is a {@link ReferenceType}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public abstract class ReferenceBound extends ParameterBound {
+
+    /**
+     * The type for this bound.
+     */
+    private final @org.checkerframework.checker.mustcall.qual.MustCall({}) ReferenceType boundType;
+
+    /**
+     * Creates a {@link ReferenceBound} with the given bound type.
+     *
+     * @param boundType the {@link ReferenceType} of this bound
+     */
+    ReferenceBound(@org.checkerframework.checker.mustcall.qual.MustCall({}) ReferenceType boundType) {
+        this.boundType = boundType;
+    }
+
+    /**
+     * Returns the {@link ReferenceType} bound of this type.
+     *
+     * @return the type for this bound
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) ReferenceType getBoundType(@org.checkerframework.checker.mustcall.qual.MustCall({}) ReferenceBound this) {
+        return boundType;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean equals(@org.checkerframework.checker.mustcall.qual.MustCall({}) ReferenceBound this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ReferenceBound)) {
+            return false;
+        }
+        ReferenceBound bound = (ReferenceBound) obj;
+        return this.boundType.equals(bound.boundType);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) int hashCode(@org.checkerframework.checker.mustcall.qual.MustCall({}) ReferenceBound this) {
+        return Objects.hash(boundType);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toString(@org.checkerframework.checker.mustcall.qual.MustCall({}) ReferenceBound this) {
+        return boundType.toString();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public abstract @org.checkerframework.checker.mustcall.qual.MustCall({}) ReferenceBound substitute(Substitution substitution);
+
+    @org.checkerframework.dataflow.qual.Pure
+    public abstract @org.checkerframework.checker.mustcall.qual.MustCall({}) ReferenceBound applyCaptureConversion();
+
+    @org.checkerframework.dataflow.qual.Pure
+     @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean hasWildcard(@org.checkerframework.checker.mustcall.qual.MustCall({}) ReferenceBound this) {
+        return boundType.hasWildcard();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean hasCaptureVariable(@org.checkerframework.checker.mustcall.qual.MustCall({}) ReferenceBound this) {
+        return boundType.hasCaptureVariable();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean isGeneric(@org.checkerframework.checker.mustcall.qual.MustCall({}) ReferenceBound this,  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean ignoreWildcards) {
+        return boundType.isGeneric(ignoreWildcards);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean isObject(@org.checkerframework.checker.mustcall.qual.MustCall({}) ReferenceBound this) {
+        return boundType.isObject();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean isVariable(@org.checkerframework.checker.mustcall.qual.MustCall({}) ReferenceBound this) {
+        return boundType.isVariable();
+    }
+}

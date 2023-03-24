@@ -1,0 +1,102 @@
+package randoop.test;
+
+import java.util.Collections;
+import java.util.Set;
+import randoop.main.RandoopBug;
+
+/**
+ * An empty or singleton set. It contains at most one InvalidExceptionCheck or InvalidValueCheck,
+ * which captures invalid behavior in a sequence.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class InvalidChecks implements TestChecks<InvalidChecks> {
+
+    /**
+     * An empty, immutable set of invalid checks.
+     */
+    public static final @org.checkerframework.checker.signature.qual.SignatureUnknown InvalidChecks EMPTY = new InvalidChecks();
+
+    // Either an InvalidExceptionCheck or an InvalidValueCheck.
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown Check check;
+
+    /**
+     * Create an empty, mutable set of invalid checks.
+     */
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public InvalidChecks() {
+    }
+
+    /**
+     * Create a singleton set of invalid checks.
+     *
+     * @param check the sole member of the newly-created singleton set
+     */
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public InvalidChecks(@org.checkerframework.checker.signature.qual.SignatureUnknown Check check) {
+        add(check);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int count(@org.checkerframework.checker.signature.qual.SignatureUnknown InvalidChecks this) {
+        int result = 0;
+        if (check != null) {
+            result = 1;
+        }
+        return result;
+    }
+
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown Set<Check> checks(@org.checkerframework.checker.signature.qual.SignatureUnknown InvalidChecks this) {
+        if (check != null) {
+            return Collections.singleton(check);
+        } else {
+            return Collections.emptySet();
+        }
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasChecks(@org.checkerframework.checker.signature.qual.SignatureUnknown InvalidChecks this) {
+        return check != null;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasErrorBehavior(@org.checkerframework.checker.signature.qual.SignatureUnknown InvalidChecks this) {
+        return false;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown ExceptionCheck getExceptionCheck(@org.checkerframework.checker.signature.qual.SignatureUnknown InvalidChecks this) {
+        // TODO is this right?  The result might be an InvalidValueCheck
+        if (check instanceof InvalidExceptionCheck) {
+            return (InvalidExceptionCheck) check;
+        } else {
+            return null;
+        }
+    }
+
+    public void add(@org.checkerframework.checker.signature.qual.SignatureUnknown InvalidChecks this, @org.checkerframework.checker.signature.qual.SignatureUnknown Check check) {
+        if (this == EMPTY) {
+            throw new RandoopBug("Don't add to InvalidChecks.EMPTY");
+        }
+        if (this.check != null) {
+            throw new RandoopBug(String.format("add(%s) when InvalidChecks already contains %s", check, this.check));
+        }
+        if (!((check instanceof InvalidExceptionCheck) || (check instanceof InvalidValueCheck))) {
+            throw new Error("Expected Invalid{Exception,Value}Check, got " + check);
+        }
+        this.check = check;
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown InvalidChecks commonChecks(@org.checkerframework.checker.signature.qual.SignatureUnknown InvalidChecks this, @org.checkerframework.checker.signature.qual.SignatureUnknown InvalidChecks other) {
+        InvalidChecks common = new InvalidChecks();
+        if (this.check != null && check.equals(other.check)) {
+            common.add(check);
+        }
+        return common;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasInvalidBehavior(@org.checkerframework.checker.signature.qual.SignatureUnknown InvalidChecks this) {
+        return check != null;
+    }
+}

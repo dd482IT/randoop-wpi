@@ -1,0 +1,63 @@
+package randoop.contract;
+
+import java.util.Arrays;
+import randoop.types.JavaTypes;
+import randoop.types.TypeTuple;
+
+/**
+ * The contract: {@code x0.equals(null)==false}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public final class EqualsToNullRetFalse extends ObjectContract {
+
+    private static final @org.checkerframework.checker.mustcall.qual.MustCall({}) EqualsToNullRetFalse instance = new EqualsToNullRetFalse();
+
+    private EqualsToNullRetFalse() {
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static @org.checkerframework.checker.mustcall.qual.MustCall({}) EqualsToNullRetFalse getInstance() {
+        return instance;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean evaluate(@org.checkerframework.checker.mustcall.qual.MustCall({}) EqualsToNullRetFalse this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Object@org.checkerframework.checker.mustcall.qual.MustCall({}) ... objects) {
+        assert objects != null && objects.length == 1;
+        Object o = objects[0];
+        return o != null;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) int getArity(@org.checkerframework.checker.mustcall.qual.MustCall({}) EqualsToNullRetFalse this) {
+        return 1;
+    }
+
+    /**
+     * The arguments to which this contract can be applied.
+     */
+    static @org.checkerframework.checker.mustcall.qual.MustCall({}) TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE));
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) TypeTuple getInputTypes(@org.checkerframework.checker.mustcall.qual.MustCall({}) EqualsToNullRetFalse this) {
+        return inputTypes;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toCommentString(@org.checkerframework.checker.mustcall.qual.MustCall({}) EqualsToNullRetFalse this) {
+        return "!x0.equals(null)";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String get_observer_str(@org.checkerframework.checker.mustcall.qual.MustCall({}) EqualsToNullRetFalse this) {
+        return "equalsNull @";
+    }
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toCodeString(@org.checkerframework.checker.mustcall.qual.MustCall({}) EqualsToNullRetFalse this) {
+        StringBuilder b = new StringBuilder();
+        b.append("org.junit.Assert.assertTrue(");
+        b.append("\"Contract failed: " + toCommentString() + "\", ");
+        b.append("!x0.equals(null)");
+        b.append(");");
+        return b.toString();
+    }
+}

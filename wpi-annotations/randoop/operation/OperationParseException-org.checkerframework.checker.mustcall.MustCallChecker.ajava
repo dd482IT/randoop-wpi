@@ -1,0 +1,13 @@
+package randoop.operation;
+
+// Not meant for serialization.
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public class OperationParseException extends Exception {
+
+    private static final  @org.checkerframework.checker.mustcall.qual.MustCall({}) long serialVersionUID = 1L;
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public OperationParseException(@org.checkerframework.checker.mustcall.qual.MustCall({}) String string) {
+        super(string);
+    }
+}

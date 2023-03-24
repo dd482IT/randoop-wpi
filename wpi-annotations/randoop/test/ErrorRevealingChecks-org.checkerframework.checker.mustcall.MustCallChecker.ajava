@@ -1,0 +1,157 @@
+package randoop.test;
+
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Objects;
+import java.util.Set;
+
+/**
+ * ErrorRevealingChecks represent failing checks for a particular test sequence. Each check may
+ * refer to different variables defined in the sequence, so can only be assumed to be valid at the
+ * end of the sequence. Note that there are no expected exceptions in error-revealing tests, and so
+ * there should be no {@link ExceptionCheck} objects.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public class ErrorRevealingChecks implements TestChecks<ErrorRevealingChecks> {
+
+    /**
+     * An empty, immutable set of error-revealing checks.
+     */
+    public static final @org.checkerframework.checker.mustcall.qual.MustCall({}) ErrorRevealingChecks EMPTY;
+
+    static {
+        EMPTY = new ErrorRevealingChecks();
+        // make immutable
+        EMPTY.checks = Collections.emptySet();
+    }
+
+    private @org.checkerframework.checker.mustcall.qual.MustCall({}) Set<Check> checks;
+
+    /**
+     * Create an empty set of error checks.
+     */
+    public ErrorRevealingChecks() {
+        this.checks = new LinkedHashSet<>();
+    }
+
+    /**
+     * Create a singleton set of error checks.
+     *
+     * @param check the check to put in the newly-created singleton set
+     */
+    public ErrorRevealingChecks(@org.checkerframework.checker.mustcall.qual.MustCall({}) Check check) {
+        validateCheck(check);
+        this.checks = Collections.singleton(check);
+    }
+
+    /**
+     * Throw an exception if {@code check} is not acceptable for this class.
+     *
+     * @param check the check that a client is trying to insert into this
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    private static void validateCheck(@org.checkerframework.checker.mustcall.qual.MustCall({}) Check check) {
+        if ((check instanceof ExceptionCheck) && !(check instanceof ExpectedExceptionCheck)) {
+            throw new Error("No expected exceptions in error-revealing tests (class " + check.getClass() + "): " + check);
+        }
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) int count(@org.checkerframework.checker.mustcall.qual.MustCall({}) ErrorRevealingChecks this) {
+        return checks.size();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return all checks, with each mapped to false, indicating it is failing
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) Set<Check> checks(@org.checkerframework.checker.mustcall.qual.MustCall({}) ErrorRevealingChecks this) {
+        return checks;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return true if not empty
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean hasChecks(@org.checkerframework.checker.mustcall.qual.MustCall({}) ErrorRevealingChecks this) {
+        return !checks.isEmpty();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return true if there are any error revealing checks (not empty)
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean hasErrorBehavior(@org.checkerframework.checker.mustcall.qual.MustCall({}) ErrorRevealingChecks this) {
+        return hasChecks();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return null, since no expected exceptions in error-revealing tests
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public ExceptionCheck getExceptionCheck(@org.checkerframework.checker.mustcall.qual.MustCall({}) ErrorRevealingChecks this) {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @throws Error if {@code check} is an exception check
+     */
+    public void add(@org.checkerframework.checker.mustcall.qual.MustCall({}) ErrorRevealingChecks this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Check check) {
+        validateCheck(check);
+        checks.add(check);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean equals(@org.checkerframework.checker.mustcall.qual.MustCall({}) ErrorRevealingChecks this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ErrorRevealingChecks)) {
+            return false;
+        }
+        ErrorRevealingChecks cks = (ErrorRevealingChecks) obj;
+        return this.checks.equals(cks.checks);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) int hashCode(@org.checkerframework.checker.mustcall.qual.MustCall({}) ErrorRevealingChecks this) {
+        return Objects.hash(checks);
+    }
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) ErrorRevealingChecks commonChecks(@org.checkerframework.checker.mustcall.qual.MustCall({}) ErrorRevealingChecks this, @org.checkerframework.checker.mustcall.qual.MustCall({}) ErrorRevealingChecks other) {
+        ErrorRevealingChecks common = new ErrorRevealingChecks();
+        for (Check ck : checks) {
+            if (other.checks.contains(ck)) {
+                common.add(ck);
+            }
+        }
+        return common;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>Returns false because error checks are not considered invalid.
+     *
+     * @return false, always
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean hasInvalidBehavior(@org.checkerframework.checker.mustcall.qual.MustCall({}) ErrorRevealingChecks this) {
+        return false;
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toString(@org.checkerframework.checker.mustcall.qual.MustCall({}) ErrorRevealingChecks this) {
+        return this.getClass() + " of size " + checks.size() + ": " + checks.toString();
+    }
+}

@@ -1,0 +1,96 @@
+package randoop.types;
+
+import java.util.Objects;
+
+/**
+ * Represents a type variable that is a type parameter. (See JLS, section 4.3.)
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+class ExplicitTypeVariable extends TypeVariable {
+
+    /**
+     * the type parameter
+     */
+    private final java.lang.reflect.@org.checkerframework.checker.mustcall.qual.MustCall({}) TypeVariable<?> variable;
+
+    /**
+     * Create a {@code ExplicitTypeVariable} for the given type parameter.
+     *
+     * @param variable the type parameter
+     * @param bound the upper bound on the parameter
+     */
+    ExplicitTypeVariable(java.lang.reflect.@org.checkerframework.checker.mustcall.qual.MustCall({}) TypeVariable<?> variable, @org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterBound bound) {
+        super(new EagerReferenceBound(JavaTypes.NULL_TYPE), bound);
+        this.variable = variable;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>Checks that the type parameter is equal. This may be more restrictive than desired because
+     * equivalent TypeVariable objects from different instances of the same type may be distinct.
+     *
+     * @return true if the type parameters are equal, false otherwise
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean equals(@org.checkerframework.checker.mustcall.qual.MustCall({}) ExplicitTypeVariable this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ExplicitTypeVariable)) {
+            return isAssignableFrom(null);
+        }
+        ExplicitTypeVariable t = (ExplicitTypeVariable) obj;
+        return variable.equals(t.variable) && super.equals(t);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) int hashCode(@org.checkerframework.checker.mustcall.qual.MustCall({}) ExplicitTypeVariable this) {
+        return Objects.hash(variable, super.hashCode());
+    }
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String getFqName(@org.checkerframework.checker.mustcall.qual.MustCall({}) ExplicitTypeVariable this) {
+        return variable.getName();
+    }
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String getBinaryName(@org.checkerframework.checker.mustcall.qual.MustCall({}) ExplicitTypeVariable this) {
+        return variable.getName();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String getSimpleName(@org.checkerframework.checker.mustcall.qual.MustCall({}) ExplicitTypeVariable this) {
+        return this.getFqName();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    java.lang.reflect.@org.checkerframework.checker.mustcall.qual.MustCall({}) TypeVariable<?> getReflectionTypeVariable(@org.checkerframework.checker.mustcall.qual.MustCall({}) ExplicitTypeVariable this) {
+        return this.variable;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean isGeneric(@org.checkerframework.checker.mustcall.qual.MustCall({}) ExplicitTypeVariable this,  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean ignoreWildcards) {
+        return true;
+    }
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) ReferenceType substitute(@org.checkerframework.checker.mustcall.qual.MustCall({}) ExplicitTypeVariable this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Substitution substitution) {
+        ReferenceType type = substitution.get(this);
+        if (type != null && !type.isVariable()) {
+            return type;
+        }
+        ParameterBound upperBound = getUpperTypeBound().substitute(substitution);
+        if (type == null) {
+            if (!upperBound.equals(getUpperTypeBound())) {
+                return new ExplicitTypeVariable(this.variable, upperBound);
+            }
+            return this;
+        }
+        if (!upperBound.equals(getUpperTypeBound())) {
+            return ((TypeVariable) type).createCopyWithBounds(getLowerTypeBound(), upperBound);
+        }
+        return type;
+    }
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) TypeVariable createCopyWithBounds(@org.checkerframework.checker.mustcall.qual.MustCall({}) ExplicitTypeVariable this, @org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterBound lowerBound, @org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterBound upperBound) {
+        return new ExplicitTypeVariable(this.variable, upperBound);
+    }
+}

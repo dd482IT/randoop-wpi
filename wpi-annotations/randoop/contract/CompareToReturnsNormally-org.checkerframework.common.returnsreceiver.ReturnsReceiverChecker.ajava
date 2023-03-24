@@ -1,0 +1,71 @@
+package randoop.contract;
+
+import java.util.Arrays;
+import randoop.types.JavaTypes;
+import randoop.types.TypeTuple;
+
+/**
+ * Checks that calling compareTo() on an object does not throw an exception.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public class CompareToReturnsNormally extends ObjectContract {
+
+    private static final  CompareToReturnsNormally instance = new CompareToReturnsNormally();
+
+    private CompareToReturnsNormally() {
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static  CompareToReturnsNormally getInstance() {
+        return instance;
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public   boolean evaluate( CompareToReturnsNormally this,  Object ... objects) {
+        assert objects != null && objects.length == 1;
+        Object o = objects[0];
+        assert o != null;
+        if (o instanceof Comparable) {
+            try {
+                ((Comparable) o).compareTo(o);
+            } catch (Exception e) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   int getArity( CompareToReturnsNormally this) {
+        return 1;
+    }
+
+    /**
+     * The arguments to which this contract can be applied.
+     */
+    static  TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.COMPARABLE_TYPE));
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  TypeTuple getInputTypes( CompareToReturnsNormally this) {
+        return inputTypes;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  String toCommentString( CompareToReturnsNormally this) {
+        return "x0.compareTo() throws no Exception.";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  String get_observer_str( CompareToReturnsNormally this) {
+        return "compareTo throws no Exception";
+    }
+
+    public  String toCodeString( CompareToReturnsNormally this) {
+        StringBuilder b = new StringBuilder();
+        b.append("org.junit.Assert.assertTrue(");
+        b.append("\"Contract failed: " + toCommentString() + "\", ");
+        b.append("x0.compareTo()");
+        b.append(");");
+        return b.toString();
+    }
+}

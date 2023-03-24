@@ -1,0 +1,278 @@
+package randoop.reflection;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Executable;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+
+/**
+ * Interface for predicates that check whether a class or class member is considered accessible.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public abstract class AccessibilityPredicate {
+
+    /**
+     * A predicate that returns true for public elements.
+     */
+    public static  AccessibilityPredicate IS_PUBLIC = new PublicAccessibilityPredicate();
+
+    /**
+     * A predicate that returns true for non-private elements.
+     */
+    public static  AccessibilityPredicate IS_NOT_PRIVATE = new NotPrivateAccessibilityPredicate();
+
+    /**
+     * A predicate that always returns true.
+     */
+    public static  AccessibilityPredicate IS_ANY = new AnyAccessibilityPredicate();
+
+    /**
+     * Determines whether this AccessibilityPredicate considers a {@link Class} accessible.
+     *
+     * @param c the class object to check
+     * @return whether this considers the class to be accessible
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public abstract   boolean isAccessible( AccessibilityPredicate this,  Class<?> c);
+
+    /**
+     * Determines whether this AccessibilityPredicate considers a {@link Method} or {@link
+     * Constructor} accessible. Does not test the accessibility of the containing class.
+     *
+     * @param e the method/constructor object to check
+     * @return whether this considers the method/constructor to be accessible
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public abstract   boolean isAccessible( AccessibilityPredicate this,  Executable e);
+
+    /**
+     * Determines whether this AccessibilityPredicate considers a {@link Field} accessible. Does not
+     * test the accessibility of the containing class.
+     *
+     * @param f the field object to check
+     * @return whether this considers the field to be accessible
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public abstract   boolean isAccessible(Field f);
+
+    /**
+     * AnyAccessibilityPredicate is a {@link AccessibilityPredicate} that always returns true.
+     */
+    private static class AnyAccessibilityPredicate extends AccessibilityPredicate {
+
+        /**
+         * {@inheritDoc}
+         *
+         * @return true
+         */
+        @org.checkerframework.dataflow.qual.Pure
+        public   boolean isAccessible( AnyAccessibilityPredicate this,  Class<?> c) {
+            return true;
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @return true
+         */
+        @org.checkerframework.dataflow.qual.Pure
+        public   boolean isAccessible( AnyAccessibilityPredicate this,  Executable e) {
+            return true;
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @return true
+         */
+        @org.checkerframework.dataflow.qual.Pure
+        public   boolean isAccessible( AnyAccessibilityPredicate this,  Field f) {
+            return true;
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public  String toString( AnyAccessibilityPredicate this) {
+            return "AnyAccessibilityPredicate";
+        }
+    }
+
+    /**
+     * PublicAccessibilityPredicate is a {@link AccessibilityPredicate} that returns true in the case
+     * that the class/method/constructor/field is public.
+     */
+    private static class PublicAccessibilityPredicate extends AccessibilityPredicate {
+
+        /**
+         * {@inheritDoc}
+         *
+         * @return true if class is declared public, false otherwise
+         */
+        public   boolean isAccessible( PublicAccessibilityPredicate this,  Class<?> c) {
+            return (c.getDeclaringClass() == null || isAccessible(c.getDeclaringClass())) && isAccessible(c.getModifiers() & Modifier.classModifiers());
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @return true if method/constructor is declared public, false otherwise
+         */
+        public   boolean isAccessible( PublicAccessibilityPredicate this,  Executable e) {
+            return isAccessible(e.getModifiers());
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @return true if field is declared public, false otherwise
+         */
+        public   boolean isAccessible( PublicAccessibilityPredicate this,  Field f) {
+            return isAccessible(f.getModifiers() & Modifier.fieldModifiers());
+        }
+
+        /*
+     * Checks whether the provided modifiers indicate public bit is set.
+     */
+        private   boolean isAccessible( PublicAccessibilityPredicate this,   int mods) {
+            return Modifier.isPublic(mods);
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public  String toString( PublicAccessibilityPredicate this) {
+            return "PublicAccessibilityPredicate";
+        }
+    }
+
+    /**
+     * A predicate that tests for accessibility of a class, method, constructor, or field relative to
+     * a particular package.
+     *
+     * <ul>
+     *   <li>A top-level class is accessible from the package if it is public, or if it is
+     *       package-private in the given package.
+     *   <li>An element is accessible from the package if it is either public, or, if in the same
+     *       package, then not private.
+     * </ul>
+     *
+     * <p>The predicate is used to determine what can be accessed from a Randoop-generated JUnit test
+     * in the given package. So, this class does not implement Java's full accessibility rules; those
+     * for subclasses and default-accessibility are not relevant to this predicate.
+     */
+    public static class PackageAccessibilityPredicate extends AccessibilityPredicate {
+
+        /**
+         * The package name from which to test accessibility of elements.
+         */
+        private final  String packageName;
+
+        /**
+         * Create a predicate that tests accessibility. Class members must either be public, or
+         * accessible relative to the given package {@code packageName}.
+         *
+         * @param packageName the package to use for package accessibility test
+         */
+        public PackageAccessibilityPredicate( String packageName) {
+            this.packageName = packageName;
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @return true if class is public or package private in {@code packageName}, false otherwise
+         */
+        public   boolean isAccessible( PackageAccessibilityPredicate this,  Class<?> c) {
+            int mods = c.getModifiers() & Modifier.classModifiers();
+            return (c.getDeclaringClass() == null || isAccessible(c.getDeclaringClass())) && isAccessible(mods, c.getPackage());
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @return true if method/constructor is public or a member of a class in {@code packageName}
+         *     and not private, false otherwise
+         */
+        public   boolean isAccessible( PackageAccessibilityPredicate this,  Executable e) {
+            int mods = e.getModifiers();
+            return isAccessible(mods, e.getDeclaringClass().getPackage());
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @return true if field is public or member of a class in {@code packageName} and not private,
+         *     false otherwise
+         */
+        public   boolean isAccessible( PackageAccessibilityPredicate this,  Field f) {
+            int mods = f.getModifiers() & Modifier.fieldModifiers();
+            return isAccessible(mods, f.getDeclaringClass().getPackage());
+        }
+
+        /**
+         * Test accessibility as indicated by the modifier bit string and/or package.
+         *
+         * @param mods the modifier bit string
+         * @param otherPackage the package to test for relative accessibility
+         * @return true if public set in modifiers or if otherPackage is the same as packageName and
+         *     private is not set in modifiers, false otherwise
+         */
+        private   boolean isAccessible( PackageAccessibilityPredicate this,   int mods,  Package otherPackage) {
+            String otherPackageName = (otherPackage == null) ? "" : otherPackage.getName();
+            return Modifier.isPublic(mods) || (packageName.equals(otherPackageName) && !Modifier.isPrivate(mods));
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public  String toString( PackageAccessibilityPredicate this) {
+            return "PackageAccessibilityPredicate(" + packageName + ")";
+        }
+    }
+
+    /**
+     * NotPrivateAccessibilityPredicate is a {@link AccessibilityPredicate} that returns true in the
+     * case that the class/method/constructor/field is not declared to be private.
+     */
+    private static class NotPrivateAccessibilityPredicate extends AccessibilityPredicate {
+
+        /**
+         * {@inheritDoc}
+         *
+         * @return true if the class access modifier is not private, and false, otherwise
+         */
+        public   boolean isAccessible( NotPrivateAccessibilityPredicate this,  Class<?> c) {
+            return (c.getDeclaringClass() == null || isAccessible(c.getDeclaringClass())) && isAccessible(c.getModifiers() & Modifier.classModifiers());
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @return true if the method/constructor access modifier is not private, and false, otherwise
+         */
+        public   boolean isAccessible( NotPrivateAccessibilityPredicate this,  Executable e) {
+            return isAccessible(e.getModifiers());
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @return true if the field access modifier is not private, and false, otherwise
+         */
+        public   boolean isAccessible( NotPrivateAccessibilityPredicate this,  Field f) {
+            return isAccessible(f.getModifiers() & Modifier.fieldModifiers());
+        }
+
+        /**
+         * Returns true if the {@link java.lang.reflect.Modifier Modifier} value does not have private
+         * set.
+         *
+         * @param mods the modifiers value
+         * @return true if the private bit is not set, false otherwise
+         */
+        private   boolean isAccessible( NotPrivateAccessibilityPredicate this,   int mods) {
+            return !Modifier.isPrivate(mods);
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public  String toString( NotPrivateAccessibilityPredicate this) {
+            return "NotPrivateAccessibilityPredicate";
+        }
+    }
+}

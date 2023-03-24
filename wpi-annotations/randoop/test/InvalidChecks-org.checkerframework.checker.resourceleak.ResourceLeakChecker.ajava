@@ -1,0 +1,103 @@
+package randoop.test;
+
+import java.util.Collections;
+import java.util.Set;
+import randoop.main.RandoopBug;
+
+/**
+ * An empty or singleton set. It contains at most one InvalidExceptionCheck or InvalidValueCheck,
+ * which captures invalid behavior in a sequence.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class InvalidChecks implements TestChecks<InvalidChecks> {
+
+    /**
+     * An empty, immutable set of invalid checks.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InvalidChecks EMPTY = new InvalidChecks();
+
+    // Either an InvalidExceptionCheck or an InvalidValueCheck.
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Check check;
+
+    /**
+     * Create an empty, mutable set of invalid checks.
+     */
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public InvalidChecks() {
+    }
+
+    /**
+     * Create a singleton set of invalid checks.
+     *
+     * @param check the sole member of the newly-created singleton set
+     */
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public InvalidChecks(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Check check) {
+        add(check);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int count(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InvalidChecks this) {
+        int result = 0;
+        if (check != null) {
+            result = 1;
+        }
+        return result;
+    }
+
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<Check> checks(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InvalidChecks this) {
+        if (check != null) {
+            return Collections.singleton(check);
+        } else {
+            return Collections.emptySet();
+        }
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasChecks(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InvalidChecks this) {
+        return check != null;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasErrorBehavior(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InvalidChecks this) {
+        return false;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExceptionCheck getExceptionCheck(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InvalidChecks this) {
+        // TODO is this right?  The result might be an InvalidValueCheck
+        if (check instanceof InvalidExceptionCheck) {
+            return (InvalidExceptionCheck) check;
+        } else {
+            return null;
+        }
+    }
+
+    public void add(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InvalidChecks this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Check check) {
+        if (this == EMPTY) {
+            throw new RandoopBug("Don't add to InvalidChecks.EMPTY");
+        }
+        if (this.check != null) {
+            throw new RandoopBug(String.format("add(%s) when InvalidChecks already contains %s", check, this.check));
+        }
+        if (!((check instanceof InvalidExceptionCheck) || (check instanceof InvalidValueCheck))) {
+            throw new Error("Expected Invalid{Exception,Value}Check, got " + check);
+        }
+        this.check = check;
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.check" }, methods = { "equals" })
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InvalidChecks commonChecks(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InvalidChecks this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InvalidChecks other) {
+        InvalidChecks common = new InvalidChecks();
+        if (this.check != null && check.equals(other.check)) {
+            common.add(check);
+        }
+        return common;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasInvalidBehavior(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InvalidChecks this) {
+        return check != null;
+    }
+}

@@ -1,0 +1,65 @@
+package randoop.contract;
+
+import java.util.Arrays;
+import randoop.types.JavaTypes;
+import randoop.types.TypeTuple;
+
+/**
+ * The contract: {@code x0.equals(x0)==true}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public final class EqualsReflexive extends ObjectContract {
+
+    private static final  EqualsReflexive instance = new EqualsReflexive();
+
+    private EqualsReflexive() {
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static  EqualsReflexive getInstance() {
+        return instance;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean evaluate( EqualsReflexive this,  Object ... objects) {
+        assert objects != null && objects.length == 1;
+        Object o = objects[0];
+        assert o != null;
+        // noinspection EqualsWithItself
+        return o.equals(o);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   int getArity( EqualsReflexive this) {
+        return 1;
+    }
+
+    /**
+     * The arguments to which this contract can be applied.
+     */
+    static  TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE));
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  TypeTuple getInputTypes( EqualsReflexive this) {
+        return inputTypes;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  String toCommentString( EqualsReflexive this) {
+        return "x0.equals(x0)";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  String get_observer_str( EqualsReflexive this) {
+        return "EqualsReflexive";
+    }
+
+    public  String toCodeString( EqualsReflexive this) {
+        StringBuilder b = new StringBuilder();
+        b.append("org.junit.Assert.assertTrue(");
+        b.append("\"Contract failed: " + toCommentString() + "\", ");
+        b.append("x0.equals(x0)");
+        b.append(");");
+        return b.toString();
+    }
+}

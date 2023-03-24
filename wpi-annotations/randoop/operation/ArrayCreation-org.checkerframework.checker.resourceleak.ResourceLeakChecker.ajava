@@ -1,0 +1,115 @@
+package randoop.operation;
+
+import java.lang.reflect.Array;
+import java.util.List;
+import java.util.Objects;
+import randoop.ExecutionOutcome;
+import randoop.NormalExecution;
+import randoop.sequence.Variable;
+import randoop.types.ArrayType;
+import randoop.types.Type;
+import randoop.types.TypeTuple;
+
+/**
+ * {@code ArrayCreation} is a {@link Operation} representing the construction of a one-dimensional
+ * array of a given type. The operation takes a length argument and creates an array of that size.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class ArrayCreation extends CallableOperation {
+
+    /**
+     * The element type for the created array.
+     */
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type elementType;
+
+    /**
+     * The component type for the created array.
+     */
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type componentType;
+
+    /**
+     * The dimensions of the created array.
+     */
+    private  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int dimensions;
+
+    /**
+     * Creates an object representing the construction of an array of the given type.
+     *
+     * @param arrayType the type of the created array
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getComponentType", "getDimensions", "getElementType" })
+    ArrayCreation(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ArrayType arrayType) {
+        this.elementType = arrayType.getElementType();
+        this.componentType = arrayType.getComponentType();
+        this.dimensions = arrayType.getDimensions();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean equals(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ArrayCreation this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ArrayCreation)) {
+            return false;
+        }
+        ArrayCreation arrayCreation = (ArrayCreation) obj;
+        return this.elementType.equals(arrayCreation.elementType) && this.dimensions == arrayCreation.dimensions;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int hashCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ArrayCreation this) {
+        return Objects.hash(elementType, dimensions);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.elementType" }, methods = { "getBinaryName" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ArrayCreation this) {
+        StringBuilder result = new StringBuilder(elementType.getBinaryName());
+        for (int i = 0; i < dimensions; i++) {
+            result.append("[]");
+        }
+        return result.toString();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.componentType" }, methods = { "getRuntimeClass" })
+    public // The argument array contains a single Integer.
+    @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutionOutcome execute(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ArrayCreation this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) [] input) {
+        assert input.length == 1 : "requires array dimension as input";
+        int length = ((Integer) input[0]).intValue();
+        long startTime = System.currentTimeMillis();
+        Object theArray = Array.newInstance(this.componentType.getRuntimeClass(), length);
+        long totalTime = System.currentTimeMillis() - startTime;
+        return new NormalExecution(theArray, totalTime);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#4" }, methods = { "get" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#5" }, methods = { "append" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getArgumentString" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.elementType" }, methods = { "getFqName" })
+    public void appendCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ArrayCreation this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type declaringType, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeTuple inputTypes, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type outputType, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<Variable> inputVars, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) StringBuilder b) {
+        Variable inputVar = inputVars.get(0);
+        b.append("new").append(" ").append(this.elementType.getFqName());
+        b.append("[ ");
+        String param = getArgumentString(inputVar);
+        b.append(param).append(" ]");
+        for (int i = 1; i < dimensions; i++) {
+            b.append("[]");
+        }
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "get" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.elementType" }, methods = { "getBinaryName" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toParsableString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ArrayCreation this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type declaringType, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeTuple inputTypes, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type outputType) {
+        StringBuilder result = new StringBuilder(elementType.getBinaryName() + "[ " + inputTypes.get(0) + " ]");
+        for (int i = 1; i < dimensions; i++) {
+            result.append("[]");
+        }
+        return result.toString();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "toString" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.elementType" }, methods = { "getBinaryName" })
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ArrayCreation this) {
+        return this.toString();
+    }
+}

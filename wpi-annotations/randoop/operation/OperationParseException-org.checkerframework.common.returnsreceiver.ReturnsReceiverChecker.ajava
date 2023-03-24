@@ -1,0 +1,13 @@
+package randoop.operation;
+
+// Not meant for serialization.
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public class OperationParseException extends Exception {
+
+    private static final   long serialVersionUID = 1L;
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public OperationParseException( String string) {
+        super(string);
+    }
+}

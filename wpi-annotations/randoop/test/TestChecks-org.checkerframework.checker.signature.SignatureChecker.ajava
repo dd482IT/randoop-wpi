@@ -1,0 +1,81 @@
+package randoop.test;
+
+import java.util.Set;
+import org.checkerframework.checker.nullness.qual.Nullable;
+
+/**
+ * A TestChecks reprents a set of Checks, and possibly a single ExceptionCheck.
+ *
+ * @see RegressionChecks
+ * @see ErrorRevealingChecks
+ * @see InvalidChecks
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public interface TestChecks<T extends TestChecks<T>> {
+
+    /**
+     * Return the number of checks in this test.
+     *
+     * @return the count of checks in this object
+     */
+    @org.checkerframework.dataflow.qual.Pure
+     @org.checkerframework.checker.signature.qual.SignatureUnknown int count();
+
+    /**
+     * Get all non-exception checks and whether they are passing for this object.
+     *
+     * @return all checks with passing status
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    @org.checkerframework.checker.signature.qual.SignatureUnknown Set<Check> checks(@org.checkerframework.checker.signature.qual.SignatureUnknown TestChecks<T> this);
+
+    /**
+     * Add a check to this set.
+     *
+     * @param ck the check object to add to this set of checks
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    void add(Check ck);
+
+    /**
+     * Indicates whether this object has checks.
+     *
+     * @return true if this object has checks, false otherwise
+     */
+    @org.checkerframework.dataflow.qual.Pure
+     @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasChecks(@org.checkerframework.checker.signature.qual.SignatureUnknown TestChecks<T> this);
+
+    /**
+     * Indicates whether this set of checks contains any invalid behaviors.
+     *
+     * @return true when this contains checks for invalid behavior, false otherwise
+     */
+    @org.checkerframework.dataflow.qual.Pure
+     @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasInvalidBehavior(@org.checkerframework.checker.signature.qual.SignatureUnknown TestChecks<T> this);
+
+    /**
+     * Indicate whether this object has any failing checks. (This is essentially asking whether this
+     * is an error revealing test.)
+     *
+     * @return true if this object has failing checks, false otherwise
+     */
+    @org.checkerframework.dataflow.qual.Pure
+     @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasErrorBehavior(@org.checkerframework.checker.signature.qual.SignatureUnknown TestChecks<T> this);
+
+    /**
+     * Return the exception check in this object if there is one.
+     *
+     * @return the expected exception check, null otherwise
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    @org.checkerframework.checker.signature.qual.SignatureUnknown ExceptionCheck getExceptionCheck(@org.checkerframework.checker.signature.qual.SignatureUnknown TestChecks<T> this);
+
+    /**
+     * Returns the intersection of checks in this set and another set.
+     *
+     * @param other the {@code TestChecks} to compare with
+     * @return the checks common to this set of checks and those in {@code other}
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    T commonChecks(T other);
+}

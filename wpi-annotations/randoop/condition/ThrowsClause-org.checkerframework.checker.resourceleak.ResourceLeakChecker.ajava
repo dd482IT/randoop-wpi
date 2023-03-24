@@ -1,0 +1,74 @@
+package randoop.condition;
+
+import java.util.Objects;
+import randoop.types.ClassOrInterfaceType;
+
+/**
+ * Represents an expected exception in a throws-condition.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class ThrowsClause {
+
+    /**
+     * The descriptive text for this exception.
+     */
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String comment;
+
+    /**
+     * The type of the exception.
+     */
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ClassOrInterfaceType exceptionType;
+
+    /**
+     * Creates a {@link ThrowsClause} object with the given type, and comment.
+     *
+     * @param exceptionType the type of the expected exception
+     * @param comment the text description of the throws clause
+     */
+    ThrowsClause(ClassOrInterfaceType exceptionType, String comment) {
+        this.exceptionType = exceptionType;
+        this.comment = comment;
+    }
+
+    /**
+     * Returns the type of the exception.
+     *
+     * @return the type of the exception
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ClassOrInterfaceType getExceptionType(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ThrowsClause this) {
+        return exceptionType;
+    }
+
+    /**
+     * Returns the descriptive comment for this {@link ThrowsClause}.
+     *
+     * @return the comment for this {@link ThrowsClause}
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getComment(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getExceptionType" }) ThrowsClause this) {
+        return comment;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean equals(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ThrowsClause this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof ThrowsClause)) {
+            return false;
+        }
+        ThrowsClause other = (ThrowsClause) object;
+        return this.exceptionType.equals(other.exceptionType) && this.comment.equals(other.comment);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int hashCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ThrowsClause this) {
+        return Objects.hash(exceptionType, comment);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ThrowsClause this) {
+        return exceptionType + " // " + comment;
+    }
+}

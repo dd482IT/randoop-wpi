@@ -1,0 +1,41 @@
+package randoop;
+
+/**
+ * Means that the execution of a statement threw an exception.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class ExceptionalExecution extends ExecutionOutcome {
+
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Throwable exception;
+
+    /**
+     * @param exception the exception that was thrown
+     * @param executionTime the execution time, in nanoseconds
+     */
+    public ExceptionalExecution(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Throwable exception,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) long executionTime) {
+        super(executionTime);
+        if (exception == null) {
+            throw new IllegalArgumentException("exception must be non-null");
+        }
+        this.exception = exception;
+    }
+
+    /**
+     * Return the exception.
+     *
+     * @return the exception
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Throwable getException(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExceptionalExecution this) {
+        return this.exception;
+    }
+
+    /**
+     * Warning: this method calls toString() of code under test, which may have arbitrary behavior. We
+     * use this method in randoop.test.SequenceTests.
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.exception" }, methods = { "getClass", "getStackTrace" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExceptionalExecution this) {
+        return String.format("[ExceptionalExecution, %s, at %s]", exception.getClass().getName(), exception.getStackTrace()[0]);
+    }
+}

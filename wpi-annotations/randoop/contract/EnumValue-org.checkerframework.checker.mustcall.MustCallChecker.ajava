@@ -1,0 +1,91 @@
+package randoop.contract;
+
+import java.util.Collections;
+import java.util.Objects;
+import randoop.types.Type;
+import randoop.types.TypeTuple;
+
+/**
+ * A check for a particular value of an {@code Enum}. To be used in regression tests when {@code
+ * Enum} values are created.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public final class EnumValue extends ObjectContract {
+
+    public final @org.checkerframework.checker.mustcall.qual.MustCall({}) Enum<?> value;
+
+    private final @org.checkerframework.checker.mustcall.qual.MustCall({}) Type type;
+
+    public EnumValue(@org.checkerframework.checker.mustcall.qual.MustCall({}) Enum<?> value) {
+        this.value = value;
+        this.type = Type.forClass(value.getDeclaringClass());
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean equals(@org.checkerframework.checker.mustcall.qual.MustCall({}) EnumValue this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof EnumValue)) {
+            return false;
+        }
+        EnumValue enumValue = (EnumValue) obj;
+        return value.equals(enumValue.value);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) int hashCode(@org.checkerframework.checker.mustcall.qual.MustCall({}) EnumValue this) {
+        return Objects.hash(value);
+    }
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toString(@org.checkerframework.checker.mustcall.qual.MustCall({}) EnumValue this) {
+        return "randoop.contract.EnumValue = " + value.name();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) int getArity(@org.checkerframework.checker.mustcall.qual.MustCall({}) EnumValue this) {
+        return 1;
+    }
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) TypeTuple getInputTypes(@org.checkerframework.checker.mustcall.qual.MustCall({}) EnumValue this) {
+        return new TypeTuple(Collections.singletonList(type));
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean evaluate(@org.checkerframework.checker.mustcall.qual.MustCall({}) EnumValue this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Object@org.checkerframework.checker.mustcall.qual.MustCall({}) ... objects) throws Throwable {
+        assert objects.length == 1;
+        return value.equals(objects[0]);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public String toCommentString(@org.checkerframework.checker.mustcall.qual.MustCall({}) EnumValue this) {
+        return null;
+    }
+
+    /**
+     * The name of the enum value, for use in source code.
+     *
+     * @return the name of the enum value, for use in source code
+     */
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String getValueName(@org.checkerframework.checker.mustcall.qual.MustCall({}) EnumValue this) {
+        return type.getFqName() + "." + value.name();
+    }
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toCodeString(@org.checkerframework.checker.mustcall.qual.MustCall({}) EnumValue this) {
+        String valueName = getValueName();
+        StringBuilder b = new StringBuilder();
+        b.append("org.junit.Assert.assertTrue(");
+        b.append("\"'\" + x0 + \"' != '\" + ").append(valueName).append(" + \"'\", ");
+        b.append("x0");
+        b.append(".equals(");
+        b.append(valueName);
+        b.append(")");
+        b.append(");");
+        return b.toString();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String get_observer_str(@org.checkerframework.checker.mustcall.qual.MustCall({}) EnumValue this) {
+        return "EnumValue";
+    }
+}

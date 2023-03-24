@@ -1,0 +1,63 @@
+package randoop.contract;
+
+import java.util.Arrays;
+import randoop.types.JavaTypes;
+import randoop.types.TypeTuple;
+
+/**
+ * The contract: {@code x0.equals(null)==false}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public final class EqualsToNullRetFalse extends ObjectContract {
+
+    private static final  EqualsToNullRetFalse instance = new EqualsToNullRetFalse();
+
+    private EqualsToNullRetFalse() {
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static  EqualsToNullRetFalse getInstance() {
+        return instance;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean evaluate( EqualsToNullRetFalse this,  Object ... objects) {
+        assert objects != null && objects.length == 1;
+        Object o = objects[0];
+        return o != null;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   int getArity( EqualsToNullRetFalse this) {
+        return 1;
+    }
+
+    /**
+     * The arguments to which this contract can be applied.
+     */
+    static  TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE));
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  TypeTuple getInputTypes( EqualsToNullRetFalse this) {
+        return inputTypes;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  String toCommentString( EqualsToNullRetFalse this) {
+        return "!x0.equals(null)";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  String get_observer_str( EqualsToNullRetFalse this) {
+        return "equalsNull @";
+    }
+
+    public  String toCodeString( EqualsToNullRetFalse this) {
+        StringBuilder b = new StringBuilder();
+        b.append("org.junit.Assert.assertTrue(");
+        b.append("\"Contract failed: " + toCommentString() + "\", ");
+        b.append("!x0.equals(null)");
+        b.append(");");
+        return b.toString();
+    }
+}

@@ -1,0 +1,30 @@
+package randoop.util;
+
+import java.util.Arrays;
+import randoop.contract.ObjectContract;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public final class ObjectContractReflectionCode extends ReflectionCode {
+
+    final ObjectContract c;
+
+    final Object[] objs;
+
+    public ObjectContractReflectionCode(final @org.checkerframework.checker.mustcall.qual.MustCall({}) ObjectContract c, final @org.checkerframework.checker.mustcall.qual.MustCall({}) Object@org.checkerframework.checker.mustcall.qual.MustCall({}) ... objs) {
+        this.c = c;
+        this.objs = objs;
+    }
+
+    protected void runReflectionCodeRaw() {
+        try {
+            // always a boolean value (true or false)
+            retval = c.evaluate(objs);
+        } catch (Throwable e) {
+            exceptionThrown = e;
+        }
+    }
+
+    public String toString() {
+        return "Check of ObjectContract " + c + " args: " + Arrays.toString(objs) + status();
+    }
+}

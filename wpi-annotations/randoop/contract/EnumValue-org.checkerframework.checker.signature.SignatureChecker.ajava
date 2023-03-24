@@ -1,0 +1,91 @@
+package randoop.contract;
+
+import java.util.Collections;
+import java.util.Objects;
+import randoop.types.Type;
+import randoop.types.TypeTuple;
+
+/**
+ * A check for a particular value of an {@code Enum}. To be used in regression tests when {@code
+ * Enum} values are created.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public final class EnumValue extends ObjectContract {
+
+    public final @org.checkerframework.checker.signature.qual.SignatureUnknown Enum<?> value;
+
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown Type type;
+
+    public EnumValue(@org.checkerframework.checker.signature.qual.SignatureUnknown Enum<?> value) {
+        this.value = value;
+        this.type = Type.forClass(value.getDeclaringClass());
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean equals(@org.checkerframework.checker.signature.qual.SignatureUnknown EnumValue this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof EnumValue)) {
+            return false;
+        }
+        EnumValue enumValue = (EnumValue) obj;
+        return value.equals(enumValue.value);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int hashCode(@org.checkerframework.checker.signature.qual.SignatureUnknown EnumValue this) {
+        return Objects.hash(value);
+    }
+
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toString(@org.checkerframework.checker.signature.qual.SignatureUnknown EnumValue this) {
+        return "randoop.contract.EnumValue = " + value.name();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int getArity(@org.checkerframework.checker.signature.qual.SignatureUnknown EnumValue this) {
+        return 1;
+    }
+
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown TypeTuple getInputTypes(@org.checkerframework.checker.signature.qual.SignatureUnknown EnumValue this) {
+        return new TypeTuple(Collections.singletonList(type));
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean evaluate(@org.checkerframework.checker.signature.qual.SignatureUnknown EnumValue this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object@org.checkerframework.checker.signature.qual.SignatureUnknown ... objects) throws Throwable {
+        assert objects.length == 1;
+        return value.equals(objects[0]);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public String toCommentString(@org.checkerframework.checker.signature.qual.SignatureUnknown EnumValue this) {
+        return null;
+    }
+
+    /**
+     * The name of the enum value, for use in source code.
+     *
+     * @return the name of the enum value, for use in source code
+     */
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String getValueName(@org.checkerframework.checker.signature.qual.SignatureUnknown EnumValue this) {
+        return type.getFqName() + "." + value.name();
+    }
+
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toCodeString(@org.checkerframework.checker.signature.qual.SignatureUnknown EnumValue this) {
+        String valueName = getValueName();
+        StringBuilder b = new StringBuilder();
+        b.append("org.junit.Assert.assertTrue(");
+        b.append("\"'\" + x0 + \"' != '\" + ").append(valueName).append(" + \"'\", ");
+        b.append("x0");
+        b.append(".equals(");
+        b.append(valueName);
+        b.append(")");
+        b.append(");");
+        return b.toString();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.Identifier String get_observer_str(@org.checkerframework.checker.signature.qual.SignatureUnknown EnumValue this) {
+        return "EnumValue";
+    }
+}

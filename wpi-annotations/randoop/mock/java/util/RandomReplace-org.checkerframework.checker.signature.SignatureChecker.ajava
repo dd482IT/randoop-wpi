@@ -1,0 +1,15 @@
+package randoop.mock.java.util;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class RandomReplace {
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    private RandomReplace() {
+        throw new Error("Do not instantiate");
+    }
+
+    // Used to replace calls to the constructor Random().
+    public static java.util.@org.checkerframework.checker.signature.qual.SignatureUnknown Random randomWithSeedZero() {
+        return new java.util.Random(0);
+    }
+}

@@ -1,0 +1,82 @@
+package randoop.types;
+
+/**
+ * Represents {@code void}. Technically, {@code void} is used to indicate that a method has no
+ * return values, and is not a type. However, we need to pretend that it is to be able to represent
+ * typed operations.
+ *
+ * <p>The decision to have {@code void} be a separate "type" is counter to the fact that the
+ * reflection method {@code Class.isPrimitive()} returns true for {@code void}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class VoidType extends Type {
+
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) VoidType value = new VoidType();
+
+    private VoidType() {
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) VoidType getVoidType() {
+        return value;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean equals(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) VoidType this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object obj) {
+        if (!(obj instanceof VoidType)) {
+            return false;
+        }
+        return obj == value;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int hashCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) VoidType this) {
+        return System.identityHashCode(this);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Class<?> getRuntimeClass(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) VoidType this) {
+        return void.class;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getFqName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) VoidType this) {
+        return "void";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getBinaryName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) VoidType this) {
+        return "void";
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getFqName" })
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getSimpleName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) VoidType this) {
+        return this.getFqName();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isVoid(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) VoidType this) {
+        return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>Returns false, since {@code void} is not a subtype of any type
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isSubtypeOf(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) VoidType this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type otherType) {
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>Return false because cannot assign to void.
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isAssignableFrom(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) VoidType this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type sourceType) {
+        return false;
+    }
+}

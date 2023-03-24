@@ -1,0 +1,91 @@
+package randoop.types;
+
+/**
+ * The {@code null} type is the type of the value {@code null}. As the subtype of all reference
+ * types, it is the default lowerbound of a {@link CaptureTypeVariable}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+class NullReferenceType extends ReferenceType {
+
+    private static final @org.checkerframework.checker.mustcall.qual.MustCall({}) NullReferenceType value = new NullReferenceType();
+
+    private NullReferenceType() {
+    }
+
+    /**
+     * Returns the null type.
+     *
+     * @return the null type object
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    static @org.checkerframework.checker.mustcall.qual.MustCall({}) NullReferenceType getNullType() {
+        return value;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean equals(@org.checkerframework.checker.mustcall.qual.MustCall({}) NullReferenceType this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof NullReferenceType)) {
+            return false;
+        }
+        return obj == value;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) int hashCode(@org.checkerframework.checker.mustcall.qual.MustCall({}) NullReferenceType this) {
+        return System.identityHashCode(this);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>This method returns null since the {@link NullReferenceType} does not have a runtime
+     * representation
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public Class<?> getRuntimeClass(@org.checkerframework.checker.mustcall.qual.MustCall({}) NullReferenceType this) {
+        return null;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) ReferenceType substitute(@org.checkerframework.checker.mustcall.qual.MustCall({}) NullReferenceType this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Substitution substitution) {
+        return this;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String getFqName(@org.checkerframework.checker.mustcall.qual.MustCall({}) NullReferenceType this) {
+        return "NullType";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String getBinaryName(@org.checkerframework.checker.mustcall.qual.MustCall({}) NullReferenceType this) {
+        return "NullType";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String getSimpleName(@org.checkerframework.checker.mustcall.qual.MustCall({}) NullReferenceType this) {
+        return this.getFqName();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String getCanonicalName(@org.checkerframework.checker.mustcall.qual.MustCall({}) NullReferenceType this) {
+        return this.getFqName();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean hasWildcard(@org.checkerframework.checker.mustcall.qual.MustCall({}) NullReferenceType this) {
+        return false;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean hasCaptureVariable(@org.checkerframework.checker.mustcall.qual.MustCall({}) NullReferenceType this) {
+        return false;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean isSubtypeOf(@org.checkerframework.checker.mustcall.qual.MustCall({}) NullReferenceType this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Type otherType) {
+        return !otherType.equals(JavaTypes.VOID_TYPE) && otherType.isReferenceType();
+    }
+}

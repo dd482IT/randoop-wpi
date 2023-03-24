@@ -1,0 +1,32 @@
+package randoop.test;
+
+import java.util.function.Predicate;
+import java.util.regex.Pattern;
+import randoop.sequence.ExecutableSequence;
+
+/**
+ * Returns true if the test uses a variable (or method) defined in a class that matches the given
+ * regular expression.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public class IncludeTestPredicate implements Predicate<ExecutableSequence> {
+
+    /**
+     * Classes whose uses to require. Predicate returns true if one of these is used.
+     */
+    private @org.checkerframework.checker.mustcall.qual.MustCall({}) Pattern testClasses;
+
+    public IncludeTestPredicate(@org.checkerframework.checker.mustcall.qual.MustCall({}) Pattern testClasses) {
+        this.testClasses = testClasses;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return true if the sequence uses a member of a class that matches the regular expression,
+     *     false otherwise
+     */
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean test(@org.checkerframework.checker.mustcall.qual.MustCall({}) IncludeTestPredicate this, @org.checkerframework.checker.mustcall.qual.MustCall({}) ExecutableSequence eseq) {
+        return eseq.sequence.hasUseOfMatchingClass(testClasses);
+    }
+}

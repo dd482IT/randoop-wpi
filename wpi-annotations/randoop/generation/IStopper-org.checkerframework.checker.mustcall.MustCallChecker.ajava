@@ -1,0 +1,16 @@
+package randoop.generation;
+
+/**
+ * Used by Randoop to determine whether generation should stop.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public interface IStopper {
+
+    /**
+     * Returns true if generation should stop.
+     *
+     * @return true if generation should stop
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    boolean shouldStop(@org.checkerframework.checker.mustcall.qual.MustCall({}) IStopper this);
+}

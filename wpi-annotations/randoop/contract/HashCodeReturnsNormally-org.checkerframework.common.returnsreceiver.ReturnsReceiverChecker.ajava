@@ -1,0 +1,69 @@
+package randoop.contract;
+
+import java.util.Arrays;
+import randoop.types.JavaTypes;
+import randoop.types.TypeTuple;
+
+/**
+ * Checks that calling hashCode() on an object does not throw an exception.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public final class HashCodeReturnsNormally extends ObjectContract {
+
+    private static final  HashCodeReturnsNormally instance = new HashCodeReturnsNormally();
+
+    private HashCodeReturnsNormally() {
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static  HashCodeReturnsNormally getInstance() {
+        return instance;
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public   boolean evaluate( HashCodeReturnsNormally this,  Object ... objects) {
+        assert objects != null && objects.length == 1;
+        Object o = objects[0];
+        assert o != null;
+        try {
+            int ignore = o.hashCode();
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   int getArity( HashCodeReturnsNormally this) {
+        return 1;
+    }
+
+    /**
+     * The arguments to which this contract can be applied.
+     */
+    static  TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE));
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  TypeTuple getInputTypes( HashCodeReturnsNormally this) {
+        return inputTypes;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  String toCommentString( HashCodeReturnsNormally this) {
+        return "x0.hashCode() throws no Exception.";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  String get_observer_str( HashCodeReturnsNormally this) {
+        return "hashCode() throws no Exception";
+    }
+
+    public  String toCodeString( HashCodeReturnsNormally this) {
+        StringBuilder b = new StringBuilder();
+        b.append("org.junit.Assert.assertTrue(");
+        b.append("\"Contract failed: " + toCommentString() + "\", ");
+        b.append("x0.hashCode()");
+        b.append(");");
+        return b.toString();
+    }
+}

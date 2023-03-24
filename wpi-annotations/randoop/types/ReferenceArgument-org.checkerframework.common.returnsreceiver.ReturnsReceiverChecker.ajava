@@ -1,0 +1,153 @@
+package randoop.types;
+
+import java.util.List;
+import java.util.Objects;
+
+/**
+ * Represents a reference type as a type argument to a parameterized type. (See <a
+ * href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.5.1">JLS Section
+ * 4.5.1</a>.)
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public class ReferenceArgument extends TypeArgument {
+
+    /**
+     * The reference type for this argument.
+     */
+    private final  ReferenceType referenceType;
+
+    /**
+     * Creates a {@code ReferenceArgument} for the given {@link ReferenceType}.
+     *
+     * @param referenceType the {@link ReferenceType}
+     */
+    private ReferenceArgument( ReferenceType referenceType) {
+        this.referenceType = referenceType;
+    }
+
+    /**
+     * Creates a {@code ReferenceArgument} from the given type.
+     *
+     * @param type the type
+     * @return a {@code ReferenceArgument} for the given type
+     */
+    public static  ReferenceArgument forType(java.lang.reflect. Type type) {
+        return forType(ReferenceType.forType(type));
+    }
+
+    public static  ReferenceArgument forType( ReferenceType referenceType) {
+        return new ReferenceArgument(referenceType);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean equals( ReferenceArgument this,  Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ReferenceArgument)) {
+            return false;
+        }
+        ReferenceArgument referenceArgument = (ReferenceArgument) obj;
+        return this.referenceType.equals(referenceArgument.referenceType);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   int hashCode( ReferenceArgument this) {
+        return Objects.hash(referenceType);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  String getFqName( ReferenceArgument this) {
+        return referenceType.getFqName();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  String getBinaryName( ReferenceArgument this) {
+        return referenceType.getBinaryName();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  String toString( ReferenceArgument this) {
+        return referenceType.toString();
+    }
+
+    public  TypeArgument substitute( ReferenceArgument this,  Substitution substitution) {
+        return TypeArgument.forType(referenceType.substitute(substitution));
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>Considers cases:
+     *
+     * <ul>
+     *   <li>{@code T} contains {@code T}
+     *   <li>{@code T} contains {@code ? extends T}
+     *   <li>{@code T} contains {@code ? super T}
+     * </ul>
+     */
+    public   boolean contains( ReferenceArgument this,  TypeArgument otherArgument) {
+        if (otherArgument.isWildcard()) {
+            ParameterBound boundType = ((WildcardArgument) otherArgument).getTypeBound();
+            return boundType.equals(new EagerReferenceBound(referenceType));
+        } else {
+            return referenceType.equals(((ReferenceArgument) otherArgument).getReferenceType());
+        }
+    }
+
+    /**
+     * Get the reference type for this type argument.
+     *
+     * @return the reference type of this type argument
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  ReferenceType getReferenceType( ReferenceArgument this) {
+        return referenceType;
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public  List<TypeVariable> getTypeParameters( ReferenceArgument this) {
+        return referenceType.getTypeParameters();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean hasWildcard( ReferenceArgument this) {
+        return referenceType.isParameterized() && ((ClassOrInterfaceType) referenceType).hasWildcard();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean hasCaptureVariable( ReferenceArgument this) {
+        return referenceType instanceof CaptureTypeVariable || (referenceType.isParameterized() && ((ClassOrInterfaceType) referenceType).hasCaptureVariable());
+    }
+
+    /**
+     * Indicates whether a {@code ReferenceArgument} is generic.
+     *
+     * @return true if the {@link ReferenceType} is generic, false otherwise
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean isGeneric( ReferenceArgument this,   boolean ignoreWildcards) {
+        return referenceType.isGeneric(ignoreWildcards);
+    }
+
+      boolean isInstantiationOfTypeArgument( ReferenceArgument this,  TypeArgument otherArgument) {
+        if (!(otherArgument instanceof ReferenceArgument)) {
+            return false;
+        }
+        ReferenceType otherReferenceType = ((ReferenceArgument) otherArgument).getReferenceType();
+        return referenceType.isInstantiationOf(otherReferenceType);
+    }
+
+    public  Substitution getInstantiatingSubstitution( ReferenceArgument this,  TypeArgument otherArgument) {
+        if (!(otherArgument instanceof ReferenceArgument)) {
+            return null;
+        }
+        ReferenceType otherReferenceType = ((ReferenceArgument) otherArgument).getReferenceType();
+        return referenceType.getInstantiatingSubstitution(otherReferenceType);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean isVariable( ReferenceArgument this) {
+        return referenceType.isVariable();
+    }
+}

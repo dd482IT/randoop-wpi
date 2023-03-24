@@ -1,0 +1,114 @@
+package randoop.types;
+
+import java.util.List;
+import java.util.Objects;
+import org.plumelib.util.CollectionsPlume;
+
+/**
+ * An abstract class representing kinds of type parameters, which are either type variables or
+ * wildcard types. Manages both upper and lower type bounds.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public abstract class ParameterType extends ReferenceType {
+
+    /**
+     * The lower bound on this type.
+     */
+    private @org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterBound lowerBound;
+
+    /**
+     * The upper bound on this type.
+     */
+    private @org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterBound upperBound;
+
+    ParameterType() {
+        this.lowerBound = new EagerReferenceBound(JavaTypes.NULL_TYPE);
+        this.upperBound = new EagerReferenceBound(JavaTypes.OBJECT_TYPE);
+    }
+
+    ParameterType(@org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterBound lowerBound, @org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterBound upperBound) {
+        this.lowerBound = lowerBound;
+        this.upperBound = upperBound;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean equals(@org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterType this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof ParameterType)) {
+            return false;
+        }
+        ParameterType other = (ParameterType) object;
+        return this.lowerBound.equals(other.lowerBound) && this.upperBound.equals(other.upperBound);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) int hashCode(@org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterType this) {
+        return Objects.hash(lowerBound, upperBound);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toString(@org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterType this) {
+        return "ParameterType [ " + lowerBound + ", " + upperBound + " ]";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String getCanonicalName(@org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterType this) {
+        return this.getFqName();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterBound getLowerTypeBound(@org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterType this) {
+        return lowerBound;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterBound getUpperTypeBound(@org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterType this) {
+        return upperBound;
+    }
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) List<TypeVariable> getTypeParameters(@org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterType this) {
+        List<TypeVariable> lowerTypeParams = lowerBound.getTypeParameters();
+        List<TypeVariable> upperTypeParams = upperBound.getTypeParameters();
+        return CollectionsPlume.listUnion(lowerTypeParams, upperTypeParams);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return null since type variables do not have a runtime class
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public Class<?> getRuntimeClass(@org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterType this) {
+        return null;
+    }
+
+    void setUpperBound(@org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterType this, @org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterBound upperBound) {
+        this.upperBound = upperBound;
+    }
+
+    void setLowerBound(@org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterType this, @org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterBound lowerBound) {
+        this.lowerBound = lowerBound;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean hasWildcard(@org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterType this) {
+        return getLowerTypeBound().hasWildcard() || getUpperTypeBound().hasWildcard();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean hasCaptureVariable(@org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterType this) {
+        return getLowerTypeBound().hasCaptureVariable() || getUpperTypeBound().hasCaptureVariable();
+    }
+
+    /**
+     * Return true if this has a generic bound
+     *
+     * @return true if this has a generic bound
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean hasGenericBound(@org.checkerframework.checker.mustcall.qual.MustCall({}) ParameterType this) {
+        return getUpperTypeBound().isGeneric() || getLowerTypeBound().isGeneric();
+    }
+}

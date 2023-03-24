@@ -1,0 +1,69 @@
+package randoop.contract;
+
+import java.util.Arrays;
+import randoop.types.JavaTypes;
+import randoop.types.TypeTuple;
+
+/**
+ * The contract: Checks that compareTo is consistent with equals.
+ *
+ * <pre>(x0.compareTo(x1) == 0) == x0.equals(x1)</pre>
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public class CompareToEquals extends ObjectContract {
+
+    private static final  CompareToEquals instance = new CompareToEquals();
+
+    private CompareToEquals() {
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static  CompareToEquals getInstance() {
+        return instance;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean evaluate( CompareToEquals this,  Object ... objects) {
+        Object o1 = objects[0];
+        Object o2 = objects[1];
+        if (o1 instanceof Comparable) {
+            Comparable compObj1 = (Comparable) o1;
+            return (compObj1.compareTo(o2) == 0) == o1.equals(o2);
+        }
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   int getArity( CompareToEquals this) {
+        return 2;
+    }
+
+    /**
+     * The arguments to which this contract can be applied.
+     */
+    static  TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.COMPARABLE_TYPE, JavaTypes.COMPARABLE_TYPE));
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  TypeTuple getInputTypes( CompareToEquals this) {
+        return inputTypes;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  String toCommentString( CompareToEquals this) {
+        return "compareTo-equals on x0 and x1";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  String get_observer_str( CompareToEquals this) {
+        return "CompareToEquals";
+    }
+
+    public  String toCodeString( CompareToEquals this) {
+        StringBuilder b = new StringBuilder();
+        b.append("org.junit.Assert.assertTrue(");
+        b.append("\"Contract failed: " + toCommentString() + "\", ");
+        b.append("(x0.compareTo(x1) == 0) == x0.equals(x1)");
+        b.append(");");
+        return b.toString();
+    }
+}

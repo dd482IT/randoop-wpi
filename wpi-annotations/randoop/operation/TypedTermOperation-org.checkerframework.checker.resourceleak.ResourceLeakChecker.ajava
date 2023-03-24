@@ -1,0 +1,57 @@
+package randoop.operation;
+
+import java.util.List;
+import randoop.sequence.Variable;
+import randoop.types.Substitution;
+import randoop.types.Type;
+import randoop.types.TypeTuple;
+
+/**
+ * Represents operations that have no declaring class, such as literal value, cast, or array
+ * creation/access/assignment.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+class TypedTermOperation extends TypedOperation {
+
+    /**
+     * Creates a {@link TypedOperation} for a given operation and input and output types.
+     *
+     * @param operation the operation
+     * @param inputTypes the input types
+     * @param outputType the output type
+     */
+    TypedTermOperation(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CallableOperation operation, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeTuple inputTypes, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type outputType) {
+        super(operation, inputTypes, outputType, null);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasWildcardTypes(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedTermOperation this) {
+        return false;
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getInputTypes", "getOperation", "getOutputType" })
+    @org.checkerframework.dataflow.qual.Pure
+    public void appendCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getOutputType" }) TypedTermOperation this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<Variable> inputVars, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) StringBuilder b) {
+        this.getOperation().appendCode(null, getInputTypes(), getOutputType(), inputVars, b);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getInputTypes", "getOperation", "getOutputType" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedTermOperation substitute(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedTermOperation this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Substitution substitution) {
+        TypeTuple inputTypes = this.getInputTypes().substitute(substitution);
+        Type outputType = this.getOutputType().substitute(substitution);
+        return new TypedTermOperation(this.getOperation(), inputTypes, outputType);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getInputTypes", "getOperation", "getOutputType" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedOperation applyCaptureConversion(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedTermOperation this) {
+        TypeTuple inputTypes = this.getInputTypes().applyCaptureConversion();
+        Type outputType = this.getOutputType().applyCaptureConversion();
+        return new TypedTermOperation(this.getOperation(), inputTypes, outputType);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getInputTypes", "getOperation", "getOutputType" })
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toParsableString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getClass" }) TypedTermOperation this) {
+        return this.getOperation().toParsableString(null, getInputTypes(), getOutputType());
+    }
+}

@@ -1,0 +1,29 @@
+package randoop;
+
+/**
+ * Means that the statement that this outcome represents was not executed.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public class NotExecuted extends ExecutionOutcome {
+
+    private static  NotExecuted notExecutedSingleton = new NotExecuted();
+
+    private NotExecuted() {
+        super(-1);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static  NotExecuted create() {
+        return notExecutedSingleton;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  String toString( NotExecuted this) {
+        return "<not_executed>";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public long getExecutionTime( NotExecuted this) {
+        throw new IllegalStateException("NotExecuted outcome has no execution time.");
+    }
+}

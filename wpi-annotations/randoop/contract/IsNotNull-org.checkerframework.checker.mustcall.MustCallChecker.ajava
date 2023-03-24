@@ -1,0 +1,68 @@
+package randoop.contract;
+
+import java.util.Arrays;
+import randoop.types.JavaTypes;
+import randoop.types.TypeTuple;
+
+/**
+ * The contract: {@code x != null}.
+ *
+ * <p>Obviously, this is not a property that must hold of all objects in a test. Randoop creates an
+ * instance of this contract when, during execution of a sequence, it determines that the above
+ * property holds. The property thus represents a <i>regression</i> as it captures the behavior of
+ * the code when it is executed.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public final class IsNotNull extends ObjectContract {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean equals(@org.checkerframework.checker.mustcall.qual.MustCall({}) IsNotNull this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Object o) {
+        if (o == this) {
+            return true;
+        }
+        return o instanceof IsNotNull;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) int hashCode(@org.checkerframework.checker.mustcall.qual.MustCall({}) IsNotNull this) {
+        // no state to compare.
+        return 31;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean evaluate(@org.checkerframework.checker.mustcall.qual.MustCall({}) IsNotNull this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Object@org.checkerframework.checker.mustcall.qual.MustCall({}) ... objects) throws Throwable {
+        assert objects.length == 1;
+        return objects[0] != null;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) int getArity(@org.checkerframework.checker.mustcall.qual.MustCall({}) IsNotNull this) {
+        return 1;
+    }
+
+    /**
+     * The arguments to which this contract can be applied.
+     */
+    static @org.checkerframework.checker.mustcall.qual.MustCall({}) TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE));
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) TypeTuple getInputTypes(@org.checkerframework.checker.mustcall.qual.MustCall({}) IsNotNull this) {
+        return inputTypes;
+    }
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toCodeString(@org.checkerframework.checker.mustcall.qual.MustCall({}) IsNotNull this) {
+        StringBuilder b = new StringBuilder();
+        b.append("org.junit.Assert.assertNotNull(x0);");
+        return b.toString();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toCommentString(@org.checkerframework.checker.mustcall.qual.MustCall({}) IsNotNull this) {
+        return "x0 != null";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String get_observer_str(@org.checkerframework.checker.mustcall.qual.MustCall({}) IsNotNull this) {
+        return "IsNotNull";
+    }
+}

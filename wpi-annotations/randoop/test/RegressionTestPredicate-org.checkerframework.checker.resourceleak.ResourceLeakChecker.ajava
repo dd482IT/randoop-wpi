@@ -1,0 +1,30 @@
+package randoop.test;
+
+import java.util.function.Predicate;
+import randoop.sequence.ExecutableSequence;
+
+/**
+ * {@code RegressionTestPredicate} determines whether to keep an {@code ExecutableSequence} as a
+ * regression test.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class RegressionTestPredicate implements Predicate<ExecutableSequence> {
+
+    /**
+     * Determines whether an executable sequence is a valid regression test. In particular, shouldn't
+     * have failures (an error-revealing test), and shouldn't have {@link
+     * randoop.util.TimeoutExceededException TimeoutExceededException}.
+     *
+     * <p>A true result means the test is a candidate for output.
+     *
+     * @return true if has no failures and does not involve a timeout exception, false otherwise
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "hasInvalidBehavior" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean test(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) RegressionTestPredicate this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence eseq) {
+        if (eseq.hasInvalidBehavior() || eseq.hasFailure()) {
+            return false;
+        }
+        return true;
+    }
+}

@@ -1,0 +1,157 @@
+package randoop.test;
+
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Objects;
+import java.util.Set;
+
+/**
+ * ErrorRevealingChecks represent failing checks for a particular test sequence. Each check may
+ * refer to different variables defined in the sequence, so can only be assumed to be valid at the
+ * end of the sequence. Note that there are no expected exceptions in error-revealing tests, and so
+ * there should be no {@link ExceptionCheck} objects.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public class ErrorRevealingChecks implements TestChecks<ErrorRevealingChecks> {
+
+    /**
+     * An empty, immutable set of error-revealing checks.
+     */
+    public static final  ErrorRevealingChecks EMPTY;
+
+    static {
+        EMPTY = new ErrorRevealingChecks();
+        // make immutable
+        EMPTY.checks = Collections.emptySet();
+    }
+
+    private  Set<Check> checks;
+
+    /**
+     * Create an empty set of error checks.
+     */
+    public ErrorRevealingChecks() {
+        this.checks = new LinkedHashSet<>();
+    }
+
+    /**
+     * Create a singleton set of error checks.
+     *
+     * @param check the check to put in the newly-created singleton set
+     */
+    public ErrorRevealingChecks( Check check) {
+        validateCheck(check);
+        this.checks = Collections.singleton(check);
+    }
+
+    /**
+     * Throw an exception if {@code check} is not acceptable for this class.
+     *
+     * @param check the check that a client is trying to insert into this
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    private static void validateCheck( Check check) {
+        if ((check instanceof ExceptionCheck) && !(check instanceof ExpectedExceptionCheck)) {
+            throw new Error("No expected exceptions in error-revealing tests (class " + check.getClass() + "): " + check);
+        }
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   int count( ErrorRevealingChecks this) {
+        return checks.size();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return all checks, with each mapped to false, indicating it is failing
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  Set<Check> checks( ErrorRevealingChecks this) {
+        return checks;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return true if not empty
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean hasChecks( ErrorRevealingChecks this) {
+        return !checks.isEmpty();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return true if there are any error revealing checks (not empty)
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean hasErrorBehavior( ErrorRevealingChecks this) {
+        return hasChecks();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return null, since no expected exceptions in error-revealing tests
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public ExceptionCheck getExceptionCheck( ErrorRevealingChecks this) {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @throws Error if {@code check} is an exception check
+     */
+    public void add( ErrorRevealingChecks this,  Check check) {
+        validateCheck(check);
+        checks.add(check);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean equals( ErrorRevealingChecks this,  Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ErrorRevealingChecks)) {
+            return false;
+        }
+        ErrorRevealingChecks cks = (ErrorRevealingChecks) obj;
+        return this.checks.equals(cks.checks);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   int hashCode( ErrorRevealingChecks this) {
+        return Objects.hash(checks);
+    }
+
+    public  ErrorRevealingChecks commonChecks( ErrorRevealingChecks this,  ErrorRevealingChecks other) {
+        ErrorRevealingChecks common = new ErrorRevealingChecks();
+        for (Check ck : checks) {
+            if (other.checks.contains(ck)) {
+                common.add(ck);
+            }
+        }
+        return common;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>Returns false because error checks are not considered invalid.
+     *
+     * @return false, always
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean hasInvalidBehavior( ErrorRevealingChecks this) {
+        return false;
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public  String toString( ErrorRevealingChecks this) {
+        return this.getClass() + " of size " + checks.size() + ": " + checks.toString();
+    }
+}

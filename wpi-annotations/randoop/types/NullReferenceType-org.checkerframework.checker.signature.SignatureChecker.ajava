@@ -1,0 +1,91 @@
+package randoop.types;
+
+/**
+ * The {@code null} type is the type of the value {@code null}. As the subtype of all reference
+ * types, it is the default lowerbound of a {@link CaptureTypeVariable}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+class NullReferenceType extends ReferenceType {
+
+    private static final @org.checkerframework.checker.signature.qual.SignatureUnknown NullReferenceType value = new NullReferenceType();
+
+    private NullReferenceType() {
+    }
+
+    /**
+     * Returns the null type.
+     *
+     * @return the null type object
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    static @org.checkerframework.checker.signature.qual.SignatureUnknown NullReferenceType getNullType() {
+        return value;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean equals(@org.checkerframework.checker.signature.qual.SignatureUnknown NullReferenceType this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof NullReferenceType)) {
+            return false;
+        }
+        return obj == value;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int hashCode(@org.checkerframework.checker.signature.qual.SignatureUnknown NullReferenceType this) {
+        return System.identityHashCode(this);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>This method returns null since the {@link NullReferenceType} does not have a runtime
+     * representation
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public Class<?> getRuntimeClass(@org.checkerframework.checker.signature.qual.SignatureUnknown NullReferenceType this) {
+        return null;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceType substitute(@org.checkerframework.checker.signature.qual.SignatureUnknown NullReferenceType this, @org.checkerframework.checker.signature.qual.SignatureUnknown Substitution substitution) {
+        return this;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.Identifier String getFqName(@org.checkerframework.checker.signature.qual.SignatureUnknown NullReferenceType this) {
+        return "NullType";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.Identifier String getBinaryName(@org.checkerframework.checker.signature.qual.SignatureUnknown NullReferenceType this) {
+        return "NullType";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.Identifier String getSimpleName(@org.checkerframework.checker.signature.qual.SignatureUnknown NullReferenceType this) {
+        return this.getFqName();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.Identifier String getCanonicalName(@org.checkerframework.checker.signature.qual.SignatureUnknown NullReferenceType this) {
+        return this.getFqName();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasWildcard(@org.checkerframework.checker.signature.qual.SignatureUnknown NullReferenceType this) {
+        return false;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasCaptureVariable(@org.checkerframework.checker.signature.qual.SignatureUnknown NullReferenceType this) {
+        return false;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isSubtypeOf(@org.checkerframework.checker.signature.qual.SignatureUnknown NullReferenceType this, @org.checkerframework.checker.signature.qual.SignatureUnknown Type otherType) {
+        return !otherType.equals(JavaTypes.VOID_TYPE) && otherType.isReferenceType();
+    }
+}

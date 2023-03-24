@@ -1,0 +1,26 @@
+package randoop.generation;
+
+import randoop.operation.TypedOperation;
+
+/**
+ * Interface for classes that log the usage of operations in the generated sequences. Represents a
+ * table of counts indexed by operations and the outcome (as a {@link OperationOutcome}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public interface OperationHistoryLogInterface {
+
+    /**
+     * Increments the count for {@code operation} and {@code outcome}.
+     *
+     * @param operation the {@link TypedOperation}
+     * @param outcome the generation outcome for the operation
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    void add( OperationHistoryLogInterface this,  TypedOperation operation,  OperationOutcome outcome);
+
+    /**
+     * Prints a table showing the counts for each operation-outcome pair in the operation history log.
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    void outputTable( OperationHistoryLogInterface this);
+}

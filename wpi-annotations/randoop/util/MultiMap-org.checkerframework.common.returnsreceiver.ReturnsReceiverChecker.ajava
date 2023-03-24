@@ -1,0 +1,212 @@
+package randoop.util;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
+
+/**
+ * Implements an IMultiMap with a java.util.LinkedHashMap.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public class MultiMap<K, V> implements IMultiMap<K, V> {
+
+    private final  Map<K, Set<V>> map;
+
+    public MultiMap() {
+        map = new LinkedHashMap<>();
+    }
+
+    public MultiMap(  int initialCapacity) {
+        map = new LinkedHashMap<>(initialCapacity);
+    }
+
+    /**
+     * Returns an immutable, empty multimap.
+     *
+     * @return an immutable, empty multimap
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public static <K, V>  MultiMap<K, V> empty() {
+        return EmptyMultiMap.instance;
+    }
+
+    /**
+     * Adds a key-values mapping to this multimap
+     *
+     * @param key the key
+     * @param values the values
+     */
+    public void put(K key, Collection<? extends V> values) {
+        if (contains(key))
+            remove(key);
+        map.put(key, new LinkedHashSet<V>(values));
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public void addAll(Map<? extends K, ? extends V> m) {
+        for (K t1 : m.keySet()) {
+            add(t1, m.get(t1));
+        }
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void addAll( MultiMap<K, V> this, K key,  Collection<? extends V> values) {
+        for (V t2 : values) {
+            add(key, t2);
+        }
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public void addAll( MultiMap<K, V> this,  MultiMap<K, V> mmap) {
+        for (Map.Entry<K, Set<V>> entry : mmap.map.entrySet()) {
+            addAll(entry.getKey(), entry.getValue());
+        }
+    }
+
+    public   boolean add( MultiMap<K, V> this, K key, V value) {
+        Set<V> values = map.computeIfAbsent(key, __ -> new LinkedHashSet<>(1));
+        return values.add(value);
+    }
+
+    public   boolean remove( MultiMap<K, V> this, K key, V value) {
+        Set<V> values = map.get(key);
+        if (values == null) {
+            throw new IllegalStateException("No values were found when trying to remove from multiset. Key: " + key + " Variable: " + value);
+        }
+        return values.remove(value);
+    }
+
+    public   boolean remove( MultiMap<K, V> this, K key) {
+        Set<V> values = map.get(key);
+        if (values == null) {
+            throw new IllegalStateException("No values were found when trying to remove from multiset. Key: " + key);
+        }
+        return map.remove(key) != null;
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public  Set<V> getValues( MultiMap<K, V> this, K key) {
+        return map.getOrDefault(key, Collections.emptySet());
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public  Set<K> keySet( MultiMap<K, V> this) {
+        return map.keySet();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean contains( MultiMap<K, V> this, K obj) {
+        return map.containsKey(obj);
+    }
+
+    public void clear() {
+        map.clear();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   int size( MultiMap<K, V> this) {
+        return map.size();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean isEmpty() {
+        return map.isEmpty();
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public  String toString( MultiMap<K, V> this) {
+        return map.toString();
+    }
+
+    /**
+     * An immutable, empty multimap.
+     */
+    private static class EmptyMultiMap<K, V> extends MultiMap<K, V> {
+
+        /**
+         * The canonical EmptyMultiMap.
+         */
+        public static  EmptyMultiMap instance = new EmptyMultiMap();
+
+        /**
+         * Creates an immutable, empty multimap. Should only be called once, because all EmptyMultiMaps
+         * are the same.
+         */
+        private EmptyMultiMap() {
+            super(0);
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public void put( EmptyMultiMap<K, V> this, K key,  Collection<? extends V> values) {
+            throw new UnsupportedOperationException("EmptyMultiMap.put");
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public void addAll( EmptyMultiMap<K, V> this,  Map<? extends K, ? extends V> m) {
+            throw new UnsupportedOperationException("EmptyMultiMap.addAll");
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public void addAll( EmptyMultiMap<K, V> this, K key,  Collection<? extends V> values) {
+            throw new UnsupportedOperationException("EmptyMultiMap.addAll");
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public void addAll( EmptyMultiMap<K, V> this,  MultiMap<K, V> mmap) {
+            throw new UnsupportedOperationException("EmptyMultiMap.addAll");
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public boolean add( EmptyMultiMap<K, V> this, K key, V value) {
+            throw new UnsupportedOperationException("EmptyMultiMap.add");
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public boolean remove( EmptyMultiMap<K, V> this, K key, V value) {
+            throw new UnsupportedOperationException("EmptyMultiMap.remove");
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public boolean remove( EmptyMultiMap<K, V> this, K key) {
+            throw new UnsupportedOperationException("EmptyMultiMap.remove");
+        }
+
+        @org.checkerframework.dataflow.qual.SideEffectFree
+        public  Set<V> getValues( EmptyMultiMap<K, V> this, K key) {
+            return Collections.emptySet();
+        }
+
+        @org.checkerframework.dataflow.qual.SideEffectFree
+        public  Set<K> keySet( EmptyMultiMap<K, V> this) {
+            return Collections.emptySet();
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public   boolean contains( EmptyMultiMap<K, V> this, K obj) {
+            return false;
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public void clear( EmptyMultiMap<K, V> this) {
+            throw new UnsupportedOperationException("EmptyMultiMap.clear");
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public   int size( EmptyMultiMap<K, V> this) {
+            return 0;
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public   boolean isEmpty( EmptyMultiMap<K, V> this) {
+            return true;
+        }
+
+        @org.checkerframework.dataflow.qual.Pure
+        public  String toString( EmptyMultiMap<K, V> this) {
+            return "{}";
+        }
+    }
+}

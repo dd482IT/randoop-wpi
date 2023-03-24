@@ -1,0 +1,73 @@
+package randoop.util;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public final class OneMoreElementList<E> implements SimpleList<E>, Serializable {
+
+    private static final long serialVersionUID = 1332963552183905833L;
+
+    /**
+     * The last element in this.
+     */
+    public final E lastElement;
+
+    /**
+     * All but the last element in this.
+     */
+    public final SimpleList<E> list;
+
+    /**
+     * The size of this.
+     */
+    public final int size;
+
+    public OneMoreElementList(@org.checkerframework.checker.mustcall.qual.MustCall({}) SimpleList<E> list, E extraElement) {
+        this.list = list;
+        this.lastElement = extraElement;
+        this.size = list.size() + 1;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public E get(int index) {
+        if (index < size - 1) {
+            return list.get(index);
+        }
+        if (index == size - 1) {
+            return lastElement;
+        }
+        throw new IndexOutOfBoundsException("No such element: " + index);
+    }
+
+    public SimpleList<E> getSublist(int index) {
+        if (index == size - 1) {
+            // is lastElement
+            return this;
+        }
+        // Not the last element, so recurse.
+        if (index < size - 1) {
+            return list.getSublist(index);
+        }
+        throw new IndexOutOfBoundsException("No such index: " + index);
+    }
+
+    public List<E> toJDKList() {
+        List<E> result = new ArrayList<>();
+        result.addAll(list.toJDKList());
+        result.add(lastElement);
+        return result;
+    }
+
+    public String toString() {
+        return toJDKList().toString();
+    }
+}

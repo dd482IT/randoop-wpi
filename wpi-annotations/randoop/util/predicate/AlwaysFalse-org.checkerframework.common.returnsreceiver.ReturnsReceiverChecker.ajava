@@ -1,0 +1,22 @@
+package randoop.util.predicate;
+
+import java.util.function.Predicate;
+
+/**
+ * A predicate that always return false.
+ *
+ * @param <T> the type of the object to test
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public class AlwaysFalse<T> implements Predicate<T> {
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return false, always
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean test( AlwaysFalse<T> this, T t) {
+        return false;
+    }
+}

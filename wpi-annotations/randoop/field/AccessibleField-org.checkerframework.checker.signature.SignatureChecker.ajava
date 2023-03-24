@@ -1,0 +1,185 @@
+package randoop.field;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.List;
+import randoop.main.RandoopBug;
+import randoop.reflection.ReflectionPredicate;
+import randoop.sequence.SequenceExecutionException;
+import randoop.sequence.Variable;
+import randoop.types.ClassOrInterfaceType;
+import randoop.types.Type;
+
+/**
+ * AccessibleField represents an accessible field of a class object, which can be an instance field,
+ * a static field, or a static final field. Meant to be adapted by either {@link
+ * randoop.operation.FieldSet FieldSet} or {@link randoop.operation.FieldGet FieldGet} for use as a
+ * {@link randoop.operation.Operation Operation}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class AccessibleField {
+
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown Field field;
+
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown ClassOrInterfaceType declaringType;
+
+    private  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isFinal;
+
+    private  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isStatic;
+
+    /**
+     * Create the public field object for the given {@code Field}.
+     *
+     * @param field the field
+     * @param declaringType the type for the declaring class of this field
+     */
+    public AccessibleField(@org.checkerframework.checker.signature.qual.SignatureUnknown Field field, @org.checkerframework.checker.signature.qual.SignatureUnknown ClassOrInterfaceType declaringType) {
+        this.field = field;
+        this.field.setAccessible(true);
+        int mods = field.getModifiers() & Modifier.fieldModifiers();
+        this.isFinal = Modifier.isFinal(mods);
+        this.isStatic = Modifier.isStatic(mods);
+        this.declaringType = declaringType;
+    }
+
+    /**
+     * Returns the declared name of the field.
+     *
+     * @return unqualified name of the field
+     */
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String getName(@org.checkerframework.checker.signature.qual.SignatureUnknown AccessibleField this) {
+        return field.getName();
+    }
+
+    /**
+     * Translates field into a string representing fully-qualified name.
+     *
+     * @param declaringType the declaring type for this field
+     * @param inputVars list of input variables
+     * @return string representing code representation of field
+     */
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toCode(@org.checkerframework.checker.signature.qual.SignatureUnknown AccessibleField this, @org.checkerframework.checker.signature.qual.SignatureUnknown Type declaringType, @org.checkerframework.checker.signature.qual.SignatureUnknown List<Variable> inputVars) {
+        StringBuilder sb = new StringBuilder();
+        if (isStatic) {
+            sb.append(declaringType.getCanonicalName());
+        } else {
+            sb.append(inputVars.get(0).getName());
+        }
+        return sb.append(".").append(getName()).toString();
+    }
+
+    /**
+     * Returns a string descriptor of a field that can be parsed by {@link FieldParser#parse(String,
+     * String, String)}.
+     *
+     * @param declaringType the declaring class type for this field
+     * @return a String for type-field pair describing field
+     */
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toParsableString(Type declaringType) {
+        return declaringType.getBinaryName() + "." + field.getName();
+    }
+
+    /**
+     * Returns string representation of underlying {@link java.lang.reflect.Field} object.
+     */
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toString(@org.checkerframework.checker.signature.qual.SignatureUnknown AccessibleField this) {
+        return field.toString();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean equals(@org.checkerframework.checker.signature.qual.SignatureUnknown AccessibleField this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof AccessibleField)) {
+            return false;
+        }
+        AccessibleField f = (AccessibleField) obj;
+        return this.field.equals(f.field);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int hashCode(@org.checkerframework.checker.signature.qual.SignatureUnknown AccessibleField this) {
+        return field.hashCode();
+    }
+
+    /**
+     * Uses reflection to return the value of the field for the given object. Suppresses exceptions
+     * that occur because PublicField was not correctly initialized.
+     *
+     * @param object instance to which field belongs, or null if field is static
+     * @return reference to value of field
+     * @throws RandoopBug if field access throws {@link IllegalArgumentException} or {@link
+     *     IllegalAccessException}.
+     */
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown Object getValue(@org.checkerframework.checker.signature.qual.SignatureUnknown AccessibleField this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object object) {
+        Object ret;
+        try {
+            ret = field.get(object);
+        } catch (IllegalArgumentException e) {
+            throw new SequenceExecutionException("Field access to object of wrong type: ", e);
+        } catch (IllegalAccessException e) {
+            throw new RandoopBug("Access control violation for field: " + field.getName(), e);
+        }
+        return ret;
+    }
+
+    /**
+     * Uses reflection to set the value of the field for the given object. Suppresses exceptions that
+     * occur because setup was incorrect.
+     *
+     * @param object instance to which field belongs, or null if static
+     * @param value new value to assign to field
+     * @throws RandoopBug if field access throws {@link IllegalArgumentException} or {@link
+     *     IllegalAccessException}.
+     */
+    public void setValue(@org.checkerframework.checker.signature.qual.SignatureUnknown AccessibleField this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object object, @org.checkerframework.checker.signature.qual.SignatureUnknown Object value) {
+        assert !isFinal : "cannot set a final field";
+        try {
+            field.set(object, value);
+        } catch (IllegalArgumentException e) {
+            throw new SequenceExecutionException("Field set to object of wrong type", e);
+        } catch (IllegalAccessException e) {
+            throw new RandoopBug("Access control violation for field: ", e);
+        }
+    }
+
+    /**
+     * isStatic returns the default that a field is not static.
+     *
+     * @return false (default for a field)
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isStatic(@org.checkerframework.checker.signature.qual.SignatureUnknown AccessibleField this) {
+        return isStatic;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isFinal(@org.checkerframework.checker.signature.qual.SignatureUnknown AccessibleField this) {
+        return isFinal;
+    }
+
+    /**
+     * satisfies checks whether the enclosed {@link Field} object satisfies the given predicate.
+     *
+     * @param reflectionPredicate the {@link ReflectionPredicate} to check this.field against
+     * @return true if this.field satisfies predicate.canUse(field)
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean satisfies(@org.checkerframework.checker.signature.qual.SignatureUnknown AccessibleField this, @org.checkerframework.checker.signature.qual.SignatureUnknown ReflectionPredicate reflectionPredicate) {
+        return reflectionPredicate.test(field);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown Field getRawField() {
+        return field;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown ClassOrInterfaceType getDeclaringType() {
+        return declaringType;
+    }
+}

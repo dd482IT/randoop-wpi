@@ -1,0 +1,69 @@
+package randoop.contract;
+
+import java.util.Arrays;
+import randoop.types.JavaTypes;
+import randoop.types.TypeTuple;
+
+/**
+ * Checks that calling equals() on an object does not throw an exception.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public final class EqualsReturnsNormally extends ObjectContract {
+
+    private static final @org.checkerframework.checker.signature.qual.SignatureUnknown EqualsReturnsNormally instance = new EqualsReturnsNormally();
+
+    private EqualsReturnsNormally() {
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown EqualsReturnsNormally getInstance() {
+        return instance;
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean evaluate(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsReturnsNormally this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object@org.checkerframework.checker.signature.qual.SignatureUnknown ... objects) {
+        assert objects != null && objects.length == 1;
+        Object o = objects[0];
+        assert o != null;
+        try {
+            boolean ignore = o.equals(o);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int getArity(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsReturnsNormally this) {
+        return 1;
+    }
+
+    /**
+     * The arguments to which this contract can be applied.
+     */
+    static @org.checkerframework.checker.signature.qual.SignatureUnknown TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE));
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown TypeTuple getInputTypes(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsReturnsNormally this) {
+        return inputTypes;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toCommentString(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsReturnsNormally this) {
+        return "x0.equals() throws no Exception.";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String get_observer_str(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsReturnsNormally this) {
+        return "equals() throws no Exception";
+    }
+
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toCodeString(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsReturnsNormally this) {
+        StringBuilder b = new StringBuilder();
+        b.append("org.junit.Assert.assertTrue(");
+        b.append("\"Contract failed: " + toCommentString() + "\", ");
+        b.append("x0.equals()");
+        b.append(");");
+        return b.toString();
+    }
+}

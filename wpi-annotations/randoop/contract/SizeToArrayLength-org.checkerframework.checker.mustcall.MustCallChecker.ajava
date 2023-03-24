@@ -1,0 +1,69 @@
+package randoop.contract;
+
+import java.util.Arrays;
+import java.util.Collection;
+import randoop.types.JavaTypes;
+import randoop.types.TypeTuple;
+
+/**
+ * The contract: {@code c.toArray().length == c.size()} for all Collections c.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public final class SizeToArrayLength extends ObjectContract {
+
+    private static final @org.checkerframework.checker.mustcall.qual.MustCall({}) SizeToArrayLength instance = new SizeToArrayLength();
+
+    private SizeToArrayLength() {
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static @org.checkerframework.checker.mustcall.qual.MustCall({}) SizeToArrayLength getInstance() {
+        return instance;
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean evaluate(@org.checkerframework.checker.mustcall.qual.MustCall({}) SizeToArrayLength this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Object@org.checkerframework.checker.mustcall.qual.MustCall({}) ... objects) {
+        assert objects != null && objects.length == 1;
+        Object o = objects[0];
+        if (o instanceof Collection) {
+            Collection<?> c = (Collection<?>) o;
+            assert c != null;
+            return c.size() == c.toArray().length;
+        }
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) int getArity(@org.checkerframework.checker.mustcall.qual.MustCall({}) SizeToArrayLength this) {
+        return 1;
+    }
+
+    /**
+     * The arguments to which this contract can be applied.
+     */
+    static @org.checkerframework.checker.mustcall.qual.MustCall({}) TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.COLLECTION_TYPE));
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) TypeTuple getInputTypes(@org.checkerframework.checker.mustcall.qual.MustCall({}) SizeToArrayLength this) {
+        return inputTypes;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toCommentString(@org.checkerframework.checker.mustcall.qual.MustCall({}) SizeToArrayLength this) {
+        return "x0.toArray().length == x0.size()";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String get_observer_str(@org.checkerframework.checker.mustcall.qual.MustCall({}) SizeToArrayLength this) {
+        return "SizeToArrayLength";
+    }
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toCodeString(@org.checkerframework.checker.mustcall.qual.MustCall({}) SizeToArrayLength this) {
+        StringBuilder b = new StringBuilder();
+        b.append("org.junit.Assert.assertEquals(");
+        b.append("\"Contract failed: " + toCommentString() + "\", ");
+        b.append("x0.toArray().length, x0.size()");
+        b.append(");");
+        return b.toString();
+    }
+}

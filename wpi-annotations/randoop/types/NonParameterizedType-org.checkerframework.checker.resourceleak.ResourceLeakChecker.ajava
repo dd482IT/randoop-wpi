@@ -1,0 +1,239 @@
+package randoop.types;
+
+import java.lang.reflect.Modifier;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import org.plumelib.util.CollectionsPlume;
+
+/**
+ * {@code NonParameterizedType} represents a non-parameterized class, interface, enum, or the
+ * rawtype of a generic class. It is a wrapper for a {@link Class} object, which is a runtime
+ * representation of a type.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class NonParameterizedType extends ClassOrInterfaceType {
+
+    /**
+     * The runtime class of this simple type.
+     */
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Class<?> runtimeType;
+
+    /**
+     * A cache of all NonParameterizedTypes that have been created.
+     */
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Map<Class<?>, NonParameterizedType> cache = new HashMap<>();
+
+    /**
+     * Create a {@link NonParameterizedType} object for the runtime class.
+     *
+     * @param runtimeType the runtime class for the type
+     * @return a NonParameterizedType for the argument
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "randoop.types.NonParameterizedType.cache" }, methods = { "get" })
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType forClass(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Class<?> runtimeType) {
+        // This cannot be
+        //   return cache.computeIfAbsent(runtimeType, NonParameterizedType::new);
+        // because NonParameterizedType::new side-effects `cache`.  It does so by calling
+        // ClassOrInterfaceType.forClass which may call back into NonParameterizedType.
+        NonParameterizedType cached = cache.get(runtimeType);
+        if (cached == null) {
+            cached = new NonParameterizedType(runtimeType);
+            cache.put(runtimeType, cached);
+        }
+        return cached;
+    }
+
+    /**
+     * Create a {@link NonParameterizedType} object for the runtime class.
+     *
+     * @param runtimeType the runtime class for the type
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getEnclosingClass" })
+    public NonParameterizedType(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Class<?> runtimeType) {
+        assert !runtimeType.isPrimitive() : "must be reference type, got " + runtimeType.getName();
+        this.runtimeType = runtimeType;
+        Class<?> enclosingClass = runtimeType.getEnclosingClass();
+        if (enclosingClass != null) {
+            this.setEnclosingType(ClassOrInterfaceType.forClass(enclosingClass));
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return true if the runtime types are the same, false otherwise
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "equals", "isNestedClass" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean equals(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof NonParameterizedType)) {
+            return false;
+        }
+        NonParameterizedType other = (NonParameterizedType) obj;
+        return super.equals(obj) && this.runtimeType.equals(other.runtimeType);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int hashCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType this) {
+        return Objects.hash(runtimeType);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "isMemberClass", "isNestedClass", "substitute" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.runtimeType" }, methods = { "getEnclosingClass" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType substitute(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Substitution substitution) {
+        return (NonParameterizedType) substitute(substitution, new NonParameterizedType(this.runtimeType));
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "applyCaptureConversion", "isMemberClass", "isNestedClass" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType applyCaptureConversion(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType this) {
+        return (NonParameterizedType) applyCaptureConversion(this);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "isRawtype" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.runtimeType" }, methods = { "getTypeParameters" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ClassOrInterfaceType> getInterfaces(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType this) {
+        if (this.isRawtype()) {
+            return this.getRawTypeInterfaces();
+        }
+        return getGenericInterfaces();
+    }
+
+    /**
+     * Returns the list of direct interfaces for this class.
+     *
+     * @return the list of direct interfaces for this class or interface type
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.runtimeType" }, methods = { "getGenericInterfaces" })
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ClassOrInterfaceType> getGenericInterfaces(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType this) {
+        return CollectionsPlume.mapList(ClassOrInterfaceType::forType, runtimeType.getGenericInterfaces());
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType getRawtype(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType this) {
+        return this;
+    }
+
+    /**
+     * Returns the list of rawtypes for the direct interfaces for this type.
+     *
+     * @return the list of rawtypes for the direct interfaces of this type
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.runtimeType" }, methods = { "getInterfaces" })
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ClassOrInterfaceType> getRawTypeInterfaces(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isRawtype" }) NonParameterizedType this) {
+        return CollectionsPlume.mapList(NonParameterizedType::forClass, runtimeType.getInterfaces());
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Class<?> getRuntimeClass(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType this) {
+        return runtimeType;
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "equals", "isObject" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ClassOrInterfaceType getSuperclass(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType this) {
+        if (this.isObject()) {
+            return this;
+        }
+        if (this.isRawtype()) {
+            Class<?> superclass = this.runtimeType.getSuperclass();
+            if (superclass != null) {
+                return NonParameterizedType.forClass(superclass);
+            }
+        } else {
+            java.lang.reflect.Type supertype = this.runtimeType.getGenericSuperclass();
+            if (supertype != null) {
+                return ClassOrInterfaceType.forType(supertype);
+            }
+        }
+        return JavaTypes.OBJECT_TYPE;
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.runtimeType" }, methods = { "getModifiers" })
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isAbstract(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType this) {
+        return Modifier.isAbstract(Modifier.classModifiers() & runtimeType.getModifiers());
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>Specifically checks for <a
+     * href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-5.html#jls-5.1.7">boxing
+     * conversion (section 5.1.7)</a>
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "equals", "isVoid" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "equals", "isAssignableFrom" })
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isAssignableFrom(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type sourceType) {
+        // check identity and reference widening
+        if (super.isAssignableFrom(sourceType)) {
+            return true;
+        }
+        // otherwise, check for boxing conversion
+        return sourceType.isPrimitive() && // JLS doesn't say so, void is primitive
+        !sourceType.isVoid() && this.isAssignableFrom(((PrimitiveType) sourceType).toBoxedPrimitive());
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getRuntimeClass" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isBoxedPrimitive(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType this) {
+        return PrimitiveTypes.isBoxedPrimitive(this.getRuntimeClass());
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.runtimeType" }, methods = { "isEnum" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isEnum(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType this) {
+        return runtimeType.isEnum();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>For a {@link NonParameterizedType}, if this type instantiates the {@code otherType}, which
+     * is a {@link NonParameterizedType} by {@link
+     * ClassOrInterfaceType#isInstantiationOf(ReferenceType)} also checks that runtime classes are
+     * equal. This allows for proper matching of member classes that are of {@link
+     * NonParameterizedType}.
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "equals", "isInstantiationOf" })
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isInstantiationOf(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceType otherType) {
+        boolean instantiationOf = super.isInstantiationOf(otherType);
+        if ((otherType instanceof NonParameterizedType)) {
+            return instantiationOf && this.runtimeClassIs(otherType.getRuntimeClass());
+        }
+        return instantiationOf;
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.runtimeType" }, methods = { "isInterface" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isInterface(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "equals" }) NonParameterizedType this) {
+        return runtimeType.isInterface();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.runtimeType" }, methods = { "getTypeParameters" })
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isRawtype(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType this) {
+        return runtimeType.getTypeParameters().length > 0;
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.runtimeType" }, methods = { "getModifiers" })
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isStatic(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NonParameterizedType this) {
+        return Modifier.isStatic(runtimeType.getModifiers() & Modifier.classModifiers());
+    }
+
+    /**
+     * If this type is a boxed primitive, unboxes this type and returns the primitive type.
+     *
+     * @return the primitive type if this is a boxed primitive
+     * @throws IllegalArgumentException if this is not a boxed primitive type
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getRuntimeClass", "isBoxedPrimitive" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) PrimitiveType toPrimitive(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isBoxedPrimitive" }) NonParameterizedType this) {
+        if (this.isBoxedPrimitive()) {
+            Class<?> primitiveClass = PrimitiveTypes.toUnboxedType(this.getRuntimeClass());
+            return PrimitiveType.forClass(primitiveClass);
+        }
+        throw new IllegalArgumentException("Type must be boxed primitive");
+    }
+}

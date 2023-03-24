@@ -1,0 +1,31 @@
+package randoop.main;
+
+/**
+ * Indicates a user error in invoking Randoop.
+ *
+ * @see randoop.main.RandoopBug
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public class RandoopUsageError extends RuntimeException {
+
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * Creates a {@link RandoopUsageError} with the given message.
+     *
+     * @param message the exception message
+     */
+    public RandoopUsageError(@org.checkerframework.checker.mustcall.qual.MustCall({}) String message) {
+        super(message);
+    }
+
+    /**
+     * Creates a {@link RandoopUsageError} with the given message and causing exception.
+     *
+     * @param message the exception message
+     * @param cause the causing exception
+     */
+    public RandoopUsageError(@org.checkerframework.checker.mustcall.qual.MustCall({}) String message, @org.checkerframework.checker.mustcall.qual.MustCall({}) Throwable cause) {
+        super(message, cause);
+    }
+}

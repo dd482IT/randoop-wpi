@@ -1,0 +1,175 @@
+package randoop.main;
+
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
+import org.plumelib.options.Options;
+import randoop.Globals;
+import randoop.util.Util;
+
+/**
+ * A command is the first argument given to Randoop. A command handler handles one command. It also
+ * takes care of printing the command's documentation.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public abstract class CommandHandler {
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String fcommand;
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String fpitch;
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String fcommandGrammar;
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String fwhere;
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String fsummary;
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) List<String> fnotes;
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String finput;
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String foutput;
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String fexample;
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) Options foptions;
+
+    /**
+     * No arguments should be null.
+     *
+     * @param command the name of the command
+     * @param pitch the description of the command
+     * @param commandGrammar the usage of the command
+     * @param where the where
+     * @param summary the summary of the command
+     * @param notes the notes for the command
+     * @param input the input
+     * @param output the output
+     * @param example the usage example
+     * @param options the command line arguments
+     */
+    protected CommandHandler(@org.checkerframework.checker.mustcall.qual.MustCall({}) String command, @org.checkerframework.checker.mustcall.qual.MustCall({}) String pitch, @org.checkerframework.checker.mustcall.qual.MustCall({}) String commandGrammar, @org.checkerframework.checker.mustcall.qual.MustCall({}) String where, @org.checkerframework.checker.mustcall.qual.MustCall({}) String summary, @org.checkerframework.checker.mustcall.qual.MustCall({}) List<String> notes, @org.checkerframework.checker.mustcall.qual.MustCall({}) String input, @org.checkerframework.checker.mustcall.qual.MustCall({}) String output, @org.checkerframework.checker.mustcall.qual.MustCall({}) String example, @org.checkerframework.checker.mustcall.qual.MustCall({}) Options options) {
+        if ((command == null)) {
+            throw new IllegalArgumentException("command cannot be null.");
+        }
+        this.fcommand = command;
+        this.fpitch = pitch == null ? "undocumented" : pitch;
+        this.fcommandGrammar = commandGrammar == null ? "undocumented" : commandGrammar;
+        this.fwhere = where == null ? "undocumented" : where;
+        this.fsummary = summary == null ? "undocumented" : summary;
+        this.fnotes = notes == null ? new ArrayList<String>(0) : notes;
+        this.finput = input == null ? "undocumented" : input;
+        this.foutput = output == null ? "undocumented" : output;
+        this.fexample = example == null ? "undocumented" : example;
+        this.foptions = options;
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public final  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean handles(String command) {
+        return command != null && command.toUpperCase().equals(fcommand.toUpperCase());
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public abstract  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean handle(String[] args);
+
+    /**
+     * Prints out formatted text in (google code) Wiki format.
+     *
+     * @param out the output stream for printing html formatted usage
+     */
+    public final void printHTML(PrintStream out) {
+        out.println("=== " + fcommand + " ===");
+        if (!fcommandGrammar.trim().equals("")) {
+            out.println("*Usage:*");
+            out.println();
+            out.println("{{{");
+            out.println("java randoop.main.Main " + fcommandGrammar);
+            out.println("}}}");
+            out.println();
+        }
+        if (!fwhere.trim().equals("")) {
+            out.println("_Where_:");
+            out.println();
+            out.println(fwhere);
+            out.println();
+        }
+        if (!fsummary.trim().equals("")) {
+            out.println("*Summary:*");
+            out.println();
+            out.println(fsummary);
+            out.println();
+        }
+        if (!finput.trim().equals("")) {
+            out.println("*Input:*");
+            out.println();
+            out.println(finput);
+            out.println();
+        }
+        if (!foutput.trim().equals("")) {
+            out.println("*Output:*");
+            out.println();
+            out.println(foutput);
+            out.println();
+        }
+        if (!fexample.trim().equals("")) {
+            out.println("*Example use:*");
+            out.println("{{{");
+            out.println(fexample);
+            out.println("}}}");
+            out.println();
+        }
+        if (fnotes != null && !fnotes.isEmpty()) {
+            out.println("*Notes:*");
+            out.println();
+            for (String note : fnotes) {
+                out.println("  * " + note);
+            }
+        }
+    }
+
+    public final void usageMessage(PrintStream out) {
+        out.println();
+        if (!fcommand.trim().equals("")) {
+            out.print(Util.hangingParagraph("COMMAND: " + fcommand, Globals.COLWIDTH, Globals.INDENTWIDTH));
+        }
+        out.println();
+        if (!fcommandGrammar.trim().equals("")) {
+            out.print(Util.hangingParagraph("Usage: " + fcommandGrammar, Globals.COLWIDTH, Globals.INDENTWIDTH));
+        }
+        out.println();
+        if (!fwhere.trim().equals("")) {
+            out.print(Util.hangingParagraph("Where: " + fwhere, Globals.COLWIDTH, Globals.INDENTWIDTH));
+        }
+        out.println();
+        if (!fsummary.trim().equals("")) {
+            out.print(Util.hangingParagraph("Summary: " + fsummary, Globals.COLWIDTH, Globals.INDENTWIDTH));
+        }
+        out.println();
+        if (!finput.trim().equals("")) {
+            out.print(Util.hangingParagraph("Input: " + finput, Globals.COLWIDTH, Globals.INDENTWIDTH));
+        }
+        out.println();
+        if (!foutput.trim().equals("")) {
+            out.print(Util.hangingParagraph("Output: " + foutput, Globals.COLWIDTH, Globals.INDENTWIDTH));
+        }
+        out.println();
+        if (!fexample.trim().equals("")) {
+            out.print(Util.hangingParagraph("Example: " + fexample, Globals.COLWIDTH, Globals.INDENTWIDTH));
+        }
+        out.println();
+        if (fnotes != null && !fnotes.isEmpty()) {
+            out.println("Notes:");
+            out.println();
+            for (int i = 0; i < fnotes.size(); i++) {
+                String note = fnotes.get(i);
+                out.println(Util.hangingParagraph(Integer.toString(i + 1) + ". " + note, Globals.COLWIDTH, Globals.INDENTWIDTH));
+            }
+        }
+        out.println();
+        if (foptions != null) {
+            out.println("OPTIONS:");
+            out.println();
+            out.println(foptions.usage(false));
+        }
+    }
+}

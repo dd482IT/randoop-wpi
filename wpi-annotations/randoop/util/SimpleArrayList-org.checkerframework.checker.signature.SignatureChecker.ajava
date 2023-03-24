@@ -1,0 +1,33 @@
+package randoop.util;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class SimpleArrayList<E> extends ArrayList<E> implements SimpleList<E>, Serializable {
+
+    private static final long serialVersionUID = 20180317;
+
+    public SimpleArrayList(Collection<? extends E> c) {
+        super(c);
+    }
+
+    public SimpleArrayList() {
+        super();
+    }
+
+    public SimpleArrayList( @org.checkerframework.checker.signature.qual.SignatureUnknown int initialCapacity) {
+        super(initialCapacity);
+    }
+
+    public // Return the entire list.
+    SimpleList<E> getSublist(int index) {
+        return this;
+    }
+
+    public List<E> toJDKList() {
+        return new ArrayList<>(this);
+    }
+}

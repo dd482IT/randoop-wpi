@@ -1,0 +1,16 @@
+package randoop.test;
+
+import java.util.function.Predicate;
+import randoop.sequence.ExecutableSequence;
+
+/**
+ * Returns true if the sequence is an error test (has a failure).
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public class ErrorTestPredicate implements Predicate<ExecutableSequence> {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean test( ErrorTestPredicate this,  ExecutableSequence eseq) {
+        return eseq.hasFailure();
+    }
+}

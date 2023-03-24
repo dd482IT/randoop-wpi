@@ -1,0 +1,22 @@
+package randoop.util.predicate;
+
+import java.util.function.Predicate;
+
+/**
+ * A predicate that always returns true.
+ *
+ * @param <T> the type of the object to test
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class AlwaysTrue<T> implements Predicate<T> {
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return true, always
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean test(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AlwaysTrue<T> this, T t) {
+        return true;
+    }
+}

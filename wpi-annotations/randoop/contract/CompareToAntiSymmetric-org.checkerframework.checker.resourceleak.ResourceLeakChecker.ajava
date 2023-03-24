@@ -1,0 +1,73 @@
+package randoop.contract;
+
+import java.util.Arrays;
+import randoop.types.JavaTypes;
+import randoop.types.TypeTuple;
+
+/**
+ * The contract: Checks that an object is antisymmetric over compareTo.
+ *
+ * <pre>Math.signum(x0.compareTo(x1)) == -Math.signum(x1.compareTo(x0))</pre>
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class CompareToAntiSymmetric extends ObjectContract {
+
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToAntiSymmetric instance = new CompareToAntiSymmetric();
+
+    private CompareToAntiSymmetric() {
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToAntiSymmetric getInstance() {
+        return instance;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToAntiSymmetric this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objects) {
+        Object o1 = objects[0];
+        Object o2 = objects[1];
+        // If o1 and o2 are comparable objects, check that their signs are opposite of one another
+        if (o1 instanceof Comparable && o2 instanceof Comparable) {
+            Comparable compObj1 = (Comparable) o1;
+            Comparable compObj2 = (Comparable) o2;
+            return Math.signum(compObj1.compareTo(compObj2)) == -Math.signum(compObj2.compareTo(compObj1));
+        }
+        // If the compare to operation can't be done, the statement is trivially true
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int getArity(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToAntiSymmetric this) {
+        return 2;
+    }
+
+    /**
+     * The arguments to which this contract can be applied.
+     */
+    static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.COMPARABLE_TYPE, JavaTypes.COMPARABLE_TYPE));
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeTuple getInputTypes(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToAntiSymmetric this) {
+        return inputTypes;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toCommentString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToAntiSymmetric this) {
+        return "compareTo-anti-symmetric on x0 and x1";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String get_observer_str(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToAntiSymmetric this) {
+        return "CompareToAntiSymmetric";
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "toCommentString" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toCodeString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToAntiSymmetric this) {
+        StringBuilder b = new StringBuilder();
+        b.append("org.junit.Assert.assertTrue(");
+        b.append("\"Contract failed: ").append(toCommentString()).append("\", ");
+        b.append("Math.signum(x0.compareTo(x1)) == -Math.signum(x1.compareTo(x0))");
+        b.append(");");
+        return b.toString();
+    }
+}

@@ -1,0 +1,53 @@
+package randoop.operation;
+
+import java.util.List;
+import randoop.sequence.Variable;
+import randoop.types.Substitution;
+import randoop.types.Type;
+import randoop.types.TypeTuple;
+
+/**
+ * Represents operations that have no declaring class, such as literal value, cast, or array
+ * creation/access/assignment.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+class TypedTermOperation extends TypedOperation {
+
+    /**
+     * Creates a {@link TypedOperation} for a given operation and input and output types.
+     *
+     * @param operation the operation
+     * @param inputTypes the input types
+     * @param outputType the output type
+     */
+    TypedTermOperation(@org.checkerframework.checker.signature.qual.SignatureUnknown CallableOperation operation, @org.checkerframework.checker.signature.qual.SignatureUnknown TypeTuple inputTypes, @org.checkerframework.checker.signature.qual.SignatureUnknown Type outputType) {
+        super(operation, inputTypes, outputType, null);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasWildcardTypes(@org.checkerframework.checker.signature.qual.SignatureUnknown TypedTermOperation this) {
+        return false;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void appendCode(@org.checkerframework.checker.signature.qual.SignatureUnknown TypedTermOperation this, @org.checkerframework.checker.signature.qual.SignatureUnknown List<Variable> inputVars, @org.checkerframework.checker.signature.qual.SignatureUnknown StringBuilder b) {
+        this.getOperation().appendCode(null, getInputTypes(), getOutputType(), inputVars, b);
+    }
+
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown TypedTermOperation substitute(@org.checkerframework.checker.signature.qual.SignatureUnknown TypedTermOperation this, @org.checkerframework.checker.signature.qual.SignatureUnknown Substitution substitution) {
+        TypeTuple inputTypes = this.getInputTypes().substitute(substitution);
+        Type outputType = this.getOutputType().substitute(substitution);
+        return new TypedTermOperation(this.getOperation(), inputTypes, outputType);
+    }
+
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation applyCaptureConversion(@org.checkerframework.checker.signature.qual.SignatureUnknown TypedTermOperation this) {
+        TypeTuple inputTypes = this.getInputTypes().applyCaptureConversion();
+        Type outputType = this.getOutputType().applyCaptureConversion();
+        return new TypedTermOperation(this.getOperation(), inputTypes, outputType);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toParsableString(@org.checkerframework.checker.signature.qual.SignatureUnknown TypedTermOperation this) {
+        return this.getOperation().toParsableString(null, getInputTypes(), getOutputType());
+    }
+}

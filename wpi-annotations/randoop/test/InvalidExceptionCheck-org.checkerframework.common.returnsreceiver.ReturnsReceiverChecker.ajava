@@ -1,0 +1,22 @@
+package randoop.test;
+
+/**
+ * An {@code InvalidExceptionCheck} represents the occurrence of an exception tagged as an invalid
+ * behavior during {@code Check} generation.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public class InvalidExceptionCheck extends ExceptionCheck {
+
+    public InvalidExceptionCheck( Throwable exception,   int statementIndex,  String catchClassName) {
+        super(exception, statementIndex, catchClassName);
+    }
+
+    protected void appendCatchBehavior( InvalidExceptionCheck this,  StringBuilder b) {
+        b.append(String.format("// statement threw an invalid exception %s during test generation%n", exception.getClass().getName()));
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    protected void appendTryBehavior( InvalidExceptionCheck this,  StringBuilder b) {
+        // do nothing
+    }
+}

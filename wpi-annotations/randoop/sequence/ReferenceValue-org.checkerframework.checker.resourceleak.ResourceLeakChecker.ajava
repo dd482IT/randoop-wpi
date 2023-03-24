@@ -1,0 +1,83 @@
+package randoop.sequence;
+
+import java.util.Objects;
+import randoop.types.ReferenceType;
+
+/**
+ * Represents a {@link ReferenceType} value created by the execution of a {@link Statement}.
+ * Includes the type.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public final class ReferenceValue {
+
+    /**
+     * The type of this value.
+     */
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "equals", "isReferenceType", "isString" }) ReferenceType type;
+
+    /**
+     * The {@link Object} reference of this value.
+     */
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object value;
+
+    /**
+     * Create the value object given its type and {@link Object} reference.
+     *
+     * @param type the type of this value
+     * @param value the {@link Object} reference to this value
+     */
+    ReferenceValue(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "equals", "isReferenceType", "isString" }) ReferenceType type, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object value) {
+        this.type = type;
+        this.value = value;
+    }
+
+    /**
+     * Indicates whether two {@link ReferenceValue} objects are equal. Note: tests the {@code Object}
+     * value of each object by identity.
+     *
+     * @param obj the object to test for equality
+     * @return true if parameter has the same type and identical value to this object, false otherwise
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean equals(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceValue this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ReferenceValue)) {
+            return false;
+        }
+        ReferenceValue refValue = (ReferenceValue) obj;
+        return this.type.equals(refValue.type) && this.value == refValue.value;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int hashCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceValue this) {
+        return Objects.hash(type, System.identityHashCode(value));
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.value" }, methods = { "toString" })
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceValue this) {
+        return value.toString();
+    }
+
+    /**
+     * Returns the {@link Object} reference of this value.
+     *
+     * @return the reference to the value
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object getObjectValue(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceValue this) {
+        return value;
+    }
+
+    /**
+     * Returns the type of this value.
+     *
+     * @return the type of this value
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "equals", "isReferenceType", "isString" }) ReferenceType getType(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceValue this) {
+        return type;
+    }
+}

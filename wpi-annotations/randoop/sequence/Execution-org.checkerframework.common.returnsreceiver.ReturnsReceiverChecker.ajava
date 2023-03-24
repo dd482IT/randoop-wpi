@@ -1,0 +1,66 @@
+package randoop.sequence;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+import randoop.ExecutionOutcome;
+import randoop.NotExecuted;
+
+/**
+ * Represents the unfolding execution of a sequence.
+ *
+ * <p>This is essentially a wrapper around {@code List<ExecutionOutcome>}. Stores information in a
+ * list of ExecutionOutcome objects, one for each statement in the sequence.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public final class Execution {
+
+    // The execution outcome of each statement.
+    final  List<ExecutionOutcome> outcomes;
+
+    private  Set<Class<?>> coveredClasses;
+
+    /**
+     * Create an Execution to store the execution results of the given sequence. The list of outcomes
+     * is initialized to NotExecuted for every statement.
+     *
+     * @param owner the executed sequence
+     */
+    public Execution( Sequence owner) {
+        // The `outcomes` list will be modified later.  (Collections.nCopies is immutable.)
+        this.outcomes = new ArrayList<>(Collections.nCopies(owner.size(), NotExecuted.create()));
+        this.coveredClasses = new LinkedHashSet<>();
+    }
+
+    /**
+     * The size of the list.
+     *
+     * @return the size of the list
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public   int size( Execution this) {
+        return outcomes.size();
+    }
+
+    /**
+     * Get the outcome in the i-th slot.
+     *
+     * @param i the statement position
+     * @return the outcome of the ith statement
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  ExecutionOutcome get( Execution this,   int i) {
+        return outcomes.get(i);
+    }
+
+    void addCoveredClass( Execution this,  Class<?> c) {
+        coveredClasses.add(c);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+     Set<Class<?>> getCoveredClasses( Execution this) {
+        return coveredClasses;
+    }
+}

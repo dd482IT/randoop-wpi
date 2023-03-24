@@ -1,0 +1,41 @@
+package randoop.util;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class CountDownTimer {
+
+    private  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) long totalTime;
+
+    private  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) long startTime;
+
+    private CountDownTimer( @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) long timeMillis) {
+        this.totalTime = timeMillis;
+        this.startTime = System.currentTimeMillis();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "elapsedTime" })
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean reachedZero() {
+        return (elapsedTime() >= totalTime);
+    }
+
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) long elapsedTime(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CountDownTimer this) {
+        return System.currentTimeMillis() - this.startTime;
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "elapsedTime" })
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) long remainingTime(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CountDownTimer this) {
+        long remainingTime = totalTime - elapsedTime();
+        if (remainingTime < 0) {
+            return 0;
+        }
+        return remainingTime;
+    }
+
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CountDownTimer createAndStart(long totalTimeMillis) {
+        return new CountDownTimer(totalTimeMillis);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "elapsedTime", "remainingTime" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CountDownTimer this) {
+        return "elapsed: " + elapsedTime() + ", remaining: " + remainingTime();
+    }
+}

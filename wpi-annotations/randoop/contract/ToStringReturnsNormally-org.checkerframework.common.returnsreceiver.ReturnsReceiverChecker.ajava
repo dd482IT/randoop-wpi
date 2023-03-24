@@ -1,0 +1,69 @@
+package randoop.contract;
+
+import java.util.Arrays;
+import randoop.types.JavaTypes;
+import randoop.types.TypeTuple;
+
+/**
+ * Checks that calling toString() on an object does not throw an exception.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public final class ToStringReturnsNormally extends ObjectContract {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean equals( ToStringReturnsNormally this,  Object o) {
+        if (o == this) {
+            return true;
+        }
+        return o instanceof ToStringReturnsNormally;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   int hashCode( ToStringReturnsNormally this) {
+        // no state to compare.
+        return 51;
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public   boolean evaluate( ToStringReturnsNormally this,  Object ... objects) {
+        assert objects != null && objects.length == 1;
+        Object o = objects[0];
+        assert o != null;
+        String ignore = o.toString();
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   int getArity( ToStringReturnsNormally this) {
+        return 1;
+    }
+
+    /**
+     * The arguments to which this contract can be applied.
+     */
+    static  TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE));
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  TypeTuple getInputTypes( ToStringReturnsNormally this) {
+        return inputTypes;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  String toCommentString( ToStringReturnsNormally this) {
+        return "x0.toString() throws no Exception.";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  String get_observer_str( ToStringReturnsNormally this) {
+        return "toString throws no Exception";
+    }
+
+    public  String toCodeString( ToStringReturnsNormally this) {
+        StringBuilder b = new StringBuilder();
+        b.append("org.junit.Assert.assertTrue(");
+        b.append("\"Contract failed: " + toCommentString() + "\", ");
+        b.append("x0.toString()");
+        b.append(");");
+        return b.toString();
+    }
+}

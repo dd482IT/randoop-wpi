@@ -1,0 +1,72 @@
+package randoop.contract;
+
+import java.util.Arrays;
+import randoop.Globals;
+import randoop.types.JavaTypes;
+import randoop.types.TypeTuple;
+
+/**
+ * The contract: Checks the transitivity of equals for an object {@code (x0.equals(x1) &&
+ * x1.equals(x2)) ==> x0.equals(x2)}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public class EqualsTransitive extends ObjectContract {
+
+    private static final @org.checkerframework.checker.mustcall.qual.MustCall({}) EqualsTransitive instance = new EqualsTransitive();
+
+    private EqualsTransitive() {
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static @org.checkerframework.checker.mustcall.qual.MustCall({}) EqualsTransitive getInstance() {
+        return instance;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean evaluate(@org.checkerframework.checker.mustcall.qual.MustCall({}) EqualsTransitive this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Object@org.checkerframework.checker.mustcall.qual.MustCall({}) ... objects) {
+        Object o1 = objects[0];
+        Object o2 = objects[1];
+        Object o3 = objects[2];
+        if (o1.equals(o2) && o2.equals(o3)) {
+            return o1.equals(o3);
+        }
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) int getArity(@org.checkerframework.checker.mustcall.qual.MustCall({}) EqualsTransitive this) {
+        return 3;
+    }
+
+    /**
+     * The arguments to which this contract can be applied.
+     */
+    static @org.checkerframework.checker.mustcall.qual.MustCall({}) TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE, JavaTypes.OBJECT_TYPE, JavaTypes.OBJECT_TYPE));
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) TypeTuple getInputTypes(@org.checkerframework.checker.mustcall.qual.MustCall({}) EqualsTransitive this) {
+        return inputTypes;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toCommentString(@org.checkerframework.checker.mustcall.qual.MustCall({}) EqualsTransitive this) {
+        return "equals-transitive on x0, x1, and x2.";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String get_observer_str(@org.checkerframework.checker.mustcall.qual.MustCall({}) EqualsTransitive this) {
+        return "equals-transitive";
+    }
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toCodeString(@org.checkerframework.checker.mustcall.qual.MustCall({}) EqualsTransitive this) {
+        StringBuilder b = new StringBuilder();
+        b.append(Globals.lineSep);
+        b.append("// Transitivity of equals");
+        b.append(Globals.lineSep);
+        b.append("org.junit.Assert.assertTrue(");
+        b.append("\"Contract failed: " + toCommentString() + "\", ");
+        b.append("!(x0.equals(x1) && x1.equals(x2)) || x0.equals(x2)");
+        b.append(");");
+        return b.toString();
+    }
+}

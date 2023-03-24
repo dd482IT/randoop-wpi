@@ -1,0 +1,15 @@
+package randoop.test;
+
+import randoop.sequence.ExecutableSequence;
+
+/**
+ * Returns an empty TestChecks.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class DummyCheckGenerator extends TestCheckGenerator {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TestChecks<?> generateTestChecks(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) DummyCheckGenerator this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence eseq) {
+        return RegressionChecks.EMPTY;
+    }
+}

@@ -1,0 +1,42 @@
+package randoop.test;
+
+import java.util.Set;
+import java.util.function.Predicate;
+import randoop.sequence.ExecutableSequence;
+
+/**
+ * Requires a test to cover certain classes. Returns true if the most recent execution of the {@link
+ * ExecutableSequence} covers any of the classes in this predicate.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class IncludeIfCoversPredicate implements Predicate<ExecutableSequence> {
+
+    /**
+     * the set of classes to be covered
+     */
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<Class<?>> coveredClasses;
+
+    /**
+     * Creates a predicate to test whether a sequence covers any of the given classes.
+     *
+     * @param coveredClasses the set of classes to be covered
+     */
+    public IncludeIfCoversPredicate(Set<Class<?>> coveredClasses) {
+        this.coveredClasses = coveredClasses;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return true if any of the classes in this predicate are covered by the sequence
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean test(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) IncludeIfCoversPredicate this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence t) {
+        for (Class<?> c : coveredClasses) {
+            if (t.coversClass(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}

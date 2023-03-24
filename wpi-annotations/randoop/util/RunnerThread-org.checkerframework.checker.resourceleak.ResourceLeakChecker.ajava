@@ -1,0 +1,67 @@
+package randoop.util;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class RunnerThread extends Thread {
+
+    // Fields assigned when calling setup(..)
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReflectionCode code;
+
+    // Fields assigned when calling run()
+     @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean runFinished;
+
+    // The state of the thread.
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NextCallMustBe state;
+
+    private enum NextCallMustBe {
+
+        SETUP, RUN
+    }
+
+    /**
+     * Create a new runner thread.
+     *
+     * @param threadGroup the group for this thread
+     */
+    RunnerThread(ThreadGroup threadGroup) {
+        super(threadGroup, "randoop.util.RunnerThread");
+        this.code = null;
+        this.runFinished = false;
+        this.state = NextCallMustBe.SETUP;
+        this.setUncaughtExceptionHandler(RandoopUncaughtRunnerThreadExceptionHandler.getHandler());
+    }
+
+    public void setup(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) RunnerThread this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReflectionCode code) {
+        if (state != NextCallMustBe.SETUP)
+            throw new IllegalStateException();
+        if (code == null)
+            throw new IllegalArgumentException("code cannot be null.");
+        this.code = code;
+        this.state = NextCallMustBe.RUN;
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "executeReflectionCode" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.code" }, methods = { "runReflectionCode", "runReflectionCodeRaw", "setHasRun", "setHasStarted" })
+    public final void run(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) RunnerThread this) {
+        if (state != NextCallMustBe.RUN)
+            throw new IllegalStateException();
+        runFinished = false;
+        executeReflectionCode();
+        runFinished = true;
+        this.state = NextCallMustBe.SETUP;
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.code" }, methods = { "runReflectionCode", "runReflectionCodeRaw", "setHasRun", "setHasStarted" })
+    private void executeReflectionCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) RunnerThread this) throws ReflectionCode.ReflectionCodeException {
+        code.runReflectionCode();
+    }
+
+    /**
+     * Return the ReflectionCode that is being, or was, run.
+     *
+     * @return the ReflectionCode that is being, or was, run
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReflectionCode getCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "join", "setup", "start" }) RunnerThread this) {
+        return code;
+    }
+}

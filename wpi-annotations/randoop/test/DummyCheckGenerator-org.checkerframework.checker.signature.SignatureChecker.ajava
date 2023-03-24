@@ -1,0 +1,15 @@
+package randoop.test;
+
+import randoop.sequence.ExecutableSequence;
+
+/**
+ * Returns an empty TestChecks.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class DummyCheckGenerator extends TestCheckGenerator {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown TestChecks<?> generateTestChecks(@org.checkerframework.checker.signature.qual.SignatureUnknown DummyCheckGenerator this, @org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence eseq) {
+        return RegressionChecks.EMPTY;
+    }
+}

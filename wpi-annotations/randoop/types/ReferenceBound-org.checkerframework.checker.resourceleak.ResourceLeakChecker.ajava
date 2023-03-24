@@ -1,0 +1,93 @@
+package randoop.types;
+
+import java.util.Objects;
+
+/**
+ * Represents a bound on a type variable where the bound is a {@link ReferenceType}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public abstract class ReferenceBound extends ParameterBound {
+
+    /**
+     * The type for this bound.
+     */
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceType boundType;
+
+    /**
+     * Creates a {@link ReferenceBound} with the given bound type.
+     *
+     * @param boundType the {@link ReferenceType} of this bound
+     */
+    ReferenceBound(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceType boundType) {
+        this.boundType = boundType;
+    }
+
+    /**
+     * Returns the {@link ReferenceType} bound of this type.
+     *
+     * @return the type for this bound
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceType getBoundType(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceBound this) {
+        return boundType;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean equals(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceBound this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ReferenceBound)) {
+            return false;
+        }
+        ReferenceBound bound = (ReferenceBound) obj;
+        return this.boundType.equals(bound.boundType);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int hashCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceBound this) {
+        return Objects.hash(boundType);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.boundType" }, methods = { "getBinaryName", "toString" })
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceBound this) {
+        return boundType.toString();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public abstract @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceBound substitute(Substitution substitution);
+
+    @org.checkerframework.dataflow.qual.Pure
+    public abstract @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceBound applyCaptureConversion();
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.boundType" }, methods = { "hasWildcard" })
+    @org.checkerframework.dataflow.qual.Pure
+     @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasWildcard(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceBound this) {
+        return boundType.hasWildcard();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.boundType" }, methods = { "hasCaptureVariable" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasCaptureVariable(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceBound this) {
+        return boundType.hasCaptureVariable();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.boundType" }, methods = { "isGeneric" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isGeneric(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceBound this,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean ignoreWildcards) {
+        return boundType.isGeneric(ignoreWildcards);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.boundType" }, methods = { "equals", "isObject" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isObject(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceBound this) {
+        return boundType.isObject();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.boundType" }, methods = { "isVariable" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isVariable(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceBound this) {
+        return boundType.isVariable();
+    }
+}

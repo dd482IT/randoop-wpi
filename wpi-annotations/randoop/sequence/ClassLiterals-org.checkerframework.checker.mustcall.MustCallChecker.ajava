@@ -1,0 +1,60 @@
+package randoop.sequence;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import randoop.types.ClassOrInterfaceType;
+import randoop.types.JavaTypes;
+import randoop.types.Type;
+import randoop.util.ListOfLists;
+import randoop.util.SimpleList;
+
+/**
+ * For a given class C, ClassLiterals maps C (if present) to a collection of literals (represented
+ * as single-element sequences) that are defined in C.
+ *
+ * <p>These are used preferentially as arguments to methods of class C.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public class ClassLiterals extends MappedSequences<ClassOrInterfaceType> {
+
+    public void addSequence(@org.checkerframework.checker.mustcall.qual.MustCall({}) ClassLiterals this, @org.checkerframework.checker.mustcall.qual.MustCall({}) ClassOrInterfaceType key, @org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence seq) {
+        if (seq == null)
+            throw new IllegalArgumentException("seq is null");
+        if (!seq.isNonreceiver()) {
+            throw new IllegalArgumentException("seq is not a primitive sequence");
+        }
+        super.addSequence(key, seq);
+    }
+
+    private static final @org.checkerframework.checker.mustcall.qual.MustCall({}) Map<ClassOrInterfaceType, Set<ClassOrInterfaceType>> hashedSuperClasses = new LinkedHashMap<>();
+
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) SimpleList<Sequence> getSequences(@org.checkerframework.checker.mustcall.qual.MustCall({}) ClassLiterals this, @org.checkerframework.checker.mustcall.qual.MustCall({}) ClassOrInterfaceType key, @org.checkerframework.checker.mustcall.qual.MustCall({}) Type desiredType) {
+        Set<ClassOrInterfaceType> superClasses = hashedSuperClasses.computeIfAbsent(key, k -> getSuperClasses(k));
+        List<SimpleList<Sequence>> listOfLists = new ArrayList<>(superClasses.size() + 1);
+        listOfLists.add(super.getSequences(key, desiredType));
+        for (ClassOrInterfaceType c : superClasses) {
+            listOfLists.add(super.getSequences(c, desiredType));
+        }
+        return new ListOfLists<>(listOfLists);
+    }
+
+    /**
+     * Gets superclasses for the given class. Stops at null or Object (excludes Object from result).
+     *
+     * @param cls the class/interface type
+     * @return the superclasses for the given type
+     */
+    private @org.checkerframework.checker.mustcall.qual.MustCall({}) Set<ClassOrInterfaceType> getSuperClasses(@org.checkerframework.checker.mustcall.qual.MustCall({}) ClassLiterals this, @org.checkerframework.checker.mustcall.qual.MustCall({}) ClassOrInterfaceType cls) {
+        Set<ClassOrInterfaceType> ret = new LinkedHashSet<>();
+        ClassOrInterfaceType sup = cls.getSuperclass();
+        while (sup != null && !sup.equals(JavaTypes.OBJECT_TYPE)) {
+            ret.add(sup);
+            sup = sup.getSuperclass();
+        }
+        return ret;
+    }
+}

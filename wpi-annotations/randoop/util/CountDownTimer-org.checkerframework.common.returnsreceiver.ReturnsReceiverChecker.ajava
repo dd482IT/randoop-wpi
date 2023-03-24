@@ -1,0 +1,38 @@
+package randoop.util;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public class CountDownTimer {
+
+    private   long totalTime;
+
+    private   long startTime;
+
+    private CountDownTimer(  long timeMillis) {
+        this.totalTime = timeMillis;
+        this.startTime = System.currentTimeMillis();
+    }
+
+    public   boolean reachedZero() {
+        return (elapsedTime() >= totalTime);
+    }
+
+    public   long elapsedTime( CountDownTimer this) {
+        return System.currentTimeMillis() - this.startTime;
+    }
+
+    public   long remainingTime( CountDownTimer this) {
+        long remainingTime = totalTime - elapsedTime();
+        if (remainingTime < 0) {
+            return 0;
+        }
+        return remainingTime;
+    }
+
+    public static  CountDownTimer createAndStart(long totalTimeMillis) {
+        return new CountDownTimer(totalTimeMillis);
+    }
+
+    public  String toString( CountDownTimer this) {
+        return "elapsed: " + elapsedTime() + ", remaining: " + remainingTime();
+    }
+}

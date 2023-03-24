@@ -1,0 +1,114 @@
+package randoop.types;
+
+import java.util.List;
+import java.util.Objects;
+import org.plumelib.util.CollectionsPlume;
+
+/**
+ * An abstract class representing kinds of type parameters, which are either type variables or
+ * wildcard types. Manages both upper and lower type bounds.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public abstract class ParameterType extends ReferenceType {
+
+    /**
+     * The lower bound on this type.
+     */
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown ParameterBound lowerBound;
+
+    /**
+     * The upper bound on this type.
+     */
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown ParameterBound upperBound;
+
+    ParameterType() {
+        this.lowerBound = new EagerReferenceBound(JavaTypes.NULL_TYPE);
+        this.upperBound = new EagerReferenceBound(JavaTypes.OBJECT_TYPE);
+    }
+
+    ParameterType(@org.checkerframework.checker.signature.qual.SignatureUnknown ParameterBound lowerBound, @org.checkerframework.checker.signature.qual.SignatureUnknown ParameterBound upperBound) {
+        this.lowerBound = lowerBound;
+        this.upperBound = upperBound;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean equals(@org.checkerframework.checker.signature.qual.SignatureUnknown ParameterType this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof ParameterType)) {
+            return false;
+        }
+        ParameterType other = (ParameterType) object;
+        return this.lowerBound.equals(other.lowerBound) && this.upperBound.equals(other.upperBound);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int hashCode(@org.checkerframework.checker.signature.qual.SignatureUnknown ParameterType this) {
+        return Objects.hash(lowerBound, upperBound);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toString(@org.checkerframework.checker.signature.qual.SignatureUnknown ParameterType this) {
+        return "ParameterType [ " + lowerBound + ", " + upperBound + " ]";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String getCanonicalName(@org.checkerframework.checker.signature.qual.SignatureUnknown ParameterType this) {
+        return this.getFqName();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown ParameterBound getLowerTypeBound(@org.checkerframework.checker.signature.qual.SignatureUnknown ParameterType this) {
+        return lowerBound;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown ParameterBound getUpperTypeBound(@org.checkerframework.checker.signature.qual.SignatureUnknown ParameterType this) {
+        return upperBound;
+    }
+
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown List<TypeVariable> getTypeParameters(@org.checkerframework.checker.signature.qual.SignatureUnknown ParameterType this) {
+        List<TypeVariable> lowerTypeParams = lowerBound.getTypeParameters();
+        List<TypeVariable> upperTypeParams = upperBound.getTypeParameters();
+        return CollectionsPlume.listUnion(lowerTypeParams, upperTypeParams);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return null since type variables do not have a runtime class
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public Class<?> getRuntimeClass(@org.checkerframework.checker.signature.qual.SignatureUnknown ParameterType this) {
+        return null;
+    }
+
+    void setUpperBound(@org.checkerframework.checker.signature.qual.SignatureUnknown ParameterType this, @org.checkerframework.checker.signature.qual.SignatureUnknown ParameterBound upperBound) {
+        this.upperBound = upperBound;
+    }
+
+    void setLowerBound(@org.checkerframework.checker.signature.qual.SignatureUnknown ParameterType this, @org.checkerframework.checker.signature.qual.SignatureUnknown ParameterBound lowerBound) {
+        this.lowerBound = lowerBound;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasWildcard(@org.checkerframework.checker.signature.qual.SignatureUnknown ParameterType this) {
+        return getLowerTypeBound().hasWildcard() || getUpperTypeBound().hasWildcard();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasCaptureVariable(@org.checkerframework.checker.signature.qual.SignatureUnknown ParameterType this) {
+        return getLowerTypeBound().hasCaptureVariable() || getUpperTypeBound().hasCaptureVariable();
+    }
+
+    /**
+     * Return true if this has a generic bound
+     *
+     * @return true if this has a generic bound
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasGenericBound() {
+        return getUpperTypeBound().isGeneric() || getLowerTypeBound().isGeneric();
+    }
+}

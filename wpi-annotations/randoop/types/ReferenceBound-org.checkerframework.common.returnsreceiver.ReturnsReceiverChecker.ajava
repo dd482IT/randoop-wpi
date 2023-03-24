@@ -1,0 +1,87 @@
+package randoop.types;
+
+import java.util.Objects;
+
+/**
+ * Represents a bound on a type variable where the bound is a {@link ReferenceType}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public abstract class ReferenceBound extends ParameterBound {
+
+    /**
+     * The type for this bound.
+     */
+    private final  ReferenceType boundType;
+
+    /**
+     * Creates a {@link ReferenceBound} with the given bound type.
+     *
+     * @param boundType the {@link ReferenceType} of this bound
+     */
+    ReferenceBound( ReferenceType boundType) {
+        this.boundType = boundType;
+    }
+
+    /**
+     * Returns the {@link ReferenceType} bound of this type.
+     *
+     * @return the type for this bound
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  ReferenceType getBoundType( ReferenceBound this) {
+        return boundType;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean equals( ReferenceBound this,  Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ReferenceBound)) {
+            return false;
+        }
+        ReferenceBound bound = (ReferenceBound) obj;
+        return this.boundType.equals(bound.boundType);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   int hashCode( ReferenceBound this) {
+        return Objects.hash(boundType);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  String toString( ReferenceBound this) {
+        return boundType.toString();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public abstract  ReferenceBound substitute(Substitution substitution);
+
+    @org.checkerframework.dataflow.qual.Pure
+    public abstract  ReferenceBound applyCaptureConversion();
+
+    @org.checkerframework.dataflow.qual.Pure
+      boolean hasWildcard( ReferenceBound this) {
+        return boundType.hasWildcard();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean hasCaptureVariable( ReferenceBound this) {
+        return boundType.hasCaptureVariable();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean isGeneric( ReferenceBound this,   boolean ignoreWildcards) {
+        return boundType.isGeneric(ignoreWildcards);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean isObject( ReferenceBound this) {
+        return boundType.isObject();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean isVariable( ReferenceBound this) {
+        return boundType.isVariable();
+    }
+}

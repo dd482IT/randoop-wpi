@@ -1,0 +1,34 @@
+package randoop.sequence;
+
+import java.util.List;
+import randoop.Globals;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class SequenceParseException extends Exception {
+
+    private static final  @org.checkerframework.checker.signature.qual.SignatureUnknown long serialVersionUID = 1L;
+
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown String message;
+
+    public SequenceParseException(@org.checkerframework.checker.signature.qual.SignatureUnknown String msg, @org.checkerframework.checker.signature.qual.SignatureUnknown List<String> statements,  @org.checkerframework.checker.signature.qual.SignatureUnknown int statementCount) {
+        StringBuilder b = new StringBuilder();
+        b.append("Error while parsing the following list of strings as a sequence (error was at index " + statementCount + "): ");
+        b.append(msg);
+        b.append("").append(Globals.lineSep).append(Globals.lineSep);
+        b.append(" While parsing the following sequence:").append(Globals.lineSep);
+        for (int i = 0; i < statements.size(); i++) {
+            if (i == statementCount) {
+                b.append(">> " + statements.get(i) + "").append(Globals.lineSep);
+            } else {
+                b.append("   " + statements.get(i) + "").append(Globals.lineSep);
+            }
+        }
+        b.append("").append(Globals.lineSep).append(Globals.lineSep);
+        this.message = b.toString();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String getMessage(@org.checkerframework.checker.signature.qual.SignatureUnknown SequenceParseException this) {
+        return message;
+    }
+}

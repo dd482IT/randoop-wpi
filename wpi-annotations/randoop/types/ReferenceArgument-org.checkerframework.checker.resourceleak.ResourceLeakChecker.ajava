@@ -1,0 +1,162 @@
+package randoop.types;
+
+import java.util.List;
+import java.util.Objects;
+
+/**
+ * Represents a reference type as a type argument to a parameterized type. (See <a
+ * href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.5.1">JLS Section
+ * 4.5.1</a>.)
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class ReferenceArgument extends TypeArgument {
+
+    /**
+     * The reference type for this argument.
+     */
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceType referenceType;
+
+    /**
+     * Creates a {@code ReferenceArgument} for the given {@link ReferenceType}.
+     *
+     * @param referenceType the {@link ReferenceType}
+     */
+    private ReferenceArgument(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceType referenceType) {
+        this.referenceType = referenceType;
+    }
+
+    /**
+     * Creates a {@code ReferenceArgument} from the given type.
+     *
+     * @param type the type
+     * @return a {@code ReferenceArgument} for the given type
+     */
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceArgument forType(java.lang.reflect.@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type type) {
+        return forType(ReferenceType.forType(type));
+    }
+
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceArgument forType(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceType referenceType) {
+        return new ReferenceArgument(referenceType);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean equals(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceArgument this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ReferenceArgument)) {
+            return false;
+        }
+        ReferenceArgument referenceArgument = (ReferenceArgument) obj;
+        return this.referenceType.equals(referenceArgument.referenceType);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int hashCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceArgument this) {
+        return Objects.hash(referenceType);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.referenceType" }, methods = { "getFqName" })
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getFqName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceArgument this) {
+        return referenceType.getFqName();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.referenceType" }, methods = { "getBinaryName" })
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getBinaryName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceArgument this) {
+        return referenceType.getBinaryName();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.referenceType" }, methods = { "getBinaryName", "toString" })
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceArgument this) {
+        return referenceType.toString();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.referenceType" }, methods = { "substitute" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeArgument substitute(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceArgument this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Substitution substitution) {
+        return TypeArgument.forType(referenceType.substitute(substitution));
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>Considers cases:
+     *
+     * <ul>
+     *   <li>{@code T} contains {@code T}
+     *   <li>{@code T} contains {@code ? extends T}
+     *   <li>{@code T} contains {@code ? super T}
+     * </ul>
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "isWildcard" })
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean contains(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceArgument this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeArgument otherArgument) {
+        if (otherArgument.isWildcard()) {
+            ParameterBound boundType = ((WildcardArgument) otherArgument).getTypeBound();
+            return boundType.equals(new EagerReferenceBound(referenceType));
+        } else {
+            return referenceType.equals(((ReferenceArgument) otherArgument).getReferenceType());
+        }
+    }
+
+    /**
+     * Get the reference type for this type argument.
+     *
+     * @return the reference type of this type argument
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceType getReferenceType(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceArgument this) {
+        return referenceType;
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.referenceType" }, methods = { "getTypeParameters" })
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<TypeVariable> getTypeParameters(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceArgument this) {
+        return referenceType.getTypeParameters();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.referenceType" }, methods = { "isParameterized" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasWildcard(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceArgument this) {
+        return referenceType.isParameterized() && ((ClassOrInterfaceType) referenceType).hasWildcard();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasCaptureVariable(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceArgument this) {
+        return referenceType instanceof CaptureTypeVariable || (referenceType.isParameterized() && ((ClassOrInterfaceType) referenceType).hasCaptureVariable());
+    }
+
+    /**
+     * Indicates whether a {@code ReferenceArgument} is generic.
+     *
+     * @return true if the {@link ReferenceType} is generic, false otherwise
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.referenceType" }, methods = { "isGeneric" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isGeneric(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceArgument this,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean ignoreWildcards) {
+        return referenceType.isGeneric(ignoreWildcards);
+    }
+
+     @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isInstantiationOfTypeArgument(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceArgument this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeArgument otherArgument) {
+        if (!(otherArgument instanceof ReferenceArgument)) {
+            return false;
+        }
+        ReferenceType otherReferenceType = ((ReferenceArgument) otherArgument).getReferenceType();
+        return referenceType.isInstantiationOf(otherReferenceType);
+    }
+
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Substitution getInstantiatingSubstitution(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceArgument this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeArgument otherArgument) {
+        if (!(otherArgument instanceof ReferenceArgument)) {
+            return null;
+        }
+        ReferenceType otherReferenceType = ((ReferenceArgument) otherArgument).getReferenceType();
+        return referenceType.getInstantiatingSubstitution(otherReferenceType);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.referenceType" }, methods = { "isVariable" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isVariable(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceArgument this) {
+        return referenceType.isVariable();
+    }
+}

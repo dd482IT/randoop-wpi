@@ -1,0 +1,61 @@
+package randoop.operation;
+
+import java.lang.reflect.Array;
+import java.util.List;
+import randoop.ExceptionalExecution;
+import randoop.ExecutionOutcome;
+import randoop.NormalExecution;
+import randoop.sequence.Variable;
+import randoop.types.Type;
+import randoop.types.TypeTuple;
+
+/**
+ * Created by bjkeller on 8/19/16.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+class ArrayElementSet extends CallableOperation {
+
+    private final  @org.checkerframework.checker.signature.qual.SignatureUnknown int ARRAY = 0;
+
+    private final  @org.checkerframework.checker.signature.qual.SignatureUnknown int INDEX = 1;
+
+    private final  @org.checkerframework.checker.signature.qual.SignatureUnknown int VALUE = 2;
+
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown Type elementType;
+
+    ArrayElementSet(@org.checkerframework.checker.signature.qual.SignatureUnknown Type elementType) {
+        this.elementType = elementType;
+    }
+
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown ExecutionOutcome execute(@org.checkerframework.checker.signature.qual.SignatureUnknown ArrayElementSet this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object @org.checkerframework.checker.signature.qual.SignatureUnknown [] input) {
+        assert input.length == 3 : "array element assignment must have array, index and value as arguments";
+        Object array = input[ARRAY];
+        int index = (int) input[INDEX];
+        Object value = input[VALUE];
+        try {
+            Array.set(array, index, value);
+        } catch (Throwable thrown) {
+            return new ExceptionalExecution(thrown, 0);
+        }
+        return new NormalExecution(null, 0);
+    }
+
+    public void appendCode(@org.checkerframework.checker.signature.qual.SignatureUnknown ArrayElementSet this, @org.checkerframework.checker.signature.qual.SignatureUnknown Type declaringType, @org.checkerframework.checker.signature.qual.SignatureUnknown TypeTuple inputTypes, @org.checkerframework.checker.signature.qual.SignatureUnknown Type outputType, @org.checkerframework.checker.signature.qual.SignatureUnknown List<Variable> inputVars, @org.checkerframework.checker.signature.qual.SignatureUnknown StringBuilder b) {
+        b.append(inputVars.get(ARRAY).getName()).append("[");
+        Variable indexVariable = inputVars.get(INDEX);
+        String index = getArgumentString(indexVariable);
+        b.append(index).append("]").append(" = ");
+        String value = getArgumentString(inputVars.get(VALUE));
+        b.append(value);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toParsableString(@org.checkerframework.checker.signature.qual.SignatureUnknown ArrayElementSet this, @org.checkerframework.checker.signature.qual.SignatureUnknown Type declaringType, @org.checkerframework.checker.signature.qual.SignatureUnknown TypeTuple inputTypes, @org.checkerframework.checker.signature.qual.SignatureUnknown Type outputType) {
+        return getName();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String getName(@org.checkerframework.checker.signature.qual.SignatureUnknown ArrayElementSet this) {
+        return "<set>" + elementType + "[]";
+    }
+}

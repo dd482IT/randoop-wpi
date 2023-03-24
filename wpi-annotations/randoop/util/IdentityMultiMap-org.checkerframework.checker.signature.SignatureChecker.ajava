@@ -1,0 +1,46 @@
+package randoop.util;
+
+import java.util.IdentityHashMap;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+/**
+ * A multi-map using key identity rather than equality.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class IdentityMultiMap<K, V> {
+
+    /**
+     * the underlying map
+     */
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown IdentityHashMap<K, Set<V>> map;
+
+    /**
+     * Creates an empty multi-map.
+     */
+    public IdentityMultiMap() {
+        map = new IdentityHashMap<>();
+    }
+
+    /**
+     * Adds a key-value pair to the multimap.
+     *
+     * @param key the key
+     * @param value the value
+     */
+    public void put(@org.checkerframework.checker.signature.qual.SignatureUnknown IdentityMultiMap<K, V> this, K key, V value) {
+        Set<V> set = map.computeIfAbsent(key, __ -> new LinkedHashSet<>());
+        set.add(value);
+    }
+
+    /**
+     * Returns the set of values that correspond to the given key in the map.
+     *
+     * @param key the key value
+     * @return the set of values that correspond to the key, null if none
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown Set<V> get(@org.checkerframework.checker.signature.qual.SignatureUnknown IdentityMultiMap<K, V> this, K key) {
+        return map.get(key);
+    }
+}

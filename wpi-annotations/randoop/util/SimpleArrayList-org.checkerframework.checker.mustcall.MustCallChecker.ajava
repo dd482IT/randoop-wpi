@@ -1,0 +1,38 @@
+package randoop.util;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public class SimpleArrayList<E> extends ArrayList<E> implements SimpleList<E>, Serializable {
+
+    private static final  @org.checkerframework.checker.mustcall.qual.MustCall({}) long serialVersionUID = 20180317;
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public SimpleArrayList(Collection<? extends E> c) {
+        super(c);
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public SimpleArrayList() {
+        super();
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public SimpleArrayList( @org.checkerframework.checker.mustcall.qual.MustCall({}) int initialCapacity) {
+        super(initialCapacity);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public // Return the entire list.
+    @org.checkerframework.checker.mustcall.qual.MustCall({}) SimpleList<E> getSublist(@org.checkerframework.checker.mustcall.qual.MustCall({}) SimpleArrayList<E> this,  @org.checkerframework.checker.mustcall.qual.MustCall({}) int index) {
+        return this;
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) List<E> toJDKList(@org.checkerframework.checker.mustcall.qual.MustCall({}) SimpleArrayList<E> this) {
+        return new ArrayList<>(this);
+    }
+}

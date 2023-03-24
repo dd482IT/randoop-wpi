@@ -1,0 +1,68 @@
+package randoop.contract;
+
+import java.util.Arrays;
+import randoop.types.JavaTypes;
+import randoop.types.TypeTuple;
+
+/**
+ * The contract: {@code x == null}.
+ *
+ * <p>Obviously, this is not a property that must hold of all objects in a test. Randoop creates an
+ * instance of this contract when, during execution of a sequence, it determines that the above
+ * property holds. The property thus represents a <i>regression</i> as it captures the behavior of
+ * the code when it is executed.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public final class IsNull extends ObjectContract {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean equals(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) IsNull this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object o) {
+        if (o == this) {
+            return true;
+        }
+        return o instanceof IsNull;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int hashCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) IsNull this) {
+        // no state to compare.
+        return 37;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) IsNull this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objects) throws Throwable {
+        assert objects.length == 1;
+        return objects[0] == null;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int getArity(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) IsNull this) {
+        return 1;
+    }
+
+    /**
+     * The arguments to which this contract can be applied.
+     */
+    static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE));
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeTuple getInputTypes(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) IsNull this) {
+        return inputTypes;
+    }
+
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toCodeString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) IsNull this) {
+        StringBuilder b = new StringBuilder();
+        b.append("org.junit.Assert.assertNull(x0);");
+        return b.toString();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toCommentString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) IsNull this) {
+        return "x0 == null";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String get_observer_str(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) IsNull this) {
+        return "isNull";
+    }
+}

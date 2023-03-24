@@ -1,0 +1,94 @@
+package randoop.types;
+
+/**
+ * The {@code null} type is the type of the value {@code null}. As the subtype of all reference
+ * types, it is the default lowerbound of a {@link CaptureTypeVariable}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+class NullReferenceType extends ReferenceType {
+
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NullReferenceType value = new NullReferenceType();
+
+    private NullReferenceType() {
+    }
+
+    /**
+     * Returns the null type.
+     *
+     * @return the null type object
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NullReferenceType getNullType() {
+        return value;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean equals(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NullReferenceType this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof NullReferenceType)) {
+            return false;
+        }
+        return obj == value;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int hashCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NullReferenceType this) {
+        return System.identityHashCode(this);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>This method returns null since the {@link NullReferenceType} does not have a runtime
+     * representation
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public Class<?> getRuntimeClass(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NullReferenceType this) {
+        return null;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReferenceType substitute(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NullReferenceType this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Substitution substitution) {
+        return this;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getFqName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NullReferenceType this) {
+        return "NullType";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getBinaryName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NullReferenceType this) {
+        return "NullType";
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getFqName" })
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getSimpleName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NullReferenceType this) {
+        return this.getFqName();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getFqName" })
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getCanonicalName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NullReferenceType this) {
+        return this.getFqName();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasWildcard(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NullReferenceType this) {
+        return false;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasCaptureVariable(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NullReferenceType this) {
+        return false;
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "equals" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isSubtypeOf(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NullReferenceType this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type otherType) {
+        return !otherType.equals(JavaTypes.VOID_TYPE) && otherType.isReferenceType();
+    }
+}

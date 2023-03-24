@@ -1,0 +1,104 @@
+package randoop.operation;
+
+import java.lang.reflect.Array;
+import java.util.List;
+import java.util.Objects;
+import randoop.ExecutionOutcome;
+import randoop.NormalExecution;
+import randoop.sequence.Variable;
+import randoop.types.ArrayType;
+import randoop.types.Type;
+import randoop.types.TypeTuple;
+
+/**
+ * {@code ArrayCreation} is a {@link Operation} representing the construction of a one-dimensional
+ * array of a given type. The operation takes a length argument and creates an array of that size.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class ArrayCreation extends CallableOperation {
+
+    /**
+     * The element type for the created array.
+     */
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown Type elementType;
+
+    /**
+     * The component type for the created array.
+     */
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown Type componentType;
+
+    /**
+     * The dimensions of the created array.
+     */
+    private  @org.checkerframework.checker.signature.qual.SignatureUnknown int dimensions;
+
+    /**
+     * Creates an object representing the construction of an array of the given type.
+     *
+     * @param arrayType the type of the created array
+     */
+    ArrayCreation(@org.checkerframework.checker.signature.qual.SignatureUnknown ArrayType arrayType) {
+        this.elementType = arrayType.getElementType();
+        this.componentType = arrayType.getComponentType();
+        this.dimensions = arrayType.getDimensions();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean equals(@org.checkerframework.checker.signature.qual.SignatureUnknown ArrayCreation this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ArrayCreation)) {
+            return false;
+        }
+        ArrayCreation arrayCreation = (ArrayCreation) obj;
+        return this.elementType.equals(arrayCreation.elementType) && this.dimensions == arrayCreation.dimensions;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int hashCode(@org.checkerframework.checker.signature.qual.SignatureUnknown ArrayCreation this) {
+        return Objects.hash(elementType, dimensions);
+    }
+
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toString(@org.checkerframework.checker.signature.qual.SignatureUnknown ArrayCreation this) {
+        StringBuilder result = new StringBuilder(elementType.getBinaryName());
+        for (int i = 0; i < dimensions; i++) {
+            result.append("[]");
+        }
+        return result.toString();
+    }
+
+    public // The argument array contains a single Integer.
+    @org.checkerframework.checker.signature.qual.SignatureUnknown ExecutionOutcome execute(@org.checkerframework.checker.signature.qual.SignatureUnknown ArrayCreation this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object @org.checkerframework.checker.signature.qual.SignatureUnknown [] input) {
+        assert input.length == 1 : "requires array dimension as input";
+        int length = ((Integer) input[0]).intValue();
+        long startTime = System.currentTimeMillis();
+        Object theArray = Array.newInstance(this.componentType.getRuntimeClass(), length);
+        long totalTime = System.currentTimeMillis() - startTime;
+        return new NormalExecution(theArray, totalTime);
+    }
+
+    public void appendCode(@org.checkerframework.checker.signature.qual.SignatureUnknown ArrayCreation this, @org.checkerframework.checker.signature.qual.SignatureUnknown Type declaringType, @org.checkerframework.checker.signature.qual.SignatureUnknown TypeTuple inputTypes, @org.checkerframework.checker.signature.qual.SignatureUnknown Type outputType, @org.checkerframework.checker.signature.qual.SignatureUnknown List<Variable> inputVars, @org.checkerframework.checker.signature.qual.SignatureUnknown StringBuilder b) {
+        Variable inputVar = inputVars.get(0);
+        b.append("new").append(" ").append(this.elementType.getFqName());
+        b.append("[ ");
+        String param = getArgumentString(inputVar);
+        b.append(param).append(" ]");
+        for (int i = 1; i < dimensions; i++) {
+            b.append("[]");
+        }
+    }
+
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toParsableString(@org.checkerframework.checker.signature.qual.SignatureUnknown ArrayCreation this, @org.checkerframework.checker.signature.qual.SignatureUnknown Type declaringType, @org.checkerframework.checker.signature.qual.SignatureUnknown TypeTuple inputTypes, @org.checkerframework.checker.signature.qual.SignatureUnknown Type outputType) {
+        StringBuilder result = new StringBuilder(elementType.getBinaryName() + "[ " + inputTypes.get(0) + " ]");
+        for (int i = 1; i < dimensions; i++) {
+            result.append("[]");
+        }
+        return result.toString();
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String getName(@org.checkerframework.checker.signature.qual.SignatureUnknown ArrayCreation this) {
+        return this.toString();
+    }
+}

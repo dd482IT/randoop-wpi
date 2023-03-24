@@ -1,0 +1,70 @@
+package randoop.contract;
+
+import java.util.Arrays;
+import randoop.types.JavaTypes;
+import randoop.types.TypeTuple;
+
+/**
+ * The contract: Checks that compareTo is consistent with equals.
+ *
+ * <pre>(x0.compareTo(x1) == 0) == x0.equals(x1)</pre>
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class CompareToEquals extends ObjectContract {
+
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToEquals instance = new CompareToEquals();
+
+    private CompareToEquals() {
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToEquals getInstance() {
+        return instance;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToEquals this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objects) {
+        Object o1 = objects[0];
+        Object o2 = objects[1];
+        if (o1 instanceof Comparable) {
+            Comparable compObj1 = (Comparable) o1;
+            return (compObj1.compareTo(o2) == 0) == o1.equals(o2);
+        }
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int getArity(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToEquals this) {
+        return 2;
+    }
+
+    /**
+     * The arguments to which this contract can be applied.
+     */
+    static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.COMPARABLE_TYPE, JavaTypes.COMPARABLE_TYPE));
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeTuple getInputTypes(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToEquals this) {
+        return inputTypes;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toCommentString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToEquals this) {
+        return "compareTo-equals on x0 and x1";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String get_observer_str(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToEquals this) {
+        return "CompareToEquals";
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "toCommentString" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toCodeString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToEquals this) {
+        StringBuilder b = new StringBuilder();
+        b.append("org.junit.Assert.assertTrue(");
+        b.append("\"Contract failed: " + toCommentString() + "\", ");
+        b.append("(x0.compareTo(x1) == 0) == x0.equals(x1)");
+        b.append(");");
+        return b.toString();
+    }
+}

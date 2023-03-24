@@ -1,0 +1,99 @@
+package randoop.contract;
+
+import java.util.Collections;
+import java.util.Objects;
+import randoop.types.Type;
+import randoop.types.TypeTuple;
+
+/**
+ * A check for a particular value of an {@code Enum}. To be used in regression tests when {@code
+ * Enum} values are created.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public final class EnumValue extends ObjectContract {
+
+    public final @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getClass" }) Enum<?> value;
+
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type type;
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getClass", "getDeclaringClass" })
+    public EnumValue(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getClass" }) Enum<?> value) {
+        this.value = value;
+        this.type = Type.forClass(value.getDeclaringClass());
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean equals(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumValue this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof EnumValue)) {
+            return false;
+        }
+        EnumValue enumValue = (EnumValue) obj;
+        return value.equals(enumValue.value);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int hashCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumValue this) {
+        return Objects.hash(value);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.value" }, methods = { "getClass", "name" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumValue this) {
+        return "randoop.contract.EnumValue = " + value.name();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int getArity(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumValue this) {
+        return 1;
+    }
+
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeTuple getInputTypes(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumValue this) {
+        return new TypeTuple(Collections.singletonList(type));
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.value" }, methods = { "equals", "getClass" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumValue this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objects) throws Throwable {
+        assert objects.length == 1;
+        return value.equals(objects[0]);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public String toCommentString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumValue this) {
+        return null;
+    }
+
+    /**
+     * The name of the enum value, for use in source code.
+     *
+     * @return the name of the enum value, for use in source code
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.type" }, methods = { "getFqName" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.value" }, methods = { "getClass", "name" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getValueName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumValue this) {
+        return type.getFqName() + "." + value.name();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getValueName" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.type" }, methods = { "getFqName" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.value" }, methods = { "getClass", "name" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toCodeString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumValue this) {
+        String valueName = getValueName();
+        StringBuilder b = new StringBuilder();
+        b.append("org.junit.Assert.assertTrue(");
+        b.append("\"'\" + x0 + \"' != '\" + ").append(valueName).append(" + \"'\", ");
+        b.append("x0");
+        b.append(".equals(");
+        b.append(valueName);
+        b.append(")");
+        b.append(");");
+        return b.toString();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String get_observer_str(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumValue this) {
+        return "EnumValue";
+    }
+}

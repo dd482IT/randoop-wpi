@@ -1,0 +1,13 @@
+package randoop.operation;
+
+// Not meant for serialization.
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class OperationParseException extends Exception {
+
+    private static final  @org.checkerframework.checker.signature.qual.SignatureUnknown long serialVersionUID = 1L;
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public OperationParseException(@org.checkerframework.checker.signature.qual.SignatureUnknown String string) {
+        super(string);
+    }
+}

@@ -1,0 +1,81 @@
+package randoop.types;
+
+/**
+ * Represents {@code void}. Technically, {@code void} is used to indicate that a method has no
+ * return values, and is not a type. However, we need to pretend that it is to be able to represent
+ * typed operations.
+ *
+ * <p>The decision to have {@code void} be a separate "type" is counter to the fact that the
+ * reflection method {@code Class.isPrimitive()} returns true for {@code void}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public class VoidType extends Type {
+
+    private static final @org.checkerframework.checker.mustcall.qual.MustCall({}) VoidType value = new VoidType();
+
+    private VoidType() {
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static @org.checkerframework.checker.mustcall.qual.MustCall({}) VoidType getVoidType() {
+        return value;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean equals(@org.checkerframework.checker.mustcall.qual.MustCall({}) VoidType this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Object obj) {
+        if (!(obj instanceof VoidType)) {
+            return false;
+        }
+        return obj == value;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) int hashCode(@org.checkerframework.checker.mustcall.qual.MustCall({}) VoidType this) {
+        return System.identityHashCode(this);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) Class<?> getRuntimeClass(@org.checkerframework.checker.mustcall.qual.MustCall({}) VoidType this) {
+        return void.class;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String getFqName(@org.checkerframework.checker.mustcall.qual.MustCall({}) VoidType this) {
+        return "void";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String getBinaryName(@org.checkerframework.checker.mustcall.qual.MustCall({}) VoidType this) {
+        return "void";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String getSimpleName(@org.checkerframework.checker.mustcall.qual.MustCall({}) VoidType this) {
+        return this.getFqName();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean isVoid(@org.checkerframework.checker.mustcall.qual.MustCall({}) VoidType this) {
+        return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>Returns false, since {@code void} is not a subtype of any type
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean isSubtypeOf(@org.checkerframework.checker.mustcall.qual.MustCall({}) VoidType this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Type otherType) {
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>Return false because cannot assign to void.
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean isAssignableFrom(@org.checkerframework.checker.mustcall.qual.MustCall({}) VoidType this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Type sourceType) {
+        return false;
+    }
+}

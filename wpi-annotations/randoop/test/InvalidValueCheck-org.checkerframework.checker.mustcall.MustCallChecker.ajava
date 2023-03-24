@@ -1,0 +1,43 @@
+package randoop.test;
+
+import randoop.sequence.ExecutableSequence;
+
+/**
+ * Represents the occurrence of an invalid value for a {@link
+ * randoop.condition.ExecutableBooleanExpression} of the {@link randoop.operation.TypedOperation} in
+ * a {@link randoop.sequence.Statement}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public class InvalidValueCheck implements Check {
+
+    /**
+     * The sequence that creates the value to be checked.
+     */
+    @org.checkerframework.checker.mustcall.qual.MustCall({}) ExecutableSequence eseq;
+
+    /**
+     * The index in the sequence of the statement that creates the value.
+     */
+     @org.checkerframework.checker.mustcall.qual.MustCall({}) int index;
+
+    /**
+     * Create an InvalidValueCheck.
+     *
+     * @param eseq the sequence that creates the value to be checked
+     * @param index the index in the sequence of the statement that creates the value to be checked
+     */
+    public InvalidValueCheck(@org.checkerframework.checker.mustcall.qual.MustCall({}) ExecutableSequence eseq,  @org.checkerframework.checker.mustcall.qual.MustCall({}) int index) {
+        this.eseq = eseq;
+        this.index = index;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toCodeStringPreStatement(@org.checkerframework.checker.mustcall.qual.MustCall({}) InvalidValueCheck this) {
+        return "";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toCodeStringPostStatement(@org.checkerframework.checker.mustcall.qual.MustCall({}) InvalidValueCheck this) {
+        return "";
+    }
+}

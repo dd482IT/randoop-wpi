@@ -1,0 +1,53 @@
+package randoop.util;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class MultiSet<E> {
+
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Map<E, Integer> frequencyMap;
+
+    public MultiSet() {
+        frequencyMap = new LinkedHashMap<>();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.frequencyMap" }, methods = { "getOrDefault", "put" })
+    public void add(E obj) {
+        Integer i = frequencyMap.getOrDefault(obj, 0);
+        frequencyMap.put(obj, i + 1);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.frequencyMap" }, methods = { "get" })
+    public void remove(E obj) {
+        Integer i = frequencyMap.get(obj);
+        if (i == null || i < 1) {
+            throw new IllegalStateException("Variable not found when trying to remove from multiset. Variable: " + obj);
+        }
+        if (i == 1) {
+            frequencyMap.remove(obj);
+        } else {
+            frequencyMap.put(obj, i - 1);
+        }
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.frequencyMap" }, methods = { "keySet" })
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<E> getElements() {
+        return frequencyMap.keySet();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.frequencyMap" }, methods = { "isEmpty" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isEmpty() {
+        return frequencyMap.isEmpty();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "iterator" })
+    public void removeAllInstances(Set<E> values) {
+        for (E value : values) {
+            frequencyMap.remove(value);
+        }
+    }
+}

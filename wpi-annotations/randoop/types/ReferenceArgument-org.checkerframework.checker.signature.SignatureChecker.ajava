@@ -1,0 +1,153 @@
+package randoop.types;
+
+import java.util.List;
+import java.util.Objects;
+
+/**
+ * Represents a reference type as a type argument to a parameterized type. (See <a
+ * href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.5.1">JLS Section
+ * 4.5.1</a>.)
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class ReferenceArgument extends TypeArgument {
+
+    /**
+     * The reference type for this argument.
+     */
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceType referenceType;
+
+    /**
+     * Creates a {@code ReferenceArgument} for the given {@link ReferenceType}.
+     *
+     * @param referenceType the {@link ReferenceType}
+     */
+    private ReferenceArgument(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceType referenceType) {
+        this.referenceType = referenceType;
+    }
+
+    /**
+     * Creates a {@code ReferenceArgument} from the given type.
+     *
+     * @param type the type
+     * @return a {@code ReferenceArgument} for the given type
+     */
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceArgument forType(java.lang.reflect.@org.checkerframework.checker.signature.qual.SignatureUnknown Type type) {
+        return forType(ReferenceType.forType(type));
+    }
+
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceArgument forType(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceType referenceType) {
+        return new ReferenceArgument(referenceType);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean equals(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceArgument this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ReferenceArgument)) {
+            return false;
+        }
+        ReferenceArgument referenceArgument = (ReferenceArgument) obj;
+        return this.referenceType.equals(referenceArgument.referenceType);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int hashCode(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceArgument this) {
+        return Objects.hash(referenceType);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String getFqName(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceArgument this) {
+        return referenceType.getFqName();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String getBinaryName(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceArgument this) {
+        return referenceType.getBinaryName();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toString(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceArgument this) {
+        return referenceType.toString();
+    }
+
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown TypeArgument substitute(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceArgument this, @org.checkerframework.checker.signature.qual.SignatureUnknown Substitution substitution) {
+        return TypeArgument.forType(referenceType.substitute(substitution));
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>Considers cases:
+     *
+     * <ul>
+     *   <li>{@code T} contains {@code T}
+     *   <li>{@code T} contains {@code ? extends T}
+     *   <li>{@code T} contains {@code ? super T}
+     * </ul>
+     */
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean contains(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceArgument this, @org.checkerframework.checker.signature.qual.SignatureUnknown TypeArgument otherArgument) {
+        if (otherArgument.isWildcard()) {
+            ParameterBound boundType = ((WildcardArgument) otherArgument).getTypeBound();
+            return boundType.equals(new EagerReferenceBound(referenceType));
+        } else {
+            return referenceType.equals(((ReferenceArgument) otherArgument).getReferenceType());
+        }
+    }
+
+    /**
+     * Get the reference type for this type argument.
+     *
+     * @return the reference type of this type argument
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceType getReferenceType(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceArgument this) {
+        return referenceType;
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown List<TypeVariable> getTypeParameters(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceArgument this) {
+        return referenceType.getTypeParameters();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasWildcard(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceArgument this) {
+        return referenceType.isParameterized() && ((ClassOrInterfaceType) referenceType).hasWildcard();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasCaptureVariable(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceArgument this) {
+        return referenceType instanceof CaptureTypeVariable || (referenceType.isParameterized() && ((ClassOrInterfaceType) referenceType).hasCaptureVariable());
+    }
+
+    /**
+     * Indicates whether a {@code ReferenceArgument} is generic.
+     *
+     * @return true if the {@link ReferenceType} is generic, false otherwise
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isGeneric(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceArgument this,  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean ignoreWildcards) {
+        return referenceType.isGeneric(ignoreWildcards);
+    }
+
+     @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isInstantiationOfTypeArgument(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceArgument this, @org.checkerframework.checker.signature.qual.SignatureUnknown TypeArgument otherArgument) {
+        if (!(otherArgument instanceof ReferenceArgument)) {
+            return false;
+        }
+        ReferenceType otherReferenceType = ((ReferenceArgument) otherArgument).getReferenceType();
+        return referenceType.isInstantiationOf(otherReferenceType);
+    }
+
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown Substitution getInstantiatingSubstitution(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceArgument this, @org.checkerframework.checker.signature.qual.SignatureUnknown TypeArgument otherArgument) {
+        if (!(otherArgument instanceof ReferenceArgument)) {
+            return null;
+        }
+        ReferenceType otherReferenceType = ((ReferenceArgument) otherArgument).getReferenceType();
+        return referenceType.getInstantiatingSubstitution(otherReferenceType);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isVariable(@org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceArgument this) {
+        return referenceType.isVariable();
+    }
+}
