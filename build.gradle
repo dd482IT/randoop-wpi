@@ -89,13 +89,17 @@ allprojects { subproject ->
     extraJavacArgs = [
       // Uncomment -proc:none to disable all annotation processing and speed up the build.
       // '-proc:none',
-      '-Werror',
+      //'-Werror',
       // '-AcheckPurityAnnotations',
       '-ArequirePrefixInWarningSuppressions',
       '-AwarnUnneededSuppressions',
       '-ApermitStaticOwning',
       // Suppresses "No processor claimed any of these annotations ..." warning.
-      '-Xlint:-processing'
+      '-Xlint:-processing',
+      '-Ainfer=ajava',
+      '-Awarns',
+      '-AshowPrefixInWarningMessages',
+      '-Aajava=/home/d/dd482/randoop2/WPITEMP-randoop/',
     ]
   }
 
@@ -297,6 +301,8 @@ allprojects {
 }
 allprojects { subproject ->
   tasks.withType(JavaCompile).configureEach { t ->
+    options.compilerArgs << "-Xmaxerrs" << "1000"
+    options.compilerArgs << "-Xmaxwarns" << "1000"
     if (t.name.equals('compileTestInputJava') || t.name.equals('compileTestJava')) {
       options.errorprone.enabled = false
     } else {
