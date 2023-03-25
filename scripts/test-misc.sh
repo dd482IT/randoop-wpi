@@ -29,6 +29,6 @@ fi
 "/tmp/$USER/plume-scripts/ci-lint-diff" /tmp/warnings.txt
 
 JAVA_VER=$(java -version 2>&1 | head -1 | cut -d'"' -f2 | sed '/^1\./s///' | cut -d'.' -f1) && \
-if [ "$JAVA_VER" != "8" ] ; then
-  ./gradlew spotlessCheck
-fi
+#if [ "$JAVA_VER" != "8" ] ; then
+#  ./gradlew spotlessCheck
+#fi

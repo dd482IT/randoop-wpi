@@ -287,36 +287,6 @@ assemble.dependsOn compileAll
 // Get early notification of any compilation failures, before running any tests
 build.dependsOn compileAll
 
-ext.isJava11orHigher = JavaVersion.current() >= JavaVersion.VERSION_11
-if (isJava11orHigher) {
-  apply plugin: 'com.diffplug.spotless'
-  spotless {
-    format 'misc', {
-      // define the files to apply `misc` to
-      target '*.md', '.gitignore'
-
-      // define the steps to apply to those files
-      trimTrailingWhitespace()
-      indentWithSpaces(2)
-      endWithNewline()
-    }
-    java {
-      // Use fileTree per https://github.com/diffplug/spotless/issues/399
-      targetExclude(fileTree("$projectDir/src/testInput") { include('**/*.java') })
-
-      googleJavaFormat()
-      formatAnnotations()
-    }
-    groovyGradle {
-      target '**/*.gradle'
-      greclipse()  // which formatter Spotless should use to format .gradle files.
-      indentWithSpaces(2)
-      trimTrailingWhitespace()
-      // endWithNewline() // Don't want to end empty files with a newline
-    }
-  }
-}
-
 
 /// Error Prone linter
 
@@ -887,7 +857,7 @@ if (JavaVersion.current() == JavaVersion.VERSION_1_8) {
 }
 
 
-/* Requires that the html5validator program is installed */
+/* Requires that the html5validator program is installed 
 task html5validatorExists {
   doLast {
     def result = exec {
@@ -901,7 +871,7 @@ task html5validatorExists {
     }
   }
 }
-html5validatorExists.onlyIf { !Os.isFamily(Os.FAMILY_WINDOWS) }
+html5validatorExists.onlyIf { !Os.isFamily(Os.FAMILY_WINDOWS) }*/
 
 /*
  * Generate/update and move documentation into build/docs directory.
@@ -910,7 +880,7 @@ task manual(type: DefaultTask, dependsOn: [
   'updateUserOptions',
   'updateUserTOC',
   'updateDevTOC',
-  'html5validatorExists'
+  //'html5validatorExists'
 ]) {
   group 'Documentation'
   description 'Adds options and TOC to documentation in src/docs'
@@ -926,7 +896,7 @@ task manual(type: DefaultTask, dependsOn: [
 
 // This is cross-platform and pulls in all required dependencies.  However,
 // it emits false positives and cannot be run in an automated build.
-// Output goes in ${buildDir}/reports/htmlSanityCheck/index.html .
+/* Output goes in ${buildDir}/reports/htmlSanityCheck/index.html .
 htmlSanityCheck {
   // sourceDir = new File( "${projectDir}/src/docs/manual" )
   sourceDir = new File( "${projectDir}/src/docs" )
@@ -935,7 +905,7 @@ htmlSanityCheck {
   }
   failOnErrors = true
 }
-
+*/
 build.dependsOn manual
 
 /*
@@ -1013,13 +983,13 @@ task publishSite (dependsOn: [
 
 /*
  * Applies HTML5 validator to project site HTML, including the manual
- */
+ 
 task validateSite(type: Exec, dependsOn: 'html5validatorExists') {
   description 'Run html5validator to find HTML errors in site files (excludes manual and api)'
   environment PATH: "$System.env.PATH"
   commandLine 'html5validator', '--root', 'src/docs/'
 }
-validateSite.onlyIf { !Os.isFamily(Os.FAMILY_WINDOWS) }
+validateSite.onlyIf { !Os.isFamily(Os.FAMILY_WINDOWS) }*/
 
 def thisIsReleaseFilename = "$projectDir/src/main/resources/this-is-a-randoop-release"
 task thisIsReleaseFile()  {

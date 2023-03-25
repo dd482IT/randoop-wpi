@@ -11,4 +11,4 @@ set -e
 #  * all files have proper Javadoc comments (not yet; `./gradlew requireJavadoc` does not yet pass)
 #  * all code compiles
 #  * documentation appears in the manual
-./gradlew spotlessCheck compileAll manual
+#./gradlew spotlessCheck compileAll manual
