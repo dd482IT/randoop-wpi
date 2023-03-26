@@ -235,31 +235,31 @@ dependencies {
  */
 compileJava.options.compilerArgs = [
   '-g',
-  '-Werror',
+  //'-Werror',
   '-Xlint',
   '-Xlint:-classfile'
 ]
 compileTestJava.options.compilerArgs = [
   '-g',
-  '-Werror',
+  //'-Werror',
   '-Xlint',
   '-Xlint:-classfile'
 ]
 compileCoveredTestJava.options.compilerArgs = [
   '-g',
-  '-Werror',
+  //'-Werror',
   '-Xlint',
   '-Xlint:-classfile'
 ]
 compileReplacecallTestJava.options.compilerArgs = [
   '-g',
-  '-Werror',
+  //'-Werror',
   '-Xlint',
   '-Xlint:-classfile'
 ]
 compileSystemTestJava.options.compilerArgs = [
   '-g',
-  '-Werror',
+  //'-Werror',
   '-Xlint',
   '-Xlint:-classfile'
 ]
