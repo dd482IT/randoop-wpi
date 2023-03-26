@@ -28,26 +28,13 @@
                                                                       ^
   found   : @SignatureUnknown String
   required: @BinaryName String
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:134: warning: [signature:unneeded.suppression] warning suppression "signature:assignment" is not used by SignatureChecker
-              @SuppressWarnings("signature:assignment") // regex match enforces
-              ^
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:136: warning: [signature:unneeded.suppression] warning suppression "signature:assignment" is not used by SignatureChecker
-              @SuppressWarnings("signature:assignment") // regex match enforces
-              ^
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:459: warning: [signature:unneeded.suppression] warning suppression "signature:assignment" is not used by SignatureChecker
-        @SuppressWarnings("signature:assignment") // add identifier to dot-separated
-        ^
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:461: warning: [signature:unneeded.suppression] warning suppression "signature:assignment" is not used by SignatureChecker
-        @SuppressWarnings("signature:assignment") // add identifier to dot-separated
         ^
 /Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/MethodSignature.java:100: warning: [signature:argument] incompatible argument for parameter classname of fqBinaryNameToType.
       paramTypes[i] = BcelUtil.fqBinaryNameToType(params[i]);
                                                         ^
   found   : @SignatureUnknown String
   required: @FqBinaryName String
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/MethodSignature.java:130: warning: [signature:unneeded.suppression] warning suppression "signature:assignment" is not used by SignatureChecker
-    @SuppressWarnings("signature:assignment") // dynamically checked just below
-    ^
+
 /Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplaceCallAgent.java:134: warning: [builder:required.method.not.called] @MustCall method close may not have been invoked on temp-var-316 or any of its aliases.
                   Files.newBufferedReader(dont_transform, StandardCharsets.UTF_8),
                                          ^
@@ -71,9 +58,7 @@
                                   ^
   found   : @SignatureUnknown String
   required: @BinaryName String
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/compile/SequenceCompiler.java:225: warning: [signature:unneeded.suppression] warning suppression "signature:assignment" is not used by SignatureChecker
-    @SuppressWarnings("signature:assignment") // string concatenation
-    ^
+
 /Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/CompilableTestPredicate.java:64: warning: [builder:required.method.not.called] @MustCall method close may not have been invoked on temp-var-3557 or any of its aliases.
     this.compiler = new SequenceCompiler(compilerOptions);
                     ^
