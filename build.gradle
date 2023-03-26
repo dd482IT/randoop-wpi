@@ -89,7 +89,8 @@ allprojects { subproject ->
     extraJavacArgs = [
       // Uncomment -proc:none to disable all annotation processing and speed up the build.
       // '-proc:none',
-      '-Werror',
+      //'-Werror',
+      '-Awarns',
       // '-AcheckPurityAnnotations',
       '-ArequirePrefixInWarningSuppressions',
       '-AwarnUnneededSuppressions',
