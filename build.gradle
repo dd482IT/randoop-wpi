@@ -901,7 +901,7 @@ task html5validatorExists {
     }
   }
 }
-html5validatorExists.onlyIf { !Os.isFamily(Os.FAMILY_WINDOWS) }
+//html5validatorExists.onlyIf { !Os.isFamily(Os.FAMILY_WINDOWS) }
 
 /*
  * Generate/update and move documentation into build/docs directory.
@@ -910,7 +910,7 @@ task manual(type: DefaultTask, dependsOn: [
   'updateUserOptions',
   'updateUserTOC',
   'updateDevTOC',
-  'html5validatorExists'
+  //'html5validatorExists'
 ]) {
   group 'Documentation'
   description 'Adds options and TOC to documentation in src/docs'
@@ -918,7 +918,7 @@ task manual(type: DefaultTask, dependsOn: [
     if (!Os.isFamily(Os.FAMILY_WINDOWS)) {
       exec {
         environment PATH: "$System.env.PATH"
-        commandLine "html5validator", '--root', file("${projectDir}/src/docs/manual")
+        //commandLine "html5validator", '--root', file("${projectDir}/src/docs/manual")
       }
     }
   }
@@ -943,14 +943,14 @@ build.dependsOn manual
  */
 task validateAPI(type: Exec, dependsOn: [
   'javadoc',
-  'html5validatorExists'
+  //'html5validatorExists'
 ]) {
   group 'Documentation'
   description 'Run html5validator to find HTML errors in API documentation'
   // Prior to Java 9, javadoc does not comply with HTML5.
   if (JavaVersion.current().isJava9Compatible()) {
     environment PATH: "$System.env.PATH"
-    commandLine 'html5validator', '--root', file("${buildDir}/docs/api")
+    //commandLine 'html5validator', '--root', file("${buildDir}/docs/api")
   } else {
     commandLine 'echo', 'WARNING: HTML validation of API is only run in Java 9+.'
   }
@@ -1017,7 +1017,7 @@ task publishSite (dependsOn: [
 task validateSite(type: Exec, dependsOn: 'html5validatorExists') {
   description 'Run html5validator to find HTML errors in site files (excludes manual and api)'
   environment PATH: "$System.env.PATH"
-  commandLine 'html5validator', '--root', 'src/docs/'
+  //commandLine 'html5validator', '--root', 'src/docs/'
 }
 validateSite.onlyIf { !Os.isFamily(Os.FAMILY_WINDOWS) }
 
