@@ -22,9 +22,9 @@ import randoop.util.Log;
 /**
  * {@code TestPredicate} that returns true if the given {@link ExecutableSequence} is compilable.
  */
-@MustCall("close") public class CompilableTestPredicate implements Closeable, Predicate<ExecutableSequence> {
+public class CompilableTestPredicate implements Closeable, Predicate<ExecutableSequence> {
   /** The compiler for sequence code. */
-  private final @Owning SequenceCompiler compiler;
+  private final SequenceCompiler compiler;
 
   /**
    * The {@link randoop.output.JUnitCreator} to generate a class from a {@link
@@ -70,7 +70,6 @@ import randoop.util.Log;
 
   /** Releases resources held by this. */
   @Override
-  @EnsuresCalledMethods(value = "compiler", methods = "close")
   public void close() throws IOException {
     compiler.close();
   }

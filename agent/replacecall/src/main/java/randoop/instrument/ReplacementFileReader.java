@@ -106,7 +106,7 @@ public class ReplacementFileReader {
    * @throws ReplacementFileException if there is an error in the replacement file
    */
   static HashMap<MethodSignature, MethodSignature> readReplacements(
-      @Owning Reader in, String filename) throws ReplacementFileException, IOException {
+      Reader in, String filename) throws ReplacementFileException, IOException {
     HashMap<MethodSignature, MethodSignature> replacementMap = new HashMap<>();
 
     try (EntryReader reader = new EntryReader(in, filename, "//.*$", null)) {
@@ -132,9 +132,9 @@ public class ReplacementFileReader {
           if (packageOrClassLineMatcher.matches()) {
             try {
               @SuppressWarnings("signature:assignment") // regex match enforces
-              @DotSeparatedIdentifiers String original = packageOrClassLineMatcher.group(1);
+              String original = packageOrClassLineMatcher.group(1);
               @SuppressWarnings("signature:assignment") // regex match enforces
-              @DotSeparatedIdentifiers String replacement = packageOrClassLineMatcher.group(2);
+              String replacement = packageOrClassLineMatcher.group(2);
               addReplacementsForClassOrPackage(replacementMap, original, replacement);
             } catch (ReplacementException
                 | IOException
@@ -247,8 +247,8 @@ public class ReplacementFileReader {
    */
   private static void addReplacementsForClassOrPackage(
       HashMap<MethodSignature, MethodSignature> replacementMap,
-      @DotSeparatedIdentifiers String original,
-      @DotSeparatedIdentifiers String replacement)
+      String original,
+      String replacement)
       throws ReplacementException, IOException, ClassNotFoundException {
 
     String replacementClassPath = replacement.replace('.', '/') + ".class";
@@ -278,9 +278,9 @@ public class ReplacementFileReader {
    */
   private static void addReplacementsForClass(
       HashMap<MethodSignature, MethodSignature> replacementMap,
-      @DotSeparatedIdentifiers String originalPackage,
-      @DotSeparatedIdentifiers String replacementPackage,
-      @BinaryName String classname)
+      String originalPackage,
+      String replacementPackage,
+      String classname)
       throws ClassNotFoundException, ReplacementException {
     addReplacementsForClass(
         replacementMap,
@@ -307,8 +307,8 @@ public class ReplacementFileReader {
    */
   private static void addReplacementsForClass(
       HashMap<MethodSignature, MethodSignature> replacementMap,
-      @BinaryName String originalClassname,
-      @BinaryName String replacementClassname)
+      String originalClassname,
+      String replacementClassname)
       throws ClassNotFoundException, ReplacementException {
 
     // Check that replacement class exists
@@ -376,8 +376,8 @@ public class ReplacementFileReader {
    */
   private static void addReplacementsForPackage(
       HashMap<MethodSignature, MethodSignature> replacementMap,
-      @DotSeparatedIdentifiers String originalPackage,
-      @DotSeparatedIdentifiers String replacementPackage)
+      String originalPackage,
+      String replacementPackage)
       throws ReplacementException, ClassNotFoundException {
 
     if (ReplaceCallAgent.debug) {
@@ -440,8 +440,8 @@ public class ReplacementFileReader {
    */
   private static void addReplacementsForPackage(
       HashMap<MethodSignature, MethodSignature> replacementMap,
-      @DotSeparatedIdentifiers String originalPackage,
-      @DotSeparatedIdentifiers String replacementPackage,
+      String originalPackage,
+      String replacementPackage,
       Path replacementDirectory)
       throws ReplacementException, ClassNotFoundException {
 
@@ -457,9 +457,9 @@ public class ReplacementFileReader {
         }
       } else if (file.isDirectory()) {
         @SuppressWarnings("signature:assignment") // add identifier to dot-separated
-        @DotSeparatedIdentifiers String originalPackageRecurse = originalPackage + "." + filename;
+        String originalPackageRecurse = originalPackage + "." + filename;
         @SuppressWarnings("signature:assignment") // add identifier to dot-separated
-        @DotSeparatedIdentifiers String replacementPackageRecurse = replacementPackage + "." + filename;
+        String replacementPackageRecurse = replacementPackage + "." + filename;
         addReplacementsForPackage(
             replacementMap, originalPackageRecurse, replacementPackageRecurse, file.toPath());
       }
@@ -481,8 +481,8 @@ public class ReplacementFileReader {
    */
   private static void addReplacementsFromAllClassesOfPackage(
       HashMap<MethodSignature, MethodSignature> replacementMap,
-      @DotSeparatedIdentifiers String originalPackage,
-      @DotSeparatedIdentifiers String replacementPackage,
+      String originalPackage,
+      String replacementPackage,
       JarFile jarFile)
       throws ReplacementException, ClassNotFoundException {
 

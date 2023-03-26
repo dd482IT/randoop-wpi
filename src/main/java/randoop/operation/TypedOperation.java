@@ -64,7 +64,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
       CallableOperation operation,
       TypeTuple inputTypes,
       Type outputType,
-      @Nullable ExecutableSpecification execSpec) {
+      ExecutableSpecification execSpec) {
     this.operation = operation;
     this.inputTypes = inputTypes;
     this.outputType = outputType;

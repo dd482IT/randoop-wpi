@@ -4,7 +4,6 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestInputSubDir1 {
   // Test simplification of a program within a non-default package.
   // This test input file is located in a subdirectory and non-default package.

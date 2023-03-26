@@ -36,7 +36,7 @@ import randoop.main.RandoopUsageError;
  * href="http://web.archive.org/web/20170202133304/https://www.ibm.com/developerworks/library/j-jcomp/index.html">Create
  * dynamic applications with javax.tools</a>.
  */
-@MustCall("close") public class SequenceCompiler implements Closeable {
+public class SequenceCompiler implements Closeable {
 
   /**
    * If non-null, do verbose output for compilation failures where the Java source code contains the
@@ -51,7 +51,7 @@ import randoop.main.RandoopUsageError;
   private final JavaCompiler compiler;
 
   /** The {@code FileManager} for this compiler. */
-  private final @Owning JavaFileManager fileManager;
+  private final JavaFileManager fileManager;
 
   /** Creates a {@link SequenceCompiler}. */
   public SequenceCompiler() {
@@ -84,7 +84,6 @@ import randoop.main.RandoopUsageError;
   }
 
   /** Releases any system resources associated with this. */
-  @EnsuresCalledMethods(value = "fileManager", methods = "close")
   @Override
   public void close() throws IOException {
     fileManager.close();
@@ -187,8 +186,8 @@ import randoop.main.RandoopUsageError;
    * @return the loaded Class object
    */
   public Class<?> compileAndLoad(
-      final @DotSeparatedIdentifiers String packageName,
-      final @BinaryNameWithoutPackage String classname,
+      final String packageName,
+      final String classname,
       final String javaSource)
       throws SequenceCompilerException {
     compile(packageName, classname, javaSource);
@@ -205,7 +204,7 @@ import randoop.main.RandoopUsageError;
    * @param className the binary name of the class defined in the file
    * @return the loaded Class object
    */
-  private static Class<?> loadClassFile(File directory, @BinaryName String className) {
+  private static Class<?> loadClassFile(File directory, String className) {
     try (URLClassLoader cl = new URLClassLoader(new URL[] {directory.toURI().toURL()})) {
       Class<?> cls = cl.loadClass(className);
       return cls;
@@ -221,10 +220,10 @@ import randoop.main.RandoopUsageError;
    * @param classname the name of the class, without the package
    * @return the fully-qualified class name constructed from the arguments
    */
-  @BinaryName String fullyQualifiedName(
-      @DotSeparatedIdentifiers String packageName, @BinaryNameWithoutPackage String classname) {
+  String fullyQualifiedName(
+      String packageName, String classname) {
     @SuppressWarnings("signature:assignment") // string concatenation
-    @BinaryName String result = (packageName == null ? "" : (packageName + ".")) + classname;
+    String result = (packageName == null ? "" : (packageName + ".")) + classname;
     return result;
   }
 }

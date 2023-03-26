@@ -2,7 +2,6 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestInputWithMultiplePassingAssertions {
 
   // This test input file has a passing assertion value. The minimized test suite

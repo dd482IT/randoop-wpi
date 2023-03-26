@@ -50,7 +50,7 @@ import randoop.util.MultiMap;
  * corresponding {@link ExecutableSpecification} on demand. This lazy strategy avoids building
  * condition methods for specifications that are not used.
  */
-@MustCall("close") public class SpecificationCollection implements Closeable {
+public class SpecificationCollection implements Closeable {
 
   /** Map from method or constructor to the corresponding {@link OperationSpecification}. */
   private final Map<AccessibleObject, OperationSpecification> specificationMap;
@@ -65,7 +65,7 @@ import randoop.util.MultiMap;
   private final Map<AccessibleObject, Set<Method>> overridden;
 
   /** Compiler for creating conditionMethods. */
-  private final @Owning SequenceCompiler compiler;
+  private final SequenceCompiler compiler;
 
   /**
    * Creates a {@link SpecificationCollection} for the given specification map.
@@ -110,7 +110,6 @@ import randoop.util.MultiMap;
   }
 
   /** Releases any system resources used by this. */
-  @EnsuresCalledMethods(value = "compiler", methods = "close")
   @Override
   public void close() {
     try {

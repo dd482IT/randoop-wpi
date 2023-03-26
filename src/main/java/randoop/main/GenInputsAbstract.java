@@ -1311,7 +1311,7 @@ public abstract class GenInputsAbstract extends CommandHandler {
    */
   @SuppressWarnings("SameParameterValue")
   public static Set<String> getStringSetFromFile(
-      @Nullable Path listFile, String fileDescription, String commentRegex, String includeRegex) {
+      Path listFile, String fileDescription, String commentRegex, String includeRegex) {
     Set<String> elementSet = new LinkedHashSet<>();
     if (listFile != null) {
       try (EntryReader er = new EntryReader(listFile.toFile(), commentRegex, includeRegex)) {

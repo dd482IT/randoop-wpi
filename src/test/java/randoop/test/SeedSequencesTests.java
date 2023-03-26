@@ -101,41 +101,41 @@ public class SeedSequencesTests {
 
 @SuppressWarnings("unused")
 class TestValueExamples {
-  @TestValue public static int x1 = 0;
-  @TestValue public static boolean b = false;
-  @TestValue public static byte by = 3;
-  @TestValue public static char c = 'c';
-  @TestValue public static long l = 3L;
-  @TestValue public static float f = (float) 1.3;
-  @TestValue public static double d = 1.4;
-  @TestValue public static String s1 = null;
-  @TestValue public static String s2 = "hi";
-  @TestValue public static int[] a1 = new int[] {1, 2, 3};
-  @TestValue public static int[] a2 = new int[] {};
+  public static int x1 = 0;
+  public static boolean b = false;
+  public static byte by = 3;
+  public static char c = 'c';
+  public static long l = 3L;
+  public static float f = (float) 1.3;
+  public static double d = 1.4;
+  public static String s1 = null;
+  public static String s2 = "hi";
+  public static int[] a1 = new int[] {1, 2, 3};
+  public static int[] a2 = new int[] {};
 }
 
 @SuppressWarnings("unused")
 class MissingPublicMod {
-  @TestValue private static int x1 = 0;
+  private static int x1 = 0;
 }
 
 @SuppressWarnings("unused")
 class MissingStaticMod {
-  @TestValue public int x1 = 0;
+  public int x1 = 0;
 }
 
 @SuppressWarnings("unused")
 class BadType0 {
   // not static
-  @TestValue public static Integer x1 = 0;
+  public static Integer x1 = 0;
 }
 
 @SuppressWarnings("unused")
 class BadType1 {
-  @TestValue public static Object o1 = 1;
+  public static Object o1 = 1;
 }
 
 @SuppressWarnings("unused")
 class BadType2 {
-  @TestValue public static Object o1 = 1;
+  public static Object o1 = 1;
 }

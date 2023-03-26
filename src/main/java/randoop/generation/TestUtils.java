@@ -50,7 +50,7 @@ public class TestUtils {
    */
   @SuppressWarnings(
       "DefaultCharset") // TODO: make GenInputsAbstract.log a Writer; change command-line arguments.
-  public static void setRandoopLog(@Nullable String filename) {
+  public static void setRandoopLog(String filename) {
     if (debug) {
       System.out.println("setRandoopLog(" + filename + ")");
     }
@@ -83,7 +83,7 @@ public class TestUtils {
    * @param filename the file to write the log to; does nothing if filename is null
    */
   @SuppressWarnings("DefaultCharset") // TODO: should specify a charset
-  public static void setSelectionLog(@Nullable String filename) {
+  public static void setSelectionLog(String filename) {
     if (debug) {
       System.out.println("setSelectionLog(" + filename + ")");
     }
@@ -128,7 +128,7 @@ public class TestUtils {
    * @param filename the file to write the log to; does nothing if filename is null
    * @param generator the generator for which logger is to be set
    */
-  public static void setOperationLog(@Nullable String filename, AbstractGenerator generator) {
+  public static void setOperationLog(String filename, AbstractGenerator generator) {
     // This println statement causes system test runNoOutputTest to fail.
     if (debug) {
       System.out.println("setOperationLog(" + filename + ")");

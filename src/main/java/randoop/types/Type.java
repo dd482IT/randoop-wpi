@@ -85,7 +85,7 @@ public abstract class Type implements Comparable<Type> {
    * @return the type object for the type with the name
    * @throws ClassNotFoundException if name is not a recognized type
    */
-  public static Type getTypeforFullyQualifiedName(@FqBinaryName String fullyQualifiedName)
+  public static Type getTypeforFullyQualifiedName(String fullyQualifiedName)
       throws ClassNotFoundException {
     Class<?> className = forFullyQualifiedName(fullyQualifiedName);
     return className.isArray() ? ArrayType.forClass(className) : Type.forClass(className);
@@ -100,7 +100,7 @@ public abstract class Type implements Comparable<Type> {
    * @return the type object for the type with the name
    * @throws ClassNotFoundException if name is not a recognized type
    */
-  public static Class<?> forFullyQualifiedName(@FqBinaryName String fullyQualifiedName)
+  public static Class<?> forFullyQualifiedName(String fullyQualifiedName)
       throws ClassNotFoundException {
     @ClassGetName String baseTypeName = Signatures.getArrayElementType(fullyQualifiedName);
     Class<?> baseType = forFullyQualifiedNameNonArray(baseTypeName);
@@ -121,7 +121,7 @@ public abstract class Type implements Comparable<Type> {
    * @param typeName a type name, possibly with some number of trailing "[]"
    * @return the number of trailing "[]"
    */
-  private static int numDimensions(@FqBinaryName String typeName) {
+  private static int numDimensions(String typeName) {
     return new StringTokenizer(typeName, "[").countTokens() - 1;
   }
 

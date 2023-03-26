@@ -238,7 +238,7 @@ public abstract class AbstractGenerator {
    *
    * @return a test sequence, may be null
    */
-  public abstract @Nullable ExecutableSequence step();
+  public abstract ExecutableSequence step();
 
   /**
    * Returns the count of attempts to generate a sequence so far.

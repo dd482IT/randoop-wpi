@@ -86,7 +86,7 @@ public class MethodSignature implements Comparable<MethodSignature> {
    * @param params binary names of parameter types
    * @return the {@link MethodSignature} for the method represented by the string
    */
-  static MethodSignature of(String fullMethodName, @FqBinaryName String[] params) {
+  static MethodSignature of(String fullMethodName, String[] params) {
     int dotPos = fullMethodName.lastIndexOf('.');
     if (dotPos < 1) {
       throw new IllegalArgumentException(
@@ -128,7 +128,7 @@ public class MethodSignature implements Comparable<MethodSignature> {
     }
     String paramString = signature.substring(parenPos + 1, lastParenPos);
     @SuppressWarnings("signature:assignment") // dynamically checked just below
-    @FqBinaryName String[] parameters =
+    String[] parameters =
         paramString.isEmpty() ? new String[0] : paramString.trim().split("\\s*,\\s*");
     for (String parameter : parameters) {
       if (!Signatures.isFqBinaryName(parameter)) {

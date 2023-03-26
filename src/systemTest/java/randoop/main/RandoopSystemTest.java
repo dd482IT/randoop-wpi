@@ -47,7 +47,6 @@ import org.plumelib.util.StringsPlume;
  * The Makefile also checked diffs of generated tests for some of the tests. These methods do not do
  * this check.
  */
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RandoopSystemTest {
 
   final String lineSep = System.lineSeparator();

@@ -11,7 +11,7 @@ public class ConcreteClass {
 
   public int[] thePublicArray;
 
-  @TestValue public static String thePublicStaticField = "thevalue";
+  public static String thePublicStaticField = "thevalue";
 
   private int thePrivateField;
 

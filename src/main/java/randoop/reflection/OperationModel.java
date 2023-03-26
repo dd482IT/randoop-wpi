@@ -307,7 +307,7 @@ public class OperationModel {
    * @return a map from each class type to its methods and constructors that were read from the file
    * @throws OperationParseException if a method signature cannot be parsed
    */
-  public static MultiMap<Type, TypedClassOperation> readOperations(@Nullable Path file)
+  public static MultiMap<Type, TypedClassOperation> readOperations(Path file)
       throws OperationParseException {
     return readOperations(file, false);
   }
@@ -322,7 +322,7 @@ public class OperationModel {
    * @throws OperationParseException if a method signature cannot be parsed
    */
   public static MultiMap<Type, TypedClassOperation> readOperations(
-      @Nullable Path file, boolean ignoreParseError) throws OperationParseException {
+      Path file, boolean ignoreParseError) throws OperationParseException {
     if (file != null) {
       try (EntryReader er = new EntryReader(file, "(//|#).*$", null)) {
         return OperationModel.readOperations(er, ignoreParseError);
@@ -647,7 +647,7 @@ public class OperationModel {
    * @return the Class whose name is {@code classname}. May return null if {@code errorHandler} just
    *     warns on bad names.
    */
-  private static @Nullable Class<?> getClass(
+  private static Class<?> getClass(
       @ClassGetName String classname, ClassNameErrorHandler errorHandler) {
     try {
       return TypeNames.getTypeForName(classname);

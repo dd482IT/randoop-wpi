@@ -28,7 +28,7 @@ public class RandoopClassNameError extends Error {
    * @param message the detail message
    * @param cause the underlying exception
    */
-  public RandoopClassNameError(String className, String message, @Nullable Throwable cause) {
+  public RandoopClassNameError(String className, String message, Throwable cause) {
     super(
         message
             + Globals.lineSep

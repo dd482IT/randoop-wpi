@@ -21,7 +21,7 @@ public class NameGenerator {
    * @param initialValue integer starting value for name counter
    * @param lastValue the last expected number, to determine 0-padding; 0 for no padding
    */
-  public NameGenerator(@Identifier String prefix, int initialValue, int lastValue) {
+  public NameGenerator(String prefix, int initialValue, int lastValue) {
     this.counter = initialValue;
     this.format =
         prefix + "%" + (lastValue == 0 ? "" : ("0" + ((int) (Math.log10(lastValue) + 1)))) + "d";
@@ -32,7 +32,7 @@ public class NameGenerator {
    *
    * @param prefix is a string to be used as a prefix for all names generated
    */
-  public NameGenerator(@Identifier String prefix) {
+  public NameGenerator(String prefix) {
     this(prefix, 0, 0);
   }
 
@@ -41,7 +41,7 @@ public class NameGenerator {
    *
    * @return the next identifier in the sequence produced by this
    */
-  public @Identifier String next() {
+  public String next() {
     @SuppressWarnings("signature") // string formatting
     @Identifier String name = String.format(format, counter);
     counter++;

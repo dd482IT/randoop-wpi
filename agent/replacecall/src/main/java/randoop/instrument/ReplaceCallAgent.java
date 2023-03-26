@@ -239,7 +239,7 @@ public class ReplaceCallAgent {
    * @return the set of excluded package prefixes from the file
    * @throws IOException if there is an error reading the file
    */
-  private static Set<String> loadExclusions(@Owning Reader exclusionReader, String filename)
+  private static Set<String> loadExclusions(Reader exclusionReader, String filename)
       throws IOException {
     Set<String> excludedPackagePrefixes = new LinkedHashSet<>();
     try (EntryReader reader = new EntryReader(exclusionReader, filename, "//.*$", null)) {

@@ -188,7 +188,7 @@ public class ForwardGenerator extends AbstractGenerator {
   }
 
   @Override
-  public @Nullable ExecutableSequence step() {
+  public ExecutableSequence step() {
 
     final int nanoPerMilli = 1000000;
     final long nanoPerOne = 1000000000L;

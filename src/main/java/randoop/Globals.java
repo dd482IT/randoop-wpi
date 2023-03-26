@@ -18,7 +18,7 @@ public class Globals {
   public static final String lineSep = System.lineSeparator();
 
   /** A PrintStream whose contents are ignored. */
-  public static @Owning PrintStream blackHole = new PrintStream(new NullOutputStream());
+  public static PrintStream blackHole = new PrintStream(new NullOutputStream());
 
   /** Discards anything written to it. */
   private static class NullOutputStream extends OutputStream {

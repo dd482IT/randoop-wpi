@@ -23,7 +23,7 @@ import org.plumelib.util.StringsPlume;
 public class RawSignature {
 
   /** The package name of the class; null for the unnamed package. */
-  private final @DotSeparatedIdentifiers String packageName;
+  private final String packageName;
 
   /** The name of the declaring class of the method. */
   private final String classname;
@@ -46,7 +46,7 @@ public class RawSignature {
    * @param parameterTypes the method parameter types, including the receiver type if any
    */
   public RawSignature(
-      @DotSeparatedIdentifiers String packageName,
+      String packageName,
       String classname,
       String name,
       Class<?>[] parameterTypes) {
@@ -157,7 +157,7 @@ public class RawSignature {
    *
    * @return the package name for this signature, null if default package
    */
-  public @DotSeparatedIdentifiers String getPackageName() {
+  public String getPackageName() {
     return packageName;
   }
 
@@ -226,8 +226,8 @@ public class RawSignature {
    * @param aPackage a package
    * @return the name of the given package, or null if it is the default package
    */
-  public static @Nullable @DotSeparatedIdentifiers String getPackageName(
-      @Nullable Package aPackage) {
+  public static String getPackageName(
+      Package aPackage) {
     if (aPackage == null) return null;
     String result = aPackage.getName();
     if (result.equals("")) {

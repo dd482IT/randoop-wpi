@@ -24,7 +24,7 @@ class RandoopOptions {
   private final Set<@ClassGetName String> classnames;
 
   /** The package name for Randoop-generated test classes; null if default package. */
-  private @DotSeparatedIdentifiers String packageName;
+  private String packageName;
 
   /** The basename for generated regression test classes. */
   private String regressionBasename;
@@ -126,7 +126,7 @@ class RandoopOptions {
    *
    * @param packageName the package name
    */
-  void setPackageName(@DotSeparatedIdentifiers String packageName) {
+  void setPackageName(String packageName) {
     if (Objects.equals(packageName, "")) {
       throw new IllegalArgumentException();
     }
@@ -179,7 +179,7 @@ class RandoopOptions {
    *
    * @return the package name, which may be null if not set
    */
-  @DotSeparatedIdentifiers String getPackageName() {
+  String getPackageName() {
     return packageName;
   }
 

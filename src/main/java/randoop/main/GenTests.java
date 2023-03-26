@@ -139,7 +139,7 @@ public class GenTests extends GenInputsAbstract {
   /** Explanations printed to the user. */
   private static final List<String> notes;
   /** The prefix for test method names. */
-  public static final @Identifier String TEST_METHOD_NAME_PREFIX = "test";
+  public static final String TEST_METHOD_NAME_PREFIX = "test";
 
   private BlockStmt afterAllFixtureBody;
   private BlockStmt afterEachFixtureBody;

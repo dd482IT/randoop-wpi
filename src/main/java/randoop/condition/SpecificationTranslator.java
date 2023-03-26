@@ -176,8 +176,8 @@ public class SpecificationTranslator {
    * @return the constructed post-expression method signature
    */
   private static RawSignature getRawSignature(
-      @DotSeparatedIdentifiers String packageName,
-      @Nullable Class<?> receiverAType,
+      String packageName,
+      Class<?> receiverAType,
       Class<?>[] parameterTypes,
       Class<?> returnType) {
     final int shift = (receiverAType != null) ? 1 : 0;

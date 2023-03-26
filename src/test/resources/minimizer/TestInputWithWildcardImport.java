@@ -3,7 +3,6 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestInputWithWildcardImport {
 
   // Test input with wildcard import already included. Redundant import statements will not be

@@ -47,7 +47,7 @@ public class CoverageTracker {
   private final Map<String, Double> branchCoverageMap = new HashMap<>();
 
   /** Names of all the classes under test. */
-  private final Set<@BinaryName String> classesUnderTest = new HashSet<>();
+  private final Set<String> classesUnderTest = new HashSet<>();
 
   /**
    * Initialize the coverage tracker.
@@ -120,7 +120,7 @@ public class CoverageTracker {
 
     // For each class that is under test, summarize the branch coverage information
     // produced by Jacoco and store it in the coverageBuilder local variable.
-    for (@BinaryName String className : classesUnderTest) {
+    for (String className : classesUnderTest) {
       String resource = getResourceFromClassName(className);
       try (InputStream original = getClass().getResourceAsStream(resource)) {
         analyzer.analyzeClass(original, className);
@@ -168,7 +168,7 @@ public class CoverageTracker {
    * @param className binary name of class
    * @return absolute resource name of the class
    */
-  private String getResourceFromClassName(@BinaryName String className) {
+  private String getResourceFromClassName(String className) {
     return '/' + className.replace('.', '/') + ".class";
   }
 

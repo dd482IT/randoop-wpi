@@ -229,7 +229,6 @@ public final class Sequence {
    *
    * @return the number of statements in this sequence
    */
-  @Pure
   public final int size() {
     return statements.size();
   }
@@ -321,7 +320,6 @@ public final class Sequence {
    *
    * @return a string containing Java code for this sequence
    */
-  @SideEffectFree
   public String toCodeString() {
     StringBuilder b = new StringBuilder();
     for (int i = 0; i < size(); i++) {
