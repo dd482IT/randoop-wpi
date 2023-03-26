@@ -96,7 +96,10 @@ allprojects { subproject ->
       '-AwarnUnneededSuppressions',
       '-ApermitStaticOwning',
       // Suppresses "No processor claimed any of these annotations ..." warning.
-      '-Xlint:-processing'
+      '-Xlint:-processing',
+      '-Ainfer=ajava',
+      '-AshowPrefixInWarningMessages',
+      '-Aajava=/home/d/dd482/WPITEMP-randoop',
     ]
   }
 
