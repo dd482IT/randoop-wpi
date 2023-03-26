@@ -20,7 +20,7 @@ public interface ExecutionVisitor {
      * @param i the position of statement to visit
      */
     @org.checkerframework.dataflow.qual.Pure
-    void visitBeforeStatement(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "initialize" }) ExecutionVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getRuntimeInputs", "reset" }) ExecutableSequence eseq,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int i);
+    void visitBeforeStatement(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutionVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence eseq,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int i);
 
     /**
      * Invoked by ExecutableSequence.execute after the i-th statement executes.
@@ -31,7 +31,7 @@ public interface ExecutionVisitor {
      * @param i the position of statement to visit
      */
     @org.checkerframework.dataflow.qual.Pure
-    void visitAfterStatement(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "initialize", "visitBeforeStatement" }) ExecutionVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getResult", "getRuntimeInputs", "reset" }) ExecutableSequence eseq,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int i);
+    void visitAfterStatement(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutionVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence eseq,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int i);
 
     /**
      * Called before execution of a sequence, to allow the visitor to perform any initialization steps
@@ -48,5 +48,5 @@ public interface ExecutionVisitor {
      * @param eseq the visited code sequence
      */
     @org.checkerframework.dataflow.qual.Pure
-    void visitAfterSequence(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "initialize" }) ExecutionVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "reset" }) ExecutableSequence eseq);
+    void visitAfterSequence(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutionVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence eseq);
 }

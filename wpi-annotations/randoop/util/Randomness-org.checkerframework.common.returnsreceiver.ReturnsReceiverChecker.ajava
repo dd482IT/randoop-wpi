@@ -19,8 +19,9 @@ public final class Randomness {
     /**
      * 0 = no output, 1 = brief output, 2 = verbose output
      */
-    public static int verbosity = 1;
+    public static   int verbosity = 1;
 
+    @org.checkerframework.dataflow.qual.SideEffectFree
     private Randomness() {
         throw new IllegalStateException("no instances");
     }
@@ -29,13 +30,13 @@ public final class Randomness {
      * The default initial seed for the random number generator.
      */
     // Public so it can be accessed by GenInputsAbstract.java
-    public static final long DEFAULT_SEED = 0;
+    public static final   long DEFAULT_SEED = 0;
 
     /**
      * The random generator that makes random choices. (Developer note: do not declare new Random
      * objects; use this one instead).
      */
-    private static Random random = new Random(DEFAULT_SEED);
+    private static  Random random = new Random(DEFAULT_SEED);
 
     /**
      * Sets the seed of this random number generator.
@@ -51,14 +52,14 @@ public final class Randomness {
     /**
      * Number of calls to the underlying Random instance that this wraps.
      */
-    private static int totalCallsToRandom = 0;
+    private static   int totalCallsToRandom = 0;
 
     /**
      * Call this before every use of Randomness.random.
      *
      * @param caller the name of the method that called Randomness.random
      */
-    private static void incrementCallsToRandom(String caller) {
+    private static void incrementCallsToRandom( String caller) {
         totalCallsToRandom++;
         Log.logPrintf("randoop.util.Randomness called by %s: %d calls to Random so far%n", caller, totalCallsToRandom);
     }
@@ -69,7 +70,7 @@ public final class Randomness {
      * @param i upper bound on range for generated values
      * @return a value selected from range [0, i)
      */
-    public static int nextRandomInt(  int i) {
+    public static   int nextRandomInt(  int i) {
         incrementCallsToRandom("nextRandomInt");
         int value = Randomness.random.nextInt(i);
         logSelection(value, "nextRandomInt", i);
@@ -99,7 +100,7 @@ public final class Randomness {
      * @param list the list from which to choose a random member
      * @return a randomly-chosen member of the list
      */
-    public static <T> T randomMember(SimpleList<T> list) {
+    public static <T> T randomMember( SimpleList<T> list) {
         if (list == null || list.isEmpty()) {
             throw new IllegalArgumentException("Expected non-empty list");
         }
@@ -146,7 +147,7 @@ public final class Randomness {
      * @param totalWeight the total weight of the elements of the list
      * @return a randomly selected element from {@code list}
      */
-    public static <T> T randomMemberWeighted(SimpleList<T> list, Map<T, Double> weights, double totalWeight) {
+    public static <T> T randomMemberWeighted( SimpleList<T> list,  Map<T, Double> weights,   double totalWeight) {
         if (list.isEmpty()) {
             throw new IllegalArgumentException("Empty list");
         }
@@ -198,7 +199,7 @@ public final class Randomness {
      * @param trueProb the likelihood that true is returned; must be within [0..1]
      * @return true with likelihood {@code trueProb}; otherwise false
      */
-    public static boolean weightedCoinFlip(  double trueProb) {
+    public static   boolean weightedCoinFlip(  double trueProb) {
         if (trueProb < 0 || trueProb > 1) {
             throw new IllegalArgumentException("arg must be between 0 and 1.");
         }
@@ -216,7 +217,7 @@ public final class Randomness {
      * @param trueProb the likelihood that true is returned; an arbitrary non-negative number
      * @return true or false, with the given probabilities
      */
-    public static boolean randomBoolFromDistribution(double falseProb, double trueProb) {
+    public static   boolean randomBoolFromDistribution(double falseProb, double trueProb) {
         if (falseProb < 0) {
             throw new IllegalArgumentException("falseProb is " + falseProb + ", must be non-negative");
         }
@@ -241,7 +242,7 @@ public final class Randomness {
      * @param methodName the name of the method called
      * @param argument the method argument
      */
-    private static void logSelection(Object returnValue, String methodName, Object argument) {
+    private static void logSelection( Object returnValue,  String methodName,  Object argument) {
         if (GenInputsAbstract.selection_log != null && verbosity > 0) {
             StackTraceElement[] trace = Thread.currentThread().getStackTrace();
             String methodWithArg = methodName;
@@ -265,7 +266,8 @@ public final class Randomness {
      * @return a printed representation of the argument
      * @see #verbosity
      */
-    private static String toString(Object o) {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    private static  String toString( Object o) {
         if (o instanceof Collection<?>) {
             Collection<?> coll = (Collection<?>) o;
             switch(verbosity) {

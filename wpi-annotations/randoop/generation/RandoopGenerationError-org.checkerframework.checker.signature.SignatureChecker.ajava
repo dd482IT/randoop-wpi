@@ -1,0 +1,65 @@
+package randoop.generation;
+
+import randoop.operation.TypedOperation;
+
+/**
+ * Error class to signal generation errors that should stop Randoop execution.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class RandoopGenerationError extends Error {
+
+    private static final  @org.checkerframework.checker.signature.qual.SignatureUnknown long serialVersionUID = -2655768762421700468L;
+
+    /**
+     * The operation.
+     */
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation operation;
+
+    /**
+     * The exception that was thrown.
+     */
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown Throwable exception;
+
+    /**
+     * Create a {@link RandoopGenerationError} representing an error that occurs during the generation
+     * of a sequence for the given operation.
+     *
+     * @param operation the actual operation
+     * @param exception the exception thrown during generation
+     */
+    RandoopGenerationError(@org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation operation, @org.checkerframework.checker.signature.qual.SignatureUnknown Throwable exception) {
+        this.operation = operation;
+        this.exception = exception;
+    }
+
+    /**
+     * Returns the name of the {@code java.lang.reflect.AccessibleObject} underlying the operation in
+     * this object.
+     *
+     * @return the name of the reflection object for the operation
+     */
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String getOperationName() {
+        return operation.getOperation().getReflectionObject().toString();
+    }
+
+    /**
+     * Return the {@code String} representation of the {@link TypedOperation} in this error.
+     *
+     * @return the {@code String} representation of the operation
+     */
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String getInstantiatedOperation(@org.checkerframework.checker.signature.qual.SignatureUnknown RandoopGenerationError this) {
+        return operation.toString();
+    }
+
+    /**
+     * Return the {@code Throwable} for this error.
+     *
+     * @return the {@code Throwable} for this error
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown Throwable getException() {
+        return exception;
+    }
+}

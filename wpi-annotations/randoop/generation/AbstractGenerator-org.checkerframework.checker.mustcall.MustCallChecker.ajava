@@ -169,7 +169,7 @@ public abstract class AbstractGenerator {
      *     {@code new ComponentManager()}.
      * @param stopper optional, additional stopping criterion for the generator. Can be null.
      */
-    protected AbstractGenerator(List<TypedOperation> operations, GenInputsAbstract.Limits limits, ComponentManager componentManager, IStopper stopper) {
+    protected AbstractGenerator(@org.checkerframework.checker.mustcall.qual.MustCall({}) List<TypedOperation> operations, GenInputsAbstract.@org.checkerframework.checker.mustcall.qual.MustCall({}) Limits limits, @org.checkerframework.checker.mustcall.qual.MustCall({}) ComponentManager componentManager, @org.checkerframework.checker.mustcall.qual.MustCall({}) IStopper stopper) {
         assert operations != null;
         this.limits = limits;
         this.operations = operations;
@@ -249,7 +249,7 @@ public abstract class AbstractGenerator {
      * @return a test sequence, may be null
      */
     @org.checkerframework.dataflow.qual.Pure
-    public abstract ExecutableSequence step(@org.checkerframework.checker.mustcall.qual.MustCall({}) AbstractGenerator this);
+    public abstract @org.checkerframework.checker.mustcall.qual.MustCall({}) ExecutableSequence step(@org.checkerframework.checker.mustcall.qual.MustCall({}) AbstractGenerator this);
 
     /**
      * Returns the count of attempts to generate a sequence so far.
@@ -267,7 +267,7 @@ public abstract class AbstractGenerator {
      * @return the number of sequences generated
      */
     @org.checkerframework.dataflow.qual.Pure
-    public abstract int numGeneratedSequences(@org.checkerframework.checker.mustcall.qual.MustCall({}) AbstractGenerator this);
+    public abstract  @org.checkerframework.checker.mustcall.qual.MustCall({}) int numGeneratedSequences(@org.checkerframework.checker.mustcall.qual.MustCall({}) AbstractGenerator this);
 
     /**
      * Returns the count of generated sequence currently for output.
@@ -370,7 +370,7 @@ public abstract class AbstractGenerator {
      * @return all generated sequences
      */
     @org.checkerframework.dataflow.qual.Pure
-    public abstract LinkedHashSet<Sequence> getAllSequences(@org.checkerframework.checker.mustcall.qual.MustCall({}) AbstractGenerator this);
+    public abstract @org.checkerframework.checker.mustcall.qual.MustCall({}) LinkedHashSet<Sequence> getAllSequences(@org.checkerframework.checker.mustcall.qual.MustCall({}) AbstractGenerator this);
 
     /**
      * Returns the generated regression test sequences for output. Filters out subsequences.
@@ -421,7 +421,7 @@ public abstract class AbstractGenerator {
      *
      * @param s the current sequence
      */
-    void setCurrentSequence(Sequence s) {
+    void setCurrentSequence(@org.checkerframework.checker.mustcall.qual.MustCall({}) AbstractGenerator this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence s) {
         currSeq = s;
     }
 
@@ -430,7 +430,7 @@ public abstract class AbstractGenerator {
      *
      * @param logger the operation history logger to use for this generator
      */
-    public void setOperationHistoryLogger(OperationHistoryLogInterface logger) {
+    public void setOperationHistoryLogger(@org.checkerframework.checker.mustcall.qual.MustCall({}) AbstractGenerator this, @org.checkerframework.checker.mustcall.qual.MustCall({}) OperationHistoryLogInterface logger) {
         operationHistory = logger;
     }
 

@@ -1,0 +1,52 @@
+package randoop.reflection;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+/**
+ * Default implementation of the {@code ClassVisitor} class. All methods do nothing.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public class DefaultClassVisitor implements ClassVisitor {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit( DefaultClassVisitor this,  Class<?> c,  ReflectionManager reflectionManager) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit( DefaultClassVisitor this,  Constructor<?> c) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit( DefaultClassVisitor this,  Method m) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit( DefaultClassVisitor this,  Field f) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit( DefaultClassVisitor this,  Enum<?> e) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitBefore( DefaultClassVisitor this,  Class<?> c) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitAfter( DefaultClassVisitor this,  Class<?> c) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public  String toString( DefaultClassVisitor this) {
+        return getClass().toString();
+    }
+}

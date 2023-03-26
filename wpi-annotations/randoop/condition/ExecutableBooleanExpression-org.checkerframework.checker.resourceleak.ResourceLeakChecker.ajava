@@ -81,10 +81,10 @@ public class ExecutableBooleanExpression {
      * @param comment the comment describing the expression
      * @param compiler the compiler to used to compile the expression method
      */
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getName", "getPackageName", "getParameterTypes" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getDeclarationArguments", "getName", "getPackageName", "getParameterTypes" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#6" }, methods = { "compile", "compileAndLoad", "fullyQualifiedName" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "randoop.condition.ExecutableBooleanExpression.classNameGenerator" }, methods = { "next" })
-    ExecutableBooleanExpression(RawSignature signature, String declarations, String expressionSource, String contractSource, String comment, SequenceCompiler compiler) {
+    ExecutableBooleanExpression(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getDeclarationArguments" }) RawSignature signature, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String declarations, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "substring" }) String expressionSource, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String contractSource, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String comment, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SequenceCompiler compiler) {
         this(createMethod(signature, declarations, expressionSource, compiler), comment, contractSource);
     }
 
@@ -197,10 +197,10 @@ public class ExecutableBooleanExpression {
      * @return the {@code Method} object for {@code contractSource}
      */
     // package-private to enable test code to call it
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getName", "getPackageName", "getParameterTypes" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getDeclarationArguments", "getName", "getPackageName", "getParameterTypes" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#4" }, methods = { "compile", "compileAndLoad", "fullyQualifiedName" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "randoop.condition.ExecutableBooleanExpression.classNameGenerator" }, methods = { "next" })
-    static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Method createMethod(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) RawSignature signature, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String parameterDeclaration, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String expressionSource, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SequenceCompiler compiler) {
+    static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Method createMethod(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getDeclarationArguments" }) RawSignature signature, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String parameterDeclaration, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "substring" }) String expressionSource, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SequenceCompiler compiler) {
         String packageName = signature.getPackageName();
         // ignore the class name in the signature
         String classname = classNameGenerator.next();
@@ -230,7 +230,7 @@ public class ExecutableBooleanExpression {
      * @return the Java source code for the expression class
      */
     @org.checkerframework.dataflow.qual.SideEffectFree
-    private static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String createConditionClassSource(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String methodName, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String expressionText, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String parameterDeclarations, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "equals" }) String packageName, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String expressionClassName) {
+    private static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String createConditionClassSource(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String methodName, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "substring" }) String expressionText, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String parameterDeclarations, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String packageName, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String expressionClassName) {
         String packageDeclaration = "";
         if (packageName != null) {
             packageDeclaration = "package " + packageName + ";" + Globals.lineSep + Globals.lineSep;

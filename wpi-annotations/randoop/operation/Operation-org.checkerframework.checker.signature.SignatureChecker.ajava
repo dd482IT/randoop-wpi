@@ -93,7 +93,7 @@ public interface Operation {
      * @return true if object is a non-receiving value, and false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-     @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isNonreceivingValue();
+     @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isNonreceivingValue(@org.checkerframework.checker.signature.qual.SignatureUnknown Operation this);
 
     /**
      * Predicate to indicate whether this object represents an unchecked cast.

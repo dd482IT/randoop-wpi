@@ -18,7 +18,7 @@ public class MultiSet<E> {
         frequencyMap.put(obj, i + 1);
     }
 
-    public void remove(E obj) {
+    public void remove(@org.checkerframework.checker.mustcall.qual.MustCall({}) MultiSet<E> this, E obj) {
         Integer i = frequencyMap.get(obj);
         if (i == null || i < 1) {
             throw new IllegalStateException("Variable not found when trying to remove from multiset. Variable: " + obj);
@@ -31,16 +31,16 @@ public class MultiSet<E> {
     }
 
     @org.checkerframework.dataflow.qual.SideEffectFree
-    public @org.checkerframework.checker.mustcall.qual.MustCall({}) Set<E> getElements() {
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) Set<E> getElements(@org.checkerframework.checker.mustcall.qual.MustCall({}) MultiSet<E> this) {
         return frequencyMap.keySet();
     }
 
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean isEmpty() {
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean isEmpty(@org.checkerframework.checker.mustcall.qual.MustCall({}) MultiSet<E> this) {
         return frequencyMap.isEmpty();
     }
 
-    public void removeAllInstances(Set<E> values) {
+    public void removeAllInstances(@org.checkerframework.checker.mustcall.qual.MustCall({}) MultiSet<E> this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Set<E> values) {
         for (E value : values) {
             frequencyMap.remove(value);
         }

@@ -363,7 +363,7 @@ public class JUnitCreator {
      * @return the {@code String} with the declaration for the suite class
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "iterator" })
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String createTestSuite(String suiteClassName, Iterable<String> testClassNames) {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String createTestSuite(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) JUnitCreator this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String suiteClassName, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Iterable<String> testClassNames) {
         CompilationUnit compilationUnit = new CompilationUnit();
         if (packageName != null) {
             compilationUnit.setPackageDeclaration(new PackageDeclaration(new Name(packageName)));
@@ -395,7 +395,7 @@ public class JUnitCreator {
      * @return the test driver class as a {@code String}
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "iterator" })
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String createTestDriver(String driverName, Iterable<String> testClassNames, int numMethods) {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String createTestDriver(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) JUnitCreator this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String driverName, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Iterable<String> testClassNames,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int numMethods) {
         CompilationUnit compilationUnit = new CompilationUnit();
         if (packageName != null) {
             compilationUnit.setPackageDeclaration(new PackageDeclaration(new Name(packageName)));
@@ -481,7 +481,7 @@ public class JUnitCreator {
     }
 
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "iterator" })
-    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) BlockStmt parseFixture(List<String> bodyText) throws ParseException {
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) BlockStmt parseFixture(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<String> bodyText) throws ParseException {
         if (bodyText == null) {
             return null;
         }

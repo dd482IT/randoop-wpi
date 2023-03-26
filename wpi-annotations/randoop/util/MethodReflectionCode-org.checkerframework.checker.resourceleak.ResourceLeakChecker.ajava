@@ -15,7 +15,7 @@ public final class MethodReflectionCode extends ReflectionCode {
     /**
      * The method to be called.
      */
-    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getGenericParameterTypes" }) Method method;
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Method method;
 
     /**
      * The receiver, or null for a static method.
@@ -34,8 +34,8 @@ public final class MethodReflectionCode extends ReflectionCode {
      * @param receiver the receiver, or null for a static method
      * @param inputs the arguments that the method is applied to
      */
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.method" }, methods = { "getGenericParameterTypes", "isAccessible" })
-    public MethodReflectionCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getGenericParameterTypes" }) Method method, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object receiver, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) [] inputs) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.method" }, methods = { "isAccessible" })
+    public MethodReflectionCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Method method, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object receiver, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) [] inputs) {
         this.receiver = receiver;
         this.method = method;
         this.inputs = inputs;
@@ -51,13 +51,13 @@ public final class MethodReflectionCode extends ReflectionCode {
     }
 
     @org.checkerframework.framework.qual.RequiresQualifier(expression = { "this.receiver" }, qualifier = org.checkerframework.checker.calledmethods.qual.CalledMethodsBottom.class)
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.method" }, methods = { "getGenericParameterTypes", "getModifiers" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.method" }, methods = { "getModifiers" })
     @org.checkerframework.framework.qual.EnsuresQualifier(expression = { "this.receiver" }, qualifier = org.checkerframework.checker.calledmethods.qual.CalledMethodsBottom.class)
     private  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isInstanceMethod(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MethodReflectionCode this) {
         return !Modifier.isStatic(method.getModifiers());
     }
 
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.method" }, methods = { "getGenericParameterTypes", "invoke" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.method" }, methods = { "invoke" })
     public void runReflectionCodeRaw(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MethodReflectionCode this) {
         Log.logPrintf("runReflectionCodeRaw: %s%n", method);
         try {

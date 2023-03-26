@@ -55,37 +55,37 @@ public class ForwardGenerator extends AbstractGenerator {
      * <p>This must be ordered by insertion to allow for flaky test history collection in {@link
      * randoop.main.GenTests#printSequenceExceptionError(AbstractGenerator, SequenceExceptionError)}.
      */
-    private final LinkedHashSet<Sequence> allSequences = new LinkedHashSet<>();
+    private final  LinkedHashSet<Sequence> allSequences = new LinkedHashSet<>();
 
     /**
      * The side-effect-free methods.
      */
-    private final Set<TypedOperation> sideEffectFreeMethods;
+    private final  Set<TypedOperation> sideEffectFreeMethods;
 
     /**
      * Set and used only if {@link GenInputsAbstract#debug_checks}==true. This contains the same
      * components as {@link #allSequences}, in the same order, but stores them as strings obtained via
      * the toCodeString() method.
      */
-    private final List<String> allsequencesAsCode = new ArrayList<>();
+    private final  List<String> allsequencesAsCode = new ArrayList<>();
 
     /**
      * Set and used only if {@link GenInputsAbstract#debug_checks}==true. This contains the same
      * components as {@link #allSequences}, in the same order, but can be accessed by index.
      */
-    private final List<Sequence> allsequencesAsList = new ArrayList<>();
+    private final  List<Sequence> allsequencesAsList = new ArrayList<>();
 
-    private final TypeInstantiator instantiator;
+    private final  TypeInstantiator instantiator;
 
     /**
      * How to select sequences as input for creating new sequences.
      */
-    private final InputSequenceSelector inputSequenceSelector;
+    private final  InputSequenceSelector inputSequenceSelector;
 
     /**
      * How to select the method to use for creating a new sequence.
      */
-    private final TypedOperationSelector operationSelector;
+    private final  TypedOperationSelector operationSelector;
 
     /**
      * The set of all primitive values seen during generation and execution of sequences. This set is
@@ -93,7 +93,7 @@ public class ForwardGenerator extends AbstractGenerator {
      *
      * <p>Each value in the collection is a primitive wrapper or a String.
      */
-    private Set<Object> runtimePrimitivesSeen = new LinkedHashSet<>();
+    private  Set<Object> runtimePrimitivesSeen = new LinkedHashSet<>();
 
     /**
      * Create a forward generator.
@@ -154,7 +154,8 @@ public class ForwardGenerator extends AbstractGenerator {
      *
      * @param sequence the new sequence that was classified as a regression test
      */
-    public void newRegressionTestHook(Sequence sequence) {
+    @org.checkerframework.dataflow.qual.Pure
+    public void newRegressionTestHook( ForwardGenerator this,  Sequence sequence) {
         operationSelector.newRegressionTestHook(sequence);
     }
 
@@ -164,7 +165,7 @@ public class ForwardGenerator extends AbstractGenerator {
      * initially contains a set of primitive sequences; this method puts those primitives in this set.
      */
     // XXX this is goofy - these values are available in other ways
-    private void initializeRuntimePrimitivesSeen() {
+    private void initializeRuntimePrimitivesSeen( ForwardGenerator this) {
         for (Sequence s : componentManager.getAllPrimitiveSequences()) {
             ExecutableSequence es = new ExecutableSequence(s);
             es.execute(new DummyVisitor(), new DummyCheckGenerator());
@@ -174,7 +175,7 @@ public class ForwardGenerator extends AbstractGenerator {
         }
     }
 
-    public ExecutableSequence step() {
+    public  ExecutableSequence step( ForwardGenerator this) {
         final int nanoPerMilli = 1000000;
         final long nanoPerOne = 1000000000L;
         // 1 second, in nanoseconds
@@ -228,7 +229,8 @@ public class ForwardGenerator extends AbstractGenerator {
         return eSeq;
     }
 
-    public LinkedHashSet<Sequence> getAllSequences() {
+    @org.checkerframework.dataflow.qual.Pure
+    public  LinkedHashSet<Sequence> getAllSequences( ForwardGenerator this) {
         return this.allSequences;
     }
 
@@ -247,7 +249,7 @@ public class ForwardGenerator extends AbstractGenerator {
      *
      * @param seq the sequence, all of whose indices are initially marked as active
      */
-    private void determineActiveIndices(ExecutableSequence seq) {
+    private void determineActiveIndices( ForwardGenerator this,  ExecutableSequence seq) {
         if (seq.hasNonExecutedStatements()) {
             Log.logPrintf("Sequence has non-executed statements: excluding from extension pool.%n");
             Log.logPrintf("Non-executed statement: %s%n", seq.statementToCodeString(seq.getNonExecutedIndex()));
@@ -361,7 +363,7 @@ public class ForwardGenerator extends AbstractGenerator {
      *
      * @return a new sequence, or null
      */
-    private ExecutableSequence createNewUniqueSequence() {
+    private  ExecutableSequence createNewUniqueSequence( ForwardGenerator this) {
         Log.logPrintf("-------------------------------------------%n");
         if (Log.isLoggingOn()) {
             Log.logPrintln("Memory used: " + StringsPlume.abbreviateNumber(SystemPlume.usedMemory(false)));
@@ -465,7 +467,7 @@ public class ForwardGenerator extends AbstractGenerator {
      * @param times the number of times to repeat the {@link Operation}
      * @return a new {@code Sequence}
      */
-    private Sequence repeat(Sequence seq, TypedOperation operation, int times) {
+    private  Sequence repeat( ForwardGenerator this,  Sequence seq,  TypedOperation operation,   int times) {
         Sequence retseq = new Sequence(seq.statements);
         for (int i = 0; i < times; i++) {
             List<Variable> inputs = retseq.getInputs(retseq.size() - 1);
@@ -490,7 +492,7 @@ public class ForwardGenerator extends AbstractGenerator {
     // adds the string corresponding to the given newSequences to the
     // set allSequencesAsCode. The latter set is intended to mirror
     // the set allSequences, but stores strings instead of Sequences.
-    private void randoopConsistencyTest2(Sequence newSequence) {
+    private void randoopConsistencyTest2( ForwardGenerator this,  Sequence newSequence) {
         // Testing code.
         if (GenInputsAbstract.debug_checks) {
             this.allsequencesAsCode.add(newSequence.toCodeString());
@@ -500,7 +502,7 @@ public class ForwardGenerator extends AbstractGenerator {
 
     // Checks that the set allSequencesAsCode contains a set of strings
     // equivalent to the sequences in allSequences.
-    private void randoopConsistencyTests(Sequence newSequence) {
+    private void randoopConsistencyTests( ForwardGenerator this,  Sequence newSequence) {
         if (!GenInputsAbstract.debug_checks) {
             return;
         }
@@ -547,7 +549,7 @@ public class ForwardGenerator extends AbstractGenerator {
      * @param operation the statement to analyze
      * @return the selected sequences and indices
      */
-    private InputsAndSuccessFlag selectInputs(TypedOperation operation) {
+    private  InputsAndSuccessFlag selectInputs( ForwardGenerator this,  TypedOperation operation) {
         // The input types for `operation`.
         TypeTuple inputTypes = operation.getInputTypes();
         Log.logPrintf("selectInputs:  inputTypes=%s%n", inputTypes);
@@ -714,11 +716,11 @@ public class ForwardGenerator extends AbstractGenerator {
     // A pair of a variable and a sequence
     private static class VarAndSeq {
 
-        final Variable var;
+        final  Variable var;
 
-        final Sequence seq;
+        final  Sequence seq;
 
-        VarAndSeq(Variable var, Sequence seq) {
+        VarAndSeq( Variable var,  Sequence seq) {
             this.var = var;
             this.seq = seq;
         }
@@ -733,7 +735,7 @@ public class ForwardGenerator extends AbstractGenerator {
      * @param isReceiver whether the value will be used as a receiver
      * @return a random variable of the given type, chosen from the candidates
      */
-    VarAndSeq randomVariable(SimpleList<Sequence> candidates, Type inputType, boolean isReceiver) {
+     VarAndSeq randomVariable( ForwardGenerator this,  SimpleList<Sequence> candidates,  Type inputType,   boolean isReceiver) {
         // Log.logPrintf("entering randomVariable(%s)%n", inputType);
         for (int i = 0; i < 10; i++) {
             // can return null.  Try several times to get a non-null value.
@@ -795,11 +797,13 @@ public class ForwardGenerator extends AbstractGenerator {
         return Randomness.randomMember(validResults);
     }
 
-    public int numGeneratedSequences() {
+    @org.checkerframework.dataflow.qual.Pure
+    public   int numGeneratedSequences( ForwardGenerator this) {
         return allSequences.size();
     }
 
-    public String toString() {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public  String toString( ForwardGenerator this) {
         return "ForwardGenerator(" + String.join(";" + Globals.lineSep + "    ", String.join(", ", "steps: " + num_steps, "null steps: " + null_steps, "num_sequences_generated: " + num_sequences_generated), String.join(", ", "allSequences: " + allSequences.size(), "regresson seqs: " + outRegressionSeqs.size(), "error seqs: " + outErrorSeqs.size() + "=" + num_failing_sequences + "=" + getErrorTestSequences().size(), "invalid seqs: " + invalidSequenceCount, "subsumed_sequences: " + subsumed_sequences.size(), "num_failed_output_test: " + num_failed_output_test), String.join(", ", "sideEffectFreeMethods: " + sideEffectFreeMethods.size(), "runtimePrimitivesSeen: " + runtimePrimitivesSeen.size())) + ")";
     }
 }

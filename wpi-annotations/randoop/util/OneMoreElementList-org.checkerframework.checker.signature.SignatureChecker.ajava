@@ -7,7 +7,7 @@ import java.util.List;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
 public final class OneMoreElementList<E> implements SimpleList<E>, Serializable {
 
-    private static final long serialVersionUID = 1332963552183905833L;
+    private static final  @org.checkerframework.checker.signature.qual.SignatureUnknown long serialVersionUID = 1332963552183905833L;
 
     /**
      * The last element in this.
@@ -17,12 +17,12 @@ public final class OneMoreElementList<E> implements SimpleList<E>, Serializable 
     /**
      * All but the last element in this.
      */
-    public final SimpleList<E> list;
+    public final @org.checkerframework.checker.signature.qual.SignatureUnknown SimpleList<E> list;
 
     /**
      * The size of this.
      */
-    public final int size;
+    public final  @org.checkerframework.checker.signature.qual.SignatureUnknown int size;
 
     public OneMoreElementList(@org.checkerframework.checker.signature.qual.SignatureUnknown SimpleList<E> list, E extraElement) {
         this.list = list;
@@ -30,15 +30,18 @@ public final class OneMoreElementList<E> implements SimpleList<E>, Serializable 
         this.size = list.size() + 1;
     }
 
-    public int size() {
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int size(@org.checkerframework.checker.signature.qual.SignatureUnknown OneMoreElementList<E> this) {
         return size;
     }
 
-    public boolean isEmpty() {
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isEmpty(@org.checkerframework.checker.signature.qual.SignatureUnknown OneMoreElementList<E> this) {
         return size == 0;
     }
 
-    public E get(int index) {
+    @org.checkerframework.dataflow.qual.Pure
+    public E get(@org.checkerframework.checker.signature.qual.SignatureUnknown OneMoreElementList<E> this,  @org.checkerframework.checker.signature.qual.SignatureUnknown int index) {
         if (index < size - 1) {
             return list.get(index);
         }
@@ -48,7 +51,8 @@ public final class OneMoreElementList<E> implements SimpleList<E>, Serializable 
         throw new IndexOutOfBoundsException("No such element: " + index);
     }
 
-    public SimpleList<E> getSublist(int index) {
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown SimpleList<E> getSublist(@org.checkerframework.checker.signature.qual.SignatureUnknown OneMoreElementList<E> this,  @org.checkerframework.checker.signature.qual.SignatureUnknown int index) {
         if (index == size - 1) {
             // is lastElement
             return this;
@@ -60,14 +64,15 @@ public final class OneMoreElementList<E> implements SimpleList<E>, Serializable 
         throw new IndexOutOfBoundsException("No such index: " + index);
     }
 
-    public List<E> toJDKList() {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown List<E> toJDKList(@org.checkerframework.checker.signature.qual.SignatureUnknown OneMoreElementList<E> this) {
         List<E> result = new ArrayList<>();
         result.addAll(list.toJDKList());
         result.add(lastElement);
         return result;
     }
 
-    public String toString() {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toString(@org.checkerframework.checker.signature.qual.SignatureUnknown OneMoreElementList<E> this) {
         return toJDKList().toString();
     }
 }

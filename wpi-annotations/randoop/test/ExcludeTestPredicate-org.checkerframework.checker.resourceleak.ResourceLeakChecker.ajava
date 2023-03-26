@@ -14,13 +14,13 @@ public class ExcludeTestPredicate implements Predicate<ExecutableSequence> {
     /**
      * The sequences to forbid.
      */
-    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<Sequence> excludeSet;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "add" }) Set<Sequence> excludeSet;
 
-    public ExcludeTestPredicate(Set<Sequence> excludeSet) {
+    public ExcludeTestPredicate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "add" }) Set<Sequence> excludeSet) {
         this.excludeSet = excludeSet;
     }
 
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.excludeSet" }, methods = { "contains" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.excludeSet" }, methods = { "add", "contains" })
     @org.checkerframework.dataflow.qual.Pure
     public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean test(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExcludeTestPredicate this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence eseq) {
         return !excludeSet.contains(eseq.sequence);

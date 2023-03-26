@@ -34,7 +34,7 @@ public class Variable implements Comparable<Variable> {
     }
 
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getName", "getType" })
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.sequence" }, methods = { "getStatement", "getStatementWithInputs", "getStatementsWithInputs", "isValidIndex" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.sequence" }, methods = { "getStatement", "getStatementWithInputs", "getStatementsWithInputs", "isValidIndex", "size" })
     public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Variable this) {
         return this.getName();
     }
@@ -66,6 +66,7 @@ public class Variable implements Comparable<Variable> {
      * @return the type of this variable
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.sequence" }, methods = { "getStatement", "getStatementWithInputs", "getStatementsWithInputs", "isValidIndex", "size" })
+    @org.checkerframework.dataflow.qual.Pure
     public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type getType(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Variable this) {
         return this.sequence.getStatement(index).getOutputType();
     }
@@ -76,6 +77,7 @@ public class Variable implements Comparable<Variable> {
      * @return the statement to which this variable belongs
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.sequence" }, methods = { "getStatement", "getStatementWithInputs", "getStatementsWithInputs", "isValidIndex", "size" })
+    @org.checkerframework.dataflow.qual.Pure
     public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Statement getDeclaringStatement(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getName", "getType", "shouldInlineLiterals" }) Variable this) {
         return this.sequence.getStatement(index);
     }

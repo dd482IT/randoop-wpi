@@ -67,7 +67,7 @@ public abstract class ObjectContract {
      * @throws Throwable if an exception is thrown in evaluation
      */
     @org.checkerframework.dataflow.qual.Pure
-    public abstract  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean evaluate(Object... objects) throws Throwable;
+    public abstract  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean evaluate(@org.checkerframework.checker.signature.qual.SignatureUnknown ObjectContract this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object@org.checkerframework.checker.signature.qual.SignatureUnknown ... objects) throws Throwable;
 
     /**
      * A string that will be inserted as a comment in the test before the code corresponding to this

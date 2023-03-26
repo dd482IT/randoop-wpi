@@ -17,7 +17,7 @@ public class JavaFileWriter implements CodeWriter {
     /**
      * The directory to which JUnit files are written.
      */
-    private final String dirName;
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String dirName;
 
     /**
      * JavaFileWriter creates an instance of class holding information needed to write a test suite.
@@ -37,7 +37,10 @@ public class JavaFileWriter implements CodeWriter {
      * @param classCode the source text of the test class
      * @return the Path object for generated java file
      */
-    public Path writeClassCode(String packageName, String className, String classCode) throws RandoopOutputException {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "length" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "createOutputDir", "getDir" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.dirName" }, methods = { "length" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "toFile" }) Path writeClassCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) JavaFileWriter this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String packageName, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String className, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String classCode) throws RandoopOutputException {
         Path dir = createOutputDir(packageName);
         Path file = new java.io.File(dir.toFile(), className + ".java").toPath();
         try (PrintWriter out = new PrintWriter(file.toFile(), UTF_8.name())) {
@@ -49,7 +52,11 @@ public class JavaFileWriter implements CodeWriter {
         return file;
     }
 
-    public Path writeUnmodifiedClassCode(String packageName, String classname, String classCode) throws RandoopOutputException {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "length" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "createOutputDir", "getDir", "writeClassCode" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.dirName" }, methods = { "length" })
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "toFile" }) Path writeUnmodifiedClassCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) JavaFileWriter this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String packageName, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String classname, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String classCode) throws RandoopOutputException {
         return writeClassCode(packageName, classname, classCode);
     }
 
@@ -60,7 +67,10 @@ public class JavaFileWriter implements CodeWriter {
      * @return the {@code Path} for the created directory
      * @throws RandoopOutputException if the directory for the package could not be created
      */
-    private Path createOutputDir(String packageName) throws RandoopOutputException {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "length" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getDir" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.dirName" }, methods = { "length" })
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Path createOutputDir(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) JavaFileWriter this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String packageName) throws RandoopOutputException {
         Path dir = getDir(packageName);
         if (!Files.exists(dir)) {
             boolean success = dir.toFile().mkdirs();
@@ -77,7 +87,9 @@ public class JavaFileWriter implements CodeWriter {
      * @param packageName the package name
      * @return the {@code Path} for the directory corresponding to the package name
      */
-    private Path getDir(String packageName) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "length" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.dirName" }, methods = { "length" })
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Path getDir(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) JavaFileWriter this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String packageName) {
         Path dir;
         if (dirName == null || dirName.length() == 0) {
             dir = Paths.get(System.getProperty("user.dir"));

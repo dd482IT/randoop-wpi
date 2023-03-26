@@ -6,16 +6,16 @@ import randoop.contract.ObjectContract;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
 public final class ObjectContractReflectionCode extends ReflectionCode {
 
-    final ObjectContract c;
+    final @org.checkerframework.checker.signature.qual.SignatureUnknown ObjectContract c;
 
-    final Object[] objs;
+    final @org.checkerframework.checker.signature.qual.SignatureUnknown Object @org.checkerframework.checker.signature.qual.SignatureUnknown [] objs;
 
     public ObjectContractReflectionCode(final @org.checkerframework.checker.signature.qual.SignatureUnknown ObjectContract c, final @org.checkerframework.checker.signature.qual.SignatureUnknown Object@org.checkerframework.checker.signature.qual.SignatureUnknown ... objs) {
         this.c = c;
         this.objs = objs;
     }
 
-    protected void runReflectionCodeRaw() {
+    protected void runReflectionCodeRaw(@org.checkerframework.checker.signature.qual.SignatureUnknown ObjectContractReflectionCode this) {
         try {
             // always a boolean value (true or false)
             retval = c.evaluate(objs);
@@ -24,7 +24,8 @@ public final class ObjectContractReflectionCode extends ReflectionCode {
         }
     }
 
-    public String toString() {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toString(@org.checkerframework.checker.signature.qual.SignatureUnknown ObjectContractReflectionCode this) {
         return "Check of ObjectContract " + c + " args: " + Arrays.toString(objs) + status();
     }
 }

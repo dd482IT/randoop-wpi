@@ -16,7 +16,7 @@ public class CoveredClassVisitor implements ExecutionVisitor {
     /**
      * The classes to be polled.
      */
-    private Set<Class<?>> classes;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<Class<?>> classes;
 
     /**
      * Creates a visitor to poll the given classes for coverage by sequence executions.
@@ -32,7 +32,8 @@ public class CoveredClassVisitor implements ExecutionVisitor {
      *
      * <p>Registers each class covered with the sequence execution results.
      */
-    public void visitAfterSequence(ExecutableSequence eseq) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "checkAndReset" })
+    public void visitAfterSequence(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CoveredClassVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence eseq) {
         for (Class<?> c : classes) {
             if (checkAndReset(c)) {
                 eseq.addCoveredClass(c);
@@ -46,7 +47,8 @@ public class CoveredClassVisitor implements ExecutionVisitor {
      * @param c the class for which method is to be called
      * @return true if the instrumentation method is true, false otherwise
      */
-    private boolean checkAndReset(Class<?> c) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getMethod" })
+    private  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean checkAndReset(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CoveredClassVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Class<?> c) {
         try {
             Method m = c.getMethod("randoop_checkAndReset");
             m.setAccessible(true);
@@ -65,15 +67,18 @@ public class CoveredClassVisitor implements ExecutionVisitor {
     }
 
     // unimplemented visitor methods
-    public void visitBeforeStatement(ExecutableSequence eseq, int i) {
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitBeforeStatement(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CoveredClassVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence eseq,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int i) {
         // Not doing anything before
     }
 
-    public void visitAfterStatement(ExecutableSequence eseq, int i) {
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitAfterStatement(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CoveredClassVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence eseq,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int i) {
         // Not doing anything after
     }
 
-    public void initialize(ExecutableSequence eseq) {
+    @org.checkerframework.dataflow.qual.Pure
+    public void initialize(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CoveredClassVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence eseq) {
         // No initialization
     }
 }

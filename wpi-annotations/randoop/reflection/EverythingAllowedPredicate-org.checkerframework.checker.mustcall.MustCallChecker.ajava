@@ -1,0 +1,29 @@
+package randoop.reflection;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public class EverythingAllowedPredicate implements ReflectionPredicate {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean test(@org.checkerframework.checker.mustcall.qual.MustCall({}) EverythingAllowedPredicate this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Class<?> c) {
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean test(@org.checkerframework.checker.mustcall.qual.MustCall({}) EverythingAllowedPredicate this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Method m) {
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean test(@org.checkerframework.checker.mustcall.qual.MustCall({}) EverythingAllowedPredicate this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Constructor<?> m) {
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean test(@org.checkerframework.checker.mustcall.qual.MustCall({}) EverythingAllowedPredicate this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Field f) {
+        return true;
+    }
+}

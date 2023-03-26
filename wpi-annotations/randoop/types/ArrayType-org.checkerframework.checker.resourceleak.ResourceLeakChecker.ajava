@@ -265,7 +265,7 @@ public class ArrayType extends ReferenceType {
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getElementType" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.componentType" }, methods = { "isArray" })
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasParameterizedElementType() {
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasParameterizedElementType(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isArray", "isParameterized" }) ArrayType this) {
         return getElementType().isParameterized();
     }
 
@@ -277,7 +277,7 @@ public class ArrayType extends ReferenceType {
      * @return the non-parameterized form of this array type
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.componentType" }, methods = { "isArray" })
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ArrayType getRawTypeArray() {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ArrayType getRawTypeArray(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ArrayType this) {
         Type rawElementType;
         if (this.componentType.isArray()) {
             rawElementType = ((ArrayType) componentType).getRawTypeArray();

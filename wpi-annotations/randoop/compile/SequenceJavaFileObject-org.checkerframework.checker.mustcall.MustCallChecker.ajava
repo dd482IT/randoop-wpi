@@ -20,12 +20,12 @@ class SequenceJavaFileObject extends SimpleJavaFileObject {
     /**
      * The source code text.
      */
-    private final String source;
+    private final @org.checkerframework.checker.mustcall.qual.MustCall({}) String source;
 
     /**
      * The stream for reading the source code.
      */
-    private ByteArrayOutputStream byteStream;
+    private @org.checkerframework.checker.mustcall.qual.MustCall({}) ByteArrayOutputStream byteStream;
 
     /**
      * Creates a {@link SequenceJavaFileObject} for the given class name and kind.
@@ -49,18 +49,19 @@ class SequenceJavaFileObject extends SimpleJavaFileObject {
         this.source = sequenceClass;
     }
 
-    public CharSequence getCharContent(final boolean ignoreEncodingErrors) throws UnsupportedOperationException {
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) CharSequence getCharContent(@org.checkerframework.checker.mustcall.qual.MustCall({}) SequenceJavaFileObject this, final  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean ignoreEncodingErrors) throws UnsupportedOperationException {
         if (source == null) {
             throw new UnsupportedOperationException("getCharContent()");
         }
         return source;
     }
 
-    public InputStream openInputStream() {
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) InputStream openInputStream(@org.checkerframework.checker.mustcall.qual.MustCall({}) SequenceJavaFileObject this) {
         return new ByteArrayInputStream(getByteCode());
     }
 
-    public OutputStream openOutputStream() {
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) OutputStream openOutputStream(@org.checkerframework.checker.mustcall.qual.MustCall({}) SequenceJavaFileObject this) {
         byteStream = new ByteArrayOutputStream();
         return byteStream;
     }
@@ -70,7 +71,7 @@ class SequenceJavaFileObject extends SimpleJavaFileObject {
      *
      * @return the byte array for the byte stream
      */
-    byte[] getByteCode() {
+     @org.checkerframework.checker.mustcall.qual.MustCall({}) byte @org.checkerframework.checker.mustcall.qual.MustCall({}) [] getByteCode(@org.checkerframework.checker.mustcall.qual.MustCall({}) SequenceJavaFileObject this) {
         return byteStream.toByteArray();
     }
 }

@@ -3,22 +3,24 @@ package randoop.reflection;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
 public class RandoopInstantiationError extends Error {
 
-    private static final long serialVersionUID = 3611612630372756721L;
+    private static final  @org.checkerframework.checker.mustcall.qual.MustCall({}) long serialVersionUID = 3611612630372756721L;
 
-    private final String opName;
+    private final @org.checkerframework.checker.mustcall.qual.MustCall({}) String opName;
 
-    private final Throwable exception;
+    private final @org.checkerframework.checker.mustcall.qual.MustCall({}) Throwable exception;
 
-    public RandoopInstantiationError(String opName, Throwable exception) {
+    public RandoopInstantiationError(@org.checkerframework.checker.mustcall.qual.MustCall({}) String opName, @org.checkerframework.checker.mustcall.qual.MustCall({}) Throwable exception) {
         this.opName = opName;
         this.exception = exception;
     }
 
-    public String getOpName(@org.checkerframework.checker.mustcall.qual.MustCall({}) RandoopInstantiationError this) {
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String getOpName(@org.checkerframework.checker.mustcall.qual.MustCall({}) RandoopInstantiationError this) {
         return opName;
     }
 
-    public Throwable getException() {
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) Throwable getException() {
         return exception;
     }
 }

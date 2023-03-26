@@ -19,7 +19,7 @@ import org.plumelib.util.StringsPlume;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
 public class NormalExecution extends ExecutionOutcome {
 
-    private final Object result;
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object result;
 
     /**
      * @param result the return value
@@ -30,7 +30,8 @@ public class NormalExecution extends ExecutionOutcome {
         this.result = result;
     }
 
-    public Object getRuntimeValue(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NormalExecution this) {
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object getRuntimeValue(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NormalExecution this) {
         return this.result;
     }
 
@@ -39,7 +40,8 @@ public class NormalExecution extends ExecutionOutcome {
      *
      * <p>Note that toString() of code under test may have arbitrary behavior.
      */
-    public String toString() {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) NormalExecution this) {
         return String.format("[NormalExecution %s]", StringsPlume.toStringAndClass(result));
     }
 }

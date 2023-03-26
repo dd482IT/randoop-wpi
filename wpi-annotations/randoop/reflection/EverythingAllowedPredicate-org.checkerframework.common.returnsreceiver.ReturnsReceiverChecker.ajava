@@ -1,0 +1,29 @@
+package randoop.reflection;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public class EverythingAllowedPredicate implements ReflectionPredicate {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean test( EverythingAllowedPredicate this,  Class<?> c) {
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean test( EverythingAllowedPredicate this,  Method m) {
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean test( EverythingAllowedPredicate this,  Constructor<?> m) {
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean test( EverythingAllowedPredicate this,  Field f) {
+        return true;
+    }
+}

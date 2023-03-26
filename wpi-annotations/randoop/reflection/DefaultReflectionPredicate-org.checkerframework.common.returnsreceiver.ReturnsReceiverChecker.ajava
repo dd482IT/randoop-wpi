@@ -24,7 +24,7 @@ public class DefaultReflectionPredicate implements ReflectionPredicate {
      * The set of fully-qualified field names to omit from generated tests. See {@link
      * randoop.main.GenInputsAbstract#omit_field}.
      */
-    private Collection<String> omitFields;
+    private  Collection<String> omitFields;
 
     /**
      * Create a reflection predicate.
@@ -44,7 +44,8 @@ public class DefaultReflectionPredicate implements ReflectionPredicate {
         this.omitFields = omitFields;
     }
 
-    public boolean test(Class<?> c) {
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean test( DefaultReflectionPredicate this,  Class<?> c) {
         return !c.isAnonymousClass();
     }
 
@@ -57,7 +58,7 @@ public class DefaultReflectionPredicate implements ReflectionPredicate {
      *
      * <p>See the code for the full list.
      */
-    public boolean test(Method m) {
+    public   boolean test( DefaultReflectionPredicate this,  Method m) {
         if (isRandoopInstrumentation(m)) {
             return false;
         }
@@ -101,7 +102,7 @@ public class DefaultReflectionPredicate implements ReflectionPredicate {
         return true;
     }
 
-    private boolean isRandoopInstrumentation(Method m) {
+    private   boolean isRandoopInstrumentation( DefaultReflectionPredicate this,  Method m) {
         return m.getName().contains("randoop_");
     }
 
@@ -130,7 +131,7 @@ public class DefaultReflectionPredicate implements ReflectionPredicate {
      * @param m the bridge method to test
      * @return true if the bridge method should be discarded, false otherwise
      */
-    private boolean discardBridge(Method m) {
+    private   boolean discardBridge( DefaultReflectionPredicate this,  Method m) {
         if (!isVisibilityBridge(m)) {
             Log.logPrintf("Will not use bridge method: %s%n", m);
             return true;
@@ -152,7 +153,7 @@ public class DefaultReflectionPredicate implements ReflectionPredicate {
      * @return true iff {@code m} is a visibility bridge
      * @throws Error if a {@link SecurityException} is thrown when accessing superclass methods
      */
-    private boolean isVisibilityBridge(Method m) throws Error {
+    private   boolean isVisibilityBridge( DefaultReflectionPredicate this,  Method m) throws Error {
         Class<?> c = m.getDeclaringClass();
         if (!isPublic(c)) {
             return false;
@@ -178,7 +179,7 @@ public class DefaultReflectionPredicate implements ReflectionPredicate {
      * @param goalMethod the method to search for
      * @return true if the class defines the method
      */
-    private boolean definesNonBridgeMethod(Class<?> c, Method goalMethod) {
+    private   boolean definesNonBridgeMethod( DefaultReflectionPredicate this,  Class<?> c,  Method goalMethod) {
         Method defined;
         try {
             defined = c.getDeclaredMethod(goalMethod.getName(), goalMethod.getParameterTypes());
@@ -197,7 +198,7 @@ public class DefaultReflectionPredicate implements ReflectionPredicate {
      * @param c the class
      * @return true if {@code c} is a public class
      */
-    private boolean isPublic(Class<?> c) {
+    private   boolean isPublic( DefaultReflectionPredicate this,  Class<?> c) {
         return Modifier.isPublic(c.getModifiers() & Modifier.classModifiers());
     }
 
@@ -208,7 +209,7 @@ public class DefaultReflectionPredicate implements ReflectionPredicate {
      * @param m the method to accept or reject for inclusion in methods under test
      * @return a non-null string giving a reason the method should be skipped, or null to not skip it
      */
-    private String doNotUseSpecialCase(Method m) {
+    private  String doNotUseSpecialCase( DefaultReflectionPredicate this,  Method m) {
         String mName = m.getName().intern();
         Class<?> mClass = m.getDeclaringClass();
         // Special case 1:
@@ -258,7 +259,7 @@ public class DefaultReflectionPredicate implements ReflectionPredicate {
      * <p>Use the constructor unless it is specifically omitted, is synthetic with anonymous
      * parameters, or the class is abstract.
      */
-    public boolean test(Constructor<?> c) {
+    public   boolean test( DefaultReflectionPredicate this,  Constructor<?> c) {
         // Synthetic constructors are OK unless they have anonymous parameters.
         if (c.isSynthetic()) {
             for (Class<?> p : c.getParameterTypes()) {
@@ -276,7 +277,7 @@ public class DefaultReflectionPredicate implements ReflectionPredicate {
      * @param f field to test
      * @return true if field name does not occur in omitFields pattern, and false if it does
      */
-    public boolean test(Field f) {
+    public   boolean test( DefaultReflectionPredicate this,  Field f) {
         if (isRandoopInstrumentation(f)) {
             return false;
         }
@@ -303,7 +304,8 @@ public class DefaultReflectionPredicate implements ReflectionPredicate {
      * @param f the field
      * @return true if the field name
      */
-    private boolean isRandoopInstrumentation(Field f) {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    private   boolean isRandoopInstrumentation( DefaultReflectionPredicate this,  Field f) {
         return f.getName().contains("randoop_");
     }
 }

@@ -38,7 +38,7 @@ import randoop.util.ReflectionExecutor;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
 public abstract class GenInputsAbstract extends CommandHandler {
 
-    protected GenInputsAbstract(String command, String pitch, String commandGrammar, String where, String summary, List<String> notes, String input, String output, String example, Options options) {
+    protected GenInputsAbstract(@org.checkerframework.checker.signature.qual.Identifier String command, @org.checkerframework.checker.signature.qual.SignatureUnknown String pitch, @org.checkerframework.checker.signature.qual.SignatureUnknown String commandGrammar, @org.checkerframework.checker.signature.qual.SignatureUnknown String where, @org.checkerframework.checker.signature.qual.SignatureUnknown String summary, @org.checkerframework.checker.signature.qual.SignatureUnknown List<String> notes, @org.checkerframework.checker.signature.qual.SignatureUnknown String input, @org.checkerframework.checker.signature.qual.SignatureUnknown String output, @org.checkerframework.checker.signature.qual.SignatureUnknown String example, @org.checkerframework.checker.signature.qual.SignatureUnknown Options options) {
         super(command, pitch, commandGrammar, where, summary, notes, input, output, example, options);
     }
 
@@ -891,7 +891,7 @@ public abstract class GenInputsAbstract extends CommandHandler {
     /**
      * Check that the options given satisfy any specified constraints, and fail if they do not.
      */
-    public void checkOptionsValid() {
+    public void checkOptionsValid(@org.checkerframework.checker.signature.qual.SignatureUnknown GenInputsAbstract this) {
         if (alias_ratio < 0 || alias_ratio > 1) {
             throw new RandoopUsageError("--alias-ratio must be between 0 and 1, inclusive.");
         }
@@ -957,7 +957,7 @@ public abstract class GenInputsAbstract extends CommandHandler {
      * @param accessibility the accessibility predicate
      * @return the classes provided via the --classlist or --testjar command-line argument
      */
-    public static @org.checkerframework.checker.signature.qual.SignatureUnknown Set<String> getClassnamesFromArgs(AccessibilityPredicate accessibility) {
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown Set<String> getClassnamesFromArgs(@org.checkerframework.checker.signature.qual.SignatureUnknown AccessibilityPredicate accessibility) {
         Set<String> classnames = getClassNamesFromFile(classlist);
         for (Path jarFile : testjar) {
             classnames.addAll(getClassnamesFromJarFile(jarFile, accessibility));

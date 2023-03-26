@@ -29,7 +29,7 @@ public class ValidityCheckingGenerator extends TestCheckGenerator {
      * @param throwExceptionOnFlakyTest a flag indicating whether to report flaky tests by throwing an
      *     exception
      */
-    public ValidityCheckingGenerator(boolean throwExceptionOnFlakyTest) {
+    public ValidityCheckingGenerator( @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean throwExceptionOnFlakyTest) {
         this.throwExceptionOnFlakyTest = throwExceptionOnFlakyTest;
     }
 

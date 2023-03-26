@@ -1,0 +1,17 @@
+package randoop.generation;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public class EverythingIsDifferentMatcher implements StateMatcher {
+
+    private  @org.checkerframework.checker.mustcall.qual.MustCall({}) int size = 0;
+
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean add(@org.checkerframework.checker.mustcall.qual.MustCall({}) EverythingIsDifferentMatcher this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Object object) {
+        size++;
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) int size(@org.checkerframework.checker.mustcall.qual.MustCall({}) EverythingIsDifferentMatcher this) {
+        return size;
+    }
+}

@@ -79,7 +79,8 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      *
      * @param execSpec the specification to use for this object
      */
-    public void setExecutableSpecification(ExecutableSpecification execSpec) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.execSpec" }, methods = { "isEmpty" })
+    public void setExecutableSpecification(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getDeclaringType" }) TypedOperation this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isEmpty" }) ExecutableSpecification execSpec) {
         this.execSpec = execSpec;
     }
 
@@ -89,7 +90,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      * @return the specification to use for this object
      */
     @org.checkerframework.dataflow.qual.Pure
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSpecification getExecutableSpecification(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedOperation this) {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSpecification getExecutableSpecification(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getInputTypes", "getOperation", "getOutputType" }) TypedOperation this) {
         return execSpec;
     }
 
@@ -187,7 +188,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getName" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.operation" }, methods = { "getName" })
     @org.checkerframework.dataflow.qual.Pure
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getSignatureString() {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getSignatureString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedOperation this) {
         return getName() + inputTypes;
     }
 
@@ -229,7 +230,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      * @return true if at least one input or output type has a wildcard, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    public abstract  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasWildcardTypes();
+    public abstract  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasWildcardTypes(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isGeneric" }) TypedOperation this);
 
     /**
      * Indicate whether this operation is generic. An operation is generic if any of its input and
@@ -489,8 +490,8 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      * @param declaringType the declaring type for the field
      * @return an operation to access the given field of the declaring type
      */
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getGenericType", "getModifiers" })
-    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedClassOperation createGetterForField(Field field, ClassOrInterfaceType declaringType) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getDeclaringClass", "getGenericType", "getModifiers", "getName", "toGenericString" })
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedClassOperation createGetterForField(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getDeclaringClass", "getModifiers", "getName", "toGenericString" }) Field field, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ClassOrInterfaceType declaringType) {
         Type fieldType = Type.forType(field.getGenericType());
         AccessibleField accessibleField = new AccessibleField(field, declaringType);
         List<Type> inputTypes = new ArrayList<>(1);
@@ -507,8 +508,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      * @param declaringType the declaring type of the field
      * @return an operation to set the value of the given field of the declaring type
      */
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getGenericType", "getModifiers" })
-    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedClassOperation createSetterForField(Field field, ClassOrInterfaceType declaringType) {
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedClassOperation createSetterForField(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getDeclaringClass", "getGenericType", "getModifiers", "getName", "toGenericString" }) Field field, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ClassOrInterfaceType declaringType) {
         Type fieldType = Type.forType(field.getGenericType());
         AccessibleField accessibleField = new AccessibleField(field, declaringType);
         List<Type> inputTypes = new ArrayList<>(2);
@@ -537,7 +537,8 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      * @return the initialization operation
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "equals", "isPrimitive", "isVoid" })
-    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedOperation createPrimitiveInitialization(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "equals" }) Type type, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getClass" }) Object value) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "getClass" })
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedOperation createPrimitiveInitialization(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type type, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object value) {
         Type valueType = Type.forValue(value);
         assert valueType.isNonreceiverType() : "must be nonreceiver type, got " + type.getBinaryName();
         return TypedOperation.createNonreceiverInitialization(new NonreceiverTerm(type, value));
@@ -575,7 +576,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      * @return an operation to create an array of the given type
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getComponentType", "getDimensions", "getElementType" })
-    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedOperation createArrayCreation(ArrayType arrayType) {
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedOperation createArrayCreation(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ArrayType arrayType) {
         List<Type> typeList = Collections.singletonList(JavaTypes.INT_TYPE);
         TypeTuple inputTypes = new TypeTuple(typeList);
         return new TypedTermOperation(new ArrayCreation(arrayType), inputTypes, arrayType);
@@ -588,7 +589,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      * @param toType the resulting type
      * @return an operation that casts the input type to the result type
      */
-    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedOperation createCast(Type fromType, Type toType) {
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedOperation createCast(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getComponentType", "getDimensions", "getElementType" }) Type fromType, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getRawTypeArray" }) Type toType) {
         List<Type> typeList = Collections.singletonList(fromType);
         TypeTuple inputTypes = new TypeTuple(typeList);
         return new TypedTermOperation(new UncheckedCast(toType), inputTypes, toType);
@@ -600,8 +601,8 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      * @param arrayType the type of the array
      * @return an operation that
      */
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getComponentType" })
-    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedOperation createArrayElementAssignment(ArrayType arrayType) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getComponentType", "getRawTypeArray" })
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedOperation createArrayElementAssignment(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getRawTypeArray" }) ArrayType arrayType) {
         List<Type> typeList = new ArrayList<>(3);
         typeList.add(arrayType);
         typeList.add(JavaTypes.INT_TYPE);

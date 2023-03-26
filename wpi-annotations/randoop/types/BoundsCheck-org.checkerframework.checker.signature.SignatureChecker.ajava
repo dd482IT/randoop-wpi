@@ -18,7 +18,7 @@ public class BoundsCheck {
      *
      * @param typeParameters the list of type parameters to be checked by the predicate
      */
-    public BoundsCheck(List<TypeVariable> typeParameters) {
+    public BoundsCheck(@org.checkerframework.checker.signature.qual.SignatureUnknown List<TypeVariable> typeParameters) {
         this.typeParameters = typeParameters;
     }
 
@@ -36,7 +36,7 @@ public class BoundsCheck {
      *     parameter, after both have been substituted
      */
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean test(List<ReferenceType> tuple, Substitution substitution) {
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean test(@org.checkerframework.checker.signature.qual.SignatureUnknown BoundsCheck this, @org.checkerframework.checker.signature.qual.SignatureUnknown List<ReferenceType> tuple, @org.checkerframework.checker.signature.qual.SignatureUnknown Substitution substitution) {
         for (int i = 0; i < tuple.size(); i++) {
             TypeVariable paramType = typeParameters.get(i);
             ReferenceType argType = tuple.get(i);

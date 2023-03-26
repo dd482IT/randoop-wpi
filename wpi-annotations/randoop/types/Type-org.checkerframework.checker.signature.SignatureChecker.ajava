@@ -130,7 +130,7 @@ public abstract class Type implements Comparable<Type> {
      * @return the type object for the type with the name
      * @throws ClassNotFoundException if name is not a recognized type
      */
-    private static @org.checkerframework.checker.signature.qual.SignatureUnknown Class<?> forFullyQualifiedNameNonArray(@org.checkerframework.checker.signature.qual.ClassGetName String fullyQualifiedName) throws ClassNotFoundException {
+    private static @org.checkerframework.checker.signature.qual.SignatureUnknown Class<?> forFullyQualifiedNameNonArray(String fullyQualifiedName) throws ClassNotFoundException {
         Class<?> c = PrimitiveTypes.classForName(fullyQualifiedName);
         if (c != null) {
             return c;

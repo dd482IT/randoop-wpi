@@ -1,0 +1,52 @@
+package randoop.reflection;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+/**
+ * Default implementation of the {@code ClassVisitor} class. All methods do nothing.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class DefaultClassVisitor implements ClassVisitor {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit(@org.checkerframework.checker.signature.qual.SignatureUnknown DefaultClassVisitor this, @org.checkerframework.checker.signature.qual.SignatureUnknown Class<?> c, @org.checkerframework.checker.signature.qual.SignatureUnknown ReflectionManager reflectionManager) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit(@org.checkerframework.checker.signature.qual.SignatureUnknown DefaultClassVisitor this, @org.checkerframework.checker.signature.qual.SignatureUnknown Constructor<?> c) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit(@org.checkerframework.checker.signature.qual.SignatureUnknown DefaultClassVisitor this, @org.checkerframework.checker.signature.qual.SignatureUnknown Method m) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit(@org.checkerframework.checker.signature.qual.SignatureUnknown DefaultClassVisitor this, @org.checkerframework.checker.signature.qual.SignatureUnknown Field f) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit(@org.checkerframework.checker.signature.qual.SignatureUnknown DefaultClassVisitor this, @org.checkerframework.checker.signature.qual.SignatureUnknown Enum<?> e) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitBefore(@org.checkerframework.checker.signature.qual.SignatureUnknown DefaultClassVisitor this, @org.checkerframework.checker.signature.qual.SignatureUnknown Class<?> c) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitAfter(@org.checkerframework.checker.signature.qual.SignatureUnknown DefaultClassVisitor this, @org.checkerframework.checker.signature.qual.SignatureUnknown Class<?> c) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toString(@org.checkerframework.checker.signature.qual.SignatureUnknown DefaultClassVisitor this) {
+        return getClass().toString();
+    }
+}

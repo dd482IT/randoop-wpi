@@ -1,0 +1,17 @@
+package randoop.generation;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public class EverythingIsDifferentMatcher implements StateMatcher {
+
+    private   int size = 0;
+
+    public   boolean add( EverythingIsDifferentMatcher this,  Object object) {
+        size++;
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   int size( EverythingIsDifferentMatcher this) {
+        return size;
+    }
+}

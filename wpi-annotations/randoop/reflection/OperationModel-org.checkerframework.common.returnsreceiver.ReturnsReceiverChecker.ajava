@@ -77,47 +77,47 @@ public class OperationModel {
     /**
      * The set of class declaration types for this model.
      */
-    private Set<ClassOrInterfaceType> classTypes;
+    private  Set<ClassOrInterfaceType> classTypes;
 
     /**
      * The set of input types for this model.
      */
-    private Set<Type> inputTypes;
+    private  Set<Type> inputTypes;
 
     /**
      * The set of classes used as goals in the covered-class test filter.
      */
-    private final LinkedHashSet<Class<?>> coveredClassesGoal;
+    private final  LinkedHashSet<Class<?>> coveredClassesGoal;
 
     /**
      * Map for singleton sequences of literals extracted from classes.
      */
-    private MultiMap<ClassOrInterfaceType, Sequence> classLiteralMap;
+    private  MultiMap<ClassOrInterfaceType, Sequence> classLiteralMap;
 
     /**
      * Set of singleton sequences for values from TestValue annotated fields.
      */
-    private Set<Sequence> annotatedTestValues;
+    private  Set<Sequence> annotatedTestValues;
 
     /**
      * Set of object contracts used to generate tests.
      */
-    private ContractSet contracts;
+    private  ContractSet contracts;
 
     /**
      * Set of concrete operations extracted from classes.
      */
-    private final Set<TypedOperation> operations;
+    private final  Set<TypedOperation> operations;
 
     /**
      * For debugging only.
      */
-    private List<Pattern> omitMethods;
+    private  List<Pattern> omitMethods;
 
     /**
      * User-supplied predicate for methods that should not be used during test generation.
      */
-    private OmitMethodsPredicate omitMethodsPredicate;
+    private  OmitMethodsPredicate omitMethodsPredicate;
 
     /**
      * Create an empty model of test context.
@@ -175,7 +175,7 @@ public class OperationModel {
      * @throws SignatureParseException if a method signature is ill-formed
      * @throws NoSuchMethodException if an attempt is made to load a non-existent method
      */
-    public static OperationModel createModel( AccessibilityPredicate accessibility,  ReflectionPredicate reflectionPredicate,  List<Pattern> omitMethods,  Set<String> classnames,  Set<String> coveredClassesGoalNames,  ClassNameErrorHandler errorHandler,  List<String> literalsFileList,  SpecificationCollection operationSpecifications) throws SignatureParseException, NoSuchMethodException {
+    public static  OperationModel createModel( AccessibilityPredicate accessibility,  ReflectionPredicate reflectionPredicate,  List<Pattern> omitMethods,  Set<String> classnames,  Set<String> coveredClassesGoalNames,  ClassNameErrorHandler errorHandler,  List<String> literalsFileList,  SpecificationCollection operationSpecifications) throws SignatureParseException, NoSuchMethodException {
         OperationModel model = new OperationModel();
         // for debugging only
         model.omitMethods = omitMethods;
@@ -203,7 +203,7 @@ public class OperationModel {
      * @throws SignatureParseException if a method signature is ill-formed
      * @throws NoSuchMethodException if an attempt is made to load a non-existent method
      */
-    static OperationModel createModel(AccessibilityPredicate accessibility, ReflectionPredicate reflectionPredicate, Set<String> classnames, Set<String> coveredClassnames, ClassNameErrorHandler errorHandler, List<String> literalsFileList) throws NoSuchMethodException, SignatureParseException {
+    static  OperationModel createModel(AccessibilityPredicate accessibility, ReflectionPredicate reflectionPredicate, Set<String> classnames, Set<String> coveredClassnames, ClassNameErrorHandler errorHandler, List<String> literalsFileList) throws NoSuchMethodException, SignatureParseException {
         return createModel(accessibility, reflectionPredicate, new ArrayList<Pattern>(0), classnames, coveredClassnames, errorHandler, literalsFileList, null);
     }
 
@@ -224,7 +224,7 @@ public class OperationModel {
      * @throws SignatureParseException if a method signature is ill-formed
      * @throws NoSuchMethodException if an attempt is made to load a non-existent method
      */
-    public static OperationModel createModel(AccessibilityPredicate accessibility, ReflectionPredicate reflectionPredicate, List<Pattern> omitMethods, Set<String> classnames, Set<String> coveredClassnames, ClassNameErrorHandler errorHandler, List<String> literalsFileList) throws NoSuchMethodException, SignatureParseException {
+    public static  OperationModel createModel(AccessibilityPredicate accessibility, ReflectionPredicate reflectionPredicate, List<Pattern> omitMethods, Set<String> classnames, Set<String> coveredClassnames, ClassNameErrorHandler errorHandler, List<String> literalsFileList) throws NoSuchMethodException, SignatureParseException {
         return createModel(accessibility, reflectionPredicate, omitMethods, classnames, coveredClassnames, errorHandler, literalsFileList, null);
     }
 
@@ -276,7 +276,7 @@ public class OperationModel {
      * @return a map from each class type to its methods and constructors that were read from the file
      * @throws OperationParseException if a method signature cannot be parsed
      */
-    public static MultiMap<Type, TypedClassOperation> readOperations( Path file) throws OperationParseException {
+    public static  MultiMap<Type, TypedClassOperation> readOperations( Path file) throws OperationParseException {
         return readOperations(file, false);
     }
 
@@ -289,7 +289,7 @@ public class OperationModel {
      * @return a map from each class type to its methods and constructors that were read from the file
      * @throws OperationParseException if a method signature cannot be parsed
      */
-    public static MultiMap<Type, TypedClassOperation> readOperations(Path file, boolean ignoreParseError) throws OperationParseException {
+    public static  MultiMap<Type, TypedClassOperation> readOperations( Path file,   boolean ignoreParseError) throws OperationParseException {
         if (file != null) {
             try (EntryReader er = new EntryReader(file, "(//|#).*$", null)) {
                 return OperationModel.readOperations(er, ignoreParseError);
@@ -309,7 +309,7 @@ public class OperationModel {
      * @param ignoreParseError if true, ignore parse errors (skip malformed signatures)
      * @return contents of the file, as a map from classes to operations
      */
-    private static MultiMap<Type, TypedClassOperation> readOperations(EntryReader er, boolean ignoreParseError) {
+    private static  MultiMap<Type, TypedClassOperation> readOperations( EntryReader er,   boolean ignoreParseError) {
         MultiMap<Type, TypedClassOperation> operationsMap = new MultiMap<>();
         for (String line : er) {
             String sig = line.trim();
@@ -340,7 +340,7 @@ public class OperationModel {
      * @param filename the file name to use in diagnostic messages
      * @return contents of the file, as a map from classes to operations
      */
-    public static MultiMap<Type, TypedClassOperation> readOperations(InputStream is, String filename) {
+    public static  MultiMap<Type, TypedClassOperation> readOperations(InputStream is, String filename) {
         return readOperations(is, filename, false);
     }
 
@@ -353,7 +353,7 @@ public class OperationModel {
      * @param ignoreParseError if true, ignore parse errors (skip malformed signatures)
      * @return contents of the file, as a map from classes to operations
      */
-    public static MultiMap<Type, TypedClassOperation> readOperations( InputStream is,  String filename,   boolean ignoreParseError) {
+    public static  MultiMap<Type, TypedClassOperation> readOperations( InputStream is,  String filename,   boolean ignoreParseError) {
         if (is == null) {
             throw new RandoopBug("input stream is null for file " + filename);
         }
@@ -371,7 +371,8 @@ public class OperationModel {
      *
      * @return the set of class types
      */
-    public Set<ClassOrInterfaceType> getClassTypes( OperationModel this) {
+    @org.checkerframework.dataflow.qual.Pure
+    public  Set<ClassOrInterfaceType> getClassTypes( OperationModel this) {
         return classTypes;
     }
 
@@ -380,7 +381,8 @@ public class OperationModel {
      *
      * @return the set of covered classes
      */
-    public Set<Class<?>> getCoveredClassesGoal( OperationModel this) {
+    @org.checkerframework.dataflow.qual.Pure
+    public  Set<Class<?>> getCoveredClassesGoal( OperationModel this) {
         return coveredClassesGoal;
     }
 
@@ -390,7 +392,8 @@ public class OperationModel {
      * @return the set of input types that occur in classes under test
      * @see TypeExtractor
      */
-    public Set<Type> getInputTypes() {
+    @org.checkerframework.dataflow.qual.Pure
+    public  Set<Type> getInputTypes() {
         // TODO this is not used, should it be? or should it even be here?
         return inputTypes;
     }
@@ -400,7 +403,8 @@ public class OperationModel {
      *
      * @return the operations of this model
      */
-    public List<TypedOperation> getOperations( OperationModel this) {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public  List<TypedOperation> getOperations( OperationModel this) {
         return new ArrayList<>(operations);
     }
 
@@ -410,7 +414,8 @@ public class OperationModel {
      *
      * @return the list of contracts
      */
-    public ContractSet getContracts( OperationModel this) {
+    @org.checkerframework.dataflow.qual.Pure
+    public  ContractSet getContracts( OperationModel this) {
         return contracts;
     }
 
@@ -419,7 +424,8 @@ public class OperationModel {
      *
      * @return the user-specified predicate for methods that should not be called
      */
-    public OmitMethodsPredicate getOmitMethodsPredicate( OperationModel this) {
+    @org.checkerframework.dataflow.qual.Pure
+    public  OmitMethodsPredicate getOmitMethodsPredicate( OperationModel this) {
         return omitMethodsPredicate;
     }
 
@@ -428,7 +434,8 @@ public class OperationModel {
      *
      * @return sequences that get fields annotated with {@code @TestValue}
      */
-    public Set<Sequence> getAnnotatedTestValues( OperationModel this) {
+    @org.checkerframework.dataflow.qual.Pure
+    public  Set<Sequence> getAnnotatedTestValues( OperationModel this) {
         return annotatedTestValues;
     }
 
@@ -452,7 +459,7 @@ public class OperationModel {
      *
      * @param out the Writer on which to produce output
      */
-    public void logOperations(Writer out) {
+    public void logOperations( OperationModel this,  Writer out) {
         try {
             out.write("Operations: (" + operations.size() + ")" + Globals.lineSep);
             for (TypedOperation t : operations) {
@@ -488,7 +495,7 @@ public class OperationModel {
      *
      * @param out the Writer on which to produce output
      */
-    public void dumpModel(Writer out) {
+    public void dumpModel( OperationModel this,  Writer out) {
         try {
             out.write(String.format("Model with hashcode %s:%n", hashCode()));
             out.write(String.format("  classTypes = %s%n", classTypes));
@@ -524,7 +531,7 @@ public class OperationModel {
      * @param errorHandler the handler for bad class names
      * @param literalsFileList the list of literals file names
      */
-    private void addClassTypes(AccessibilityPredicate accessibility, ReflectionPredicate reflectionPredicate, Set<String> classnames, Set<String> coveredClassesGoalNames, ClassNameErrorHandler errorHandler, List<String> literalsFileList) {
+    private void addClassTypes( OperationModel this,  AccessibilityPredicate accessibility,  ReflectionPredicate reflectionPredicate,  Set<String> classnames,  Set<String> coveredClassesGoalNames,  ClassNameErrorHandler errorHandler,  List<String> literalsFileList) {
         ReflectionManager mgr = new ReflectionManager(accessibility);
         mgr.add(new DeclarationExtractor(this.classTypes, reflectionPredicate));
         mgr.add(new TypeExtractor(this.inputTypes, accessibility));
@@ -595,7 +602,7 @@ public class OperationModel {
      * @return the Class whose name is {@code classname}. May return null if {@code errorHandler} just
      *     warns on bad names.
      */
-    private static Class<?> getClass(String classname, ClassNameErrorHandler errorHandler) {
+    private static  Class<?> getClass( String classname,  ClassNameErrorHandler errorHandler) {
         try {
             return TypeNames.getTypeForName(classname);
         } catch (ClassNotFoundException | NoClassDefFoundError e) {
@@ -617,7 +624,7 @@ public class OperationModel {
      * @param operationSpecifications the collection of {@link
      *     randoop.condition.specification.OperationSpecification}
      */
-    private void addOperationsFromClasses(AccessibilityPredicate accessibility, ReflectionPredicate reflectionPredicate, SpecificationCollection operationSpecifications) {
+    private void addOperationsFromClasses( OperationModel this,  AccessibilityPredicate accessibility,  ReflectionPredicate reflectionPredicate,  SpecificationCollection operationSpecifications) {
         Iterator<ClassOrInterfaceType> itor = classTypes.iterator();
         while (itor.hasNext()) {
             ClassOrInterfaceType classType = itor.next();
@@ -642,7 +649,7 @@ public class OperationModel {
      * @return operations read from the file
      * @throws SignatureParseException if any signature is syntactically invalid
      */
-    private List<TypedClassOperation> getOperationsFromFile(Path methodSignatures_file, AccessibilityPredicate accessibility, ReflectionPredicate reflectionPredicate) throws SignatureParseException {
+    private  List<TypedClassOperation> getOperationsFromFile( OperationModel this,  Path methodSignatures_file,  AccessibilityPredicate accessibility,  ReflectionPredicate reflectionPredicate) throws SignatureParseException {
         List<TypedClassOperation> result = new ArrayList<>();
         if (methodSignatures_file == null) {
             return result;
@@ -678,7 +685,7 @@ public class OperationModel {
      *     the class or the method or constructor
      * @throws SignatureParseException if the signature cannot be parsed
      */
-    public static TypedClassOperation signatureToOperation(String signature, AccessibilityPredicate accessibility, ReflectionPredicate reflectionPredicate) throws SignatureParseException, FailedPredicateException {
+    public static  TypedClassOperation signatureToOperation( String signature,  AccessibilityPredicate accessibility,  ReflectionPredicate reflectionPredicate) throws SignatureParseException, FailedPredicateException {
         AccessibleObject accessibleObject;
         accessibleObject = SignatureParser.parse(signature, accessibility, reflectionPredicate);
         if (accessibleObject == null) {
@@ -694,7 +701,7 @@ public class OperationModel {
     /**
      * Creates and adds the Object class default constructor call to the concrete operations.
      */
-    private void addObjectConstructor() {
+    private void addObjectConstructor( OperationModel this) {
         Constructor<?> objectConstructor;
         try {
             objectConstructor = Object.class.getConstructor();

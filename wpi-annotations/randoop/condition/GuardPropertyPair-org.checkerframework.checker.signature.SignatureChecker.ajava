@@ -26,7 +26,7 @@ public class GuardPropertyPair {
      * @param property the {@link ExecutableBooleanExpression} to be evaluated after the operation is
      *     called
      */
-    GuardPropertyPair(ExecutableBooleanExpression guard, ExecutableBooleanExpression property) {
+    GuardPropertyPair(@org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableBooleanExpression guard, @org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableBooleanExpression property) {
         this.guard = guard;
         this.property = property;
     }

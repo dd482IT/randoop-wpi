@@ -329,7 +329,7 @@ public abstract class ClassOrInterfaceType extends ReferenceType {
      *
      * @return the set of all supertypes of this type
      */
-    public @org.checkerframework.checker.signature.qual.SignatureUnknown Collection<ClassOrInterfaceType> getSuperTypes() {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown Collection<ClassOrInterfaceType> getSuperTypes(@org.checkerframework.checker.signature.qual.SignatureUnknown ClassOrInterfaceType this) {
         Collection<ClassOrInterfaceType> supertypes = new ArrayList<>();
         if (this.isObject()) {
             return supertypes;

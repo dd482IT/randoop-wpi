@@ -156,7 +156,7 @@ public class Substitution {
      * @param arguments the type arguments
      * @return a new substitution that is this substitution extended by the given mappings
      */
-    public @org.checkerframework.checker.signature.qual.SignatureUnknown Substitution extend(List<TypeVariable> parameters, List<ReferenceType> arguments) {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown Substitution extend(@org.checkerframework.checker.signature.qual.SignatureUnknown Substitution this, @org.checkerframework.checker.signature.qual.SignatureUnknown List<TypeVariable> parameters, @org.checkerframework.checker.signature.qual.SignatureUnknown List<ReferenceType> arguments) {
         return extend(new Substitution(parameters, arguments));
     }
 
@@ -222,7 +222,7 @@ public class Substitution {
      * @return the type variables mapped from by this
      */
     @org.checkerframework.dataflow.qual.SideEffectFree
-    public @org.checkerframework.checker.signature.qual.SignatureUnknown Set<TypeVariable> keySet() {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown Set<TypeVariable> keySet(@org.checkerframework.checker.signature.qual.SignatureUnknown Substitution this) {
         return map.keySet();
     }
 

@@ -55,23 +55,24 @@ public class SpecificationCollection implements Closeable {
     /**
      * Map from method or constructor to the corresponding {@link OperationSpecification}.
      */
-    private final Map<AccessibleObject, OperationSpecification> specificationMap;
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Map<AccessibleObject, OperationSpecification> specificationMap;
 
     /**
      * Given a method signature, what methods (that have specifications) have that signature? Does not
      * contain constructors.
      */
-    private final MultiMap<OperationSignature, Method> signatureToMethods;
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "keySet" }) MultiMap<OperationSignature, Method> signatureToMethods;
 
     /**
      * Map from reflection object to all the methods it overrides (that have a specification).
      */
-    private final Map<AccessibleObject, Set<Method>> overridden;
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Map<AccessibleObject, Set<Method>> overridden;
 
     /**
      * Compiler for creating conditionMethods.
      */
-    private final SequenceCompiler compiler;
+    @org.checkerframework.checker.mustcall.qual.Owning
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SequenceCompiler compiler;
 
     /**
      * Creates a {@link SpecificationCollection} for the given specification map.
@@ -84,7 +85,7 @@ public class SpecificationCollection implements Closeable {
      * @param overridden the map from a method to methods that it overrides and that have a
      *     specification
      */
-    SpecificationCollection(Map<AccessibleObject, OperationSpecification> specificationMap, MultiMap<OperationSignature, Method> signatureToMethods, Map<AccessibleObject, Set<Method>> overridden) {
+    SpecificationCollection(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Map<AccessibleObject, OperationSpecification> specificationMap, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "keySet" }) MultiMap<OperationSignature, Method> signatureToMethods, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Map<AccessibleObject, Set<Method>> overridden) {
         this.specificationMap = specificationMap;
         this.signatureToMethods = signatureToMethods;
         this.overridden = overridden;
@@ -99,7 +100,8 @@ public class SpecificationCollection implements Closeable {
      * @return the {@link SpecificationCollection} built from the serialized {@link
      *     OperationSpecification} objects, or null if the argument is null
      */
-    public static SpecificationCollection create(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<Path> specificationFiles) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "iterator" })
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SpecificationCollection create(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<Path> specificationFiles) {
         if (specificationFiles == null) {
             return null;
         }
@@ -115,7 +117,8 @@ public class SpecificationCollection implements Closeable {
     /**
      * Releases any system resources used by this.
      */
-    public void close() {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.compiler" }, methods = { "close" })
+    public void close(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SpecificationCollection this) {
         try {
             compiler.close();
         } catch (IOException e) {
@@ -130,7 +133,8 @@ public class SpecificationCollection implements Closeable {
      *     signature
      * @return the map from an {@code AccessibleObject} to methods that it overrides
      */
-    private static Map<AccessibleObject, Set<Method>> buildOverridingMap(MultiMap<OperationSignature, Method> signatureToMethods) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "keySet" })
+    private static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Map<AccessibleObject, Set<Method>> buildOverridingMap(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiMap<OperationSignature, Method> signatureToMethods) {
         Map<AccessibleObject, Set<Method>> overridden = new HashMap<>();
         for (OperationSignature signature : signatureToMethods.keySet()) {
             // This lookup is required because MultiMap does not have an entrySet() method.
@@ -154,7 +158,8 @@ public class SpecificationCollection implements Closeable {
      * @return the elements of {@code methods} that are declared in a strict supertype of {@code
      *     classType}
      */
-    private static Set<Method> findOverridden(Class<?> classType, Set<Method> methods) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "iterator" })
+    private static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<Method> findOverridden(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Class<?> classType, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<Method> methods) {
         Set<Method> parents = new HashSet<>();
         for (Method method : methods) {
             Class<?> declaringClass = method.getDeclaringClass();
@@ -171,7 +176,8 @@ public class SpecificationCollection implements Closeable {
      * @param operation the {@link OperationSignature}
      * @return the {@code java.lang.reflect.AccessibleObject} for {@code operation}
      */
-    private static AccessibleObject getAccessibleObject(OperationSignature operation) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "isValid" })
+    private static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AccessibleObject getAccessibleObject(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OperationSignature operation) {
         if (operation.isValid()) {
             List<String> paramTypeNames = operation.getParameterTypeNames();
             Class<?>[] argTypes = new Class<?>[paramTypeNames.size()];
@@ -223,7 +229,7 @@ public class SpecificationCollection implements Closeable {
     /**
      * The type of {@code List<OperationSpecification>>}.
      */
-    private static TypeToken<List<OperationSpecification>> LIST_OF_OS_TYPE_TOKEN = new TypeToken<List<OperationSpecification>>() {
+    private static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeToken<List<OperationSpecification>> LIST_OF_OS_TYPE_TOKEN = new TypeToken<List<OperationSpecification>>() {
     };
 
     /**
@@ -234,7 +240,8 @@ public class SpecificationCollection implements Closeable {
      * @param specificationMap side-effected by this method
      * @param signatureToMethods side-effected by this method
      */
-    private static void readSpecificationFile(Path specificationFile, Map<AccessibleObject, OperationSpecification> specificationMap, MultiMap<OperationSignature, Method> signatureToMethods) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "toString" })
+    private static void readSpecificationFile(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Path specificationFile, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Map<AccessibleObject, OperationSpecification> specificationMap, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiMap<OperationSignature, Method> signatureToMethods) {
         if (specificationFile.toString().toLowerCase().endsWith(".zip")) {
             readSpecificationZipFile(specificationFile, specificationMap, signatureToMethods);
             return;
@@ -280,7 +287,8 @@ public class SpecificationCollection implements Closeable {
      * @param specificationMap side-effected by this method
      * @param signatureToMethods side-effected by this method
      */
-    private static void readSpecificationZipFile(Path specificationZipFile, final Map<AccessibleObject, OperationSpecification> specificationMap, final MultiMap<OperationSignature, Method> signatureToMethods) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "toString", "toUri" })
+    private static void readSpecificationZipFile(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "toString" }) Path specificationZipFile, final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Map<AccessibleObject, OperationSpecification> specificationMap, final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiMap<OperationSignature, Method> signatureToMethods) {
         Map<String, ?> myEmptyMap = Collections.emptyMap();
         FileSystem zipFS;
         try {
@@ -289,13 +297,16 @@ public class SpecificationCollection implements Closeable {
             for (Path root : zipFS.getRootDirectories()) {
                 Files.walkFileTree(root, new SimpleFileVisitor<Path>() {
 
-                    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "toString" })
+                    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) FileVisitResult visitFile(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Path file, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) BasicFileAttributes attrs) throws IOException {
                         // You can do anything you want with the path here
                         readSpecificationFile(file, specificationMap, signatureToMethods);
                         return FileVisitResult.CONTINUE;
                     }
 
-                    public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+                    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "endsWith" })
+                    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "preVisitDirectory" })
+                    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) FileVisitResult preVisitDirectory(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Path dir, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) BasicFileAttributes attrs) throws IOException {
                         if (dir.endsWith("__MACOSX")) {
                             return FileVisitResult.SKIP_SUBTREE;
                         }
@@ -311,7 +322,7 @@ public class SpecificationCollection implements Closeable {
     /**
      * Cache for {@link #getExecutableSpecification}.
      */
-    private Map<AccessibleObject, ExecutableSpecification> getExecutableSpecificationCache;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Map<AccessibleObject, ExecutableSpecification> getExecutableSpecificationCache;
 
     /**
      * Creates an {@link ExecutableSpecification} object for the given constructor or method, from its
@@ -332,7 +343,8 @@ public class SpecificationCollection implements Closeable {
      * @return the {@link ExecutableSpecification} for the specifications of the given method or
      *     constructor
      */
-    public ExecutableSpecification getExecutableSpecification(Executable executable) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getExecutableSpecification" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSpecification getExecutableSpecification(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SpecificationCollection this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getDeclaringClass", "getGenericParameterTypes", "toGenericString" }) Executable executable) {
         // Check if executable already has an ExecutableSpecification object
         ExecutableSpecification execSpec = getExecutableSpecificationCache.get(executable);
         if (execSpec != null) {

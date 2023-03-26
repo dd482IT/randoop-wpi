@@ -13,13 +13,13 @@ public final class ConstructorReflectionCode extends ReflectionCode {
     /**
      * The constructor to be called.
      */
-    private final Constructor<?> constructor;
+    private final @org.checkerframework.checker.mustcall.qual.MustCall({}) Constructor<?> constructor;
 
     /**
      * The arguments that the constructor is applied to. If an inner class constructor has a receiver,
      * it is the first element of this array.
      */
-    private final Object[] inputs;
+    private final @org.checkerframework.checker.mustcall.qual.MustCall({}) Object @org.checkerframework.checker.mustcall.qual.MustCall({}) [] inputs;
 
     /**
      * Create a new ConstructorReflectionCode to represent a constructor invocation.
@@ -48,7 +48,7 @@ public final class ConstructorReflectionCode extends ReflectionCode {
         }
     }
 
-    public void runReflectionCodeRaw() {
+    public void runReflectionCodeRaw(@org.checkerframework.checker.mustcall.qual.MustCall({}) ConstructorReflectionCode this) {
         try {
             this.retval = this.constructor.newInstance(this.inputs);
         } catch (InvocationTargetException e) {
@@ -60,7 +60,8 @@ public final class ConstructorReflectionCode extends ReflectionCode {
         }
     }
 
-    public String toString() {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toString(@org.checkerframework.checker.mustcall.qual.MustCall({}) ConstructorReflectionCode this) {
         return "Call to " + constructor + ", args: " + Arrays.toString(inputs) + status();
     }
 }

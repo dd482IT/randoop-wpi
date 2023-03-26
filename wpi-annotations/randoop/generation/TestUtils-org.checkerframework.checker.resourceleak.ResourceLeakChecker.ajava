@@ -16,7 +16,7 @@ import randoop.main.GenInputsAbstract;
 public class TestUtils {
 
     // Setting to true causes system test runNoOutputTest to fail.
-    static boolean debug = false;
+    static  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean debug = false;
 
     /**
      * Use system properties to set command-line arguments for logging.
@@ -50,7 +50,8 @@ public class TestUtils {
      *
      * @param filename the file to write the log to; does nothing if filename is null
      */
-    public static void setRandoopLog(String filename) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "isEmpty" })
+    public static void setRandoopLog(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String filename) {
         if (debug) {
             System.out.println("setRandoopLog(" + filename + ")");
         }
@@ -82,7 +83,8 @@ public class TestUtils {
      *
      * @param filename the file to write the log to; does nothing if filename is null
      */
-    public static void setSelectionLog(String filename) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "isEmpty" })
+    public static void setSelectionLog(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String filename) {
         if (debug) {
             System.out.println("setSelectionLog(" + filename + ")");
         }
@@ -117,7 +119,7 @@ public class TestUtils {
      *
      * @param generator the generator for which logger is to be set
      */
-    public static void setOperationLog(AbstractGenerator generator) {
+    public static void setOperationLog(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AbstractGenerator generator) {
         setOperationLog(System.getProperty("randoop.operation.history.log"), generator);
     }
 
@@ -127,7 +129,8 @@ public class TestUtils {
      * @param filename the file to write the log to; does nothing if filename is null
      * @param generator the generator for which logger is to be set
      */
-    public static void setOperationLog(String filename, AbstractGenerator generator) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "isEmpty" })
+    public static void setOperationLog(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String filename, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AbstractGenerator generator) {
         // This println statement causes system test runNoOutputTest to fail.
         if (debug) {
             System.out.println("setOperationLog(" + filename + ")");

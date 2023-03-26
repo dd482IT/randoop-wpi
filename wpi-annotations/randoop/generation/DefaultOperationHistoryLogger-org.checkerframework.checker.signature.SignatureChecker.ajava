@@ -1,0 +1,20 @@
+package randoop.generation;
+
+import randoop.operation.TypedOperation;
+
+/**
+ * The default implementation of the {@link OperationHistoryLogInterface}. Each method does nothing.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class DefaultOperationHistoryLogger implements OperationHistoryLogInterface {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void add(@org.checkerframework.checker.signature.qual.SignatureUnknown DefaultOperationHistoryLogger this, @org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation operation, @org.checkerframework.checker.signature.qual.SignatureUnknown OperationOutcome outcome) {
+        // these methods don't do anything
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void outputTable(@org.checkerframework.checker.signature.qual.SignatureUnknown DefaultOperationHistoryLogger this) {
+        // these methods don't do anything
+    }
+}

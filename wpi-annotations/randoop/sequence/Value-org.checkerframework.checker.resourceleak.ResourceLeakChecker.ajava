@@ -28,7 +28,8 @@ public class Value {
      *     primitive type, a String, or null.
      * @return a string representing code for the given value
      */
-    public static String toCodeString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object value) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getClass" })
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toCodeString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object value) {
         if (value == null) {
             return "null";
         }
@@ -111,7 +112,7 @@ public class Value {
      * @return true if the value is an unassertable string, false if not a string, false if a string
      *     that may be asserted over
      */
-    public static boolean isUnassertableString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object o) {
+    public static  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isUnassertableString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object o) {
         if (!(o instanceof String)) {
             return false;
         }
@@ -135,7 +136,7 @@ public class Value {
      * <p>This regex is more efficient than a more complete one that matches against {@code
      * "<em>classname</em>@<em>hex</em>"}. This regex almost always works and is a faster check.
      */
-    private static final Pattern OBJECT_TOSTRING_PATTERN = Pattern.compile("@[0-9a-h]{1,8}");
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern OBJECT_TOSTRING_PATTERN = Pattern.compile("@[0-9a-h]{1,8}");
 
     /**
      * Returns true if the given string looks like it came from a call of Object.toString(); in other
@@ -145,7 +146,8 @@ public class Value {
      * @param s the string
      * @return true if string appears to be default toString output, false otherwise
      */
-    public static boolean looksLikeObjectToString(String s) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "randoop.sequence.Value.OBJECT_TOSTRING_PATTERN" }, methods = { "matcher" })
+    public static  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean looksLikeObjectToString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String s) {
         if (s == null) {
             throw new IllegalArgumentException("s is null");
         }
@@ -159,14 +161,16 @@ public class Value {
      * @return true if the string length is reasonable for generated tests, false otherwise
      * @see GenInputsAbstract#string_maxlen
      */
-    public static boolean stringLengthOk(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String s) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "length" })
+    @org.checkerframework.dataflow.qual.Pure
+    public static  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean stringLengthOk(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String s) {
         return s.length() <= GenInputsAbstract.string_maxlen;
     }
 
     /**
      * Used to increase performance of stringLengthOk method.
      */
-    private static Map<String, Boolean> escapedStringLengthOkCached = new WeakHashMap<>();
+    private static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Map<String, Boolean> escapedStringLengthOkCached = new WeakHashMap<>();
 
     /**
      * Returns true if the given string, when quoted for inclusion in a Java program, is no longer
@@ -179,7 +183,7 @@ public class Value {
      * @return true if the string length is reasonable for generated tests, false otherwise
      * @see GenInputsAbstract#string_maxlen
      */
-    public static boolean escapedStringLengthOk(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String s) {
+    public static  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean escapedStringLengthOk(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String s) {
         if (s == null) {
             throw new IllegalArgumentException();
         }
@@ -213,7 +217,8 @@ public class Value {
      * @param a the string
      * @return true if the array length is less than the bound
      */
-    public static boolean arrayLengthOk(Object a) {
+    @org.checkerframework.dataflow.qual.Pure
+    public static  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean arrayLengthOk(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getClass" }) Object a) {
         if (a == null) {
             throw new IllegalArgumentException();
         }
@@ -226,7 +231,7 @@ public class Value {
      * @param v a value
      * @return true if the value's size is less than the bound
      */
-    public static boolean valueSizeOk(Object v) {
+    public static  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean valueSizeOk(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object v) {
         if (v == null) {
             return true;
         }
@@ -245,7 +250,8 @@ public class Value {
      * @param eseq an executable sequence that has been executed
      * @return true if the final result value's size is less than the bound
      */
-    public static boolean lastValueSizeOk(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence eseq) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getResult" })
+    public static  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean lastValueSizeOk(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence eseq) {
         Sequence seq = eseq.sequence;
         int lastIndex = seq.size() - 1;
         ExecutionOutcome lastResult = eseq.getResult(lastIndex);

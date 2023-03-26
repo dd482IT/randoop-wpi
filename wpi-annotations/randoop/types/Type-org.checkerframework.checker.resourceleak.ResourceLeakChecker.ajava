@@ -565,7 +565,7 @@ public abstract class Type implements Comparable<Type> {
      * @param <T> the type of the value
      * @return true if the type of {@code value} is assignable to this type, false otherwise
      */
-    public <T>  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isAssignableFromTypeOf(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "equals", "isPrimitive", "isVoid" }) Type this, T value) {
+    public <T>  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isAssignableFromTypeOf(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type this, T value) {
         if (value == null) {
             return !this.isPrimitive();
         }

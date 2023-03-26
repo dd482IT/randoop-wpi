@@ -77,7 +77,7 @@ public class ListOfLists<E> implements SimpleList<E>, Serializable {
         return this.totalelements == 0;
     }
 
-    @org.checkerframework.dataflow.qual.Deterministic
+    @org.checkerframework.dataflow.qual.Pure
     public E get(@org.checkerframework.checker.mustcall.qual.MustCall({}) ListOfLists<E> this,  @org.checkerframework.checker.mustcall.qual.MustCall({}) int index) {
         if (index < 0 || index > this.totalelements - 1) {
             throw new IllegalArgumentException("index must be between 0 and size()-1");
@@ -92,7 +92,7 @@ public class ListOfLists<E> implements SimpleList<E>, Serializable {
         throw new RandoopBug("Indexing error in ListOfLists");
     }
 
-    @org.checkerframework.dataflow.qual.Deterministic
+    @org.checkerframework.dataflow.qual.Pure
     public @org.checkerframework.checker.mustcall.qual.MustCall({}) SimpleList<E> getSublist(@org.checkerframework.checker.mustcall.qual.MustCall({}) ListOfLists<E> this,  @org.checkerframework.checker.mustcall.qual.MustCall({}) int index) {
         if (index < 0 || index > this.totalelements - 1) {
             throw new IllegalArgumentException("index must be between 0 and size()-1");

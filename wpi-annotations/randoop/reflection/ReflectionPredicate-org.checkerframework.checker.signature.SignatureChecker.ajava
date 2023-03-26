@@ -18,7 +18,7 @@ public interface ReflectionPredicate {
      * @return true if the class meets the predicate criteria, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    boolean test(Class<?> c);
+     @org.checkerframework.checker.signature.qual.SignatureUnknown boolean test(@org.checkerframework.checker.signature.qual.SignatureUnknown ReflectionPredicate this, @org.checkerframework.checker.signature.qual.SignatureUnknown Class<?> c);
 
     /**
      * Indicate whether Randoop should use a method.
@@ -27,7 +27,7 @@ public interface ReflectionPredicate {
      * @return true if the method meets the predicate criteria, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    boolean test(@org.checkerframework.checker.signature.qual.SignatureUnknown ReflectionPredicate this, @org.checkerframework.checker.signature.qual.SignatureUnknown Method m);
+     @org.checkerframework.checker.signature.qual.SignatureUnknown boolean test(@org.checkerframework.checker.signature.qual.SignatureUnknown ReflectionPredicate this, @org.checkerframework.checker.signature.qual.SignatureUnknown Method m);
 
     /**
      * Indicate whether Randoop should use a constructor.
@@ -36,7 +36,7 @@ public interface ReflectionPredicate {
      * @return true if the constructor meets the predicate criteria, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    boolean test(@org.checkerframework.checker.signature.qual.SignatureUnknown ReflectionPredicate this, @org.checkerframework.checker.signature.qual.SignatureUnknown Constructor<?> m);
+     @org.checkerframework.checker.signature.qual.SignatureUnknown boolean test(@org.checkerframework.checker.signature.qual.SignatureUnknown ReflectionPredicate this, @org.checkerframework.checker.signature.qual.SignatureUnknown Constructor<?> m);
 
     /**
      * Indicate whether Randoop should use a field.
@@ -45,5 +45,5 @@ public interface ReflectionPredicate {
      * @return true if the field meets the predicate criteria, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    boolean test(@org.checkerframework.checker.signature.qual.SignatureUnknown ReflectionPredicate this, @org.checkerframework.checker.signature.qual.SignatureUnknown Field f);
+     @org.checkerframework.checker.signature.qual.SignatureUnknown boolean test(@org.checkerframework.checker.signature.qual.SignatureUnknown ReflectionPredicate this, @org.checkerframework.checker.signature.qual.SignatureUnknown Field f);
 }

@@ -1,0 +1,82 @@
+package randoop.instrument;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Set;
+import randoop.ExecutionVisitor;
+import randoop.sequence.ExecutableSequence;
+
+/**
+ * A {@link ExecutionVisitor} that polls a set of coverage instrumented classes and adds each
+ * covered class to an {@link ExecutableSequence} after it is executed.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class CoveredClassVisitor implements ExecutionVisitor {
+
+    /**
+     * The classes to be polled.
+     */
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown Set<Class<?>> classes;
+
+    /**
+     * Creates a visitor to poll the given classes for coverage by sequence executions.
+     *
+     * @param classes the set of classes to poll for coverage by a sequence
+     */
+    public CoveredClassVisitor(@org.checkerframework.checker.signature.qual.SignatureUnknown Set<Class<?>> classes) {
+        this.classes = classes;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>Registers each class covered with the sequence execution results.
+     */
+    public void visitAfterSequence(@org.checkerframework.checker.signature.qual.SignatureUnknown CoveredClassVisitor this, @org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence eseq) {
+        for (Class<?> c : classes) {
+            if (checkAndReset(c)) {
+                eseq.addCoveredClass(c);
+            }
+        }
+    }
+
+    /**
+     * Calls the coverage instrumentation method.
+     *
+     * @param c the class for which method is to be called
+     * @return true if the instrumentation method is true, false otherwise
+     */
+    private  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean checkAndReset(@org.checkerframework.checker.signature.qual.SignatureUnknown CoveredClassVisitor this, @org.checkerframework.checker.signature.qual.SignatureUnknown Class<?> c) {
+        try {
+            Method m = c.getMethod("randoop_checkAndReset");
+            m.setAccessible(true);
+            return (boolean) m.invoke(null);
+        } catch (NoSuchMethodException e) {
+            throw new Error("Cannot find instrumentation method: " + e);
+        } catch (SecurityException e) {
+            throw new Error("Security error when accessing instrumentation method: " + e);
+        } catch (IllegalAccessException e) {
+            throw new Error("Cannot access instrumentation method: " + e);
+        } catch (IllegalArgumentException e) {
+            throw new Error("Bad argument to instrumentation method: " + e);
+        } catch (InvocationTargetException e) {
+            throw new Error("Bad invocation of instrumentation method: " + e);
+        }
+    }
+
+    // unimplemented visitor methods
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitBeforeStatement(@org.checkerframework.checker.signature.qual.SignatureUnknown CoveredClassVisitor this, @org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence eseq,  @org.checkerframework.checker.signature.qual.SignatureUnknown int i) {
+        // Not doing anything before
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitAfterStatement(@org.checkerframework.checker.signature.qual.SignatureUnknown CoveredClassVisitor this, @org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence eseq,  @org.checkerframework.checker.signature.qual.SignatureUnknown int i) {
+        // Not doing anything after
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void initialize(@org.checkerframework.checker.signature.qual.SignatureUnknown CoveredClassVisitor this, @org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence eseq) {
+        // No initialization
+    }
+}

@@ -172,7 +172,7 @@ public class GenericClassType extends ParameterizedType {
      * @return a type which is this type parameterized by the given type arguments
      * @see #substitute(Substitution)
      */
-    public @org.checkerframework.checker.signature.qual.SignatureUnknown InstantiatedType instantiate(ReferenceType... typeArguments) {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown InstantiatedType instantiate(@org.checkerframework.checker.signature.qual.SignatureUnknown GenericClassType this, @org.checkerframework.checker.signature.qual.SignatureUnknown ReferenceType@org.checkerframework.checker.signature.qual.SignatureUnknown ... typeArguments) {
         if (typeArguments.length != this.getTypeParameters().size()) {
             throw new IllegalArgumentException("number of arguments and parameters must match");
         }
@@ -192,7 +192,7 @@ public class GenericClassType extends ParameterizedType {
      * @return the type that is this type instantiated by the given type arguments
      * @see #substitute(Substitution)
      */
-    public @org.checkerframework.checker.signature.qual.SignatureUnknown InstantiatedType instantiate(List<ReferenceType> typeArguments) {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown InstantiatedType instantiate(@org.checkerframework.checker.signature.qual.SignatureUnknown GenericClassType this, @org.checkerframework.checker.signature.qual.SignatureUnknown List<ReferenceType> typeArguments) {
         if (typeArguments.size() != this.getTypeParameters().size()) {
             throw new IllegalArgumentException("number of arguments and parameters must match");
         }

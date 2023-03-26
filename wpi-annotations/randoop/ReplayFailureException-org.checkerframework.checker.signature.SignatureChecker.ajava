@@ -1,0 +1,28 @@
+package randoop;
+
+import randoop.test.Check;
+
+/**
+ * Thrown by a ContractFailureReplayVisitor or a RegressionReplayVisitor when a regression
+ * decoration fails to replay.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class ReplayFailureException extends RuntimeException {
+
+    private static final  @org.checkerframework.checker.signature.qual.SignatureUnknown long serialVersionUID = -6685935677958691837L;
+
+    /**
+     * The check that failed.
+     */
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown Check decoration;
+
+    public ReplayFailureException(String message, Check d) {
+        super(message);
+        this.decoration = d;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown Check getDecoration() {
+        return this.decoration;
+    }
+}

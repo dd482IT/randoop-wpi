@@ -67,7 +67,7 @@ public abstract class ObjectContract {
      * @throws Throwable if an exception is thrown in evaluation
      */
     @org.checkerframework.dataflow.qual.Pure
-    public abstract  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(Object... objects) throws Throwable;
+    public abstract  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getInputTypes" }) ObjectContract this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objects) throws Throwable;
 
     /**
      * A string that will be inserted as a comment in the test before the code corresponding to this

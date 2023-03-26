@@ -17,7 +17,7 @@ public class JavaFileWriter implements CodeWriter {
     /**
      * The directory to which JUnit files are written.
      */
-    private final String dirName;
+    private final @org.checkerframework.checker.mustcall.qual.MustCall({}) String dirName;
 
     /**
      * JavaFileWriter creates an instance of class holding information needed to write a test suite.
@@ -37,7 +37,7 @@ public class JavaFileWriter implements CodeWriter {
      * @param classCode the source text of the test class
      * @return the Path object for generated java file
      */
-    public Path writeClassCode(String packageName, String className, String classCode) throws RandoopOutputException {
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) Path writeClassCode(@org.checkerframework.checker.mustcall.qual.MustCall({}) JavaFileWriter this, @org.checkerframework.checker.mustcall.qual.MustCall({}) String packageName, @org.checkerframework.checker.mustcall.qual.MustCall({}) String className, @org.checkerframework.checker.mustcall.qual.MustCall({}) String classCode) throws RandoopOutputException {
         Path dir = createOutputDir(packageName);
         Path file = new java.io.File(dir.toFile(), className + ".java").toPath();
         try (PrintWriter out = new PrintWriter(file.toFile(), UTF_8.name())) {
@@ -49,7 +49,8 @@ public class JavaFileWriter implements CodeWriter {
         return file;
     }
 
-    public Path writeUnmodifiedClassCode(String packageName, String classname, String classCode) throws RandoopOutputException {
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) Path writeUnmodifiedClassCode(@org.checkerframework.checker.mustcall.qual.MustCall({}) JavaFileWriter this, @org.checkerframework.checker.mustcall.qual.MustCall({}) String packageName, @org.checkerframework.checker.mustcall.qual.MustCall({}) String classname, @org.checkerframework.checker.mustcall.qual.MustCall({}) String classCode) throws RandoopOutputException {
         return writeClassCode(packageName, classname, classCode);
     }
 
@@ -60,7 +61,7 @@ public class JavaFileWriter implements CodeWriter {
      * @return the {@code Path} for the created directory
      * @throws RandoopOutputException if the directory for the package could not be created
      */
-    private Path createOutputDir(String packageName) throws RandoopOutputException {
+    private @org.checkerframework.checker.mustcall.qual.MustCall({}) Path createOutputDir(@org.checkerframework.checker.mustcall.qual.MustCall({}) JavaFileWriter this, @org.checkerframework.checker.mustcall.qual.MustCall({}) String packageName) throws RandoopOutputException {
         Path dir = getDir(packageName);
         if (!Files.exists(dir)) {
             boolean success = dir.toFile().mkdirs();
@@ -77,7 +78,7 @@ public class JavaFileWriter implements CodeWriter {
      * @param packageName the package name
      * @return the {@code Path} for the directory corresponding to the package name
      */
-    private Path getDir(String packageName) {
+    private @org.checkerframework.checker.mustcall.qual.MustCall({}) Path getDir(@org.checkerframework.checker.mustcall.qual.MustCall({}) JavaFileWriter this, @org.checkerframework.checker.mustcall.qual.MustCall({}) String packageName) {
         Path dir;
         if (dirName == null || dirName.length() == 0) {
             dir = Paths.get(System.getProperty("user.dir"));

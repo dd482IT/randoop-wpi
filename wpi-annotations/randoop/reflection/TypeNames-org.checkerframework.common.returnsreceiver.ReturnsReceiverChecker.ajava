@@ -21,7 +21,7 @@ public class TypeNames {
      * @return {@link Class} object for type given in string
      * @throws ClassNotFoundException if string is not a recognized type
      */
-    public static Class<?> getTypeForName( String typeName) throws ClassNotFoundException {
+    public static  Class<?> getTypeForName( String typeName) throws ClassNotFoundException {
         Class<?> c = PrimitiveTypes.classForName(typeName);
         if (c == null) {
             c = Class.forName(typeName);

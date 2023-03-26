@@ -6,8 +6,9 @@ package randoop.sequence;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
 public class SequenceExecutionException extends RuntimeException {
 
-    private static final long serialVersionUID = -5962830721815152881L;
+    private static final  @org.checkerframework.checker.signature.qual.SignatureUnknown long serialVersionUID = -5962830721815152881L;
 
+    @org.checkerframework.dataflow.qual.SideEffectFree
     public SequenceExecutionException(@org.checkerframework.checker.signature.qual.SignatureUnknown String s, @org.checkerframework.checker.signature.qual.SignatureUnknown Throwable e) {
         super(s, e);
     }

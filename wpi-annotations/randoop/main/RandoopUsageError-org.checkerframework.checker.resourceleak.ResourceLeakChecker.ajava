@@ -8,13 +8,14 @@ package randoop.main;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
 public class RandoopUsageError extends RuntimeException {
 
-    private static final long serialVersionUID = 1L;
+    private static final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) long serialVersionUID = 1L;
 
     /**
      * Creates a {@link RandoopUsageError} with the given message.
      *
      * @param message the exception message
      */
+    @org.checkerframework.dataflow.qual.SideEffectFree
     public RandoopUsageError(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String message) {
         super(message);
     }
@@ -25,7 +26,8 @@ public class RandoopUsageError extends RuntimeException {
      * @param message the exception message
      * @param cause the causing exception
      */
-    public RandoopUsageError(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String message, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getMessage" }) Throwable cause) {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public RandoopUsageError(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String message, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Throwable cause) {
         super(message, cause);
     }
 }

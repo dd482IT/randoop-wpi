@@ -1,0 +1,45 @@
+package randoop.output;
+
+import java.util.List;
+import org.plumelib.util.StringsPlume;
+import randoop.Globals;
+
+/**
+ * Common behavior for source builder classes.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+abstract class SourceBuilder {
+
+    /**
+     * Creates a line from the given tokens with the current indentation and separated by spaces.
+     *
+     * @param toks the tokens to include on the line
+     * @return the {@code String} constructed from the tokens
+     */
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String createLine(String... toks) {
+        return StringsPlume.join(" ", toks);
+    }
+
+    /**
+     * Return the source for this declaration as lines of {@code Strings}
+     *
+     * @return the list of lines in this declaration
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    abstract List<String> toLines(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SourceBuilder this);
+
+    /**
+     * Return this declaration as a {@code String}.
+     *
+     * @return the {@code String} for this declaration
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "toLines" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SourceBuilder this) {
+        StringBuilder builder = new StringBuilder();
+        for (String line : toLines()) {
+            builder.append(line).append(Globals.lineSep);
+        }
+        return builder.toString();
+    }
+}

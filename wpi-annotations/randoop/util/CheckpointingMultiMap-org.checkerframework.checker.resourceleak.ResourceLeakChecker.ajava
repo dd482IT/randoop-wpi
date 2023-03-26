@@ -15,31 +15,32 @@ import java.util.Set;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
 public class CheckpointingMultiMap<K, V> implements IMultiMap<K, V> {
 
-    public static boolean verbose_log = false;
+    public static  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean verbose_log = false;
 
-    private final Map<K, Set<V>> map;
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Map<K, Set<V>> map;
 
-    public final List<Integer> marks;
+    public final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<Integer> marks;
 
     private enum Ops {
 
         ADD, REMOVE
     }
 
-    private final List<OpKeyVal> ops;
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<OpKeyVal> ops;
 
-    private int steps;
+    private  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int steps;
 
     // A triple of an operation, a key, and a value
     private class OpKeyVal {
 
-        final Ops op;
+        final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Ops op;
 
         final K key;
 
         final V val;
 
-        OpKeyVal(final Ops op, final K key, final V val) {
+        @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "<init>" })
+        OpKeyVal(final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Ops op, final K key, final V val) {
             this.op = op;
             this.key = key;
             this.val = val;
@@ -53,7 +54,10 @@ public class CheckpointingMultiMap<K, V> implements IMultiMap<K, V> {
         steps = 0;
     }
 
-    public boolean add(K key, V value) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "<init>", "add_bare" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "computeIfAbsent" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.ops" }, methods = { "add" })
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean add(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CheckpointingMultiMap<K, V> this, K key, V value) {
         if (verbose_log) {
             Log.logPrintf("ADD %s -> %s%n", key, value);
         }
@@ -63,7 +67,8 @@ public class CheckpointingMultiMap<K, V> implements IMultiMap<K, V> {
         return true;
     }
 
-    private void add_bare(K key, V value) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "computeIfAbsent" })
+    private void add_bare(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CheckpointingMultiMap<K, V> this, K key, V value) {
         if (key == null || value == null) {
             throw new IllegalArgumentException("args cannot be null.");
         }
@@ -74,7 +79,10 @@ public class CheckpointingMultiMap<K, V> implements IMultiMap<K, V> {
         values.add(value);
     }
 
-    public boolean remove(K key, V value) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "<init>", "remove_bare" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "get" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.ops" }, methods = { "add" })
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean remove(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CheckpointingMultiMap<K, V> this, K key, V value) {
         if (verbose_log) {
             Log.logPrintf("REMOVE %s -> %s%n", key, value);
         }
@@ -84,7 +92,8 @@ public class CheckpointingMultiMap<K, V> implements IMultiMap<K, V> {
         return true;
     }
 
-    private void remove_bare(K key, V value) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "get" })
+    private void remove_bare(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CheckpointingMultiMap<K, V> this, K key, V value) {
         if (key == null || value == null) {
             throw new IllegalArgumentException("args cannot be null.");
         }
@@ -102,6 +111,7 @@ public class CheckpointingMultiMap<K, V> implements IMultiMap<K, V> {
     /**
      * Checkpoint the state of the data structure, for use by {@link #undoToLastMark()}.
      */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.marks" }, methods = { "add" })
     public void mark(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CheckpointingMultiMap<K, V> this) {
         marks.add(steps);
         steps = 0;
@@ -110,6 +120,8 @@ public class CheckpointingMultiMap<K, V> implements IMultiMap<K, V> {
     /**
      * Undo changes since the last call to {@link #mark()}.
      */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "undoLastOp" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.marks" }, methods = { "isEmpty", "remove", "size" })
     public void undoToLastMark(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CheckpointingMultiMap<K, V> this) {
         if (marks.isEmpty()) {
             throw new IllegalArgumentException("No marks.");
@@ -121,7 +133,8 @@ public class CheckpointingMultiMap<K, V> implements IMultiMap<K, V> {
         steps = marks.remove(marks.size() - 1);
     }
 
-    private void undoLastOp() {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.ops" }, methods = { "isEmpty", "remove", "size" })
+    private void undoLastOp(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CheckpointingMultiMap<K, V> this) {
         if (ops.isEmpty())
             throw new IllegalStateException("ops empty.");
         OpKeyVal last = ops.remove(ops.size() - 1);
@@ -142,27 +155,37 @@ public class CheckpointingMultiMap<K, V> implements IMultiMap<K, V> {
         }
     }
 
-    public Set<V> getValues(K key) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "getOrDefault" })
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<V> getValues(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CheckpointingMultiMap<K, V> this, K key) {
         if (key == null)
             throw new IllegalArgumentException("arg cannot be null.");
         return map.getOrDefault(key, Collections.emptySet());
     }
 
-    public boolean containsKey(Object key) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "containsKey" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean containsKey(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CheckpointingMultiMap<K, V> this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object key) {
         if (key == null)
             throw new IllegalArgumentException("arg cannot be null.");
         return map.containsKey(key);
     }
 
-    public Set<K> keySet() {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "keySet" })
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<K> keySet(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CheckpointingMultiMap<K, V> this) {
         return map.keySet();
     }
 
-    public int size() {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "size" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int size(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CheckpointingMultiMap<K, V> this) {
         return map.size();
     }
 
-    public String toString() {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "toString" })
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CheckpointingMultiMap<K, V> this) {
         return map.toString();
     }
 }

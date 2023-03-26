@@ -1,0 +1,11 @@
+package randoop.generation;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public interface StateMatcher {
+
+    @org.checkerframework.dataflow.qual.Pure
+     @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean add(@org.checkerframework.checker.mustcall.qual.MustCall({}) StateMatcher this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Object object);
+
+    @org.checkerframework.dataflow.qual.Pure
+     @org.checkerframework.checker.mustcall.qual.MustCall({}) int size();
+}

@@ -7,7 +7,7 @@ import java.util.List;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
 public final class OneMoreElementList<E> implements SimpleList<E>, Serializable {
 
-    private static final long serialVersionUID = 1332963552183905833L;
+    private static final   long serialVersionUID = 1332963552183905833L;
 
     /**
      * The last element in this.
@@ -17,12 +17,12 @@ public final class OneMoreElementList<E> implements SimpleList<E>, Serializable 
     /**
      * All but the last element in this.
      */
-    public final SimpleList<E> list;
+    public final  SimpleList<E> list;
 
     /**
      * The size of this.
      */
-    public final int size;
+    public final   int size;
 
     public OneMoreElementList( SimpleList<E> list, E extraElement) {
         this.list = list;
@@ -30,15 +30,18 @@ public final class OneMoreElementList<E> implements SimpleList<E>, Serializable 
         this.size = list.size() + 1;
     }
 
-    public int size() {
+    @org.checkerframework.dataflow.qual.Pure
+    public   int size( OneMoreElementList<E> this) {
         return size;
     }
 
-    public boolean isEmpty() {
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean isEmpty( OneMoreElementList<E> this) {
         return size == 0;
     }
 
-    public E get(int index) {
+    @org.checkerframework.dataflow.qual.Pure
+    public E get( OneMoreElementList<E> this,   int index) {
         if (index < size - 1) {
             return list.get(index);
         }
@@ -48,7 +51,8 @@ public final class OneMoreElementList<E> implements SimpleList<E>, Serializable 
         throw new IndexOutOfBoundsException("No such element: " + index);
     }
 
-    public SimpleList<E> getSublist(int index) {
+    @org.checkerframework.dataflow.qual.Pure
+    public  SimpleList<E> getSublist( OneMoreElementList<E> this,   int index) {
         if (index == size - 1) {
             // is lastElement
             return this;
@@ -60,14 +64,15 @@ public final class OneMoreElementList<E> implements SimpleList<E>, Serializable 
         throw new IndexOutOfBoundsException("No such index: " + index);
     }
 
-    public List<E> toJDKList() {
+    public  List<E> toJDKList( OneMoreElementList<E> this) {
         List<E> result = new ArrayList<>();
         result.addAll(list.toJDKList());
         result.add(lastElement);
         return result;
     }
 
-    public String toString() {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public  String toString( OneMoreElementList<E> this) {
         return toJDKList().toString();
     }
 }

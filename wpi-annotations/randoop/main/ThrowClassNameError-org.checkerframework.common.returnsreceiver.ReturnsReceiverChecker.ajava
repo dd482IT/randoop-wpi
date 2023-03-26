@@ -1,0 +1,22 @@
+package randoop.main;
+
+/**
+ * ThrowClassNameError is used to handle a class name error by throwing an {@code Error} with the
+ * message.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public class ThrowClassNameError implements ClassNameErrorHandler {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void handle( ThrowClassNameError this,  String className) {
+        handle(className, null);
+    }
+
+    @org.checkerframework.dataflow.qual.Deterministic
+    public void handle( ThrowClassNameError this,  String className,  Throwable e) {
+        if (e != null) {
+            throw new RandoopClassNameError(className, "Unable to load class \"" + className + "\" due to exception: " + e, e);
+        }
+        throw new RandoopClassNameError(className, "No class with name \"" + className + "\" found on the classpath");
+    }
+}

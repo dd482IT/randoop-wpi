@@ -11,11 +11,12 @@ public class InvalidExceptionCheck extends ExceptionCheck {
         super(exception, statementIndex, catchClassName);
     }
 
-    protected void appendCatchBehavior(StringBuilder b) {
+    protected void appendCatchBehavior(@org.checkerframework.checker.signature.qual.SignatureUnknown InvalidExceptionCheck this, @org.checkerframework.checker.signature.qual.SignatureUnknown StringBuilder b) {
         b.append(String.format("// statement threw an invalid exception %s during test generation%n", exception.getClass().getName()));
     }
 
-    protected void appendTryBehavior(StringBuilder b) {
+    @org.checkerframework.dataflow.qual.Pure
+    protected void appendTryBehavior(@org.checkerframework.checker.signature.qual.SignatureUnknown InvalidExceptionCheck this, @org.checkerframework.checker.signature.qual.SignatureUnknown StringBuilder b) {
         // do nothing
     }
 }

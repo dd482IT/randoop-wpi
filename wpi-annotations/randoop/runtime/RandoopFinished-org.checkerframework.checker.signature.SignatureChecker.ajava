@@ -1,0 +1,10 @@
+package randoop.runtime;
+
+/**
+ * A message indicating that Randoop is finished generating tests.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class RandoopFinished implements IMessage {
+
+    private static final  @org.checkerframework.checker.signature.qual.SignatureUnknown long serialVersionUID = -2408618829353908424L;
+}

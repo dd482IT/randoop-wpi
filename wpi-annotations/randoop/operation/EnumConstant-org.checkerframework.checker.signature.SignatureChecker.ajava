@@ -21,7 +21,7 @@ public class EnumConstant extends CallableOperation {
 
     private @org.checkerframework.checker.signature.qual.SignatureUnknown Enum<?> value;
 
-    public EnumConstant(Enum<?> value) {
+    public EnumConstant(@org.checkerframework.checker.signature.qual.SignatureUnknown Enum<?> value) {
         if (value == null) {
             throw new IllegalArgumentException("enum constant cannot be null");
         }

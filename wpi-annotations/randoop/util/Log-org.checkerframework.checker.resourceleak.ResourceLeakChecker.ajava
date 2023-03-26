@@ -13,11 +13,13 @@ import randoop.main.RandoopBug;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
 public final class Log {
 
+    @org.checkerframework.dataflow.qual.SideEffectFree
     private Log() {
         throw new IllegalStateException("no instance");
     }
 
-    public static boolean isLoggingOn() {
+    @org.checkerframework.dataflow.qual.Pure
+    public static  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isLoggingOn() {
         return GenInputsAbstract.log != null;
     }
 
@@ -58,7 +60,7 @@ public final class Log {
      *
      * @param msg a string to log
      */
-    public static void logPrintln(String msg) {
+    public static void logPrintln(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String msg) {
         if (!isLoggingOn()) {
             return;
         }
@@ -91,7 +93,7 @@ public final class Log {
      *
      * @param t the Throwable whose stack trace to log
      */
-    public static void logStackTrace(Throwable t) {
+    public static void logStackTrace(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getError", "getSequence", "getStatement", "getSubsequence" }) Throwable t) {
         if (!isLoggingOn()) {
             return;
         }

@@ -108,7 +108,7 @@ public final class Sequence {
      * @param c the type for initialized variable
      * @return the sequence consisting of the initialization
      */
-    public static  Sequence zero(Type c) {
+    public static  Sequence zero( Type c) {
         return new Sequence().extend(TypedOperation.createNullOrZeroInitializationForType(c), new ArrayList<Variable>(0));
     }
 
@@ -118,7 +118,7 @@ public final class Sequence {
      * @param value non-null reference to a primitive or String value
      * @return a {@link Sequence} consisting of a statement created with the object
      */
-    public static  Sequence createSequenceForPrimitive(Object value) {
+    public static  Sequence createSequenceForPrimitive( Object value) {
         if (value == null)
             throw new IllegalArgumentException("value is null");
         Type type = Type.forValue(value);
@@ -142,13 +142,13 @@ public final class Sequence {
      * @param indexes the indices of the inputs to the operation; same length as inputSequences
      * @return the sequence that applies the operation to the given inputs
      */
-    public static  Sequence createSequence(TypedOperation operation, List<Sequence> inputSequences, List<Integer> indexes) {
+    public static  Sequence createSequence( TypedOperation operation,  List<Sequence> inputSequences,  List<Integer> indexes) {
         Sequence inputSequence = Sequence.concatenate(inputSequences);
         List<Variable> inputs = CollectionsPlume.mapList(inputSequence::getVariable, indexes);
         return inputSequence.extend(operation, inputs);
     }
 
-    public static  Sequence createSequence(TypedOperation operation, TupleSequence elementsSequence) {
+    public static  Sequence createSequence( TypedOperation operation,  TupleSequence elementsSequence) {
         List<Variable> inputs = CollectionsPlume.mapList(elementsSequence.sequence::getVariable, elementsSequence.getOutputIndices());
         return elementsSequence.sequence.extend(operation, inputs);
     }
@@ -240,7 +240,7 @@ public final class Sequence {
      * @return the number of method calls in this sequence
      */
     @org.checkerframework.dataflow.qual.Pure
-    public final   int numMethodCalls() {
+    public final   int numMethodCalls( Sequence this) {
         int result = 0;
         for (int i = 0; i < statements.size(); i++) {
             Statement statement = statements.get(i);
@@ -372,7 +372,7 @@ public final class Sequence {
     private  BitSet activeFlags;
 
     @org.checkerframework.dataflow.qual.Pure
-    public   boolean hasActiveFlags() {
+    public   boolean hasActiveFlags( Sequence this) {
         return !activeFlags.isEmpty();
     }
 
@@ -385,11 +385,11 @@ public final class Sequence {
         activeFlags.set(0, this.size());
     }
 
-    public void clearAllActiveFlags() {
+    public void clearAllActiveFlags( Sequence this) {
         activeFlags.clear(0, this.size());
     }
 
-    public void clearActiveFlag(int i) {
+    public void clearActiveFlag( Sequence this,   int i) {
         activeFlags.clear(i);
     }
 
@@ -762,7 +762,7 @@ public final class Sequence {
      * @param i the statement index
      * @return the absolute indices for the input variables in the given statement
      */
-    public  List<Integer> getInputsAsAbsoluteIndices(int i) {
+    public  List<Integer> getInputsAsAbsoluteIndices( Sequence this,   int i) {
         return CollectionsPlume.mapList((RelativeNegativeIndex relIndex) -> getVariableForInput(i, relIndex).index, this.statements.get(i).inputs);
     }
 
@@ -971,6 +971,7 @@ public final class Sequence {
      *
      * @return true if this sequence is a single primitive initialization statement, false otherwise
      */
+    @org.checkerframework.dataflow.qual.Pure
     public   boolean isNonreceiver( Sequence this) {
         return (size() == 1 && getStatement(0).isNonreceivingInitialization());
     }

@@ -109,41 +109,41 @@ import randoop.util.predicate.AlwaysFalse;
 public class GenTests extends GenInputsAbstract {
 
     // If this is changed, also change RandoopSystemTest.NO_OPERATIONS_TO_TEST
-    private static final String NO_OPERATIONS_TO_TEST = "There are no methods for Randoop to test.  See diagnostics above.  Exiting.";
+    private static final @org.checkerframework.checker.signature.qual.SignatureUnknown String NO_OPERATIONS_TO_TEST = "There are no methods for Randoop to test.  See diagnostics above.  Exiting.";
 
-    private static final String command = "gentests";
+    private static final @org.checkerframework.checker.signature.qual.Identifier String command = "gentests";
 
-    private static final String pitch = "Generates unit tests for a set of classes.";
+    private static final @org.checkerframework.checker.signature.qual.SignatureUnknown String pitch = "Generates unit tests for a set of classes.";
 
-    private static final String commandGrammar = "gentests OPTIONS";
+    private static final @org.checkerframework.checker.signature.qual.SignatureUnknown String commandGrammar = "gentests OPTIONS";
 
-    private static final String where = "At least one of `--testjar', `--classlist', `--testclass', or `--methodlist' is specified.";
+    private static final @org.checkerframework.checker.signature.qual.SignatureUnknown String where = "At least one of `--testjar', `--classlist', `--testclass', or `--methodlist' is specified.";
 
-    private static final String summary = "Uses feedback-directed random test generation to generate error-revealing tests and regression tests. ";
+    private static final @org.checkerframework.checker.signature.qual.SignatureUnknown String summary = "Uses feedback-directed random test generation to generate error-revealing tests and regression tests. ";
 
-    private static final String input = "One or more names of classes to test. A class to test can be specified via the `--testjar', `--classlist', or `--testclass' options.";
+    private static final @org.checkerframework.checker.signature.qual.SignatureUnknown String input = "One or more names of classes to test. A class to test can be specified via the `--testjar', `--classlist', or `--testclass' options.";
 
-    private static final String output = "Two JUnit test suites (each as one or more Java source files): an error-revealing test suite and a regression test suite.";
+    private static final @org.checkerframework.checker.signature.qual.SignatureUnknown String output = "Two JUnit test suites (each as one or more Java source files): an error-revealing test suite and a regression test suite.";
 
-    private static final String example = "java randoop.main.Main gentests --testclass=java.util.Collections --testclass=java.util.TreeSet";
+    private static final @org.checkerframework.checker.signature.qual.SignatureUnknown String example = "java randoop.main.Main gentests --testclass=java.util.Collections --testclass=java.util.TreeSet";
 
     /**
      * Explanations printed to the user.
      */
-    private static final List<String> notes;
+    private static final @org.checkerframework.checker.signature.qual.SignatureUnknown List<String> notes;
 
     /**
      * The prefix for test method names.
      */
-    public static final String TEST_METHOD_NAME_PREFIX = "test";
+    public static final @org.checkerframework.checker.signature.qual.Identifier String TEST_METHOD_NAME_PREFIX = "test";
 
-    private BlockStmt afterAllFixtureBody;
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown BlockStmt afterAllFixtureBody;
 
-    private BlockStmt afterEachFixtureBody;
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown BlockStmt afterEachFixtureBody;
 
-    private BlockStmt beforeAllFixtureBody;
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown BlockStmt beforeAllFixtureBody;
 
-    private BlockStmt beforeEachFixtureBody;
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown BlockStmt beforeEachFixtureBody;
 
     static {
         notes = new ArrayList<>(4);
@@ -153,12 +153,12 @@ public class GenTests extends GenInputsAbstract {
         notes.add("Randoop can be deterministic when the code under test is itself deterministic. This means that two runs of Randoop may generate the same tests. To produce different tests across runs, use the --randomseed option.");
     }
 
-    private static Options options = new Options(GenTests.class, GenInputsAbstract.class, ReflectionExecutor.class, ForwardGenerator.class, AbstractGenerator.class);
+    private static @org.checkerframework.checker.signature.qual.SignatureUnknown Options options = new Options(GenTests.class, GenInputsAbstract.class, ReflectionExecutor.class, ForwardGenerator.class, AbstractGenerator.class);
 
     /**
      * The count of sequences that failed to compile.
      */
-    private int sequenceCompileFailureCount = 0;
+    private  @org.checkerframework.checker.signature.qual.SignatureUnknown int sequenceCompileFailureCount = 0;
 
     /**
      * GenTests constructor that uses default messages.
@@ -167,7 +167,7 @@ public class GenTests extends GenInputsAbstract {
         super(command, pitch, commandGrammar, where, summary, notes, input, output, example, options);
     }
 
-    public boolean handle(String[] args) {
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean handle(@org.checkerframework.checker.signature.qual.SignatureUnknown GenTests this, @org.checkerframework.checker.signature.qual.SignatureUnknown String @org.checkerframework.checker.signature.qual.SignatureUnknown [] args) {
         try {
             String[] nonargs = options.parse(args);
             if (nonargs.length > 0) {
@@ -490,7 +490,7 @@ public class GenTests extends GenInputsAbstract {
      * @return a map from a Type to a set of side-effect-free methods that take that type as their
      *     only argument
      */
-    public static MultiMap<Type, TypedClassOperation> readSideEffectFreeMethods() {
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown MultiMap<Type, TypedClassOperation> readSideEffectFreeMethods() {
         MultiMap<Type, TypedClassOperation> sideEffectFreeJDKMethods;
         String sefDefaultsFileName = "/JDK-sef-methods.txt";
         try (InputStream inputStream = GenTests.class.getResourceAsStream(sefDefaultsFileName)) {
@@ -513,7 +513,7 @@ public class GenTests extends GenInputsAbstract {
     /**
      * Is output to the user before each possibly flaky method.
      */
-    public static final String POSSIBLY_FLAKY_PREFIX = "  Possibly flaky:  ";
+    public static final @org.checkerframework.checker.signature.qual.SignatureUnknown String POSSIBLY_FLAKY_PREFIX = "  Possibly flaky:  ";
 
     /**
      * Outputs names of suspected flaky methods by using the tf-idf metric (Term Frequency - Inverse
@@ -528,7 +528,7 @@ public class GenTests extends GenInputsAbstract {
      *     during test generation
      * @param accessibilityPredicate accessibility predicate for side-effect-free methods
      */
-    private void processAndOutputFlakyMethods(List<ExecutableSequence> flakySequences, List<ExecutableSequence> sequences, MultiMap<Type, TypedClassOperation> sideEffectFreeMethodsByType, OmitMethodsPredicate omitMethodsPredicate, AccessibilityPredicate accessibilityPredicate) {
+    private void processAndOutputFlakyMethods(@org.checkerframework.checker.signature.qual.SignatureUnknown GenTests this, @org.checkerframework.checker.signature.qual.SignatureUnknown List<ExecutableSequence> flakySequences, @org.checkerframework.checker.signature.qual.SignatureUnknown List<ExecutableSequence> sequences, @org.checkerframework.checker.signature.qual.SignatureUnknown MultiMap<Type, TypedClassOperation> sideEffectFreeMethodsByType, @org.checkerframework.checker.signature.qual.SignatureUnknown OmitMethodsPredicate omitMethodsPredicate, @org.checkerframework.checker.signature.qual.SignatureUnknown AccessibilityPredicate accessibilityPredicate) {
         if (flakySequences.isEmpty()) {
             return;
         }
@@ -584,7 +584,7 @@ public class GenTests extends GenInputsAbstract {
      * @param sequences test sequences (error or regression), numbered sequentially
      * @return the sequences corresponding to the test names
      */
-    private List<ExecutableSequence> testNamesToSequences(Iterable<String> testNames, List<ExecutableSequence> sequences) {
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown List<ExecutableSequence> testNamesToSequences(@org.checkerframework.checker.signature.qual.SignatureUnknown GenTests this, @org.checkerframework.checker.signature.qual.SignatureUnknown Iterable<String> testNames, @org.checkerframework.checker.signature.qual.SignatureUnknown List<ExecutableSequence> sequences) {
         List<ExecutableSequence> result = new ArrayList<>();
         for (String testName : testNames) {
             int testNum = Integer.parseInt(testName.substring(TEST_METHOD_NAME_PREFIX.length()));
@@ -604,7 +604,7 @@ public class GenTests extends GenInputsAbstract {
      * @return a map from operation to the number of sequences in which the operation occurs at least
      *     once
      */
-    private Map<TypedClassOperation, Integer> countSequencesPerOperation(List<ExecutableSequence> sequences, MultiMap<Type, TypedClassOperation> assertableSideEffectFreeMethods) {
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown Map<TypedClassOperation, Integer> countSequencesPerOperation(@org.checkerframework.checker.signature.qual.SignatureUnknown GenTests this, @org.checkerframework.checker.signature.qual.SignatureUnknown List<ExecutableSequence> sequences, @org.checkerframework.checker.signature.qual.SignatureUnknown MultiMap<Type, TypedClassOperation> assertableSideEffectFreeMethods) {
         // Map from method call operations to number of sequences it occurs in.
         Map<TypedClassOperation, Integer> numSequencesUsedIn = new HashMap<>();
         for (ExecutableSequence es : sequences) {
@@ -634,7 +634,7 @@ public class GenTests extends GenInputsAbstract {
      * @param es an ExecutableSequence
      * @return the set of method call operations in {@code es}
      */
-    private Set<TypedClassOperation> getOperationsInSequence(ExecutableSequence es) {
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown Set<TypedClassOperation> getOperationsInSequence(@org.checkerframework.checker.signature.qual.SignatureUnknown GenTests this, @org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence es) {
         HashSet<TypedClassOperation> ops = new HashSet<>();
         SimpleList<Statement> statements = es.sequence.statements;
         for (int i = 0; i < statements.size(); i++) {
@@ -653,7 +653,7 @@ public class GenTests extends GenInputsAbstract {
      * @param classpath the classpath to replace
      * @return a version of classpath with relative paths replaced by absolute paths
      */
-    private String convertClasspathToAbsolute(String classpath) {
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown String convertClasspathToAbsolute(@org.checkerframework.checker.signature.qual.SignatureUnknown GenTests this, @org.checkerframework.checker.signature.qual.SignatureUnknown String classpath) {
         String[] relpaths = classpath.split(File.pathSeparator);
         int length = relpaths.length;
         String[] abspaths = new String[length];
@@ -684,7 +684,7 @@ public class GenTests extends GenInputsAbstract {
      * @param classNamePrefix the prefix for the class name
      * @param testKind a {@code String} indicating the kind of tests for logging and error messages
      */
-    private void writeTestFiles(JUnitCreator junitCreator, List<ExecutableSequence> testSequences, CodeWriter codeWriter, String classNamePrefix, String testKind) {
+    private void writeTestFiles(@org.checkerframework.checker.signature.qual.SignatureUnknown GenTests this, @org.checkerframework.checker.signature.qual.SignatureUnknown JUnitCreator junitCreator, @org.checkerframework.checker.signature.qual.SignatureUnknown List<ExecutableSequence> testSequences, @org.checkerframework.checker.signature.qual.SignatureUnknown CodeWriter codeWriter, @org.checkerframework.checker.signature.qual.SignatureUnknown String classNamePrefix, @org.checkerframework.checker.signature.qual.SignatureUnknown String testKind) {
         if (testSequences.isEmpty()) {
             if (GenInputsAbstract.progressdisplay) {
                 System.out.printf("%nNo " + testKind.toLowerCase() + " tests to output.%n");
@@ -748,7 +748,7 @@ public class GenTests extends GenInputsAbstract {
      *
      * @return true if all fixtures were read without error, false, otherwise
      */
-    private boolean getFixtureCode() {
+    private  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean getFixtureCode(@org.checkerframework.checker.signature.qual.SignatureUnknown GenTests this) {
         boolean badFixtureText = false;
         try {
             afterAllFixtureBody = JUnitCreator.parseFixture(getFileText(GenInputsAbstract.junit_after_all));
@@ -783,7 +783,7 @@ public class GenTests extends GenInputsAbstract {
      * @param file the file to read from, may be null (in which case this returns an empty list)
      * @return contents of the file, as a list of Patterns
      */
-    private List<Pattern> readPatterns(Path file) {
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown List<Pattern> readPatterns(@org.checkerframework.checker.signature.qual.SignatureUnknown GenTests this, @org.checkerframework.checker.signature.qual.SignatureUnknown Path file) {
         if (file != null) {
             try (EntryReader er = new EntryReader(file.toFile(), "^#.*", null)) {
                 return readPatterns(er);
@@ -800,7 +800,7 @@ public class GenTests extends GenInputsAbstract {
      * @param filename the resource from which to read
      * @return contents of the resource, as a list of Patterns
      */
-    private List<Pattern> readPatternsFromResource(String filename) {
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown List<Pattern> readPatternsFromResource(@org.checkerframework.checker.signature.qual.SignatureUnknown GenTests this, @org.checkerframework.checker.signature.qual.SignatureUnknown String filename) {
         try (InputStream inputStream = GenTests.class.getResourceAsStream(filename)) {
             return readPatterns(inputStream, filename);
         } catch (IOException e) {
@@ -815,7 +815,7 @@ public class GenTests extends GenInputsAbstract {
      * @param filename the file name to use in diagnostic messages
      * @return contents of the file, as a list of Patterns
      */
-    private List<Pattern> readPatterns(InputStream is, String filename) {
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown List<Pattern> readPatterns(@org.checkerframework.checker.signature.qual.SignatureUnknown GenTests this, @org.checkerframework.checker.signature.qual.SignatureUnknown InputStream is, @org.checkerframework.checker.signature.qual.SignatureUnknown String filename) {
         // Read method omissions from user-provided file
         try (EntryReader er = new EntryReader(is, filename, "^#.*", null)) {
             return readPatterns(er);
@@ -830,7 +830,7 @@ public class GenTests extends GenInputsAbstract {
      * @param er the EntryReader to read from
      * @return contents of the file, as a list of Patterns
      */
-    private List<Pattern> readPatterns(EntryReader er) {
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown List<Pattern> readPatterns(@org.checkerframework.checker.signature.qual.SignatureUnknown GenTests this, @org.checkerframework.checker.signature.qual.SignatureUnknown EntryReader er) {
         List<Pattern> result = new ArrayList<>();
         for (String line : er) {
             String trimmed = line.trim();
@@ -853,7 +853,7 @@ public class GenTests extends GenInputsAbstract {
      * @param signatures the list of signature strings
      * @return the list of patterns for the signature strings
      */
-    private List<Pattern> createPatternsFromSignatures(List<String> signatures) {
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown List<Pattern> createPatternsFromSignatures(@org.checkerframework.checker.signature.qual.SignatureUnknown GenTests this, @org.checkerframework.checker.signature.qual.SignatureUnknown List<String> signatures) {
         return CollectionsPlume.mapList(GenTests::signatureToPattern, signatures);
     }
 
@@ -864,7 +864,8 @@ public class GenTests extends GenInputsAbstract {
      * @param signatureString the string representation of a signature
      * @return the pattern to match {@code signatureString}
      */
-    private static Pattern signatureToPattern(String signatureString) {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    private static @org.checkerframework.checker.signature.qual.SignatureUnknown Pattern signatureToPattern(String signatureString) {
         String patternString = signatureString.replaceAll(" ", "").replaceAll("\\.", "\\\\.").replaceAll("\\(", "\\\\(").replaceAll("\\)", "\\\\)").replaceAll("\\$", "\\\\$").replaceAll("\\[", "\\\\[").replaceAll("\\]", "\\\\]");
         return Pattern.compile(patternString);
     }
@@ -878,7 +879,7 @@ public class GenTests extends GenInputsAbstract {
      * @param explorer the test generator
      * @param e the sequence exception
      */
-    private void printSequenceExceptionError(AbstractGenerator explorer, SequenceExceptionError e) {
+    private void printSequenceExceptionError(@org.checkerframework.checker.signature.qual.SignatureUnknown GenTests this, @org.checkerframework.checker.signature.qual.SignatureUnknown AbstractGenerator explorer, @org.checkerframework.checker.signature.qual.SignatureUnknown SequenceExceptionError e) {
         StringJoiner msg = new StringJoiner(Globals.lineSep);
         msg.add("");
         msg.add("");
@@ -951,7 +952,7 @@ public class GenTests extends GenInputsAbstract {
      * @param includePattern the pattern for method name inclusion
      * @return the predicate
      */
-    public Predicate<ExecutableSequence> createTestOutputPredicate(Set<Sequence> excludeSet, Set<Class<?>> coveredClasses, Pattern includePattern) {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown Predicate<ExecutableSequence> createTestOutputPredicate(@org.checkerframework.checker.signature.qual.SignatureUnknown GenTests this, @org.checkerframework.checker.signature.qual.SignatureUnknown Set<Sequence> excludeSet, @org.checkerframework.checker.signature.qual.SignatureUnknown Set<Class<?>> coveredClasses, @org.checkerframework.checker.signature.qual.SignatureUnknown Pattern includePattern) {
         if (GenInputsAbstract.dont_output_tests) {
             return new AlwaysFalse<>();
         }
@@ -1002,7 +1003,7 @@ public class GenTests extends GenInputsAbstract {
      *     during test generation
      * @return the {@code TestCheckGenerator} that reflects command line arguments
      */
-    public static TestCheckGenerator createTestCheckGenerator(AccessibilityPredicate accessibility, ContractSet contracts, MultiMap<Type, TypedClassOperation> sideEffectFreeMethodsByType, OmitMethodsPredicate omitMethodsPredicate) {
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown TestCheckGenerator createTestCheckGenerator(@org.checkerframework.checker.signature.qual.SignatureUnknown AccessibilityPredicate accessibility, @org.checkerframework.checker.signature.qual.SignatureUnknown ContractSet contracts, @org.checkerframework.checker.signature.qual.SignatureUnknown MultiMap<Type, TypedClassOperation> sideEffectFreeMethodsByType, @org.checkerframework.checker.signature.qual.SignatureUnknown OmitMethodsPredicate omitMethodsPredicate) {
         // Start with checking for invalid exceptions.
         TestCheckGenerator testGen = new ValidityCheckingGenerator(GenInputsAbstract.flaky_test_behavior == FlakyTestAction.HALT);
         // Extend with contract checker.
@@ -1023,7 +1024,7 @@ public class GenTests extends GenInputsAbstract {
      * @param format the string format
      * @param args the arguments
      */
-    private static void usage(String format, Object... args) {
+    private static void usage(@org.checkerframework.checker.signature.qual.SignatureUnknown String format, @org.checkerframework.checker.signature.qual.SignatureUnknown Object@org.checkerframework.checker.signature.qual.SignatureUnknown ... args) {
         System.out.print("ERROR: ");
         System.out.printf(format, args);
         System.out.println();
@@ -1038,7 +1039,7 @@ public class GenTests extends GenInputsAbstract {
      * @param filename the file to read
      * @return the contents of {@code filename}, as a list of strings
      */
-    private static List<String> getFileText(String filename) {
+    private static @org.checkerframework.checker.signature.qual.SignatureUnknown List<String> getFileText(@org.checkerframework.checker.signature.qual.SignatureUnknown String filename) {
         if (filename == null) {
             return null;
         }
@@ -1058,7 +1059,7 @@ public class GenTests extends GenInputsAbstract {
      * @throws randoop.main.RandoopBug if there is an error locating the specification files
      * @return the list of JDK specification files
      */
-    private Collection<? extends Path> getJDKSpecificationFiles() {
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown Collection<? extends Path> getJDKSpecificationFiles(@org.checkerframework.checker.signature.qual.SignatureUnknown GenTests this) {
         List<Path> fileList = new ArrayList<>();
         final String specificationDirectory = "/specifications/jdk/";
         Path directoryPath = getResourceDirectoryPath(specificationDirectory);
@@ -1076,7 +1077,7 @@ public class GenTests extends GenInputsAbstract {
      * A cache used by {@link #getResourceDirectoryPath}, to prevent {@code
      * FileSystemAlreadyExistsException}.
      */
-    private Map<URI, FileSystem> fileSystemCache = new HashMap<>();
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown Map<URI, FileSystem> fileSystemCache = new HashMap<>();
 
     /**
      * Returns the path for the resource directory in the jar file.
@@ -1086,7 +1087,7 @@ public class GenTests extends GenInputsAbstract {
      * @throws randoop.main.RandoopBug if an error occurs when locating the directory
      * @return the {@code Path} for the resource directory
      */
-    private Path getResourceDirectoryPath(String resourceDirectory) {
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown Path getResourceDirectoryPath(@org.checkerframework.checker.signature.qual.SignatureUnknown GenTests this, @org.checkerframework.checker.signature.qual.SignatureUnknown String resourceDirectory) {
         URI directoryURI;
         try {
             directoryURI = GenTests.class.getResource(resourceDirectory).toURI();

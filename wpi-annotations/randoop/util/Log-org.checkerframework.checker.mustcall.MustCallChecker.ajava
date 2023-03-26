@@ -13,11 +13,13 @@ import randoop.main.RandoopBug;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
 public final class Log {
 
+    @org.checkerframework.dataflow.qual.SideEffectFree
     private Log() {
         throw new IllegalStateException("no instance");
     }
 
-    public static boolean isLoggingOn() {
+    @org.checkerframework.dataflow.qual.Pure
+    public static  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean isLoggingOn() {
         return GenInputsAbstract.log != null;
     }
 
@@ -58,7 +60,7 @@ public final class Log {
      *
      * @param msg a string to log
      */
-    public static void logPrintln(String msg) {
+    public static void logPrintln(@org.checkerframework.checker.mustcall.qual.MustCall({}) String msg) {
         if (!isLoggingOn()) {
             return;
         }

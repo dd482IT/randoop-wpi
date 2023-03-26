@@ -25,7 +25,7 @@ public class ThrowsClause {
      * @param exceptionType the type of the expected exception
      * @param comment the text description of the throws clause
      */
-    ThrowsClause(ClassOrInterfaceType exceptionType, String comment) {
+    ThrowsClause(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ClassOrInterfaceType exceptionType, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String comment) {
         this.exceptionType = exceptionType;
         this.comment = comment;
     }

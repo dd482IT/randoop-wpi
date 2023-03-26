@@ -1,0 +1,38 @@
+package randoop.util;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class CountDownTimer {
+
+    private  @org.checkerframework.checker.signature.qual.SignatureUnknown long totalTime;
+
+    private  @org.checkerframework.checker.signature.qual.SignatureUnknown long startTime;
+
+    private CountDownTimer( @org.checkerframework.checker.signature.qual.SignatureUnknown long timeMillis) {
+        this.totalTime = timeMillis;
+        this.startTime = System.currentTimeMillis();
+    }
+
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean reachedZero() {
+        return (elapsedTime() >= totalTime);
+    }
+
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown long elapsedTime(@org.checkerframework.checker.signature.qual.SignatureUnknown CountDownTimer this) {
+        return System.currentTimeMillis() - this.startTime;
+    }
+
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown long remainingTime(@org.checkerframework.checker.signature.qual.SignatureUnknown CountDownTimer this) {
+        long remainingTime = totalTime - elapsedTime();
+        if (remainingTime < 0) {
+            return 0;
+        }
+        return remainingTime;
+    }
+
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown CountDownTimer createAndStart(long totalTimeMillis) {
+        return new CountDownTimer(totalTimeMillis);
+    }
+
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toString(@org.checkerframework.checker.signature.qual.SignatureUnknown CountDownTimer this) {
+        return "elapsed: " + elapsedTime() + ", remaining: " + remainingTime();
+    }
+}

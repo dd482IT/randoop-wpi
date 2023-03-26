@@ -140,7 +140,7 @@ public abstract class ReflectionCode {
         }
 
         @org.checkerframework.dataflow.qual.SideEffectFree
-        ReflectionCodeException(Throwable cause) {
+        ReflectionCodeException( Throwable cause) {
             super(cause);
         }
     }

@@ -1,0 +1,24 @@
+package randoop.generation;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public class EqualsMethodMatcher implements StateMatcher {
+
+    private final  Set<Object> cache = new LinkedHashSet<>();
+
+    public   boolean add( EqualsMethodMatcher this,  Object object) {
+        try {
+            return this.cache.add(object);
+        } catch (Throwable e) {
+            // This could happen, because we're actually running code under test.
+            return false;
+        }
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   int size( EqualsMethodMatcher this) {
+        return this.cache.size();
+    }
+}

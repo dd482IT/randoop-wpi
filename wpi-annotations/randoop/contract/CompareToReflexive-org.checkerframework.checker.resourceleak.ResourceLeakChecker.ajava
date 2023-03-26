@@ -21,7 +21,7 @@ public class CompareToReflexive extends ObjectContract {
     }
 
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToReflexive this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objects) {
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getInputTypes" }) CompareToReflexive this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objects) {
         assert objects != null && objects.length == 1;
         // Get first and only object
         Object o1 = objects[0];

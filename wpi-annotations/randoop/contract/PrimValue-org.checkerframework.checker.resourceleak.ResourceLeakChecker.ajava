@@ -79,7 +79,7 @@ public final class PrimValue extends ObjectContract {
 
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.value" }, methods = { "equals", "getClass" })
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) PrimValue this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objects) throws Throwable {
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getInputTypes" }) PrimValue this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objects) throws Throwable {
         assert objects.length == 1;
         return value.equals(objects[0]);
     }

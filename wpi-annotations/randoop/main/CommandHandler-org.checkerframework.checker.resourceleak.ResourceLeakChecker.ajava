@@ -66,12 +66,12 @@ public abstract class CommandHandler {
 
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "toUpperCase" })
     @org.checkerframework.dataflow.qual.SideEffectFree
-    public final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean handles(String command) {
+    public final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean handles(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CommandHandler this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String command) {
         return command != null && command.toUpperCase().equals(fcommand.toUpperCase());
     }
 
     @org.checkerframework.dataflow.qual.Pure
-    public abstract  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean handle(String[] args);
+    public abstract  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean handle(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) CommandHandler this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) [] args);
 
     /**
      * Prints out formatted text in (google code) Wiki format.
@@ -130,7 +130,7 @@ public abstract class CommandHandler {
     }
 
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "println" })
-    public final void usageMessage(PrintStream out) {
+    public final void usageMessage(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CommandHandler this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) PrintStream out) {
         out.println();
         if (!fcommand.trim().equals("")) {
             out.print(Util.hangingParagraph("COMMAND: " + fcommand, Globals.COLWIDTH, Globals.INDENTWIDTH));

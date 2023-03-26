@@ -19,7 +19,7 @@ public interface CodeWriter {
      * @throws RandoopOutputException if there is an error while writing the code
      */
     @org.checkerframework.dataflow.qual.Pure
-    public Path writeClassCode(String packageName, String classname, String classCode) throws RandoopOutputException;
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "toFile" }) Path writeClassCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CodeWriter this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String packageName, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String classname, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String classCode) throws RandoopOutputException;
 
     /**
      * Writes the given class. Does not modify the class text.
@@ -31,5 +31,5 @@ public interface CodeWriter {
      * @throws RandoopOutputException if there is an error while writing the code
      */
     @org.checkerframework.dataflow.qual.Pure
-    public Path writeUnmodifiedClassCode(String packageName, String classname, String classCode) throws RandoopOutputException;
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "toFile" }) Path writeUnmodifiedClassCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CodeWriter this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String packageName, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String classname, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String classCode) throws RandoopOutputException;
 }

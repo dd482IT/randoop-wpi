@@ -13,13 +13,14 @@ public class CheckpointingSet<E> implements Set<E> {
 
     // This uses a MultiMap just because that is an existing checkpointing data structure.
     // The value is always true in this mapping, never false.
-    public final CheckpointingMultiMap<E, Boolean> map;
+    public final  CheckpointingMultiMap<E, Boolean> map;
 
     public CheckpointingSet() {
         this.map = new CheckpointingMultiMap<>();
     }
 
-    public boolean add(E elt) {
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean add( CheckpointingSet<E> this, E elt) {
         if (elt == null)
             throw new IllegalArgumentException("arg cannot be null.");
         if (contains(elt))
@@ -27,13 +28,15 @@ public class CheckpointingSet<E> implements Set<E> {
         return map.add(elt, Boolean.TRUE);
     }
 
-    public boolean contains(Object elt) {
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean contains( CheckpointingSet<E> this,  Object elt) {
         if (elt == null)
             throw new IllegalArgumentException("arg cannot be null.");
         return map.containsKey(elt);
     }
 
-    public boolean remove(Object elt) {
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean remove( CheckpointingSet<E> this,  Object elt) {
         if (elt == null) {
             throw new IllegalArgumentException("arg cannot be null.");
         }
@@ -41,7 +44,8 @@ public class CheckpointingSet<E> implements Set<E> {
         return map.remove(eltCasted, Boolean.TRUE);
     }
 
-    public int size() {
+    @org.checkerframework.dataflow.qual.Pure
+    public   int size( CheckpointingSet<E> this) {
         return map.size();
     }
 
@@ -59,43 +63,53 @@ public class CheckpointingSet<E> implements Set<E> {
         map.undoToLastMark();
     }
 
-    public String toString() {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public  String toString( CheckpointingSet<E> this) {
         return map.keySet().toString();
     }
 
-    public void clear() {
+    @org.checkerframework.dataflow.qual.Pure
+    public void clear( CheckpointingSet<E> this) {
         throw new UnsupportedOperationException("not yet implemented");
     }
 
-    public boolean addAll(Collection<? extends E> c) {
+    @org.checkerframework.dataflow.qual.Pure
+    public boolean addAll( CheckpointingSet<E> this,  Collection<? extends E> c) {
         throw new UnsupportedOperationException("not yet implemented");
     }
 
-    public boolean removeAll(Collection<?> c) {
+    @org.checkerframework.dataflow.qual.Pure
+    public boolean removeAll( CheckpointingSet<E> this,  Collection<?> c) {
         throw new UnsupportedOperationException("not yet implemented");
     }
 
-    public boolean retainAll(Collection<?> c) {
+    @org.checkerframework.dataflow.qual.Pure
+    public boolean retainAll( CheckpointingSet<E> this,  Collection<?> c) {
         throw new UnsupportedOperationException("not yet implemented");
     }
 
-    public boolean containsAll(Collection<?> c) {
+    @org.checkerframework.dataflow.qual.Pure
+    public boolean containsAll( CheckpointingSet<E> this,  Collection<?> c) {
         throw new UnsupportedOperationException("not yet implemented");
     }
 
-    public <T> T[] toArray(T[] a) {
+    @org.checkerframework.dataflow.qual.Pure
+    public <T> T[] toArray( CheckpointingSet<E> this, T  [] a) {
         throw new UnsupportedOperationException("not yet implemented");
     }
 
-    public Object[] toArray() {
+    @org.checkerframework.dataflow.qual.Pure
+    public Object[] toArray( CheckpointingSet<E> this) {
         throw new UnsupportedOperationException("not yet implemented");
     }
 
-    public Iterator<E> iterator() {
+    @org.checkerframework.dataflow.qual.Pure
+    public Iterator<E> iterator( CheckpointingSet<E> this) {
         throw new UnsupportedOperationException("not yet implemented");
     }
 
-    public boolean isEmpty() {
+    @org.checkerframework.dataflow.qual.Pure
+    public boolean isEmpty( CheckpointingSet<E> this) {
         // return map.isEmpty();
         throw new UnsupportedOperationException("not yet implemented");
     }

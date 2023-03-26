@@ -16,7 +16,7 @@ public final class CollectionsExt {
     }
 
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "isEmpty", "iterator", "size" })
-    static <T> T getNthIteratedElement(Collection<? extends T> s, int index) {
+    static <T> T getNthIteratedElement(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isEmpty", "size" }) Collection<? extends T> s,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int index) {
         if (s == null)
             throw new IllegalArgumentException("s cannot be null.");
         if (s.isEmpty())
@@ -49,7 +49,7 @@ public final class CollectionsExt {
      * @return the concatenated string of object strings as lines
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "isEmpty" })
-    static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toStringInLines(Collection<?> c) {
+    static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toStringInLines(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Collection<?> c) {
         if (c.isEmpty()) {
             return "";
         }

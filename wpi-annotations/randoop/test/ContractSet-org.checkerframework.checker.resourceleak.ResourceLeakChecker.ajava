@@ -40,7 +40,7 @@ public class ContractSet {
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getArity" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.contractMap" }, methods = { "get", "size" })
-    public void add(ObjectContract contract) {
+    public void add(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ContractSet this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ObjectContract contract) {
         int arity = contract.getArity();
         while (arity >= contractMap.size()) {
             contractMap.add(new ArrayList<>(1));

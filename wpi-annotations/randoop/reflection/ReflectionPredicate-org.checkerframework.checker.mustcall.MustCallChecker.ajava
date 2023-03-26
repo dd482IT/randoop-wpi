@@ -18,7 +18,7 @@ public interface ReflectionPredicate {
      * @return true if the class meets the predicate criteria, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    boolean test(Class<?> c);
+     @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean test(@org.checkerframework.checker.mustcall.qual.MustCall({}) ReflectionPredicate this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Class<?> c);
 
     /**
      * Indicate whether Randoop should use a method.
@@ -27,7 +27,7 @@ public interface ReflectionPredicate {
      * @return true if the method meets the predicate criteria, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    boolean test(@org.checkerframework.checker.mustcall.qual.MustCall({}) ReflectionPredicate this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Method m);
+     @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean test(@org.checkerframework.checker.mustcall.qual.MustCall({}) ReflectionPredicate this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Method m);
 
     /**
      * Indicate whether Randoop should use a constructor.
@@ -36,7 +36,7 @@ public interface ReflectionPredicate {
      * @return true if the constructor meets the predicate criteria, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    boolean test(@org.checkerframework.checker.mustcall.qual.MustCall({}) ReflectionPredicate this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Constructor<?> m);
+     @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean test(@org.checkerframework.checker.mustcall.qual.MustCall({}) ReflectionPredicate this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Constructor<?> m);
 
     /**
      * Indicate whether Randoop should use a field.
@@ -45,5 +45,5 @@ public interface ReflectionPredicate {
      * @return true if the field meets the predicate criteria, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    boolean test(@org.checkerframework.checker.mustcall.qual.MustCall({}) ReflectionPredicate this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Field f);
+     @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean test(@org.checkerframework.checker.mustcall.qual.MustCall({}) ReflectionPredicate this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Field f);
 }

@@ -1,0 +1,61 @@
+package randoop.sequence;
+
+import randoop.types.Type;
+
+/**
+ * A dummy variable, to ensure that parameter lists are the expected length.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public class DummyVariable extends Variable {
+
+    /**
+     * The only DummyVariable that exists.
+     */
+    public static final  DummyVariable DUMMY = new DummyVariable();
+
+    /**
+     * Create a DummyVariable.
+     */
+    private DummyVariable() {
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  String toString( DummyVariable this) {
+        return "dummy";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   boolean equals( DummyVariable this,  Object o) {
+        return o == this;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public   int hashCode( DummyVariable this) {
+        return 0;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public Type getType( DummyVariable this) {
+        throw new Error("Not implemented");
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public Statement getDeclaringStatement( DummyVariable this) {
+        throw new Error("Not implemented");
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public int getDeclIndex( DummyVariable this) {
+        throw new Error("Not implemented");
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  String getName( DummyVariable this) {
+        return "dummy";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public boolean shouldInlineLiterals( DummyVariable this) {
+        throw new Error("Not implemented");
+    }
+}

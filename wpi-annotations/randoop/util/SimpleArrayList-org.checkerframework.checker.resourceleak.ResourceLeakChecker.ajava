@@ -11,7 +11,7 @@ public class SimpleArrayList<E> extends ArrayList<E> implements SimpleList<E>, S
     private static final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) long serialVersionUID = 20180317;
 
     @org.checkerframework.dataflow.qual.SideEffectFree
-    public SimpleArrayList(Collection<? extends E> c) {
+    public SimpleArrayList(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Collection<? extends E> c) {
         super(c);
     }
 

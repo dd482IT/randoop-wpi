@@ -1,0 +1,30 @@
+package randoop;
+
+import randoop.sequence.ExecutableSequence;
+
+/**
+ * A visitor that does nothing and adds no checks.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public final class DummyVisitor implements ExecutionVisitor {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void initialize(@org.checkerframework.checker.signature.qual.SignatureUnknown DummyVisitor this, @org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence eseq) {
+        // do nothing.
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitBeforeStatement(@org.checkerframework.checker.signature.qual.SignatureUnknown DummyVisitor this, @org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence eseq,  @org.checkerframework.checker.signature.qual.SignatureUnknown int i) {
+        // do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitAfterStatement(@org.checkerframework.checker.signature.qual.SignatureUnknown DummyVisitor this, @org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence eseq,  @org.checkerframework.checker.signature.qual.SignatureUnknown int i) {
+        // do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitAfterSequence(@org.checkerframework.checker.signature.qual.SignatureUnknown DummyVisitor this, @org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence eseq) {
+        // do nothing
+    }
+}

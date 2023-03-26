@@ -178,7 +178,7 @@ public class ExecutableSpecification {
      * @param parentExecSpec the {@link ExecutableSpecification} to which to link
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.parentList" }, methods = { "add" })
-    void addParent(ExecutableSpecification parentExecSpec) {
+    void addParent(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSpecification this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSpecification parentExecSpec) {
         parentList.add(parentExecSpec);
     }
 
@@ -190,7 +190,7 @@ public class ExecutableSpecification {
      *     parent list, false otherwise
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.preExpressions" }, methods = { "isEmpty" })
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isEmpty() {
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isEmpty(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSpecification this) {
         if (!(preExpressions.isEmpty() && guardPropertyPairs.isEmpty() && guardThrowsPairs.isEmpty())) {
             return false;
         }

@@ -54,7 +54,7 @@ public abstract class AccessibilityPredicate {
      * @return whether this considers the field to be accessible
      */
     @org.checkerframework.dataflow.qual.Pure
-    public abstract  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean isAccessible(Field f);
+    public abstract  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean isAccessible(@org.checkerframework.checker.mustcall.qual.MustCall({}) AccessibilityPredicate this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Field f);
 
     /**
      * AnyAccessibilityPredicate is a {@link AccessibilityPredicate} that always returns true.

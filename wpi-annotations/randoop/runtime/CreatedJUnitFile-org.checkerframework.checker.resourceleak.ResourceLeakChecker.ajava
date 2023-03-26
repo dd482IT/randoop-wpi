@@ -1,0 +1,37 @@
+package randoop.runtime;
+
+import java.nio.file.Path;
+
+/**
+ * A message indicating that Randoop created a specific JUnit file containing generated tests.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class CreatedJUnitFile implements IMessage {
+
+    private static final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) long serialVersionUID = 3786576811718698647L;
+
+    /**
+     * The file that was created.
+     */
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Path file;
+
+    private final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isDriver;
+
+    public CreatedJUnitFile(Path f, boolean isDriver) {
+        if (f == null) {
+            throw new IllegalArgumentException("f is null");
+        }
+        this.file = f;
+        this.isDriver = isDriver;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Path getFile() {
+        return file;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isDriver() {
+        return isDriver;
+    }
+}

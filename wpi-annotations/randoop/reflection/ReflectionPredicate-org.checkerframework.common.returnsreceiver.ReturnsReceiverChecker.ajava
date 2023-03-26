@@ -18,7 +18,7 @@ public interface ReflectionPredicate {
      * @return true if the class meets the predicate criteria, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    boolean test(Class<?> c);
+      boolean test( ReflectionPredicate this,  Class<?> c);
 
     /**
      * Indicate whether Randoop should use a method.
@@ -27,7 +27,7 @@ public interface ReflectionPredicate {
      * @return true if the method meets the predicate criteria, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    boolean test( ReflectionPredicate this,  Method m);
+      boolean test( ReflectionPredicate this,  Method m);
 
     /**
      * Indicate whether Randoop should use a constructor.
@@ -36,7 +36,7 @@ public interface ReflectionPredicate {
      * @return true if the constructor meets the predicate criteria, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    boolean test( ReflectionPredicate this,  Constructor<?> m);
+      boolean test( ReflectionPredicate this,  Constructor<?> m);
 
     /**
      * Indicate whether Randoop should use a field.
@@ -45,5 +45,5 @@ public interface ReflectionPredicate {
      * @return true if the field meets the predicate criteria, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    boolean test( ReflectionPredicate this,  Field f);
+      boolean test( ReflectionPredicate this,  Field f);
 }

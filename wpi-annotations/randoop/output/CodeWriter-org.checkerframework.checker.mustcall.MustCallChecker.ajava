@@ -19,7 +19,7 @@ public interface CodeWriter {
      * @throws RandoopOutputException if there is an error while writing the code
      */
     @org.checkerframework.dataflow.qual.Pure
-    public Path writeClassCode(@org.checkerframework.checker.mustcall.qual.MustCall({}) CodeWriter this, @org.checkerframework.checker.mustcall.qual.MustCall({}) String packageName, @org.checkerframework.checker.mustcall.qual.MustCall({}) String classname, @org.checkerframework.checker.mustcall.qual.MustCall({}) String classCode) throws RandoopOutputException;
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) Path writeClassCode(@org.checkerframework.checker.mustcall.qual.MustCall({}) CodeWriter this, @org.checkerframework.checker.mustcall.qual.MustCall({}) String packageName, @org.checkerframework.checker.mustcall.qual.MustCall({}) String classname, @org.checkerframework.checker.mustcall.qual.MustCall({}) String classCode) throws RandoopOutputException;
 
     /**
      * Writes the given class. Does not modify the class text.
@@ -31,5 +31,5 @@ public interface CodeWriter {
      * @throws RandoopOutputException if there is an error while writing the code
      */
     @org.checkerframework.dataflow.qual.Pure
-    public Path writeUnmodifiedClassCode(@org.checkerframework.checker.mustcall.qual.MustCall({}) CodeWriter this, @org.checkerframework.checker.mustcall.qual.MustCall({}) String packageName, @org.checkerframework.checker.mustcall.qual.MustCall({}) String classname, @org.checkerframework.checker.mustcall.qual.MustCall({}) String classCode) throws RandoopOutputException;
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) Path writeUnmodifiedClassCode(@org.checkerframework.checker.mustcall.qual.MustCall({}) CodeWriter this, @org.checkerframework.checker.mustcall.qual.MustCall({}) String packageName, @org.checkerframework.checker.mustcall.qual.MustCall({}) String classname, @org.checkerframework.checker.mustcall.qual.MustCall({}) String classCode) throws RandoopOutputException;
 }

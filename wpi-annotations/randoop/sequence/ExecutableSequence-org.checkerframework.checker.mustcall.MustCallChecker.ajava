@@ -122,7 +122,7 @@ public class ExecutableSequence {
      *
      * @param sequence the underlying sequence for this executable sequence
      */
-    public ExecutableSequence(Sequence sequence) {
+    public ExecutableSequence(@org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence sequence) {
         this.sequence = sequence;
         this.executionResults = new Execution(sequence);
     }
@@ -237,7 +237,7 @@ public class ExecutableSequence {
      * @param visitor the {@link ExecutionVisitor} that collects checks from results
      * @param gen the check generator for tests
      */
-    public void execute(ExecutionVisitor visitor, TestCheckGenerator gen) {
+    public void execute(@org.checkerframework.checker.mustcall.qual.MustCall({}) ExecutableSequence this, @org.checkerframework.checker.mustcall.qual.MustCall({}) ExecutionVisitor visitor, @org.checkerframework.checker.mustcall.qual.MustCall({}) TestCheckGenerator gen) {
         // TODO: Setting the third argument to false would mask fewer errors.  Doing so causes 3 Randoop
         // system tests to fail (because some sequence throws an exception before the last statement).
         // One is innocuous:  java.lang.OutOfMemoryError due to creation of a very large object --
@@ -435,7 +435,7 @@ public class ExecutableSequence {
      * @return the {@code TestChecks} generated from the most recent execution
      */
     @org.checkerframework.dataflow.qual.Pure
-    public @org.checkerframework.checker.mustcall.qual.MustCall({}) TestChecks<?> getChecks() {
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) TestChecks<?> getChecks(@org.checkerframework.checker.mustcall.qual.MustCall({}) ExecutableSequence this) {
         return checks;
     }
 
@@ -446,6 +446,7 @@ public class ExecutableSequence {
      * @return the result of executing the index-th element of the sequence, if that element's
      *     execution completed normally
      */
+    @org.checkerframework.dataflow.qual.Pure
     private @org.checkerframework.checker.mustcall.qual.MustCall({}) Object getValue(@org.checkerframework.checker.mustcall.qual.MustCall({}) ExecutableSequence this,  @org.checkerframework.checker.mustcall.qual.MustCall({}) int index) {
         ExecutionOutcome result = getResult(index);
         if (result instanceof NormalExecution) {
@@ -557,7 +558,7 @@ public class ExecutableSequence {
     }
 
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean isNormalExecution() {
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean isNormalExecution(@org.checkerframework.checker.mustcall.qual.MustCall({}) ExecutableSequence this) {
         return getNonNormalExecutionIndex() == -1;
     }
 
@@ -602,7 +603,7 @@ public class ExecutableSequence {
      * @return true if this sequence has non-executed statements, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean hasNonExecutedStatements() {
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean hasNonExecutedStatements(@org.checkerframework.checker.mustcall.qual.MustCall({}) ExecutableSequence this) {
         return getNonExecutedIndex() != -1;
     }
 
@@ -647,7 +648,7 @@ public class ExecutableSequence {
      * @return true if there is a null input value in this sequence, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean hasNullInput() {
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean hasNullInput(@org.checkerframework.checker.mustcall.qual.MustCall({}) ExecutableSequence this) {
         return hasNullInput;
     }
 
@@ -676,7 +677,7 @@ public class ExecutableSequence {
      *
      * @param c the class covered by the execution of this sequence
      */
-    public void addCoveredClass(Class<?> c) {
+    public void addCoveredClass(@org.checkerframework.checker.mustcall.qual.MustCall({}) ExecutableSequence this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Class<?> c) {
         executionResults.addCoveredClass(c);
     }
 

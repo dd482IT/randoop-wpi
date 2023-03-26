@@ -23,7 +23,7 @@ import randoop.types.TypeTuple;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
 public final class CheckRepContract extends ObjectContract {
 
-    public final @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getDeclaringClass", "getGenericParameterTypes", "getModifiers" }) Method checkRepMethod;
+    public final @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getAnnotation", "getDeclaringClass", "getGenericParameterTypes", "getModifiers", "getParameterTypes", "getReturnType", "toGenericString" }) Method checkRepMethod;
 
     private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedClassOperation operation;
 
@@ -51,9 +51,9 @@ public final class CheckRepContract extends ObjectContract {
         return Objects.hash(checkRepMethod);
     }
 
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getDeclaringClass", "getGenericParameterTypes", "getModifiers" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getAnnotation", "getDeclaringClass", "getGenericParameterTypes", "getModifiers", "getParameterTypes", "getReturnType", "toGenericString" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.operation" }, methods = { "getOutputType" })
-    public CheckRepContract(Method checkRepMethod) {
+    public CheckRepContract(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getAnnotation", "getModifiers", "getParameterTypes", "getReturnType", "toGenericString" }) Method checkRepMethod) {
         if (checkRepMethod == null) {
             throw new IllegalArgumentException("check-rep method cannot be null.");
         }
@@ -74,7 +74,7 @@ public final class CheckRepContract extends ObjectContract {
     }
 
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.declaringClass" }, methods = { "equals" })
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CheckRepContract this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objects) throws Throwable {
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getInputTypes" }) CheckRepContract this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objects) throws Throwable {
         assert objects.length == 1;
         assert objects[0] != null;
         if (declaringClass.equals(objects[0].getClass())) {
@@ -108,17 +108,17 @@ public final class CheckRepContract extends ObjectContract {
         return operation.getInputTypes();
     }
 
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.checkRepMethod" }, methods = { "getDeclaringClass", "getGenericParameterTypes", "getModifiers", "getName" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.checkRepMethod" }, methods = { "getAnnotation", "getDeclaringClass", "getGenericParameterTypes", "getModifiers", "getName", "getParameterTypes", "getReturnType", "toGenericString" })
     public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toCommentString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CheckRepContract this) {
         return "Check rep invariant (method " + checkRepMethod.getName() + ") for x0";
     }
 
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.checkRepMethod" }, methods = { "getDeclaringClass", "getGenericParameterTypes", "getModifiers", "getName" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.checkRepMethod" }, methods = { "getAnnotation", "getDeclaringClass", "getGenericParameterTypes", "getModifiers", "getName", "getParameterTypes", "getReturnType", "toGenericString" })
     public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String get_observer_str(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CheckRepContract this) {
         return "CheckRep " + checkRepMethod.getName();
     }
 
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.checkRepMethod" }, methods = { "getDeclaringClass", "getGenericParameterTypes", "getModifiers", "getName" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.checkRepMethod" }, methods = { "getAnnotation", "getDeclaringClass", "getGenericParameterTypes", "getModifiers", "getName", "getParameterTypes", "getReturnType", "toGenericString" })
     public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toCodeString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CheckRepContract this) {
         StringBuilder b = new StringBuilder();
         b.append(Globals.lineSep);

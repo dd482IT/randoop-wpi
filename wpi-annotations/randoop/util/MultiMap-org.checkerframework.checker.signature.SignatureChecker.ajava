@@ -60,7 +60,7 @@ public class MultiMap<K, V> implements IMultiMap<K, V> {
     }
 
     @org.checkerframework.dataflow.qual.SideEffectFree
-    public void addAll(MultiMap<K, V> mmap) {
+    public void addAll(@org.checkerframework.checker.signature.qual.SignatureUnknown MultiMap<K, V> this, @org.checkerframework.checker.signature.qual.SignatureUnknown MultiMap<K, V> mmap) {
         for (Map.Entry<K, Set<V>> entry : mmap.map.entrySet()) {
             addAll(entry.getKey(), entry.getValue());
         }

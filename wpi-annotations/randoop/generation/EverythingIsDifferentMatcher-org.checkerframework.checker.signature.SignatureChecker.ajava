@@ -1,0 +1,17 @@
+package randoop.generation;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class EverythingIsDifferentMatcher implements StateMatcher {
+
+    private  @org.checkerframework.checker.signature.qual.SignatureUnknown int size = 0;
+
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean add(@org.checkerframework.checker.signature.qual.SignatureUnknown EverythingIsDifferentMatcher this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object object) {
+        size++;
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int size(@org.checkerframework.checker.signature.qual.SignatureUnknown EverythingIsDifferentMatcher this) {
+        return size;
+    }
+}

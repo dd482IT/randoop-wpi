@@ -196,7 +196,7 @@ public class SequenceCompiler implements Closeable {
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "compile", "fullyQualifiedName" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.compiler" }, methods = { "getTask" })
     @org.checkerframework.framework.qual.EnsuresQualifier(expression = { "randoop.compile.SequenceCompiler.debugCompilationFailure" }, qualifier = org.checkerframework.checker.calledmethods.qual.CalledMethodsBottom.class)
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Class<?> compileAndLoad(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SequenceCompiler this, final @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "equals" }) String packageName, final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String classname, final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String javaSource) throws SequenceCompilerException {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Class<?> compileAndLoad(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SequenceCompiler this, final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String packageName, final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String classname, final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String javaSource) throws SequenceCompilerException {
         compile(packageName, classname, javaSource);
         String fqName = fullyQualifiedName(packageName, classname);
         File dir = new File("").getAbsoluteFile();

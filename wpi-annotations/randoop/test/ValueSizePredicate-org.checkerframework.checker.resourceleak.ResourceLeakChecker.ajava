@@ -17,6 +17,7 @@ public class ValueSizePredicate implements Predicate<ExecutableSequence> {
     public ValueSizePredicate() {
     }
 
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getResult" })
     public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean test(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ValueSizePredicate this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence eseq) {
         return Value.lastValueSizeOk(eseq);
     }

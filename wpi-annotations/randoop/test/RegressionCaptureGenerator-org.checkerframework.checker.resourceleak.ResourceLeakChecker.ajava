@@ -55,7 +55,7 @@ public final class RegressionCaptureGenerator extends TestCheckGenerator {
     /**
      * The map from a type to the set of side-effect-free operations for the type.
      */
-    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiMap<Type, TypedClassOperation> sideEffectFreeMethodsByType;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "add", "addAll", "keySet" }) MultiMap<Type, TypedClassOperation> sideEffectFreeMethodsByType;
 
     /**
      * The accessibility predicate.
@@ -83,7 +83,7 @@ public final class RegressionCaptureGenerator extends TestCheckGenerator {
      * @param omitMethodsPredicate the user-supplied predicate for methods that should not be called
      * @param includeAssertions whether to include regression assertions
      */
-    public RegressionCaptureGenerator(ExpectedExceptionCheckGen exceptionExpectation, MultiMap<Type, TypedClassOperation> sideEffectFreeMethodsByType, AccessibilityPredicate isAccessible, OmitMethodsPredicate omitMethodsPredicate, boolean includeAssertions) {
+    public RegressionCaptureGenerator(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExpectedExceptionCheckGen exceptionExpectation, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "add", "addAll", "keySet" }) MultiMap<Type, TypedClassOperation> sideEffectFreeMethodsByType, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AccessibilityPredicate isAccessible, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OmitMethodsPredicate omitMethodsPredicate,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean includeAssertions) {
         this.exceptionExpectation = exceptionExpectation;
         this.sideEffectFreeMethodsByType = sideEffectFreeMethodsByType;
         this.isAccessible = isAccessible;

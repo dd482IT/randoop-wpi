@@ -109,7 +109,7 @@ public class ComponentManager {
     // FIXME subtract size of seeds!
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.gralComponents" }, methods = { "size" })
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int numGeneratedSequences() {
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int numGeneratedSequences(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ComponentManager this) {
         return gralComponents.size();
     }
 
@@ -122,7 +122,7 @@ public class ComponentManager {
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "getTypesForLastStatement", "getVariablesOfLastStatement", "isNonreceiver", "size" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.classLiterals" }, methods = { "addSequence" })
-    public void addClassLevelLiteral(ClassOrInterfaceType type, Sequence seq) {
+    public void addClassLevelLiteral(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ComponentManager this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ClassOrInterfaceType type, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence seq) {
         if (classLiterals == null) {
             classLiterals = new ClassLiterals();
         }
@@ -138,7 +138,7 @@ public class ComponentManager {
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "getTypesForLastStatement", "getVariablesOfLastStatement", "isNonreceiver", "size" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.packageLiterals" }, methods = { "addSequence" })
-    public void addPackageLevelLiteral(Package pkg, Sequence seq) {
+    public void addPackageLevelLiteral(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ComponentManager this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Package pkg, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence seq) {
         if (packageLiterals == null) {
             packageLiterals = new PackageLiterals();
         }
@@ -152,7 +152,7 @@ public class ComponentManager {
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getTypesForLastStatement", "getVariablesOfLastStatement" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.gralComponents" }, methods = { "add", "checkRep", "updateCompatibleMap" })
-    public void addGeneratedSequence(Sequence sequence) {
+    public void addGeneratedSequence(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ComponentManager this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence sequence) {
         gralComponents.add(sequence);
     }
 
@@ -160,7 +160,7 @@ public class ComponentManager {
      * Removes any components sequences added so far, except for seed sequences, which are preserved.
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.gralSeeds" }, methods = { "iterator" })
-    void clearGeneratedSequences() {
+    void clearGeneratedSequences(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ComponentManager this) {
         gralComponents = new SequenceCollection(this.gralSeeds);
     }
 
@@ -170,7 +170,7 @@ public class ComponentManager {
      * @return the set of all generated sequences
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.gralComponents" }, methods = { "getAllSequences" })
-    @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<Sequence> getAllGeneratedSequences() {
+    @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<Sequence> getAllGeneratedSequences(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getTypeInstantiator" }) ComponentManager this) {
         return gralComponents.getAllSequences();
     }
 
@@ -181,7 +181,7 @@ public class ComponentManager {
      * @return the sequences that create values of the given type
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.gralComponents" }, methods = { "getSequencesForType" })
-    @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "size" }) SimpleList<Sequence> getSequencesForType(Type cls) {
+    @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "size" }) SimpleList<Sequence> getSequencesForType(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ComponentManager this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type cls) {
         return gralComponents.getSequencesForType(cls, false, false);
     }
 
@@ -196,11 +196,10 @@ public class ComponentManager {
      *     call receiver
      * @return the sequences that create values of the given type
      */
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getInputTypes" })
     // This method is oddly named, since it does not take as input a type.  However, the method
     // extensively uses the operation, so refactoring the method to take a type instead would take
     // some work.
-    @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SimpleList<Sequence> getSequencesForType(TypedOperation operation, int i, boolean onlyReceivers) {
+    @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SimpleList<Sequence> getSequencesForType(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ComponentManager this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getInputTypes", "isGeneric" }) TypedOperation operation,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int i,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean onlyReceivers) {
         Type neededType = operation.getInputTypes().get(i);
         if (onlyReceivers && neededType.isNonreceiverType()) {
             throw new RandoopBug(String.format("getSequencesForType(%s, %s, %s) neededType=%s", operation, i, onlyReceivers, neededType));
@@ -253,7 +252,7 @@ public class ComponentManager {
      *
      * @return the sequences for primitive values
      */
-    @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addAll" }) Set<Sequence> getAllPrimitiveSequences() {
+    @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addAll" }) Set<Sequence> getAllPrimitiveSequences(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ComponentManager this) {
         Set<Sequence> result = new LinkedHashSet<>();
         if (classLiterals != null) {
             result.addAll(classLiterals.getAllSequences());
@@ -269,11 +268,11 @@ public class ComponentManager {
     }
 
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.gralComponents" }, methods = { "getTypeInstantiator" })
-    @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeInstantiator getTypeInstantiator() {
+    @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeInstantiator getTypeInstantiator(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ComponentManager this) {
         return gralComponents.getTypeInstantiator();
     }
 
-    public void log(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ComponentManager this) {
+    public void log(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getTypeInstantiator" }) ComponentManager this) {
         if (!Log.isLoggingOn()) {
             return;
         }

@@ -156,7 +156,7 @@ public final class Statement {
      * @return true if operation is method-call-like, and false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean isMethodCall() {
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean isMethodCall(@org.checkerframework.checker.mustcall.qual.MustCall({}) Statement this) {
         return operation.isMessage();
     }
 

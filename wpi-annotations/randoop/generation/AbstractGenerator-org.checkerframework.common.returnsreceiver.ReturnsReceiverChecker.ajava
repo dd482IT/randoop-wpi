@@ -169,7 +169,7 @@ public abstract class AbstractGenerator {
      *     {@code new ComponentManager()}.
      * @param stopper optional, additional stopping criterion for the generator. Can be null.
      */
-    protected AbstractGenerator(List<TypedOperation> operations, GenInputsAbstract.Limits limits, ComponentManager componentManager, IStopper stopper) {
+    protected AbstractGenerator( List<TypedOperation> operations, GenInputsAbstract. Limits limits,  ComponentManager componentManager,  IStopper stopper) {
         assert operations != null;
         this.limits = limits;
         this.operations = operations;
@@ -249,7 +249,7 @@ public abstract class AbstractGenerator {
      * @return a test sequence, may be null
      */
     @org.checkerframework.dataflow.qual.Pure
-    public abstract ExecutableSequence step( AbstractGenerator this);
+    public abstract  ExecutableSequence step( AbstractGenerator this);
 
     /**
      * Returns the count of attempts to generate a sequence so far.
@@ -267,7 +267,7 @@ public abstract class AbstractGenerator {
      * @return the number of sequences generated
      */
     @org.checkerframework.dataflow.qual.Pure
-    public abstract int numGeneratedSequences( AbstractGenerator this);
+    public abstract   int numGeneratedSequences( AbstractGenerator this);
 
     /**
      * Returns the count of generated sequence currently for output.
@@ -370,7 +370,7 @@ public abstract class AbstractGenerator {
      * @return all generated sequences
      */
     @org.checkerframework.dataflow.qual.Pure
-    public abstract LinkedHashSet<Sequence> getAllSequences( AbstractGenerator this);
+    public abstract  LinkedHashSet<Sequence> getAllSequences( AbstractGenerator this);
 
     /**
      * Returns the generated regression test sequences for output. Filters out subsequences.
@@ -421,7 +421,7 @@ public abstract class AbstractGenerator {
      *
      * @param s the current sequence
      */
-    void setCurrentSequence(Sequence s) {
+    void setCurrentSequence( AbstractGenerator this,  Sequence s) {
         currSeq = s;
     }
 
@@ -430,7 +430,7 @@ public abstract class AbstractGenerator {
      *
      * @param logger the operation history logger to use for this generator
      */
-    public void setOperationHistoryLogger(OperationHistoryLogInterface logger) {
+    public void setOperationHistoryLogger( AbstractGenerator this,  OperationHistoryLogInterface logger) {
         operationHistory = logger;
     }
 

@@ -170,7 +170,7 @@ public final class Util {
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "substring" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "keySet" })
-    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String replaceWords(String text, Map<String, String> replacements) {
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String replaceWords(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String text, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Map<String, String> replacements) {
         Pattern namesPattern = Pattern.compile("\\b(" + StringsPlume.join("|", replacements.keySet().toArray()) + ")\\b");
         Matcher namesMatcher = namesPattern.matcher(text);
         StringBuilder b = new StringBuilder();

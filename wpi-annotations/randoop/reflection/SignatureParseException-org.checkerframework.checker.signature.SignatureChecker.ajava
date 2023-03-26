@@ -1,0 +1,20 @@
+package randoop.reflection;
+
+/**
+ * Represents exception when parsing signature strings using {@link SignatureParser}.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class SignatureParseException extends Exception {
+
+    private static final  @org.checkerframework.checker.signature.qual.SignatureUnknown long serialVersionUID = 1L;
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public SignatureParseException(String string) {
+        super(string);
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public SignatureParseException(String string, Throwable cause) {
+        super(string, cause);
+    }
+}

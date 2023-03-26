@@ -8,7 +8,7 @@ import randoop.main.RandoopBug;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
 public class StringTooLongException extends RandoopBug {
 
-    private static final long serialVersionUID = 20200205;
+    private static final  @org.checkerframework.checker.mustcall.qual.MustCall({}) long serialVersionUID = 20200205;
 
     /**
      * Create a StringTooLongException.
@@ -16,7 +16,8 @@ public class StringTooLongException extends RandoopBug {
      * @param s the long string (not the message as is customary for exception constructors)
      * @param cause the underlying exception, if any
      */
-    public StringTooLongException(String s, Exception cause) {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public StringTooLongException(@org.checkerframework.checker.mustcall.qual.MustCall({}) String s, Exception cause) {
         super(String.format("String's formatted length is too long, length = %s: %s...%s", s.length(), s.substring(0, 48), s.substring(s.length() - 48)), cause);
     }
 
@@ -25,6 +26,7 @@ public class StringTooLongException extends RandoopBug {
      *
      * @param s the long string (not the message as is customary for exception constructors)
      */
+    @org.checkerframework.dataflow.qual.SideEffectFree
     public StringTooLongException(@org.checkerframework.checker.mustcall.qual.MustCall({}) String s) {
         this(s, null);
     }

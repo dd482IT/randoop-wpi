@@ -62,6 +62,7 @@ public class Variable implements Comparable<Variable> {
      *
      * @return the type of this variable
      */
+    @org.checkerframework.dataflow.qual.Pure
     public @org.checkerframework.checker.signature.qual.SignatureUnknown Type getType(@org.checkerframework.checker.signature.qual.SignatureUnknown Variable this) {
         return this.sequence.getStatement(index).getOutputType();
     }
@@ -71,6 +72,7 @@ public class Variable implements Comparable<Variable> {
      *
      * @return the statement to which this variable belongs
      */
+    @org.checkerframework.dataflow.qual.Pure
     public @org.checkerframework.checker.signature.qual.SignatureUnknown Statement getDeclaringStatement(@org.checkerframework.checker.signature.qual.SignatureUnknown Variable this) {
         return this.sequence.getStatement(index);
     }

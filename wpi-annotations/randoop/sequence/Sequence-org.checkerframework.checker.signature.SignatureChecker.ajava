@@ -108,7 +108,7 @@ public final class Sequence {
      * @param c the type for initialized variable
      * @return the sequence consisting of the initialization
      */
-    public static @org.checkerframework.checker.signature.qual.SignatureUnknown Sequence zero(Type c) {
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown Sequence zero(@org.checkerframework.checker.signature.qual.SignatureUnknown Type c) {
         return new Sequence().extend(TypedOperation.createNullOrZeroInitializationForType(c), new ArrayList<Variable>(0));
     }
 
@@ -118,7 +118,7 @@ public final class Sequence {
      * @param value non-null reference to a primitive or String value
      * @return a {@link Sequence} consisting of a statement created with the object
      */
-    public static @org.checkerframework.checker.signature.qual.SignatureUnknown Sequence createSequenceForPrimitive(Object value) {
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown Sequence createSequenceForPrimitive(@org.checkerframework.checker.signature.qual.SignatureUnknown Object value) {
         if (value == null)
             throw new IllegalArgumentException("value is null");
         Type type = Type.forValue(value);
@@ -142,13 +142,13 @@ public final class Sequence {
      * @param indexes the indices of the inputs to the operation; same length as inputSequences
      * @return the sequence that applies the operation to the given inputs
      */
-    public static @org.checkerframework.checker.signature.qual.SignatureUnknown Sequence createSequence(TypedOperation operation, List<Sequence> inputSequences, List<Integer> indexes) {
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown Sequence createSequence(@org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation operation, @org.checkerframework.checker.signature.qual.SignatureUnknown List<Sequence> inputSequences, @org.checkerframework.checker.signature.qual.SignatureUnknown List<Integer> indexes) {
         Sequence inputSequence = Sequence.concatenate(inputSequences);
         List<Variable> inputs = CollectionsPlume.mapList(inputSequence::getVariable, indexes);
         return inputSequence.extend(operation, inputs);
     }
 
-    public static @org.checkerframework.checker.signature.qual.SignatureUnknown Sequence createSequence(TypedOperation operation, TupleSequence elementsSequence) {
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown Sequence createSequence(@org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation operation, @org.checkerframework.checker.signature.qual.SignatureUnknown TupleSequence elementsSequence) {
         List<Variable> inputs = CollectionsPlume.mapList(elementsSequence.sequence::getVariable, elementsSequence.getOutputIndices());
         return elementsSequence.sequence.extend(operation, inputs);
     }
@@ -240,7 +240,7 @@ public final class Sequence {
      * @return the number of method calls in this sequence
      */
     @org.checkerframework.dataflow.qual.Pure
-    public final  @org.checkerframework.checker.signature.qual.SignatureUnknown int numMethodCalls() {
+    public final  @org.checkerframework.checker.signature.qual.SignatureUnknown int numMethodCalls(@org.checkerframework.checker.signature.qual.SignatureUnknown Sequence this) {
         int result = 0;
         for (int i = 0; i < statements.size(); i++) {
             Statement statement = statements.get(i);
@@ -268,7 +268,7 @@ public final class Sequence {
      * @return the variables used in the last statement of this sequence
      */
     @org.checkerframework.dataflow.qual.Pure
-    @org.checkerframework.checker.signature.qual.SignatureUnknown List<Variable> getVariablesOfLastStatement() {
+    @org.checkerframework.checker.signature.qual.SignatureUnknown List<Variable> getVariablesOfLastStatement(@org.checkerframework.checker.signature.qual.SignatureUnknown Sequence this) {
         return this.lastStatementVariables;
     }
 
@@ -280,7 +280,7 @@ public final class Sequence {
      * @return the types of the variables in the last statement of this sequence
      */
     @org.checkerframework.dataflow.qual.Pure
-    @org.checkerframework.checker.signature.qual.SignatureUnknown List<Type> getTypesForLastStatement() {
+    @org.checkerframework.checker.signature.qual.SignatureUnknown List<Type> getTypesForLastStatement(@org.checkerframework.checker.signature.qual.SignatureUnknown Sequence this) {
         return this.lastStatementTypes;
     }
 
@@ -372,7 +372,7 @@ public final class Sequence {
     private @org.checkerframework.checker.signature.qual.SignatureUnknown BitSet activeFlags;
 
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasActiveFlags() {
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasActiveFlags(@org.checkerframework.checker.signature.qual.SignatureUnknown Sequence this) {
         return !activeFlags.isEmpty();
     }
 
@@ -385,11 +385,11 @@ public final class Sequence {
         activeFlags.set(0, this.size());
     }
 
-    public void clearAllActiveFlags() {
+    public void clearAllActiveFlags(@org.checkerframework.checker.signature.qual.SignatureUnknown Sequence this) {
         activeFlags.clear(0, this.size());
     }
 
-    public void clearActiveFlag(int i) {
+    public void clearActiveFlag(@org.checkerframework.checker.signature.qual.SignatureUnknown Sequence this,  @org.checkerframework.checker.signature.qual.SignatureUnknown int i) {
         activeFlags.clear(i);
     }
 
@@ -762,7 +762,7 @@ public final class Sequence {
      * @param i the statement index
      * @return the absolute indices for the input variables in the given statement
      */
-    public @org.checkerframework.checker.signature.qual.SignatureUnknown List<Integer> getInputsAsAbsoluteIndices(int i) {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown List<Integer> getInputsAsAbsoluteIndices(@org.checkerframework.checker.signature.qual.SignatureUnknown Sequence this,  @org.checkerframework.checker.signature.qual.SignatureUnknown int i) {
         return CollectionsPlume.mapList((RelativeNegativeIndex relIndex) -> getVariableForInput(i, relIndex).index, this.statements.get(i).inputs);
     }
 
@@ -971,7 +971,8 @@ public final class Sequence {
      *
      * @return true if this sequence is a single primitive initialization statement, false otherwise
      */
-    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isNonreceiver() {
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isNonreceiver(@org.checkerframework.checker.signature.qual.SignatureUnknown Sequence this) {
         return (size() == 1 && getStatement(0).isNonreceivingInitialization());
     }
 
@@ -982,7 +983,7 @@ public final class Sequence {
      * @param classNames the regular expression to test class names
      * @return true if any statement has operation with matching declaring class, false otherwise
      */
-    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasUseOfMatchingClass(Pattern classNames) {
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasUseOfMatchingClass(@org.checkerframework.checker.signature.qual.SignatureUnknown Sequence this, @org.checkerframework.checker.signature.qual.SignatureUnknown Pattern classNames) {
         for (int i = 0; i < statements.size(); i++) {
             // SimpleList has no iterator
             Type declaringType = statements.get(i).getDeclaringClass();
@@ -1003,7 +1004,7 @@ public final class Sequence {
      * @param index the statement position in this sequence
      * @return the sequence containing the index position
      */
-    @org.checkerframework.checker.signature.qual.SignatureUnknown Sequence getSubsequence(int index) {
+    @org.checkerframework.checker.signature.qual.SignatureUnknown Sequence getSubsequence(@org.checkerframework.checker.signature.qual.SignatureUnknown Sequence this,  @org.checkerframework.checker.signature.qual.SignatureUnknown int index) {
         return new Sequence(statements.getSublist(index));
     }
 

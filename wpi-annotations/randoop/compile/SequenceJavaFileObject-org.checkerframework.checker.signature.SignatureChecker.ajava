@@ -20,12 +20,12 @@ class SequenceJavaFileObject extends SimpleJavaFileObject {
     /**
      * The source code text.
      */
-    private final String source;
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown String source;
 
     /**
      * The stream for reading the source code.
      */
-    private ByteArrayOutputStream byteStream;
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown ByteArrayOutputStream byteStream;
 
     /**
      * Creates a {@link SequenceJavaFileObject} for the given class name and kind.
@@ -33,6 +33,7 @@ class SequenceJavaFileObject extends SimpleJavaFileObject {
      * @param classFileName the name of the class
      * @param kind either {@code SOURCE} or {@code CLASS}
      */
+    @org.checkerframework.framework.qual.EnsuresQualifier(expression = { "this.source" }, qualifier = org.checkerframework.checker.signature.qual.SignatureBottom.class)
     SequenceJavaFileObject(final String classFileName, final Kind kind) {
         super(toURI(classFileName), kind);
         this.source = null;
@@ -49,18 +50,19 @@ class SequenceJavaFileObject extends SimpleJavaFileObject {
         this.source = sequenceClass;
     }
 
-    public CharSequence getCharContent(final boolean ignoreEncodingErrors) throws UnsupportedOperationException {
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown CharSequence getCharContent(@org.checkerframework.checker.signature.qual.SignatureUnknown SequenceJavaFileObject this, final  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean ignoreEncodingErrors) throws UnsupportedOperationException {
         if (source == null) {
             throw new UnsupportedOperationException("getCharContent()");
         }
         return source;
     }
 
-    public InputStream openInputStream() {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown InputStream openInputStream(@org.checkerframework.checker.signature.qual.SignatureUnknown SequenceJavaFileObject this) {
         return new ByteArrayInputStream(getByteCode());
     }
 
-    public OutputStream openOutputStream() {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown OutputStream openOutputStream(@org.checkerframework.checker.signature.qual.SignatureUnknown SequenceJavaFileObject this) {
         byteStream = new ByteArrayOutputStream();
         return byteStream;
     }
@@ -70,7 +72,7 @@ class SequenceJavaFileObject extends SimpleJavaFileObject {
      *
      * @return the byte array for the byte stream
      */
-    byte[] getByteCode() {
+     @org.checkerframework.checker.signature.qual.SignatureUnknown byte @org.checkerframework.checker.signature.qual.SignatureUnknown [] getByteCode(@org.checkerframework.checker.signature.qual.SignatureUnknown SequenceJavaFileObject this) {
         return byteStream.toByteArray();
     }
 }

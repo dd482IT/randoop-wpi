@@ -18,29 +18,29 @@ import randoop.main.RandoopBug;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
 public class ListOfLists<E> implements SimpleList<E>, Serializable {
 
-    private static final long serialVersionUID = -3307714585442970263L;
+    private static final  @org.checkerframework.checker.signature.qual.SignatureUnknown long serialVersionUID = -3307714585442970263L;
 
     /**
      * The lists themselves.
      */
-    public final List<SimpleList<E>> lists;
+    public final @org.checkerframework.checker.signature.qual.SignatureUnknown List<SimpleList<E>> lists;
 
     /**
      * The i-th value is the number of elements in the sublists up to the i-th one, inclusive.
      */
-    private int[] cumulativeSize;
+    private  @org.checkerframework.checker.signature.qual.SignatureUnknown int @org.checkerframework.checker.signature.qual.SignatureUnknown [] cumulativeSize;
 
     /**
      * The size of this collection.
      */
-    private int totalelements;
+    private  @org.checkerframework.checker.signature.qual.SignatureUnknown int totalelements;
 
     /**
      * Create a ListOfLists from ... a list of lists.
      *
      * @param lists the lists that will compose the newly-created ListOfLists
      */
-    public ListOfLists(SimpleList<E>... lists) {
+    public ListOfLists(@org.checkerframework.checker.signature.qual.SignatureUnknown SimpleList<E>@org.checkerframework.checker.signature.qual.SignatureUnknown ... lists) {
         this.lists = Arrays.asList(lists);
         this.cumulativeSize = new int[lists.length];
         this.totalelements = 0;
@@ -67,15 +67,18 @@ public class ListOfLists<E> implements SimpleList<E>, Serializable {
         }
     }
 
-    public int size() {
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int size(@org.checkerframework.checker.signature.qual.SignatureUnknown ListOfLists<E> this) {
         return this.totalelements;
     }
 
-    public boolean isEmpty() {
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isEmpty(@org.checkerframework.checker.signature.qual.SignatureUnknown ListOfLists<E> this) {
         return this.totalelements == 0;
     }
 
-    public E get(int index) {
+    @org.checkerframework.dataflow.qual.Pure
+    public E get(@org.checkerframework.checker.signature.qual.SignatureUnknown ListOfLists<E> this,  @org.checkerframework.checker.signature.qual.SignatureUnknown int index) {
         if (index < 0 || index > this.totalelements - 1) {
             throw new IllegalArgumentException("index must be between 0 and size()-1");
         }
@@ -89,7 +92,8 @@ public class ListOfLists<E> implements SimpleList<E>, Serializable {
         throw new RandoopBug("Indexing error in ListOfLists");
     }
 
-    public SimpleList<E> getSublist(int index) {
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown SimpleList<E> getSublist(@org.checkerframework.checker.signature.qual.SignatureUnknown ListOfLists<E> this,  @org.checkerframework.checker.signature.qual.SignatureUnknown int index) {
         if (index < 0 || index > this.totalelements - 1) {
             throw new IllegalArgumentException("index must be between 0 and size()-1");
         }
@@ -104,7 +108,7 @@ public class ListOfLists<E> implements SimpleList<E>, Serializable {
         throw new RandoopBug("indexing error in ListOfLists");
     }
 
-    public List<E> toJDKList() {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown List<E> toJDKList(@org.checkerframework.checker.signature.qual.SignatureUnknown ListOfLists<E> this) {
         List<E> result = new ArrayList<>();
         for (SimpleList<E> l : lists) {
             result.addAll(l.toJDKList());
@@ -112,7 +116,8 @@ public class ListOfLists<E> implements SimpleList<E>, Serializable {
         return result;
     }
 
-    public String toString() {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toString(@org.checkerframework.checker.signature.qual.SignatureUnknown ListOfLists<E> this) {
         return toJDKList().toString();
     }
 }

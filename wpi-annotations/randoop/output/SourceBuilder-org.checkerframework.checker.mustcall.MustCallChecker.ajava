@@ -1,0 +1,44 @@
+package randoop.output;
+
+import java.util.List;
+import org.plumelib.util.StringsPlume;
+import randoop.Globals;
+
+/**
+ * Common behavior for source builder classes.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+abstract class SourceBuilder {
+
+    /**
+     * Creates a line from the given tokens with the current indentation and separated by spaces.
+     *
+     * @param toks the tokens to include on the line
+     * @return the {@code String} constructed from the tokens
+     */
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    @org.checkerframework.checker.mustcall.qual.MustCall({}) String createLine(String... toks) {
+        return StringsPlume.join(" ", toks);
+    }
+
+    /**
+     * Return the source for this declaration as lines of {@code Strings}
+     *
+     * @return the list of lines in this declaration
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    abstract List<String> toLines(@org.checkerframework.checker.mustcall.qual.MustCall({}) SourceBuilder this);
+
+    /**
+     * Return this declaration as a {@code String}.
+     *
+     * @return the {@code String} for this declaration
+     */
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toString(@org.checkerframework.checker.mustcall.qual.MustCall({}) SourceBuilder this) {
+        StringBuilder builder = new StringBuilder();
+        for (String line : toLines()) {
+            builder.append(line).append(Globals.lineSep);
+        }
+        return builder.toString();
+    }
+}

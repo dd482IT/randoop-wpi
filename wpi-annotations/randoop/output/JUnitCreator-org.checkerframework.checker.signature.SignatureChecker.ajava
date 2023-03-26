@@ -138,7 +138,7 @@ public class JUnitCreator {
      */
     private static final @org.checkerframework.checker.signature.qual.Identifier String AFTER_EACH_METHOD = "teardown";
 
-    public static @org.checkerframework.checker.signature.qual.SignatureUnknown JUnitCreator getTestCreator(String junit_package_name, BlockStmt beforeAllBody, BlockStmt afterAllBody, BlockStmt beforeEachBody, BlockStmt afterEachBody) {
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown JUnitCreator getTestCreator(@org.checkerframework.checker.signature.qual.SignatureUnknown String junit_package_name, @org.checkerframework.checker.signature.qual.SignatureUnknown BlockStmt beforeAllBody, @org.checkerframework.checker.signature.qual.SignatureUnknown BlockStmt afterAllBody, @org.checkerframework.checker.signature.qual.SignatureUnknown BlockStmt beforeEachBody, @org.checkerframework.checker.signature.qual.SignatureUnknown BlockStmt afterEachBody) {
         assert !Objects.equals(junit_package_name, "");
         JUnitCreator junitCreator = new JUnitCreator(junit_package_name);
         if (beforeAllBody != null) {
@@ -210,7 +210,7 @@ public class JUnitCreator {
      * @param sequences the contents of the test methods
      * @return the CompilationUnit for a test class
      */
-    public @org.checkerframework.checker.signature.qual.SignatureUnknown CompilationUnit createTestClass(@org.checkerframework.checker.signature.qual.SignatureUnknown JUnitCreator this, @org.checkerframework.checker.signature.qual.Identifier String testClassName, @org.checkerframework.checker.signature.qual.SignatureUnknown NameGenerator methodNameGen, @org.checkerframework.checker.signature.qual.SignatureUnknown List<ExecutableSequence> sequences) {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown CompilationUnit createTestClass(@org.checkerframework.checker.signature.qual.SignatureUnknown JUnitCreator this, @org.checkerframework.checker.signature.qual.SignatureUnknown String testClassName, @org.checkerframework.checker.signature.qual.SignatureUnknown NameGenerator methodNameGen, @org.checkerframework.checker.signature.qual.SignatureUnknown List<ExecutableSequence> sequences) {
         this.classMethodCounts.put(testClassName, sequences.size());
         CompilationUnit compilationUnit = new CompilationUnit();
         if (packageName != null) {
@@ -293,7 +293,7 @@ public class JUnitCreator {
      * @param testSequence the {@link ExecutableSequence} test sequence
      * @return the {@code String} for the test method
      */
-    private @org.checkerframework.checker.signature.qual.SignatureUnknown MethodDeclaration createTestMethod(@org.checkerframework.checker.signature.qual.SignatureUnknown JUnitCreator this, @org.checkerframework.checker.signature.qual.Identifier String className, @org.checkerframework.checker.signature.qual.Identifier String methodName, @org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence testSequence) {
+    private @org.checkerframework.checker.signature.qual.SignatureUnknown MethodDeclaration createTestMethod(@org.checkerframework.checker.signature.qual.SignatureUnknown JUnitCreator this, @org.checkerframework.checker.signature.qual.SignatureUnknown String className, @org.checkerframework.checker.signature.qual.Identifier String methodName, @org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence testSequence) {
         MethodDeclaration method = new MethodDeclaration(PUBLIC, new VoidType(), methodName);
         NodeList<AnnotationExpr> annotations = new NodeList<>(new MarkerAnnotationExpr(new Name("Test")));
         method.setAnnotations(annotations);
@@ -357,7 +357,7 @@ public class JUnitCreator {
      * @param testClassNames the names of the test classes in the suite
      * @return the {@code String} with the declaration for the suite class
      */
-    public @org.checkerframework.checker.signature.qual.SignatureUnknown String createTestSuite(String suiteClassName, Iterable<String> testClassNames) {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String createTestSuite(@org.checkerframework.checker.signature.qual.SignatureUnknown JUnitCreator this, @org.checkerframework.checker.signature.qual.SignatureUnknown String suiteClassName, @org.checkerframework.checker.signature.qual.SignatureUnknown Iterable<String> testClassNames) {
         CompilationUnit compilationUnit = new CompilationUnit();
         if (packageName != null) {
             compilationUnit.setPackageDeclaration(new PackageDeclaration(new Name(packageName)));
@@ -388,7 +388,7 @@ public class JUnitCreator {
      * @param numMethods the number of methods; used for zero-padding
      * @return the test driver class as a {@code String}
      */
-    public @org.checkerframework.checker.signature.qual.SignatureUnknown String createTestDriver(String driverName, Iterable<String> testClassNames, int numMethods) {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String createTestDriver(@org.checkerframework.checker.signature.qual.SignatureUnknown JUnitCreator this, @org.checkerframework.checker.signature.qual.SignatureUnknown String driverName, @org.checkerframework.checker.signature.qual.SignatureUnknown Iterable<String> testClassNames,  @org.checkerframework.checker.signature.qual.SignatureUnknown int numMethods) {
         CompilationUnit compilationUnit = new CompilationUnit();
         if (packageName != null) {
             compilationUnit.setPackageDeclaration(new PackageDeclaration(new Name(packageName)));
@@ -473,7 +473,7 @@ public class JUnitCreator {
         return compilationUnit.toString();
     }
 
-    public static @org.checkerframework.checker.signature.qual.SignatureUnknown BlockStmt parseFixture(List<String> bodyText) throws ParseException {
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown BlockStmt parseFixture(@org.checkerframework.checker.signature.qual.SignatureUnknown List<String> bodyText) throws ParseException {
         if (bodyText == null) {
             return null;
         }

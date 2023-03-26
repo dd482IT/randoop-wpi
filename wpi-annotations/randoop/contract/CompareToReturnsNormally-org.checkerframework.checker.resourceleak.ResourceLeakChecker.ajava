@@ -21,7 +21,7 @@ public class CompareToReturnsNormally extends ObjectContract {
     }
 
     @org.checkerframework.dataflow.qual.SideEffectFree
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToReturnsNormally this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objects) {
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getInputTypes" }) CompareToReturnsNormally this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objects) {
         assert objects != null && objects.length == 1;
         Object o = objects[0];
         assert o != null;

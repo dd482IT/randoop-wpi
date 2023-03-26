@@ -1,0 +1,19 @@
+package randoop.sequence;
+
+/**
+ * For a given package P, PackageLiterals maps P (if present) to a collection of literals
+ * (represented as single-element sequences) that can be used as inputs to classes in the given
+ * package.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class PackageLiterals extends MappedSequences<Package> {
+
+    public void addSequence(@org.checkerframework.checker.signature.qual.SignatureUnknown PackageLiterals this, @org.checkerframework.checker.signature.qual.SignatureUnknown Package key, @org.checkerframework.checker.signature.qual.SignatureUnknown Sequence seq) {
+        if (seq == null)
+            throw new IllegalArgumentException("seq is null");
+        if (!seq.isNonreceiver()) {
+            throw new IllegalArgumentException("seq is not a primitive sequence");
+        }
+        super.addSequence(key, seq);
+    }
+}

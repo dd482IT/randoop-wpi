@@ -20,12 +20,12 @@ class SequenceJavaFileObject extends SimpleJavaFileObject {
     /**
      * The source code text.
      */
-    private final String source;
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String source;
 
     /**
      * The stream for reading the source code.
      */
-    private ByteArrayOutputStream byteStream;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ByteArrayOutputStream byteStream;
 
     /**
      * Creates a {@link SequenceJavaFileObject} for the given class name and kind.
@@ -33,6 +33,7 @@ class SequenceJavaFileObject extends SimpleJavaFileObject {
      * @param classFileName the name of the class
      * @param kind either {@code SOURCE} or {@code CLASS}
      */
+    @org.checkerframework.framework.qual.EnsuresQualifier(expression = { "this.source" }, qualifier = org.checkerframework.checker.calledmethods.qual.CalledMethodsBottom.class)
     SequenceJavaFileObject(final String classFileName, final Kind kind) {
         super(toURI(classFileName), kind);
         this.source = null;
@@ -49,18 +50,21 @@ class SequenceJavaFileObject extends SimpleJavaFileObject {
         this.source = sequenceClass;
     }
 
-    public CharSequence getCharContent(final boolean ignoreEncodingErrors) throws UnsupportedOperationException {
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CharSequence getCharContent(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SequenceJavaFileObject this, final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean ignoreEncodingErrors) throws UnsupportedOperationException {
         if (source == null) {
             throw new UnsupportedOperationException("getCharContent()");
         }
         return source;
     }
 
-    public InputStream openInputStream() {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getByteCode" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.byteStream" }, methods = { "toByteArray" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InputStream openInputStream(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SequenceJavaFileObject this) {
         return new ByteArrayInputStream(getByteCode());
     }
 
-    public OutputStream openOutputStream() {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OutputStream openOutputStream(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SequenceJavaFileObject this) {
         byteStream = new ByteArrayOutputStream();
         return byteStream;
     }
@@ -70,7 +74,8 @@ class SequenceJavaFileObject extends SimpleJavaFileObject {
      *
      * @return the byte array for the byte stream
      */
-    byte[] getByteCode() {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.byteStream" }, methods = { "toByteArray" })
+     @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) byte @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) [] getByteCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SequenceJavaFileObject this) {
         return byteStream.toByteArray();
     }
 }

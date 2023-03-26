@@ -19,7 +19,7 @@ import randoop.types.Type;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
 public class AccessibleField {
 
-    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getGenericType" }) Field field;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getName" }) Field field;
 
     private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ClassOrInterfaceType declaringType;
 
@@ -33,8 +33,8 @@ public class AccessibleField {
      * @param field the field
      * @param declaringType the type for the declaring class of this field
      */
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getGenericType", "getModifiers" })
-    public AccessibleField(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getGenericType" }) Field field, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ClassOrInterfaceType declaringType) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getModifiers", "getName" })
+    public AccessibleField(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getName" }) Field field, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ClassOrInterfaceType declaringType) {
         this.field = field;
         this.field.setAccessible(true);
         int mods = field.getModifiers() & Modifier.fieldModifiers();
@@ -48,7 +48,6 @@ public class AccessibleField {
      *
      * @return unqualified name of the field
      */
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.field" }, methods = { "getGenericType", "getName" })
     @org.checkerframework.dataflow.qual.SideEffectFree
     public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isStatic" }) AccessibleField this) {
         return field.getName();
@@ -80,7 +79,6 @@ public class AccessibleField {
      * @return a String for type-field pair describing field
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getBinaryName" })
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.field" }, methods = { "getGenericType", "getName" })
     @org.checkerframework.dataflow.qual.SideEffectFree
     public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toParsableString(Type declaringType) {
         return declaringType.getBinaryName() + "." + field.getName();
@@ -89,7 +87,7 @@ public class AccessibleField {
     /**
      * Returns string representation of underlying {@link java.lang.reflect.Field} object.
      */
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.field" }, methods = { "getGenericType", "toString" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.field" }, methods = { "getName", "toString" })
     @org.checkerframework.dataflow.qual.SideEffectFree
     public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AccessibleField this) {
         return field.toString();
@@ -107,7 +105,7 @@ public class AccessibleField {
         return this.field.equals(f.field);
     }
 
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.field" }, methods = { "getGenericType", "hashCode" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.field" }, methods = { "getName", "hashCode" })
     @org.checkerframework.dataflow.qual.Pure
     public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int hashCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AccessibleField this) {
         return field.hashCode();
@@ -122,7 +120,8 @@ public class AccessibleField {
      * @throws RandoopBug if field access throws {@link IllegalArgumentException} or {@link
      *     IllegalAccessException}.
      */
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.field" }, methods = { "get", "getGenericType" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.field" }, methods = { "get", "getName" })
+    @org.checkerframework.dataflow.qual.SideEffectFree
     public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object getValue(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isStatic" }) AccessibleField this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object object) {
         Object ret;
         try {
@@ -184,7 +183,7 @@ public class AccessibleField {
     }
 
     @org.checkerframework.dataflow.qual.Pure
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getGenericType" }) Field getRawField(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getDeclaringType" }) AccessibleField this) {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getName" }) Field getRawField(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getDeclaringType" }) AccessibleField this) {
         return field;
     }
 

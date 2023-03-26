@@ -1,0 +1,30 @@
+package randoop;
+
+import randoop.sequence.ExecutableSequence;
+
+/**
+ * A visitor that does nothing and adds no checks.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public final class DummyVisitor implements ExecutionVisitor {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void initialize( DummyVisitor this,  ExecutableSequence eseq) {
+        // do nothing.
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitBeforeStatement( DummyVisitor this,  ExecutableSequence eseq,   int i) {
+        // do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitAfterStatement( DummyVisitor this,  ExecutableSequence eseq,   int i) {
+        // do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitAfterSequence( DummyVisitor this,  ExecutableSequence eseq) {
+        // do nothing
+    }
+}

@@ -65,12 +65,12 @@ public abstract class CommandHandler {
     }
 
     @org.checkerframework.dataflow.qual.SideEffectFree
-    public final   boolean handles(String command) {
+    public final   boolean handles( CommandHandler this,  String command) {
         return command != null && command.toUpperCase().equals(fcommand.toUpperCase());
     }
 
     @org.checkerframework.dataflow.qual.Pure
-    public abstract   boolean handle(String[] args);
+    public abstract   boolean handle( CommandHandler this,  String  [] args);
 
     /**
      * Prints out formatted text in (google code) Wiki format.
@@ -127,7 +127,7 @@ public abstract class CommandHandler {
         }
     }
 
-    public final void usageMessage(PrintStream out) {
+    public final void usageMessage( CommandHandler this,  PrintStream out) {
         out.println();
         if (!fcommand.trim().equals("")) {
             out.print(Util.hangingParagraph("COMMAND: " + fcommand, Globals.COLWIDTH, Globals.INDENTWIDTH));

@@ -77,51 +77,52 @@ public class OperationModel {
     /**
      * The set of class declaration types for this model.
      */
-    private Set<ClassOrInterfaceType> classTypes;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<ClassOrInterfaceType> classTypes;
 
     /**
      * The set of input types for this model.
      */
-    private Set<Type> inputTypes;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<Type> inputTypes;
 
     /**
      * The set of classes used as goals in the covered-class test filter.
      */
-    private final LinkedHashSet<Class<?>> coveredClassesGoal;
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) LinkedHashSet<Class<?>> coveredClassesGoal;
 
     /**
      * Map for singleton sequences of literals extracted from classes.
      */
-    private MultiMap<ClassOrInterfaceType, Sequence> classLiteralMap;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiMap<ClassOrInterfaceType, Sequence> classLiteralMap;
 
     /**
      * Set of singleton sequences for values from TestValue annotated fields.
      */
-    private Set<Sequence> annotatedTestValues;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<Sequence> annotatedTestValues;
 
     /**
      * Set of object contracts used to generate tests.
      */
-    private ContractSet contracts;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ContractSet contracts;
 
     /**
      * Set of concrete operations extracted from classes.
      */
-    private final Set<TypedOperation> operations;
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<TypedOperation> operations;
 
     /**
      * For debugging only.
      */
-    private List<Pattern> omitMethods;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<Pattern> omitMethods;
 
     /**
      * User-supplied predicate for methods that should not be used during test generation.
      */
-    private OmitMethodsPredicate omitMethodsPredicate;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OmitMethodsPredicate omitMethodsPredicate;
 
     /**
      * Create an empty model of test context.
      */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.contracts" }, methods = { "add" })
     private OperationModel() {
         // TreeSet here for deterministic coverage in the systemTest runNaiveCollectionsTest()
         classTypes = new TreeSet<>();
@@ -175,7 +176,10 @@ public class OperationModel {
      * @throws SignatureParseException if a method signature is ill-formed
      * @throws NoSuchMethodException if an attempt is made to load a non-existent method
      */
-    public static OperationModel createModel(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AccessibilityPredicate accessibility, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReflectionPredicate reflectionPredicate, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<Pattern> omitMethods, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "iterator" }) Set<String> classnames, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<String> coveredClassesGoalNames, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ClassNameErrorHandler errorHandler, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<String> literalsFileList, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SpecificationCollection operationSpecifications) throws SignatureParseException, NoSuchMethodException {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#4" }, methods = { "iterator" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#5" }, methods = { "iterator" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#7" }, methods = { "contains" })
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addClassTypes", "addObjectConstructor", "addOperationsFromClasses", "getOperationsFromFile" }) OperationModel createModel(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AccessibilityPredicate accessibility, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReflectionPredicate reflectionPredicate, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<Pattern> omitMethods, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<String> classnames, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<String> coveredClassesGoalNames, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ClassNameErrorHandler errorHandler, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<String> literalsFileList, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SpecificationCollection operationSpecifications) throws SignatureParseException, NoSuchMethodException {
         OperationModel model = new OperationModel();
         // for debugging only
         model.omitMethods = omitMethods;
@@ -203,7 +207,10 @@ public class OperationModel {
      * @throws SignatureParseException if a method signature is ill-formed
      * @throws NoSuchMethodException if an attempt is made to load a non-existent method
      */
-    static OperationModel createModel(AccessibilityPredicate accessibility, ReflectionPredicate reflectionPredicate, Set<String> classnames, Set<String> coveredClassnames, ClassNameErrorHandler errorHandler, List<String> literalsFileList) throws NoSuchMethodException, SignatureParseException {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#3" }, methods = { "iterator" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#4" }, methods = { "iterator" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#6" }, methods = { "contains" })
+    static @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addClassTypes", "addObjectConstructor", "addOperationsFromClasses", "getOperationsFromFile" }) OperationModel createModel(AccessibilityPredicate accessibility, ReflectionPredicate reflectionPredicate, Set<String> classnames, Set<String> coveredClassnames, ClassNameErrorHandler errorHandler, List<String> literalsFileList) throws NoSuchMethodException, SignatureParseException {
         return createModel(accessibility, reflectionPredicate, new ArrayList<Pattern>(0), classnames, coveredClassnames, errorHandler, literalsFileList, null);
     }
 
@@ -224,7 +231,10 @@ public class OperationModel {
      * @throws SignatureParseException if a method signature is ill-formed
      * @throws NoSuchMethodException if an attempt is made to load a non-existent method
      */
-    public static OperationModel createModel(AccessibilityPredicate accessibility, ReflectionPredicate reflectionPredicate, List<Pattern> omitMethods, Set<String> classnames, Set<String> coveredClassnames, ClassNameErrorHandler errorHandler, List<String> literalsFileList) throws NoSuchMethodException, SignatureParseException {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#4" }, methods = { "iterator" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#5" }, methods = { "iterator" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#7" }, methods = { "contains" })
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addClassTypes", "addObjectConstructor", "addOperationsFromClasses", "getOperationsFromFile" }) OperationModel createModel(AccessibilityPredicate accessibility, ReflectionPredicate reflectionPredicate, List<Pattern> omitMethods, Set<String> classnames, Set<String> coveredClassnames, ClassNameErrorHandler errorHandler, List<String> literalsFileList) throws NoSuchMethodException, SignatureParseException {
         return createModel(accessibility, reflectionPredicate, omitMethods, classnames, coveredClassnames, errorHandler, literalsFileList, null);
     }
 
@@ -236,7 +246,8 @@ public class OperationModel {
      * @param literalsFile the list of literals file names
      * @param literalsLevel the level of literals to add
      */
-    public void addClassLiterals(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getAnnotatedTestValues", "getClassTypes", "getOperations" }) OperationModel this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ComponentManager compMgr, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<String> literalsFile, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ClassLiteralsMode literalsLevel) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "iterator" })
+    public void addClassLiterals(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addClassTypes", "addObjectConstructor", "addOperationsFromClasses", "getAnnotatedTestValues", "getClassTypes", "getOperations", "getOperationsFromFile" }) OperationModel this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ComponentManager compMgr, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<String> literalsFile, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ClassLiteralsMode literalsLevel) {
         // Add a (1-element) sequence corresponding to each literal to the component
         // manager.
         for (String filename : literalsFile) {
@@ -276,7 +287,7 @@ public class OperationModel {
      * @return a map from each class type to its methods and constructors that were read from the file
      * @throws OperationParseException if a method signature cannot be parsed
      */
-    public static MultiMap<Type, TypedClassOperation> readOperations(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Path file) throws OperationParseException {
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiMap<Type, TypedClassOperation> readOperations(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Path file) throws OperationParseException {
         return readOperations(file, false);
     }
 
@@ -289,7 +300,7 @@ public class OperationModel {
      * @return a map from each class type to its methods and constructors that were read from the file
      * @throws OperationParseException if a method signature cannot be parsed
      */
-    public static MultiMap<Type, TypedClassOperation> readOperations(Path file, boolean ignoreParseError) throws OperationParseException {
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiMap<Type, TypedClassOperation> readOperations(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Path file,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean ignoreParseError) throws OperationParseException {
         if (file != null) {
             try (EntryReader er = new EntryReader(file, "(//|#).*$", null)) {
                 return OperationModel.readOperations(er, ignoreParseError);
@@ -309,7 +320,8 @@ public class OperationModel {
      * @param ignoreParseError if true, ignore parse errors (skip malformed signatures)
      * @return contents of the file, as a map from classes to operations
      */
-    private static MultiMap<Type, TypedClassOperation> readOperations(EntryReader er, boolean ignoreParseError) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "iterator" })
+    private static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiMap<Type, TypedClassOperation> readOperations(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EntryReader er,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean ignoreParseError) {
         MultiMap<Type, TypedClassOperation> operationsMap = new MultiMap<>();
         for (String line : er) {
             String sig = line.trim();
@@ -340,7 +352,7 @@ public class OperationModel {
      * @param filename the file name to use in diagnostic messages
      * @return contents of the file, as a map from classes to operations
      */
-    public static MultiMap<Type, TypedClassOperation> readOperations(InputStream is, String filename) {
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiMap<Type, TypedClassOperation> readOperations(InputStream is, String filename) {
         return readOperations(is, filename, false);
     }
 
@@ -353,7 +365,7 @@ public class OperationModel {
      * @param ignoreParseError if true, ignore parse errors (skip malformed signatures)
      * @return contents of the file, as a map from classes to operations
      */
-    public static MultiMap<Type, TypedClassOperation> readOperations(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InputStream is, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String filename,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean ignoreParseError) {
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiMap<Type, TypedClassOperation> readOperations(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InputStream is, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String filename,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean ignoreParseError) {
         if (is == null) {
             throw new RandoopBug("input stream is null for file " + filename);
         }
@@ -371,7 +383,8 @@ public class OperationModel {
      *
      * @return the set of class types
      */
-    public Set<ClassOrInterfaceType> getClassTypes(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getOperations" }) OperationModel this) {
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<ClassOrInterfaceType> getClassTypes(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addClassTypes", "addObjectConstructor", "addOperationsFromClasses", "getOperations", "getOperationsFromFile" }) OperationModel this) {
         return classTypes;
     }
 
@@ -380,7 +393,8 @@ public class OperationModel {
      *
      * @return the set of covered classes
      */
-    public Set<Class<?>> getCoveredClassesGoal(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addClassLiterals", "getAnnotatedTestValues", "getClassTypes", "getContracts", "getOmitMethodsPredicate", "getOperations", "log" }) OperationModel this) {
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<Class<?>> getCoveredClassesGoal(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addClassLiterals", "addClassTypes", "addObjectConstructor", "addOperationsFromClasses", "getAnnotatedTestValues", "getClassTypes", "getContracts", "getOmitMethodsPredicate", "getOperations", "getOperationsFromFile", "log", "logOperations" }) OperationModel this) {
         return coveredClassesGoal;
     }
 
@@ -390,7 +404,8 @@ public class OperationModel {
      * @return the set of input types that occur in classes under test
      * @see TypeExtractor
      */
-    public Set<Type> getInputTypes() {
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<Type> getInputTypes() {
         // TODO this is not used, should it be? or should it even be here?
         return inputTypes;
     }
@@ -400,7 +415,8 @@ public class OperationModel {
      *
      * @return the operations of this model
      */
-    public List<TypedOperation> getOperations(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OperationModel this) {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<TypedOperation> getOperations(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addClassTypes", "addObjectConstructor", "addOperationsFromClasses", "getOperationsFromFile" }) OperationModel this) {
         return new ArrayList<>(operations);
     }
 
@@ -410,7 +426,8 @@ public class OperationModel {
      *
      * @return the list of contracts
      */
-    public ContractSet getContracts(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addClassLiterals", "getAnnotatedTestValues", "getClassTypes", "getOperations", "log" }) OperationModel this) {
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ContractSet getContracts(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addClassLiterals", "addClassTypes", "addObjectConstructor", "addOperationsFromClasses", "getAnnotatedTestValues", "getClassTypes", "getOperations", "getOperationsFromFile", "log", "logOperations" }) OperationModel this) {
         return contracts;
     }
 
@@ -419,7 +436,8 @@ public class OperationModel {
      *
      * @return the user-specified predicate for methods that should not be called
      */
-    public OmitMethodsPredicate getOmitMethodsPredicate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addClassLiterals", "getAnnotatedTestValues", "getClassTypes", "getContracts", "getOperations", "log" }) OperationModel this) {
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OmitMethodsPredicate getOmitMethodsPredicate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addClassLiterals", "addClassTypes", "addObjectConstructor", "addOperationsFromClasses", "getAnnotatedTestValues", "getClassTypes", "getContracts", "getOperations", "getOperationsFromFile", "log", "logOperations" }) OperationModel this) {
         return omitMethodsPredicate;
     }
 
@@ -428,11 +446,13 @@ public class OperationModel {
      *
      * @return sequences that get fields annotated with {@code @TestValue}
      */
-    public Set<Sequence> getAnnotatedTestValues(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getClassTypes", "getOperations" }) OperationModel this) {
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<Sequence> getAnnotatedTestValues(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addClassTypes", "addObjectConstructor", "addOperationsFromClasses", "getClassTypes", "getOperations", "getOperationsFromFile" }) OperationModel this) {
         return annotatedTestValues;
     }
 
-    public void log(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addClassLiterals", "getAnnotatedTestValues", "getClassTypes", "getOperations" }) OperationModel this) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "logOperations" })
+    public void log(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addClassLiterals", "addClassTypes", "addObjectConstructor", "addOperationsFromClasses", "getAnnotatedTestValues", "getClassTypes", "getOperations", "getOperationsFromFile" }) OperationModel this) {
         if (Log.isLoggingOn()) {
             logOperations(GenInputsAbstract.log);
         }
@@ -443,6 +463,8 @@ public class OperationModel {
      *
      * @param out the PrintStream on which to produce output
      */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "logOperations" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.operations" }, methods = { "iterator", "size" })
     public void logOperations(PrintStream out) {
         logOperations(new PrintWriter(new BufferedWriter(new OutputStreamWriter(out, UTF_8))));
     }
@@ -452,7 +474,9 @@ public class OperationModel {
      *
      * @param out the Writer on which to produce output
      */
-    public void logOperations(Writer out) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "write" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.operations" }, methods = { "iterator", "size" })
+    public void logOperations(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OperationModel this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Writer out) {
         try {
             out.write("Operations: (" + operations.size() + ")" + Globals.lineSep);
             for (TypedOperation t : operations) {
@@ -468,6 +492,7 @@ public class OperationModel {
     /**
      * Print a verbose representation of the model, if logging is enabled.
      */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "dumpModel", "hashCode", "logOperations" })
     public void dumpModel() {
         if (Log.isLoggingOn()) {
             dumpModel(GenInputsAbstract.log);
@@ -479,7 +504,9 @@ public class OperationModel {
      *
      * @param out the PrintStream on which to produce output
      */
-    public void dumpModel(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getClassTypes", "getOperations" }) OperationModel this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "println" }) PrintStream out) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "dumpModel", "hashCode", "logOperations" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.operations" }, methods = { "iterator", "size" })
+    public void dumpModel(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addClassTypes", "addObjectConstructor", "addOperationsFromClasses", "getClassTypes", "getOperations", "getOperationsFromFile" }) OperationModel this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "println" }) PrintStream out) {
         dumpModel(new PrintWriter(new BufferedWriter(new OutputStreamWriter(out, UTF_8))));
     }
 
@@ -488,7 +515,10 @@ public class OperationModel {
      *
      * @param out the Writer on which to produce output
      */
-    public void dumpModel(Writer out) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "write" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "hashCode", "logOperations" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.operations" }, methods = { "iterator", "size" })
+    public void dumpModel(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OperationModel this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Writer out) {
         try {
             out.write(String.format("Model with hashcode %s:%n", hashCode()));
             out.write(String.format("  classTypes = %s%n", classTypes));
@@ -524,7 +554,10 @@ public class OperationModel {
      * @param errorHandler the handler for bad class names
      * @param literalsFileList the list of literals file names
      */
-    private void addClassTypes(AccessibilityPredicate accessibility, ReflectionPredicate reflectionPredicate, Set<String> classnames, Set<String> coveredClassesGoalNames, ClassNameErrorHandler errorHandler, List<String> literalsFileList) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#3" }, methods = { "iterator" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#4" }, methods = { "iterator" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#6" }, methods = { "contains" })
+    private void addClassTypes(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OperationModel this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AccessibilityPredicate accessibility, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReflectionPredicate reflectionPredicate, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<String> classnames, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<String> coveredClassesGoalNames, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ClassNameErrorHandler errorHandler, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<String> literalsFileList) {
         ReflectionManager mgr = new ReflectionManager(accessibility);
         mgr.add(new DeclarationExtractor(this.classTypes, reflectionPredicate));
         mgr.add(new TypeExtractor(this.inputTypes, accessibility));
@@ -595,7 +628,7 @@ public class OperationModel {
      * @return the Class whose name is {@code classname}. May return null if {@code errorHandler} just
      *     warns on bad names.
      */
-    private static Class<?> getClass(String classname, ClassNameErrorHandler errorHandler) {
+    private static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Class<?> getClass(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String classname, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ClassNameErrorHandler errorHandler) {
         try {
             return TypeNames.getTypeForName(classname);
         } catch (ClassNotFoundException | NoClassDefFoundError e) {
@@ -617,7 +650,7 @@ public class OperationModel {
      * @param operationSpecifications the collection of {@link
      *     randoop.condition.specification.OperationSpecification}
      */
-    private void addOperationsFromClasses(AccessibilityPredicate accessibility, ReflectionPredicate reflectionPredicate, SpecificationCollection operationSpecifications) {
+    private void addOperationsFromClasses(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addClassTypes" }) OperationModel this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AccessibilityPredicate accessibility, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReflectionPredicate reflectionPredicate, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SpecificationCollection operationSpecifications) {
         Iterator<ClassOrInterfaceType> itor = classTypes.iterator();
         while (itor.hasNext()) {
             ClassOrInterfaceType classType = itor.next();
@@ -642,7 +675,7 @@ public class OperationModel {
      * @return operations read from the file
      * @throws SignatureParseException if any signature is syntactically invalid
      */
-    private List<TypedClassOperation> getOperationsFromFile(Path methodSignatures_file, AccessibilityPredicate accessibility, ReflectionPredicate reflectionPredicate) throws SignatureParseException {
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<TypedClassOperation> getOperationsFromFile(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addClassTypes", "addOperationsFromClasses" }) OperationModel this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Path methodSignatures_file, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AccessibilityPredicate accessibility, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReflectionPredicate reflectionPredicate) throws SignatureParseException {
         List<TypedClassOperation> result = new ArrayList<>();
         if (methodSignatures_file == null) {
             return result;
@@ -678,7 +711,9 @@ public class OperationModel {
      *     the class or the method or constructor
      * @throws SignatureParseException if the signature cannot be parsed
      */
-    public static TypedClassOperation signatureToOperation(String signature, AccessibilityPredicate accessibility, ReflectionPredicate reflectionPredicate) throws SignatureParseException, FailedPredicateException {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "isAccessible" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#3" }, methods = { "test" })
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedClassOperation signatureToOperation(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String signature, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AccessibilityPredicate accessibility, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReflectionPredicate reflectionPredicate) throws SignatureParseException, FailedPredicateException {
         AccessibleObject accessibleObject;
         accessibleObject = SignatureParser.parse(signature, accessibility, reflectionPredicate);
         if (accessibleObject == null) {
@@ -694,7 +729,8 @@ public class OperationModel {
     /**
      * Creates and adds the Object class default constructor call to the concrete operations.
      */
-    private void addObjectConstructor() {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.operations" }, methods = { "add" })
+    private void addObjectConstructor(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addClassTypes", "addOperationsFromClasses", "getOperationsFromFile" }) OperationModel this) {
         Constructor<?> objectConstructor;
         try {
             objectConstructor = Object.class.getConstructor();

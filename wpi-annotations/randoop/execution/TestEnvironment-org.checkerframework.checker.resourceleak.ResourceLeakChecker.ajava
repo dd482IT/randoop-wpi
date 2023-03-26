@@ -17,27 +17,27 @@ public class TestEnvironment {
     /**
      * The process timeout in milliseconds. Defaults to 20 minutes.
      */
-    private long timeout = 20 * 60 * 1000;
+    private  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) long timeout = 20 * 60 * 1000;
 
     /**
      * The classpath for the tests.
      */
-    private final String testClasspath;
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String testClasspath;
 
     /**
      * A map from javaagent jar path to argument string.
      */
-    private final LinkedHashMap<Path, String> agentMap = new LinkedHashMap<>();
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) LinkedHashMap<Path, String> agentMap = new LinkedHashMap<>();
 
     /**
      * The path for the replacecall agent.
      */
-    private Path replaceCallAgentPath;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Path replaceCallAgentPath;
 
     /**
      * The argument string for the replacecall agent.
      */
-    private String replaceCallAgentArgs;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String replaceCallAgentArgs;
 
     /**
      * Creates a test environment with the given classpath and an empty agent map.
@@ -55,6 +55,7 @@ public class TestEnvironment {
      * @param agentPath the path to the Javaagent jar file
      * @param agentArgumentString the argument string for the agent
      */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.agentMap" }, methods = { "put" })
     public void addAgent(Path agentPath, String agentArgumentString) {
         agentMap.put(agentPath, agentArgumentString);
     }
@@ -88,7 +89,10 @@ public class TestEnvironment {
      * @return the {@link RunCommand.Status} object for the execution of the test class
      * @throws CommandException if there is an error running the test command
      */
-    public RunCommand.Status runTest(String testClassName, Path workingDirectory) throws CommandException {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "toFile", "toString" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "commandPrefix", "getJavaagentOption" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.agentMap" }, methods = { "entrySet", "size" })
+    public RunCommand.@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Status runTest(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TestEnvironment this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String testClassName, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "toString" }) Path workingDirectory) throws CommandException {
         List<String> command = commandPrefix();
         command.add(testClassName);
         return RunCommand.run(command, workingDirectory, timeout);
@@ -100,7 +104,9 @@ public class TestEnvironment {
      *
      * @return the base command to run JUnit tests in this environment, without a test class name
      */
-    private List<String> commandPrefix() {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getJavaagentOption" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.agentMap" }, methods = { "entrySet", "size" })
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "add" }) List<String> commandPrefix(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TestEnvironment this) {
         List<String> command = new ArrayList<>(agentMap.size() + 9);
         command.add("java");
         command.add("-ea");
@@ -120,7 +126,9 @@ public class TestEnvironment {
         return command;
     }
 
-    private String getJavaagentOption(Path agentPath, String args) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "isEmpty" })
+    @org.checkerframework.dataflow.qual.Pure
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getJavaagentOption(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TestEnvironment this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Path agentPath, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String args) {
         String agent = "-javaagent:" + agentPath;
         if (args != null && !args.isEmpty()) {
             agent = agent + "=" + args;

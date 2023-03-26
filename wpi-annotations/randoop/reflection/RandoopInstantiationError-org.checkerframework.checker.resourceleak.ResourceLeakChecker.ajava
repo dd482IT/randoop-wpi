@@ -1,0 +1,26 @@
+package randoop.reflection;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class RandoopInstantiationError extends Error {
+
+    private static final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) long serialVersionUID = 3611612630372756721L;
+
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String opName;
+
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Throwable exception;
+
+    public RandoopInstantiationError(String opName, Throwable exception) {
+        this.opName = opName;
+        this.exception = exception;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getOpName() {
+        return opName;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Throwable getException() {
+        return exception;
+    }
+}

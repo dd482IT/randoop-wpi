@@ -105,7 +105,7 @@ public class ComponentManager {
      */
     // FIXME subtract size of seeds!
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) int numGeneratedSequences() {
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) int numGeneratedSequences(@org.checkerframework.checker.mustcall.qual.MustCall({}) ComponentManager this) {
         return gralComponents.size();
     }
 
@@ -116,7 +116,7 @@ public class ComponentManager {
      * @param type the class literal to add for the sequence
      * @param seq the sequence
      */
-    public void addClassLevelLiteral(ClassOrInterfaceType type, Sequence seq) {
+    public void addClassLevelLiteral(@org.checkerframework.checker.mustcall.qual.MustCall({}) ComponentManager this, @org.checkerframework.checker.mustcall.qual.MustCall({}) ClassOrInterfaceType type, @org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence seq) {
         if (classLiterals == null) {
             classLiterals = new ClassLiterals();
         }
@@ -130,7 +130,7 @@ public class ComponentManager {
      * @param pkg the package to add for the sequence
      * @param seq the sequence
      */
-    public void addPackageLevelLiteral(Package pkg, Sequence seq) {
+    public void addPackageLevelLiteral(@org.checkerframework.checker.mustcall.qual.MustCall({}) ComponentManager this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Package pkg, @org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence seq) {
         if (packageLiterals == null) {
             packageLiterals = new PackageLiterals();
         }
@@ -142,14 +142,14 @@ public class ComponentManager {
      *
      * @param sequence the sequence
      */
-    public void addGeneratedSequence(Sequence sequence) {
+    public void addGeneratedSequence(@org.checkerframework.checker.mustcall.qual.MustCall({}) ComponentManager this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence sequence) {
         gralComponents.add(sequence);
     }
 
     /**
      * Removes any components sequences added so far, except for seed sequences, which are preserved.
      */
-    void clearGeneratedSequences() {
+    void clearGeneratedSequences(@org.checkerframework.checker.mustcall.qual.MustCall({}) ComponentManager this) {
         gralComponents = new SequenceCollection(this.gralSeeds);
     }
 
@@ -158,7 +158,7 @@ public class ComponentManager {
      *
      * @return the set of all generated sequences
      */
-    @org.checkerframework.checker.mustcall.qual.MustCall({}) Set<Sequence> getAllGeneratedSequences() {
+    @org.checkerframework.checker.mustcall.qual.MustCall({}) Set<Sequence> getAllGeneratedSequences(@org.checkerframework.checker.mustcall.qual.MustCall({}) ComponentManager this) {
         return gralComponents.getAllSequences();
     }
 
@@ -168,7 +168,7 @@ public class ComponentManager {
      * @param cls the query type
      * @return the sequences that create values of the given type
      */
-    @org.checkerframework.checker.mustcall.qual.MustCall({}) SimpleList<Sequence> getSequencesForType(Type cls) {
+    @org.checkerframework.checker.mustcall.qual.MustCall({}) SimpleList<Sequence> getSequencesForType(@org.checkerframework.checker.mustcall.qual.MustCall({}) ComponentManager this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Type cls) {
         return gralComponents.getSequencesForType(cls, false, false);
     }
 
@@ -186,7 +186,7 @@ public class ComponentManager {
     // This method is oddly named, since it does not take as input a type.  However, the method
     // extensively uses the operation, so refactoring the method to take a type instead would take
     // some work.
-    @org.checkerframework.checker.mustcall.qual.MustCall({}) SimpleList<Sequence> getSequencesForType(TypedOperation operation, int i, boolean onlyReceivers) {
+    @org.checkerframework.checker.mustcall.qual.MustCall({}) SimpleList<Sequence> getSequencesForType(@org.checkerframework.checker.mustcall.qual.MustCall({}) ComponentManager this, @org.checkerframework.checker.mustcall.qual.MustCall({}) TypedOperation operation,  @org.checkerframework.checker.mustcall.qual.MustCall({}) int i,  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean onlyReceivers) {
         Type neededType = operation.getInputTypes().get(i);
         if (onlyReceivers && neededType.isNonreceiverType()) {
             throw new RandoopBug(String.format("getSequencesForType(%s, %s, %s) neededType=%s", operation, i, onlyReceivers, neededType));
@@ -239,7 +239,7 @@ public class ComponentManager {
      *
      * @return the sequences for primitive values
      */
-    @org.checkerframework.checker.mustcall.qual.MustCall({}) Set<Sequence> getAllPrimitiveSequences() {
+    @org.checkerframework.checker.mustcall.qual.MustCall({}) Set<Sequence> getAllPrimitiveSequences(@org.checkerframework.checker.mustcall.qual.MustCall({}) ComponentManager this) {
         Set<Sequence> result = new LinkedHashSet<>();
         if (classLiterals != null) {
             result.addAll(classLiterals.getAllSequences());
@@ -254,7 +254,7 @@ public class ComponentManager {
         return result;
     }
 
-    @org.checkerframework.checker.mustcall.qual.MustCall({}) TypeInstantiator getTypeInstantiator() {
+    @org.checkerframework.checker.mustcall.qual.MustCall({}) TypeInstantiator getTypeInstantiator(@org.checkerframework.checker.mustcall.qual.MustCall({}) ComponentManager this) {
         return gralComponents.getTypeInstantiator();
     }
 

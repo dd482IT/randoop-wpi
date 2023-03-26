@@ -1,0 +1,26 @@
+package randoop.reflection;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class RandoopInstantiationError extends Error {
+
+    private static final  @org.checkerframework.checker.signature.qual.SignatureUnknown long serialVersionUID = 3611612630372756721L;
+
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown String opName;
+
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown Throwable exception;
+
+    public RandoopInstantiationError(@org.checkerframework.checker.signature.qual.SignatureUnknown String opName, @org.checkerframework.checker.signature.qual.SignatureUnknown Throwable exception) {
+        this.opName = opName;
+        this.exception = exception;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String getOpName(@org.checkerframework.checker.signature.qual.SignatureUnknown RandoopInstantiationError this) {
+        return opName;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown Throwable getException() {
+        return exception;
+    }
+}

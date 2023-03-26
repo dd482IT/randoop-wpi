@@ -26,7 +26,7 @@ public class RawSignature {
     /**
      * The package name of the class; null for the unnamed package.
      */
-    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "equals" }) String packageName;
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String packageName;
 
     /**
      * The name of the declaring class of the method.
@@ -52,7 +52,7 @@ public class RawSignature {
      * @param name the method name; for a constructor, same as the classname
      * @param parameterTypes the method parameter types, including the receiver type if any
      */
-    public RawSignature(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "equals" }) String packageName, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String classname, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String name, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Class<?> @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) [] parameterTypes) {
+    public RawSignature(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String packageName, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String classname, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String name, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Class<?> @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) [] parameterTypes) {
         this.packageName = packageName;
         this.classname = classname;
         this.name = name;
@@ -149,7 +149,7 @@ public class RawSignature {
      * @return the package name for this signature, null if default package
      */
     @org.checkerframework.dataflow.qual.Pure
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "equals" }) String getPackageName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) RawSignature this) {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getPackageName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getDeclarationArguments" }) RawSignature this) {
         return packageName;
     }
 
@@ -182,8 +182,8 @@ public class RawSignature {
      *     same as the number of parameter types in this signature
      * @return the parameter declarations for this signature using the given parameter names
      */
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "size" })
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getDeclarationArguments(List<String> parameterNames) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "addAll", "size" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getDeclarationArguments(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) RawSignature this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "addAll" }) List<String> parameterNames) {
         if (parameterNames.size() != parameterTypes.length) {
             String message = String.format("Number of parameter names %d (%s) must match the number of parameter types %d (%s) for %s", parameterNames.size(), parameterNames, parameterTypes.length, Arrays.toString(parameterTypes), this);
             throw new IllegalArgumentException(message);
@@ -232,7 +232,7 @@ public class RawSignature {
      * @return an identifier name produced from the class
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getSimpleName" })
-    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String classToIdentifier(Class<?> c) {
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String classToIdentifier(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Class<?> c) {
         return classNameToIdentifier(c.getSimpleName());
     }
 

@@ -56,7 +56,7 @@ public class TypeInstantiator {
      * @param operation the generic operation to instantiate
      * @return an instantiated version of the operation
      */
-    public @org.checkerframework.checker.mustcall.qual.MustCall({}) TypedClassOperation instantiate(@org.checkerframework.checker.mustcall.qual.MustCall({}) TypedClassOperation operation) {
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) TypedClassOperation instantiate(@org.checkerframework.checker.mustcall.qual.MustCall({}) TypeInstantiator this, @org.checkerframework.checker.mustcall.qual.MustCall({}) TypedClassOperation operation) {
         assert operation.isGeneric() || operation.hasWildcardTypes() : "operation " + operation + " must be generic or have wildcards";
         // if declaring type of operation is generic, select instantiation
         ClassOrInterfaceType declaringType = operation.getDeclaringType();

@@ -172,7 +172,7 @@ public class GenericClassType extends ParameterizedType {
      * @return a type which is this type parameterized by the given type arguments
      * @see #substitute(Substitution)
      */
-    public  InstantiatedType instantiate(ReferenceType... typeArguments) {
+    public  InstantiatedType instantiate( GenericClassType this,  ReferenceType ... typeArguments) {
         if (typeArguments.length != this.getTypeParameters().size()) {
             throw new IllegalArgumentException("number of arguments and parameters must match");
         }
@@ -192,7 +192,7 @@ public class GenericClassType extends ParameterizedType {
      * @return the type that is this type instantiated by the given type arguments
      * @see #substitute(Substitution)
      */
-    public  InstantiatedType instantiate(List<ReferenceType> typeArguments) {
+    public  InstantiatedType instantiate( GenericClassType this,  List<ReferenceType> typeArguments) {
         if (typeArguments.size() != this.getTypeParameters().size()) {
             throw new IllegalArgumentException("number of arguments and parameters must match");
         }

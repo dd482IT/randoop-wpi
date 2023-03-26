@@ -58,7 +58,7 @@ public class CompilableTestPredicate implements Closeable, Predicate<ExecutableS
      * @param junitCreator the {@link JUnitCreator} for this Randoop run
      * @param genTests the {@link GenTests} instance to report compilation failures
      */
-    public CompilableTestPredicate(JUnitCreator junitCreator, GenTests genTests) {
+    public CompilableTestPredicate(@org.checkerframework.checker.signature.qual.SignatureUnknown JUnitCreator junitCreator, @org.checkerframework.checker.signature.qual.SignatureUnknown GenTests genTests) {
         List<String> compilerOptions = new ArrayList<>(6);
         // only need to know an error exists:
         compilerOptions.add("-Xmaxerrs");

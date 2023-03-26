@@ -178,7 +178,7 @@ public class GenericClassType extends ParameterizedType {
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getTypeParameters", "isMemberClass", "isNestedClass", "substitute" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.parameters" }, methods = { "size" })
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InstantiatedType instantiate(ReferenceType... typeArguments) {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InstantiatedType instantiate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getRuntimeClass" }) GenericClassType this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isArray", "isParameterized" }) ReferenceType@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... typeArguments) {
         if (typeArguments.length != this.getTypeParameters().size()) {
             throw new IllegalArgumentException("number of arguments and parameters must match");
         }
@@ -201,7 +201,7 @@ public class GenericClassType extends ParameterizedType {
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "size" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getTypeParameters", "isMemberClass", "isNestedClass", "substitute" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.parameters" }, methods = { "size" })
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InstantiatedType instantiate(List<ReferenceType> typeArguments) {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InstantiatedType instantiate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenericClassType this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ReferenceType> typeArguments) {
         if (typeArguments.size() != this.getTypeParameters().size()) {
             throw new IllegalArgumentException("number of arguments and parameters must match");
         }

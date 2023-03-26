@@ -83,7 +83,7 @@ public final class RegressionCaptureGenerator extends TestCheckGenerator {
      * @param omitMethodsPredicate the user-supplied predicate for methods that should not be called
      * @param includeAssertions whether to include regression assertions
      */
-    public RegressionCaptureGenerator(ExpectedExceptionCheckGen exceptionExpectation, MultiMap<Type, TypedClassOperation> sideEffectFreeMethodsByType, AccessibilityPredicate isAccessible, OmitMethodsPredicate omitMethodsPredicate, boolean includeAssertions) {
+    public RegressionCaptureGenerator(@org.checkerframework.checker.signature.qual.SignatureUnknown ExpectedExceptionCheckGen exceptionExpectation, @org.checkerframework.checker.signature.qual.SignatureUnknown MultiMap<Type, TypedClassOperation> sideEffectFreeMethodsByType, @org.checkerframework.checker.signature.qual.SignatureUnknown AccessibilityPredicate isAccessible, @org.checkerframework.checker.signature.qual.SignatureUnknown OmitMethodsPredicate omitMethodsPredicate,  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean includeAssertions) {
         this.exceptionExpectation = exceptionExpectation;
         this.sideEffectFreeMethodsByType = sideEffectFreeMethodsByType;
         this.isAccessible = isAccessible;

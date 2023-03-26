@@ -50,7 +50,7 @@ public class SequenceExceptionError extends Error {
      * @return the exception thrown by statement in sequence
      */
     @org.checkerframework.dataflow.qual.Pure
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Throwable getError() {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Throwable getError(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SequenceExceptionError this) {
         return e;
     }
 
@@ -60,7 +60,7 @@ public class SequenceExceptionError extends Error {
      * @return the string representation of the statement
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.testSequence" }, methods = { "statementToCodeString" })
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getStatement() {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getStatement(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getError" }) SequenceExceptionError this) {
         return testSequence.statementToCodeString(position);
     }
 
@@ -70,7 +70,7 @@ public class SequenceExceptionError extends Error {
      * @return the full test sequence as a string
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.testSequence" }, methods = { "toCodeLines", "toCodeString" })
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getSequence() {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getSequence(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getError", "getStatement" }) SequenceExceptionError this) {
         return testSequence.toCodeString();
     }
 
@@ -79,7 +79,7 @@ public class SequenceExceptionError extends Error {
      *
      * @return the input sequence from which exception was thrown
      */
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence getSubsequence() {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence getSubsequence(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getError", "getSequence", "getStatement" }) SequenceExceptionError this) {
         return testSequence.sequence.getSubsequence(position);
     }
 }

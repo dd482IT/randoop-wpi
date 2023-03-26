@@ -37,7 +37,7 @@ import randoop.util.ReflectionExecutor;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
 public final class MethodCall extends CallableOperation {
 
-    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getGenericParameterTypes" }) Method method;
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Method method;
 
     private final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isStatic;
 
@@ -47,7 +47,7 @@ public final class MethodCall extends CallableOperation {
      * @return {@link Method} object called by this {@link MethodCall}
      */
     @org.checkerframework.dataflow.qual.Pure
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getGenericParameterTypes" }) Method getMethod(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MethodCall this) {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Method getMethod(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MethodCall this) {
         return this.method;
     }
 
@@ -56,9 +56,9 @@ public final class MethodCall extends CallableOperation {
      *
      * @param method the reflective method object
      */
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getGenericParameterTypes", "getModifiers" })
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.method" }, methods = { "getGenericParameterTypes", "setAccessible" })
-    public MethodCall(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getGenericParameterTypes" }) Method method) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getModifiers" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.method" }, methods = { "setAccessible" })
+    public MethodCall(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Method method) {
         if (method == null) {
             throw new IllegalArgumentException("method should not be null.");
         }
@@ -72,7 +72,7 @@ public final class MethodCall extends CallableOperation {
      *
      * @return string representation of the enclosed method
      */
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.method" }, methods = { "getGenericParameterTypes", "toString" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.method" }, methods = { "toString" })
     @org.checkerframework.dataflow.qual.SideEffectFree
     public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MethodCall this) {
         return method.toString();
@@ -182,7 +182,7 @@ public final class MethodCall extends CallableOperation {
      *
      * <p>Examples: java.util.ArrayList.get(int) java.util.ArrayList.add(int,java.lang.Object)
      */
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.method" }, methods = { "getDeclaringClass", "getGenericParameterTypes", "getName", "getParameterTypes" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.method" }, methods = { "getDeclaringClass", "getName", "getParameterTypes" })
     public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toParsableString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MethodCall this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type declaringType, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeTuple inputTypes, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type outputType) {
         StringBuilder sb = new StringBuilder();
         sb.append(method.getDeclaringClass().getName()).append(".");
@@ -263,13 +263,13 @@ public final class MethodCall extends CallableOperation {
         return true;
     }
 
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.method" }, methods = { "getGenericParameterTypes", "getName" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.method" }, methods = { "getName" })
     public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MethodCall this) {
         return method.getName();
     }
 
     @org.checkerframework.dataflow.qual.Pure
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getGenericParameterTypes" }) Method getReflectionObject(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MethodCall this) {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Method getReflectionObject(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MethodCall this) {
         return method;
     }
 

@@ -14,7 +14,7 @@ import randoop.util.Util;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
 public abstract class CommandHandler {
 
-    public @org.checkerframework.checker.signature.qual.SignatureUnknown String fcommand;
+    public @org.checkerframework.checker.signature.qual.Identifier String fcommand;
 
     public @org.checkerframework.checker.signature.qual.SignatureUnknown String fpitch;
 
@@ -48,7 +48,7 @@ public abstract class CommandHandler {
      * @param example the usage example
      * @param options the command line arguments
      */
-    protected CommandHandler(@org.checkerframework.checker.signature.qual.SignatureUnknown String command, @org.checkerframework.checker.signature.qual.SignatureUnknown String pitch, @org.checkerframework.checker.signature.qual.SignatureUnknown String commandGrammar, @org.checkerframework.checker.signature.qual.SignatureUnknown String where, @org.checkerframework.checker.signature.qual.SignatureUnknown String summary, @org.checkerframework.checker.signature.qual.SignatureUnknown List<String> notes, @org.checkerframework.checker.signature.qual.SignatureUnknown String input, @org.checkerframework.checker.signature.qual.SignatureUnknown String output, @org.checkerframework.checker.signature.qual.SignatureUnknown String example, @org.checkerframework.checker.signature.qual.SignatureUnknown Options options) {
+    protected CommandHandler(@org.checkerframework.checker.signature.qual.Identifier String command, @org.checkerframework.checker.signature.qual.SignatureUnknown String pitch, @org.checkerframework.checker.signature.qual.SignatureUnknown String commandGrammar, @org.checkerframework.checker.signature.qual.SignatureUnknown String where, @org.checkerframework.checker.signature.qual.SignatureUnknown String summary, @org.checkerframework.checker.signature.qual.SignatureUnknown List<String> notes, @org.checkerframework.checker.signature.qual.SignatureUnknown String input, @org.checkerframework.checker.signature.qual.SignatureUnknown String output, @org.checkerframework.checker.signature.qual.SignatureUnknown String example, @org.checkerframework.checker.signature.qual.SignatureUnknown Options options) {
         if ((command == null)) {
             throw new IllegalArgumentException("command cannot be null.");
         }
@@ -65,12 +65,12 @@ public abstract class CommandHandler {
     }
 
     @org.checkerframework.dataflow.qual.SideEffectFree
-    public final  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean handles(String command) {
+    public final  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean handles(@org.checkerframework.checker.signature.qual.SignatureUnknown CommandHandler this, @org.checkerframework.checker.signature.qual.SignatureUnknown String command) {
         return command != null && command.toUpperCase().equals(fcommand.toUpperCase());
     }
 
     @org.checkerframework.dataflow.qual.Pure
-    public abstract boolean handle(String[] args);
+    public abstract  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean handle(@org.checkerframework.checker.signature.qual.SignatureUnknown CommandHandler this, @org.checkerframework.checker.signature.qual.SignatureUnknown String @org.checkerframework.checker.signature.qual.SignatureUnknown [] args);
 
     /**
      * Prints out formatted text in (google code) Wiki format.
@@ -127,7 +127,7 @@ public abstract class CommandHandler {
         }
     }
 
-    public final void usageMessage(PrintStream out) {
+    public final void usageMessage(@org.checkerframework.checker.signature.qual.SignatureUnknown CommandHandler this, @org.checkerframework.checker.signature.qual.SignatureUnknown PrintStream out) {
         out.println();
         if (!fcommand.trim().equals("")) {
             out.print(Util.hangingParagraph("COMMAND: " + fcommand, Globals.COLWIDTH, Globals.INDENTWIDTH));

@@ -8,17 +8,17 @@ import randoop.operation.TypedOperation;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
 public class RandoopGenerationError extends Error {
 
-    private static final long serialVersionUID = -2655768762421700468L;
+    private static final  @org.checkerframework.checker.mustcall.qual.MustCall({}) long serialVersionUID = -2655768762421700468L;
 
     /**
      * The operation.
      */
-    private final TypedOperation operation;
+    private final @org.checkerframework.checker.mustcall.qual.MustCall({}) TypedOperation operation;
 
     /**
      * The exception that was thrown.
      */
-    private final Throwable exception;
+    private final @org.checkerframework.checker.mustcall.qual.MustCall({}) Throwable exception;
 
     /**
      * Create a {@link RandoopGenerationError} representing an error that occurs during the generation
@@ -27,7 +27,7 @@ public class RandoopGenerationError extends Error {
      * @param operation the actual operation
      * @param exception the exception thrown during generation
      */
-    RandoopGenerationError(TypedOperation operation, Throwable exception) {
+    RandoopGenerationError(@org.checkerframework.checker.mustcall.qual.MustCall({}) TypedOperation operation, @org.checkerframework.checker.mustcall.qual.MustCall({}) Throwable exception) {
         this.operation = operation;
         this.exception = exception;
     }
@@ -38,7 +38,8 @@ public class RandoopGenerationError extends Error {
      *
      * @return the name of the reflection object for the operation
      */
-    public String getOperationName() {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String getOperationName() {
         return operation.getOperation().getReflectionObject().toString();
     }
 
@@ -47,7 +48,8 @@ public class RandoopGenerationError extends Error {
      *
      * @return the {@code String} representation of the operation
      */
-    public String getInstantiatedOperation(@org.checkerframework.checker.mustcall.qual.MustCall({}) RandoopGenerationError this) {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String getInstantiatedOperation(@org.checkerframework.checker.mustcall.qual.MustCall({}) RandoopGenerationError this) {
         return operation.toString();
     }
 
@@ -56,7 +58,8 @@ public class RandoopGenerationError extends Error {
      *
      * @return the {@code Throwable} for this error
      */
-    public Throwable getException() {
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) Throwable getException() {
         return exception;
     }
 }

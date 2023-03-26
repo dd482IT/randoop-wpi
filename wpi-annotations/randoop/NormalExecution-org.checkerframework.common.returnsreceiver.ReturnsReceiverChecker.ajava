@@ -19,7 +19,7 @@ import org.plumelib.util.StringsPlume;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
 public class NormalExecution extends ExecutionOutcome {
 
-    private final Object result;
+    private final  Object result;
 
     /**
      * @param result the return value
@@ -30,7 +30,8 @@ public class NormalExecution extends ExecutionOutcome {
         this.result = result;
     }
 
-    public Object getRuntimeValue( NormalExecution this) {
+    @org.checkerframework.dataflow.qual.Pure
+    public  Object getRuntimeValue( NormalExecution this) {
         return this.result;
     }
 
@@ -39,7 +40,8 @@ public class NormalExecution extends ExecutionOutcome {
      *
      * <p>Note that toString() of code under test may have arbitrary behavior.
      */
-    public String toString() {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public  String toString( NormalExecution this) {
         return String.format("[NormalExecution %s]", StringsPlume.toStringAndClass(result));
     }
 }

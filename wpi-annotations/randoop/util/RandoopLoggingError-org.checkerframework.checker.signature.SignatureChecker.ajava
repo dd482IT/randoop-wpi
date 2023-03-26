@@ -1,0 +1,15 @@
+package randoop.util;
+
+/**
+ * Exception for tracking errors in logging that should result in Randoop termination.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class RandoopLoggingError extends Error {
+
+    private static final  @org.checkerframework.checker.signature.qual.SignatureUnknown long serialVersionUID = -3641426773814539646L;
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public RandoopLoggingError(@org.checkerframework.checker.signature.qual.SignatureUnknown String message) {
+        super(message);
+    }
+}

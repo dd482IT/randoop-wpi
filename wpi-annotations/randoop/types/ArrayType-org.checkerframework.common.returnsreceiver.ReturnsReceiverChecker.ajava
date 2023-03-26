@@ -249,7 +249,7 @@ public class ArrayType extends ReferenceType {
      *
      * @return true if the element type is parameterized; false otherwise
      */
-    public   boolean hasParameterizedElementType() {
+    public   boolean hasParameterizedElementType( ArrayType this) {
         return getElementType().isParameterized();
     }
 
@@ -260,7 +260,7 @@ public class ArrayType extends ReferenceType {
      *
      * @return the non-parameterized form of this array type
      */
-    public  ArrayType getRawTypeArray() {
+    public  ArrayType getRawTypeArray( ArrayType this) {
         Type rawElementType;
         if (this.componentType.isArray()) {
             rawElementType = ((ArrayType) componentType).getRawTypeArray();

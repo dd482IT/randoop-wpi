@@ -6,16 +6,17 @@ import randoop.contract.ObjectContract;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
 public final class ObjectContractReflectionCode extends ReflectionCode {
 
-    final ObjectContract c;
+    final @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getInputTypes" }) ObjectContract c;
 
-    final Object[] objs;
+    final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) [] objs;
 
     public ObjectContractReflectionCode(final @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getInputTypes" }) ObjectContract c, final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objs) {
         this.c = c;
         this.objs = objs;
     }
 
-    protected void runReflectionCodeRaw() {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.c" }, methods = { "evaluate", "getInputTypes" })
+    protected void runReflectionCodeRaw(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ObjectContractReflectionCode this) {
         try {
             // always a boolean value (true or false)
             retval = c.evaluate(objs);
@@ -24,7 +25,9 @@ public final class ObjectContractReflectionCode extends ReflectionCode {
         }
     }
 
-    public String toString() {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "hasStarted", "status" })
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ObjectContractReflectionCode this) {
         return "Check of ObjectContract " + c + " args: " + Arrays.toString(objs) + status();
     }
 }

@@ -1,0 +1,23 @@
+package randoop.generation;
+
+import randoop.sequence.Sequence;
+import randoop.util.Randomness;
+import randoop.util.SimpleList;
+
+/**
+ * Select sequences uniformly at random.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class UniformRandomSequenceSelection extends InputSequenceSelector {
+
+    /**
+     * Pick randomly with uniform probability, a sequence from the candidate list.
+     *
+     * @param candidates sequences to choose from
+     * @return the chosen sequence
+     */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "get", "isEmpty", "size" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence selectInputSequence(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) UniformRandomSequenceSelection this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isEmpty", "size" }) SimpleList<Sequence> candidates) {
+        return Randomness.randomMember(candidates);
+    }
+}

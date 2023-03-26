@@ -18,7 +18,7 @@ public interface ReflectionPredicate {
      * @return true if the class meets the predicate criteria, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    boolean test(Class<?> c);
+     @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean test(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReflectionPredicate this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Class<?> c);
 
     /**
      * Indicate whether Randoop should use a method.
@@ -27,7 +27,7 @@ public interface ReflectionPredicate {
      * @return true if the method meets the predicate criteria, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    boolean test(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReflectionPredicate this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getGenericParameterTypes" }) Method m);
+     @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean test(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReflectionPredicate this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Method m);
 
     /**
      * Indicate whether Randoop should use a constructor.
@@ -36,7 +36,7 @@ public interface ReflectionPredicate {
      * @return true if the constructor meets the predicate criteria, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    boolean test(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReflectionPredicate this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Constructor<?> m);
+     @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean test(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReflectionPredicate this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Constructor<?> m);
 
     /**
      * Indicate whether Randoop should use a field.
@@ -45,5 +45,5 @@ public interface ReflectionPredicate {
      * @return true if the field meets the predicate criteria, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    boolean test(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReflectionPredicate this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getGenericType" }) Field f);
+     @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean test(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ReflectionPredicate this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getName" }) Field f);
 }

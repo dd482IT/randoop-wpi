@@ -19,9 +19,9 @@ import randoop.types.TypeTuple;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
 public class EnumConstant extends CallableOperation {
 
-    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "name" }) Enum<?> value;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Enum<?> value;
 
-    public EnumConstant(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "name" }) Enum<?> value) {
+    public EnumConstant(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Enum<?> value) {
         if (value == null) {
             throw new IllegalArgumentException("enum constant cannot be null");
         }
@@ -47,24 +47,25 @@ public class EnumConstant extends CallableOperation {
      * @param e the value to compare against
      * @return true iff this equals the given value
      */
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.value" }, methods = { "equals", "name" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.value" }, methods = { "equals" })
     @org.checkerframework.dataflow.qual.Pure
     public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean equalsEnumConstant(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumConstant this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumConstant e) {
         return this.value.equals(e.value);
     }
 
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.value" }, methods = { "hashCode", "name" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.value" }, methods = { "hashCode" })
     @org.checkerframework.dataflow.qual.Pure
     public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int hashCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumConstant this) {
         return value.hashCode();
     }
 
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.value" }, methods = { "name", "toString" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.value" }, methods = { "toString" })
     @org.checkerframework.dataflow.qual.SideEffectFree
     public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumConstant this) {
         return value.toString();
     }
 
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.value" }, methods = { "name" })
     public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumConstant this) {
         return value.name();
     }
@@ -99,6 +100,7 @@ public class EnumConstant extends CallableOperation {
      * @see EnumConstant#parse(String)
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getBinaryName" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.value" }, methods = { "name" })
     public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toParsableString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumConstant this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type declaringType, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeTuple inputTypes, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type outputType) {
         return declaringType.getBinaryName() + ":" + value.name();
     }
@@ -169,7 +171,7 @@ public class EnumConstant extends CallableOperation {
      * @return object for value of enum constant
      */
     @org.checkerframework.dataflow.qual.Pure
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "name" }) Enum<?> value(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumConstant this) {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Enum<?> value(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumConstant this) {
         return this.value;
     }
 
@@ -180,7 +182,7 @@ public class EnumConstant extends CallableOperation {
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "value" })
     @org.checkerframework.dataflow.qual.Pure
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "name" }) Object getValue(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumConstant this) {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object getValue(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EnumConstant this) {
         return value();
     }
 

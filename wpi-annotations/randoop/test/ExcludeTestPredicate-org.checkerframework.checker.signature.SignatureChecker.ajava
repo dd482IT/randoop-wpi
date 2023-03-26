@@ -16,7 +16,7 @@ public class ExcludeTestPredicate implements Predicate<ExecutableSequence> {
      */
     private @org.checkerframework.checker.signature.qual.SignatureUnknown Set<Sequence> excludeSet;
 
-    public ExcludeTestPredicate(Set<Sequence> excludeSet) {
+    public ExcludeTestPredicate(@org.checkerframework.checker.signature.qual.SignatureUnknown Set<Sequence> excludeSet) {
         this.excludeSet = excludeSet;
     }
 

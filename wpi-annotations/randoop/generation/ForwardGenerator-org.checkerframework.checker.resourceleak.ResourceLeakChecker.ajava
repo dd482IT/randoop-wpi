@@ -55,37 +55,37 @@ public class ForwardGenerator extends AbstractGenerator {
      * <p>This must be ordered by insertion to allow for flaky test history collection in {@link
      * randoop.main.GenTests#printSequenceExceptionError(AbstractGenerator, SequenceExceptionError)}.
      */
-    private final LinkedHashSet<Sequence> allSequences = new LinkedHashSet<>();
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) LinkedHashSet<Sequence> allSequences = new LinkedHashSet<>();
 
     /**
      * The side-effect-free methods.
      */
-    private final Set<TypedOperation> sideEffectFreeMethods;
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<TypedOperation> sideEffectFreeMethods;
 
     /**
      * Set and used only if {@link GenInputsAbstract#debug_checks}==true. This contains the same
      * components as {@link #allSequences}, in the same order, but stores them as strings obtained via
      * the toCodeString() method.
      */
-    private final List<String> allsequencesAsCode = new ArrayList<>();
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<String> allsequencesAsCode = new ArrayList<>();
 
     /**
      * Set and used only if {@link GenInputsAbstract#debug_checks}==true. This contains the same
      * components as {@link #allSequences}, in the same order, but can be accessed by index.
      */
-    private final List<Sequence> allsequencesAsList = new ArrayList<>();
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<Sequence> allsequencesAsList = new ArrayList<>();
 
-    private final TypeInstantiator instantiator;
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeInstantiator instantiator;
 
     /**
      * How to select sequences as input for creating new sequences.
      */
-    private final InputSequenceSelector inputSequenceSelector;
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InputSequenceSelector inputSequenceSelector;
 
     /**
      * How to select the method to use for creating a new sequence.
      */
-    private final TypedOperationSelector operationSelector;
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedOperationSelector operationSelector;
 
     /**
      * The set of all primitive values seen during generation and execution of sequences. This set is
@@ -93,7 +93,7 @@ public class ForwardGenerator extends AbstractGenerator {
      *
      * <p>Each value in the collection is a primitive wrapper or a String.
      */
-    private Set<Object> runtimePrimitivesSeen = new LinkedHashSet<>();
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<Object> runtimePrimitivesSeen = new LinkedHashSet<>();
 
     /**
      * Create a forward generator.
@@ -104,6 +104,7 @@ public class ForwardGenerator extends AbstractGenerator {
      * @param componentManager stores previously-generated sequences
      * @param classesUnderTest set of classes under test
      */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#4" }, methods = { "getTypeInstantiator" })
     public ForwardGenerator(List<TypedOperation> operations, Set<TypedOperation> sideEffectFreeMethods, GenInputsAbstract.Limits limits, ComponentManager componentManager, Set<ClassOrInterfaceType> classesUnderTest) {
         this(operations, sideEffectFreeMethods, limits, componentManager, /*stopper=*/
         null, classesUnderTest);
@@ -119,7 +120,8 @@ public class ForwardGenerator extends AbstractGenerator {
      * @param stopper determines when the test generation process should conclude. Can be null.
      * @param classesUnderTest the classes that are under test
      */
-    public ForwardGenerator(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "size" }) List<TypedOperation> operations, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<TypedOperation> sideEffectFreeMethods, GenInputsAbstract.@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Limits limits, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ComponentManager componentManager, IStopper stopper, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<ClassOrInterfaceType> classesUnderTest) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#4" }, methods = { "getTypeInstantiator" })
+    public ForwardGenerator(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<TypedOperation> operations, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<TypedOperation> sideEffectFreeMethods, GenInputsAbstract.@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Limits limits, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ComponentManager componentManager, IStopper stopper, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<ClassOrInterfaceType> classesUnderTest) {
         super(operations, limits, componentManager, stopper);
         this.sideEffectFreeMethods = sideEffectFreeMethods;
         this.instantiator = componentManager.getTypeInstantiator();
@@ -154,7 +156,9 @@ public class ForwardGenerator extends AbstractGenerator {
      *
      * @param sequence the new sequence that was classified as a regression test
      */
-    public void newRegressionTestHook(Sequence sequence) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.operationSelector" }, methods = { "newRegressionTestHook" })
+    @org.checkerframework.dataflow.qual.Pure
+    public void newRegressionTestHook(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "setExecutionVisitor", "setTestCheckGenerator", "setTestPredicate" }) ForwardGenerator this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence sequence) {
         operationSelector.newRegressionTestHook(sequence);
     }
 
@@ -164,7 +168,7 @@ public class ForwardGenerator extends AbstractGenerator {
      * initially contains a set of primitive sequences; this method puts those primitives in this set.
      */
     // XXX this is goofy - these values are available in other ways
-    private void initializeRuntimePrimitivesSeen() {
+    private void initializeRuntimePrimitivesSeen(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ForwardGenerator this) {
         for (Sequence s : componentManager.getAllPrimitiveSequences()) {
             ExecutableSequence es = new ExecutableSequence(s);
             es.execute(new DummyVisitor(), new DummyCheckGenerator());
@@ -174,7 +178,8 @@ public class ForwardGenerator extends AbstractGenerator {
         }
     }
 
-    public ExecutableSequence step() {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "createNewUniqueSequence", "randomVariable", "selectInputs" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "execute", "getNonExecutedIndex", "getResult", "hasNonExecutedStatements", "reset" }) ExecutableSequence step(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "setExecutionVisitor", "setTestCheckGenerator", "setTestPredicate" }) ForwardGenerator this) {
         final int nanoPerMilli = 1000000;
         final long nanoPerOne = 1000000000L;
         // 1 second, in nanoseconds
@@ -228,7 +233,8 @@ public class ForwardGenerator extends AbstractGenerator {
         return eSeq;
     }
 
-    public LinkedHashSet<Sequence> getAllSequences() {
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) LinkedHashSet<Sequence> getAllSequences(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ForwardGenerator this) {
         return this.allSequences;
     }
 
@@ -247,7 +253,8 @@ public class ForwardGenerator extends AbstractGenerator {
      *
      * @param seq the sequence, all of whose indices are initially marked as active
      */
-    private void determineActiveIndices(ExecutableSequence seq) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "execute", "getNonExecutedIndex", "getResult", "hasNonExecutedStatements", "reset" })
+    private void determineActiveIndices(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "setExecutionVisitor", "setTestCheckGenerator", "setTestPredicate" }) ForwardGenerator this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "execute", "reset" }) ExecutableSequence seq) {
         if (seq.hasNonExecutedStatements()) {
             Log.logPrintf("Sequence has non-executed statements: excluding from extension pool.%n");
             Log.logPrintf("Non-executed statement: %s%n", seq.statementToCodeString(seq.getNonExecutedIndex()));
@@ -361,7 +368,8 @@ public class ForwardGenerator extends AbstractGenerator {
      *
      * @return a new sequence, or null
      */
-    private ExecutableSequence createNewUniqueSequence() {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "randomVariable", "selectInputs" })
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence createNewUniqueSequence(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "setExecutionVisitor", "setTestCheckGenerator", "setTestPredicate" }) ForwardGenerator this) {
         Log.logPrintf("-------------------------------------------%n");
         if (Log.isLoggingOn()) {
             Log.logPrintln("Memory used: " + StringsPlume.abbreviateNumber(SystemPlume.usedMemory(false)));
@@ -465,7 +473,7 @@ public class ForwardGenerator extends AbstractGenerator {
      * @param times the number of times to repeat the {@link Operation}
      * @return a new {@code Sequence}
      */
-    private Sequence repeat(Sequence seq, TypedOperation operation, int times) {
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence repeat(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "setExecutionVisitor", "setTestCheckGenerator", "setTestPredicate" }) ForwardGenerator this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence seq, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getInputTypes", "isGeneric", "isNonreceivingValue" }) TypedOperation operation,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int times) {
         Sequence retseq = new Sequence(seq.statements);
         for (int i = 0; i < times; i++) {
             List<Variable> inputs = retseq.getInputs(retseq.size() - 1);
@@ -490,7 +498,7 @@ public class ForwardGenerator extends AbstractGenerator {
     // adds the string corresponding to the given newSequences to the
     // set allSequencesAsCode. The latter set is intended to mirror
     // the set allSequences, but stores strings instead of Sequences.
-    private void randoopConsistencyTest2(Sequence newSequence) {
+    private void randoopConsistencyTest2(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "setExecutionVisitor", "setTestCheckGenerator", "setTestPredicate" }) ForwardGenerator this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "size" }) Sequence newSequence) {
         // Testing code.
         if (GenInputsAbstract.debug_checks) {
             this.allsequencesAsCode.add(newSequence.toCodeString());
@@ -500,7 +508,7 @@ public class ForwardGenerator extends AbstractGenerator {
 
     // Checks that the set allSequencesAsCode contains a set of strings
     // equivalent to the sequences in allSequences.
-    private void randoopConsistencyTests(Sequence newSequence) {
+    private void randoopConsistencyTests(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "setExecutionVisitor", "setTestCheckGenerator", "setTestPredicate" }) ForwardGenerator this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "size" }) Sequence newSequence) {
         if (!GenInputsAbstract.debug_checks) {
             return;
         }
@@ -547,7 +555,9 @@ public class ForwardGenerator extends AbstractGenerator {
      * @param operation the statement to analyze
      * @return the selected sequences and indices
      */
-    private InputsAndSuccessFlag selectInputs(TypedOperation operation) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getInputTypes", "isGeneric" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "randomVariable" })
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InputsAndSuccessFlag selectInputs(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "setExecutionVisitor", "setTestCheckGenerator", "setTestPredicate" }) ForwardGenerator this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isGeneric" }) TypedOperation operation) {
         // The input types for `operation`.
         TypeTuple inputTypes = operation.getInputTypes();
         Log.logPrintf("selectInputs:  inputTypes=%s%n", inputTypes);
@@ -714,11 +724,11 @@ public class ForwardGenerator extends AbstractGenerator {
     // A pair of a variable and a sequence
     private static class VarAndSeq {
 
-        final Variable var;
+        final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Variable var;
 
-        final Sequence seq;
+        final @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "allVariablesForTypeLastStatement", "getCreatingStatement", "randomVariableForTypeLastStatement" }) Sequence seq;
 
-        VarAndSeq(Variable var, Sequence seq) {
+        VarAndSeq(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Variable var, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "allVariablesForTypeLastStatement", "getCreatingStatement", "randomVariableForTypeLastStatement" }) Sequence seq) {
             this.var = var;
             this.seq = seq;
         }
@@ -733,7 +743,7 @@ public class ForwardGenerator extends AbstractGenerator {
      * @param isReceiver whether the value will be used as a receiver
      * @return a random variable of the given type, chosen from the candidates
      */
-    VarAndSeq randomVariable(SimpleList<Sequence> candidates, Type inputType, boolean isReceiver) {
+    @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) VarAndSeq randomVariable(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "setExecutionVisitor", "setTestCheckGenerator", "setTestPredicate" }) ForwardGenerator this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isEmpty", "size" }) SimpleList<Sequence> candidates, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isArray" }) Type inputType,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isReceiver) {
         // Log.logPrintf("entering randomVariable(%s)%n", inputType);
         for (int i = 0; i < 10; i++) {
             // can return null.  Try several times to get a non-null value.
@@ -795,11 +805,18 @@ public class ForwardGenerator extends AbstractGenerator {
         return Randomness.randomMember(validResults);
     }
 
-    public int numGeneratedSequences() {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.allSequences" }, methods = { "size" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int numGeneratedSequences(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "setExecutionVisitor", "setTestCheckGenerator", "setTestPredicate" }) ForwardGenerator this) {
         return allSequences.size();
     }
 
-    public String toString() {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getErrorTestSequences" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.allSequences" }, methods = { "size" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.runtimePrimitivesSeen" }, methods = { "size" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.sideEffectFreeMethods" }, methods = { "size" })
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ForwardGenerator this) {
         return "ForwardGenerator(" + String.join(";" + Globals.lineSep + "    ", String.join(", ", "steps: " + num_steps, "null steps: " + null_steps, "num_sequences_generated: " + num_sequences_generated), String.join(", ", "allSequences: " + allSequences.size(), "regresson seqs: " + outRegressionSeqs.size(), "error seqs: " + outErrorSeqs.size() + "=" + num_failing_sequences + "=" + getErrorTestSequences().size(), "invalid seqs: " + invalidSequenceCount, "subsumed_sequences: " + subsumed_sequences.size(), "num_failed_output_test: " + num_failed_output_test), String.join(", ", "sideEffectFreeMethods: " + sideEffectFreeMethods.size(), "runtimePrimitivesSeen: " + runtimePrimitivesSeen.size())) + ")";
     }
 }

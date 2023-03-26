@@ -390,7 +390,7 @@ public class InstantiatedType extends ParameterizedType {
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.argumentList" }, methods = { "size" })
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isRecursiveType() {
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isRecursiveType(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InstantiatedType this) {
         if (this.argumentList.size() > 1 || this.argumentList.get(0).hasWildcard()) {
             return false;
         }

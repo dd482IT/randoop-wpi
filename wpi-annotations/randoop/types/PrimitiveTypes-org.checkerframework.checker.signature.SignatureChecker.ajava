@@ -106,7 +106,7 @@ public final class PrimitiveTypes {
      * @return the {@code Class<?>} object for the type, or null
      */
     @org.checkerframework.dataflow.qual.Pure
-    public static @org.checkerframework.checker.signature.qual.SignatureUnknown Class<?> classForName(@org.checkerframework.checker.signature.qual.SignatureUnknown String typeName) {
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown Class<?> classForName(@org.checkerframework.checker.signature.qual.ClassGetName String typeName) {
         return nameToClass.get(typeName);
     }
 

@@ -108,7 +108,7 @@ public abstract class ParameterType extends ReferenceType {
      * @return true if this has a generic bound
      */
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasGenericBound() {
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasGenericBound(@org.checkerframework.checker.signature.qual.SignatureUnknown ParameterType this) {
         return getUpperTypeBound().isGeneric() || getLowerTypeBound().isGeneric();
     }
 }

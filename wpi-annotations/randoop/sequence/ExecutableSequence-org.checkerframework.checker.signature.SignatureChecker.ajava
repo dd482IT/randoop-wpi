@@ -122,7 +122,7 @@ public class ExecutableSequence {
      *
      * @param sequence the underlying sequence for this executable sequence
      */
-    public ExecutableSequence(Sequence sequence) {
+    public ExecutableSequence(@org.checkerframework.checker.signature.qual.SignatureUnknown Sequence sequence) {
         this.sequence = sequence;
         this.executionResults = new Execution(sequence);
     }
@@ -224,7 +224,7 @@ public class ExecutableSequence {
      * @param i the statement index
      * @return the string representation of the statement
      */
-    public @org.checkerframework.checker.signature.qual.SignatureUnknown String statementToCodeString(int i) {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String statementToCodeString(@org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence this,  @org.checkerframework.checker.signature.qual.SignatureUnknown int i) {
         StringBuilder oneStatement = new StringBuilder();
         sequence.appendCode(oneStatement, i);
         return oneStatement.toString();
@@ -237,7 +237,7 @@ public class ExecutableSequence {
      * @param visitor the {@link ExecutionVisitor} that collects checks from results
      * @param gen the check generator for tests
      */
-    public void execute(ExecutionVisitor visitor, TestCheckGenerator gen) {
+    public void execute(@org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence this, @org.checkerframework.checker.signature.qual.SignatureUnknown ExecutionVisitor visitor, @org.checkerframework.checker.signature.qual.SignatureUnknown TestCheckGenerator gen) {
         // TODO: Setting the third argument to false would mask fewer errors.  Doing so causes 3 Randoop
         // system tests to fail (because some sequence throws an exception before the last statement).
         // One is innocuous:  java.lang.OutOfMemoryError due to creation of a very large object --
@@ -435,7 +435,7 @@ public class ExecutableSequence {
      * @return the {@code TestChecks} generated from the most recent execution
      */
     @org.checkerframework.dataflow.qual.Pure
-    public @org.checkerframework.checker.signature.qual.SignatureUnknown TestChecks<?> getChecks() {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown TestChecks<?> getChecks(@org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence this) {
         return checks;
     }
 
@@ -446,6 +446,7 @@ public class ExecutableSequence {
      * @return the result of executing the index-th element of the sequence, if that element's
      *     execution completed normally
      */
+    @org.checkerframework.dataflow.qual.Pure
     private @org.checkerframework.checker.signature.qual.SignatureUnknown Object getValue(@org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence this,  @org.checkerframework.checker.signature.qual.SignatureUnknown int index) {
         ExecutionOutcome result = getResult(index);
         if (result instanceof NormalExecution) {
@@ -557,7 +558,7 @@ public class ExecutableSequence {
     }
 
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isNormalExecution() {
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isNormalExecution(@org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence this) {
         return getNonNormalExecutionIndex() == -1;
     }
 
@@ -602,7 +603,7 @@ public class ExecutableSequence {
      * @return true if this sequence has non-executed statements, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasNonExecutedStatements() {
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasNonExecutedStatements(@org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence this) {
         return getNonExecutedIndex() != -1;
     }
 
@@ -647,7 +648,7 @@ public class ExecutableSequence {
      * @return true if there is a null input value in this sequence, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasNullInput() {
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasNullInput(@org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence this) {
         return hasNullInput;
     }
 
@@ -676,7 +677,7 @@ public class ExecutableSequence {
      *
      * @param c the class covered by the execution of this sequence
      */
-    public void addCoveredClass(Class<?> c) {
+    public void addCoveredClass(@org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence this, @org.checkerframework.checker.signature.qual.SignatureUnknown Class<?> c) {
         executionResults.addCoveredClass(c);
     }
 
@@ -698,7 +699,7 @@ public class ExecutableSequence {
      * @return the operation of the last statement of this sequence
      */
     @org.checkerframework.dataflow.qual.Pure
-    public @org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation getOperation() {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation getOperation(@org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSequence this) {
         return this.sequence.getOperation();
     }
 

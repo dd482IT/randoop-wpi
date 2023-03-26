@@ -1,0 +1,11 @@
+package randoop.generation;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public interface StateMatcher {
+
+    @org.checkerframework.dataflow.qual.Pure
+      boolean add( StateMatcher this,  Object object);
+
+    @org.checkerframework.dataflow.qual.Pure
+      int size();
+}

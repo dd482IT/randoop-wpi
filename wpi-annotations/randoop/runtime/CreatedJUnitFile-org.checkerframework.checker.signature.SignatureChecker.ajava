@@ -1,0 +1,37 @@
+package randoop.runtime;
+
+import java.nio.file.Path;
+
+/**
+ * A message indicating that Randoop created a specific JUnit file containing generated tests.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class CreatedJUnitFile implements IMessage {
+
+    private static final  @org.checkerframework.checker.signature.qual.SignatureUnknown long serialVersionUID = 3786576811718698647L;
+
+    /**
+     * The file that was created.
+     */
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown Path file;
+
+    private final  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isDriver;
+
+    public CreatedJUnitFile(Path f, boolean isDriver) {
+        if (f == null) {
+            throw new IllegalArgumentException("f is null");
+        }
+        this.file = f;
+        this.isDriver = isDriver;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown Path getFile() {
+        return file;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isDriver() {
+        return isDriver;
+    }
+}

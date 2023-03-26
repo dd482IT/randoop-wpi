@@ -23,7 +23,7 @@ public class CompareToAntiSymmetric extends ObjectContract {
     }
 
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CompareToAntiSymmetric this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objects) {
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getInputTypes" }) CompareToAntiSymmetric this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objects) {
         Object o1 = objects[0];
         Object o2 = objects[1];
         // If o1 and o2 are comparable objects, check that their signs are opposite of one another

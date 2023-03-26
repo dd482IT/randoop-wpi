@@ -37,7 +37,7 @@ public class ContractSet {
      *
      * @param contract the contract
      */
-    public void add(ObjectContract contract) {
+    public void add(@org.checkerframework.checker.mustcall.qual.MustCall({}) ContractSet this, @org.checkerframework.checker.mustcall.qual.MustCall({}) ObjectContract contract) {
         int arity = contract.getArity();
         while (arity >= contractMap.size()) {
             contractMap.add(new ArrayList<>(1));

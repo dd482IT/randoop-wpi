@@ -1,0 +1,52 @@
+package randoop.reflection;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+/**
+ * Default implementation of the {@code ClassVisitor} class. All methods do nothing.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public class DefaultClassVisitor implements ClassVisitor {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit(@org.checkerframework.checker.mustcall.qual.MustCall({}) DefaultClassVisitor this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Class<?> c, @org.checkerframework.checker.mustcall.qual.MustCall({}) ReflectionManager reflectionManager) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit(@org.checkerframework.checker.mustcall.qual.MustCall({}) DefaultClassVisitor this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Constructor<?> c) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit(@org.checkerframework.checker.mustcall.qual.MustCall({}) DefaultClassVisitor this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Method m) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit(@org.checkerframework.checker.mustcall.qual.MustCall({}) DefaultClassVisitor this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Field f) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit(@org.checkerframework.checker.mustcall.qual.MustCall({}) DefaultClassVisitor this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Enum<?> e) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitBefore(@org.checkerframework.checker.mustcall.qual.MustCall({}) DefaultClassVisitor this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Class<?> c) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitAfter(@org.checkerframework.checker.mustcall.qual.MustCall({}) DefaultClassVisitor this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Class<?> c) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toString(@org.checkerframework.checker.mustcall.qual.MustCall({}) DefaultClassVisitor this) {
+        return getClass().toString();
+    }
+}

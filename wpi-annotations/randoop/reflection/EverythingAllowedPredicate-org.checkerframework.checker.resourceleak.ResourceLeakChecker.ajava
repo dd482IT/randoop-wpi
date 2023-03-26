@@ -1,0 +1,29 @@
+package randoop.reflection;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class EverythingAllowedPredicate implements ReflectionPredicate {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean test(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EverythingAllowedPredicate this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Class<?> c) {
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean test(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EverythingAllowedPredicate this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Method m) {
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean test(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EverythingAllowedPredicate this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Constructor<?> m) {
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean test(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EverythingAllowedPredicate this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getName" }) Field f) {
+        return true;
+    }
+}

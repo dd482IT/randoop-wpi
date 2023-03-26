@@ -7,7 +7,7 @@ import java.util.List;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
 public final class OneMoreElementList<E> implements SimpleList<E>, Serializable {
 
-    private static final long serialVersionUID = 1332963552183905833L;
+    private static final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) long serialVersionUID = 1332963552183905833L;
 
     /**
      * The last element in this.
@@ -17,12 +17,12 @@ public final class OneMoreElementList<E> implements SimpleList<E>, Serializable 
     /**
      * All but the last element in this.
      */
-    public final SimpleList<E> list;
+    public final @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "size" }) SimpleList<E> list;
 
     /**
      * The size of this.
      */
-    public final int size;
+    public final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int size;
 
     public OneMoreElementList(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "size" }) SimpleList<E> list, E extraElement) {
         this.list = list;
@@ -30,15 +30,18 @@ public final class OneMoreElementList<E> implements SimpleList<E>, Serializable 
         this.size = list.size() + 1;
     }
 
-    public int size() {
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int size(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OneMoreElementList<E> this) {
         return size;
     }
 
-    public boolean isEmpty() {
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isEmpty(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OneMoreElementList<E> this) {
         return size == 0;
     }
 
-    public E get(int index) {
+    @org.checkerframework.dataflow.qual.Pure
+    public E get(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OneMoreElementList<E> this,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int index) {
         if (index < size - 1) {
             return list.get(index);
         }
@@ -48,7 +51,8 @@ public final class OneMoreElementList<E> implements SimpleList<E>, Serializable 
         throw new IndexOutOfBoundsException("No such element: " + index);
     }
 
-    public SimpleList<E> getSublist(int index) {
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SimpleList<E> getSublist(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OneMoreElementList<E> this,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int index) {
         if (index == size - 1) {
             // is lastElement
             return this;
@@ -60,14 +64,18 @@ public final class OneMoreElementList<E> implements SimpleList<E>, Serializable 
         throw new IndexOutOfBoundsException("No such index: " + index);
     }
 
-    public List<E> toJDKList() {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.list" }, methods = { "size", "toJDKList" })
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "add", "addAll" }) List<E> toJDKList(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OneMoreElementList<E> this) {
         List<E> result = new ArrayList<>();
         result.addAll(list.toJDKList());
         result.add(lastElement);
         return result;
     }
 
-    public String toString() {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "toJDKList" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.list" }, methods = { "size", "toJDKList" })
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OneMoreElementList<E> this) {
         return toJDKList().toString();
     }
 }

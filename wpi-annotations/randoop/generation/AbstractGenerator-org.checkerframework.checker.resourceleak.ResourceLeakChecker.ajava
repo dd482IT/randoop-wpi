@@ -169,7 +169,7 @@ public abstract class AbstractGenerator {
      *     {@code new ComponentManager()}.
      * @param stopper optional, additional stopping criterion for the generator. Can be null.
      */
-    protected AbstractGenerator(List<TypedOperation> operations, GenInputsAbstract.Limits limits, ComponentManager componentManager, IStopper stopper) {
+    protected AbstractGenerator(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<TypedOperation> operations, GenInputsAbstract.@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Limits limits, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ComponentManager componentManager, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) IStopper stopper) {
         assert operations != null;
         this.limits = limits;
         this.operations = operations;
@@ -217,6 +217,7 @@ public abstract class AbstractGenerator {
      *
      * @param visitors the list of visitors
      */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "size" })
     public void setExecutionVisitor(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "setTestCheckGenerator", "setTestPredicate" }) AbstractGenerator this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ExecutionVisitor> visitors) {
         this.executionVisitor = MultiVisitor.createMultiVisitor(visitors);
     }
@@ -250,7 +251,7 @@ public abstract class AbstractGenerator {
      * @return a test sequence, may be null
      */
     @org.checkerframework.dataflow.qual.Pure
-    public abstract ExecutableSequence step(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "setExecutionVisitor", "setTestCheckGenerator", "setTestPredicate" }) AbstractGenerator this);
+    public abstract @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "execute", "getNonExecutedIndex", "getResult", "hasNonExecutedStatements", "reset" }) ExecutableSequence step(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "setExecutionVisitor", "setTestCheckGenerator", "setTestPredicate" }) AbstractGenerator this);
 
     /**
      * Returns the count of attempts to generate a sequence so far.
@@ -268,7 +269,7 @@ public abstract class AbstractGenerator {
      * @return the number of sequences generated
      */
     @org.checkerframework.dataflow.qual.Pure
-    public abstract int numGeneratedSequences(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "setExecutionVisitor", "setTestCheckGenerator", "setTestPredicate" }) AbstractGenerator this);
+    public abstract  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int numGeneratedSequences(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "setExecutionVisitor", "setTestCheckGenerator", "setTestPredicate" }) AbstractGenerator this);
 
     /**
      * Returns the count of generated sequence currently for output.
@@ -375,7 +376,7 @@ public abstract class AbstractGenerator {
      * @return all generated sequences
      */
     @org.checkerframework.dataflow.qual.Pure
-    public abstract LinkedHashSet<Sequence> getAllSequences();
+    public abstract @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) LinkedHashSet<Sequence> getAllSequences(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AbstractGenerator this);
 
     /**
      * Returns the generated regression test sequences for output. Filters out subsequences.
@@ -406,7 +407,7 @@ public abstract class AbstractGenerator {
      * @return the generated error test sequences
      */
     @org.checkerframework.dataflow.qual.Pure
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ExecutableSequence> getErrorTestSequences(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "createAndClassifySequences", "elapsedTime", "setExecutionVisitor", "setTestCheckGenerator", "setTestPredicate", "shouldStop" }) AbstractGenerator this) {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ExecutableSequence> getErrorTestSequences(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AbstractGenerator this) {
         return outErrorSeqs;
     }
 
@@ -428,7 +429,7 @@ public abstract class AbstractGenerator {
      *
      * @param s the current sequence
      */
-    void setCurrentSequence(Sequence s) {
+    void setCurrentSequence(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "setExecutionVisitor", "setTestCheckGenerator", "setTestPredicate" }) AbstractGenerator this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence s) {
         currSeq = s;
     }
 
@@ -437,7 +438,7 @@ public abstract class AbstractGenerator {
      *
      * @param logger the operation history logger to use for this generator
      */
-    public void setOperationHistoryLogger(OperationHistoryLogInterface logger) {
+    public void setOperationHistoryLogger(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AbstractGenerator this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OperationHistoryLogInterface logger) {
         operationHistory = logger;
     }
 

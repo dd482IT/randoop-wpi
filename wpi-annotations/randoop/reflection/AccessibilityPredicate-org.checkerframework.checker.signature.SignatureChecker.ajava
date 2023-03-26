@@ -54,7 +54,7 @@ public abstract class AccessibilityPredicate {
      * @return whether this considers the field to be accessible
      */
     @org.checkerframework.dataflow.qual.Pure
-    public abstract  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isAccessible(Field f);
+    public abstract  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isAccessible(@org.checkerframework.checker.signature.qual.SignatureUnknown AccessibilityPredicate this, @org.checkerframework.checker.signature.qual.SignatureUnknown Field f);
 
     /**
      * AnyAccessibilityPredicate is a {@link AccessibilityPredicate} that always returns true.
@@ -171,7 +171,7 @@ public abstract class AccessibilityPredicate {
          *
          * @param packageName the package to use for package accessibility test
          */
-        public PackageAccessibilityPredicate(String packageName) {
+        public PackageAccessibilityPredicate(@org.checkerframework.checker.signature.qual.SignatureUnknown String packageName) {
             this.packageName = packageName;
         }
 

@@ -138,7 +138,7 @@ public class SequenceCompiler implements Closeable {
      */
     @org.checkerframework.framework.qual.RequiresQualifier(expression = { "randoop.compile.SequenceCompiler.debugCompilationFailure" }, qualifier = org.checkerframework.checker.signature.qual.SignatureBottom.class)
     @org.checkerframework.framework.qual.EnsuresQualifier(expression = { "randoop.compile.SequenceCompiler.debugCompilationFailure" }, qualifier = org.checkerframework.checker.signature.qual.SignatureBottom.class)
-    private void compile(@org.checkerframework.checker.signature.qual.SignatureUnknown SequenceCompiler this, final @org.checkerframework.checker.signature.qual.SignatureUnknown String packageName, final @org.checkerframework.checker.signature.qual.Identifier String classname, final @org.checkerframework.checker.signature.qual.SignatureUnknown String javaSource) throws SequenceCompilerException {
+    private void compile(@org.checkerframework.checker.signature.qual.SignatureUnknown SequenceCompiler this, final @org.checkerframework.checker.signature.qual.DotSeparatedIdentifiers String packageName, final @org.checkerframework.checker.signature.qual.Identifier String classname, final @org.checkerframework.checker.signature.qual.SignatureUnknown String javaSource) throws SequenceCompilerException {
         DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<>();
         boolean success = compile(packageName, classname, javaSource, diagnostics);
         if (!success) {
@@ -217,7 +217,7 @@ public class SequenceCompiler implements Closeable {
     @org.checkerframework.framework.qual.RequiresQualifier(expression = { "randoop.compile.SequenceCompiler.debugCompilationFailure" }, qualifier = org.checkerframework.checker.signature.qual.SignatureBottom.class)
     @org.checkerframework.framework.qual.EnsuresQualifier(expression = { "randoop.compile.SequenceCompiler.debugCompilationFailure" }, qualifier = org.checkerframework.checker.signature.qual.SignatureBottom.class)
     @org.checkerframework.dataflow.qual.Pure
-    @org.checkerframework.checker.signature.qual.SignatureUnknown String fullyQualifiedName(@org.checkerframework.checker.signature.qual.SignatureUnknown SequenceCompiler this, @org.checkerframework.checker.signature.qual.SignatureUnknown String packageName, @org.checkerframework.checker.signature.qual.Identifier String classname) {
+    @org.checkerframework.checker.signature.qual.SignatureUnknown String fullyQualifiedName(@org.checkerframework.checker.signature.qual.SignatureUnknown SequenceCompiler this, @org.checkerframework.checker.signature.qual.DotSeparatedIdentifiers String packageName, @org.checkerframework.checker.signature.qual.Identifier String classname) {
         String result = (packageName == null ? "" : (packageName + ".")) + classname;
         return result;
     }

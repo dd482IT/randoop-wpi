@@ -6,8 +6,9 @@ package randoop.sequence;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
 public class SequenceExecutionException extends RuntimeException {
 
-    private static final long serialVersionUID = -5962830721815152881L;
+    private static final  @org.checkerframework.checker.mustcall.qual.MustCall({}) long serialVersionUID = -5962830721815152881L;
 
+    @org.checkerframework.dataflow.qual.SideEffectFree
     public SequenceExecutionException(@org.checkerframework.checker.mustcall.qual.MustCall({}) String s, @org.checkerframework.checker.mustcall.qual.MustCall({}) Throwable e) {
         super(s, e);
     }

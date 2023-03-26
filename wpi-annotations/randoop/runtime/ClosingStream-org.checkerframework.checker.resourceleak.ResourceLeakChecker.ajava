@@ -1,0 +1,7 @@
+package randoop.runtime;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class ClosingStream implements IMessage {
+
+    private static final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) long serialVersionUID = 638560248651002139L;
+}

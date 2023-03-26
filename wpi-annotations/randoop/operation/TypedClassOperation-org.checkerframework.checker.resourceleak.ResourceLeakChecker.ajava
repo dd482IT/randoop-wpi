@@ -255,7 +255,7 @@ public class TypedClassOperation extends TypedOperation {
      *     object may be {@code this}, if the argument is already {@code this}'s declaring type.
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getDeclaringType" })
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedClassOperation getOperationForType(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getDeclaringType", "getRawSignature", "isConstructorCall", "isMethodCall" }) TypedClassOperation this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getRuntimeClass" }) ClassOrInterfaceType type) {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedClassOperation getOperationForType(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedClassOperation this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ClassOrInterfaceType type) {
         if (type == this.getDeclaringType()) {
             return this;
         } else {

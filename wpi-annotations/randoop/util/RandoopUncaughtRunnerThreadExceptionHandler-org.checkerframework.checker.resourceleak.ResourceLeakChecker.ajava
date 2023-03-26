@@ -5,13 +5,15 @@ import java.lang.Thread.UncaughtExceptionHandler;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
 public class RandoopUncaughtRunnerThreadExceptionHandler implements UncaughtExceptionHandler {
 
-    private static RandoopUncaughtRunnerThreadExceptionHandler singleInstance = new RandoopUncaughtRunnerThreadExceptionHandler();
+    private static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) RandoopUncaughtRunnerThreadExceptionHandler singleInstance = new RandoopUncaughtRunnerThreadExceptionHandler();
 
-    public static UncaughtExceptionHandler getHandler() {
+    @org.checkerframework.dataflow.qual.Pure
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) UncaughtExceptionHandler getHandler() {
         return singleInstance;
     }
 
-    public void uncaughtException(Thread t, Throwable e) {
+    @org.checkerframework.dataflow.qual.Pure
+    public void uncaughtException(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) RandoopUncaughtRunnerThreadExceptionHandler this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Thread t, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Throwable e) {
         // Do nothing.
     }
 }

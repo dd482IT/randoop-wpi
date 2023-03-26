@@ -164,7 +164,7 @@ public final class Util {
      * @param replacements the map of replacements to perform
      * @return the text modified by replacing original names with replacement names
      */
-    public static @org.checkerframework.checker.mustcall.qual.MustCall({}) String replaceWords(String text, Map<String, String> replacements) {
+    public static @org.checkerframework.checker.mustcall.qual.MustCall({}) String replaceWords(@org.checkerframework.checker.mustcall.qual.MustCall({}) String text, @org.checkerframework.checker.mustcall.qual.MustCall({}) Map<String, String> replacements) {
         Pattern namesPattern = Pattern.compile("\\b(" + StringsPlume.join("|", replacements.keySet().toArray()) + ")\\b");
         Matcher namesMatcher = namesPattern.matcher(text);
         StringBuilder b = new StringBuilder();

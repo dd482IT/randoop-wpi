@@ -79,7 +79,7 @@ public abstract class ParameterizedType extends ClassOrInterfaceType {
      * @return the generic class type for this type
      */
     @org.checkerframework.dataflow.qual.Pure
-    public abstract @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenericClassType getGenericClassType(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ParameterizedType this);
+    public abstract @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenericClassType getGenericClassType(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getGenericClassType", "getPackage", "getRuntimeClass", "isArray", "isParameterized" }) ParameterizedType this);
 
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getFqName", "getRuntimeClass", "getTypeArguments", "isNestedClass" })
     public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getFqName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ParameterizedType this) {

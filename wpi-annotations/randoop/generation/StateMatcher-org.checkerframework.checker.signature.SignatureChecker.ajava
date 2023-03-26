@@ -1,0 +1,11 @@
+package randoop.generation;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public interface StateMatcher {
+
+    @org.checkerframework.dataflow.qual.Pure
+     @org.checkerframework.checker.signature.qual.SignatureUnknown boolean add(@org.checkerframework.checker.signature.qual.SignatureUnknown StateMatcher this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object object);
+
+    @org.checkerframework.dataflow.qual.Pure
+     @org.checkerframework.checker.signature.qual.SignatureUnknown int size();
+}

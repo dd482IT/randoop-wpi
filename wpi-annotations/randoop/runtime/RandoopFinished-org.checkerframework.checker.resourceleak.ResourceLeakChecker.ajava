@@ -1,0 +1,10 @@
+package randoop.runtime;
+
+/**
+ * A message indicating that Randoop is finished generating tests.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class RandoopFinished implements IMessage {
+
+    private static final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) long serialVersionUID = -2408618829353908424L;
+}

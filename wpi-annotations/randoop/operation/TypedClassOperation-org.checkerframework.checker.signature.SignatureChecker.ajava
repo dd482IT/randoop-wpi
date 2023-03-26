@@ -184,7 +184,7 @@ public class TypedClassOperation extends TypedOperation {
      * @return this operation's fully qualified signature if it is a method or constructor call, null
      *     otherwise
      */
-    public @org.checkerframework.checker.signature.qual.SignatureUnknown String getFullyQualifiedSignature() {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String getFullyQualifiedSignature(@org.checkerframework.checker.signature.qual.SignatureUnknown TypedClassOperation this) {
         if (!this.isConstructorCall() && !this.isMethodCall()) {
             return null;
         }

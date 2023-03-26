@@ -28,7 +28,7 @@ public class ExpectedExceptionCheckGen {
      *
      * @param accessibility a predicate to determine accessibility of exception classes
      */
-    public ExpectedExceptionCheckGen(AccessibilityPredicate accessibility) {
+    public ExpectedExceptionCheckGen(@org.checkerframework.checker.signature.qual.SignatureUnknown AccessibilityPredicate accessibility) {
         this.accessibility = accessibility;
     }
 

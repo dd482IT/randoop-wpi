@@ -115,7 +115,7 @@ public final class Sequence {
      * @param c the type for initialized variable
      * @return the sequence consisting of the initialization
      */
-    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence zero(Type c) {
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence zero(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type c) {
         return new Sequence().extend(TypedOperation.createNullOrZeroInitializationForType(c), new ArrayList<Variable>(0));
     }
 
@@ -126,7 +126,7 @@ public final class Sequence {
      * @return a {@link Sequence} consisting of a statement created with the object
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getClass" })
-    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence createSequenceForPrimitive(Object value) {
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence createSequenceForPrimitive(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object value) {
         if (value == null)
             throw new IllegalArgumentException("value is null");
         Type type = Type.forValue(value);
@@ -151,8 +151,8 @@ public final class Sequence {
      * @return the sequence that applies the operation to the given inputs
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getInputTypes", "isNonreceivingValue" })
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "iterator", "size" })
-    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence createSequence(TypedOperation operation, List<Sequence> inputSequences, List<Integer> indexes) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "add", "iterator", "size" })
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence createSequence(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedOperation operation, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "add" }) List<Sequence> inputSequences, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "add" }) List<Integer> indexes) {
         Sequence inputSequence = Sequence.concatenate(inputSequences);
         List<Variable> inputs = CollectionsPlume.mapList(inputSequence::getVariable, indexes);
         return inputSequence.extend(operation, inputs);
@@ -160,7 +160,7 @@ public final class Sequence {
 
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getInputTypes", "isNonreceivingValue" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "getOutputIndices" })
-    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence createSequence(TypedOperation operation, TupleSequence elementsSequence) {
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence createSequence(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedOperation operation, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TupleSequence elementsSequence) {
         List<Variable> inputs = CollectionsPlume.mapList(elementsSequence.sequence::getVariable, elementsSequence.getOutputIndices());
         return elementsSequence.sequence.extend(operation, inputs);
     }
@@ -197,6 +197,7 @@ public final class Sequence {
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getInputTypes", "isNonreceivingValue" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "checkInputs", "extend", "size" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.activeFlags" }, methods = { "set" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.statements" }, methods = { "isEmpty", "size" })
     public final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence extend(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedOperation operation, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Variable@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... inputs) {
         return extend(operation, Arrays.asList(inputs));
@@ -214,6 +215,7 @@ public final class Sequence {
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getOperation" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "size" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "checkInputs", "extend", "size" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.activeFlags" }, methods = { "set" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.statements" }, methods = { "isEmpty", "size" })
     public final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence extend(Statement statement, List<Variable> inputs) {
         return extend(statement.getOperation(), inputs);
@@ -268,7 +270,7 @@ public final class Sequence {
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.statements" }, methods = { "size" })
     @org.checkerframework.dataflow.qual.Pure
-    public final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int numMethodCalls() {
+    public final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int numMethodCalls(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence this) {
         int result = 0;
         for (int i = 0; i < statements.size(); i++) {
             Statement statement = statements.get(i);
@@ -412,7 +414,7 @@ public final class Sequence {
 
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.activeFlags" }, methods = { "isEmpty" })
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasActiveFlags() {
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasActiveFlags(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence this) {
         return !activeFlags.isEmpty();
     }
 
@@ -432,12 +434,12 @@ public final class Sequence {
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "size" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.activeFlags" }, methods = { "clear" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.statements" }, methods = { "size" })
-    public void clearAllActiveFlags() {
+    public void clearAllActiveFlags(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence this) {
         activeFlags.clear(0, this.size());
     }
 
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.activeFlags" }, methods = { "clear" })
-    public void clearActiveFlag(int i) {
+    public void clearActiveFlag(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence this,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int i) {
         activeFlags.clear(i);
     }
 
@@ -826,7 +828,7 @@ public final class Sequence {
      * @return the absolute indices for the input variables in the given statement
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.statements" }, methods = { "get" })
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<Integer> getInputsAsAbsoluteIndices(int i) {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<Integer> getInputsAsAbsoluteIndices(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "size" }) Sequence this,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int i) {
         return CollectionsPlume.mapList((RelativeNegativeIndex relIndex) -> getVariableForInput(i, relIndex).index, this.statements.get(i).inputs);
     }
 
@@ -1046,6 +1048,7 @@ public final class Sequence {
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "size" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.statements" }, methods = { "size" })
+    @org.checkerframework.dataflow.qual.Pure
     public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isNonreceiver(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence this) {
         return (size() == 1 && getStatement(0).isNonreceivingInitialization());
     }

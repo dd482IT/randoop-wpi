@@ -1,0 +1,25 @@
+package randoop.main;
+
+/**
+ * A ClassNameErrorHandler determines the error behavior when a class name error occurs.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public interface ClassNameErrorHandler {
+
+    /**
+     * Performs error handling behavior for bad class name.
+     *
+     * @param className the name of the class for inclusion in messages
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    void handle(String className);
+
+    /**
+     * Performs error handling behavior for failure to read class due to exception.
+     *
+     * @param classname the class name to include in message
+     * @param e the exception from loading class
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    void handle(@org.checkerframework.checker.mustcall.qual.MustCall({}) ClassNameErrorHandler this, @org.checkerframework.checker.mustcall.qual.MustCall({}) String classname, @org.checkerframework.checker.mustcall.qual.MustCall({}) Throwable e);
+}

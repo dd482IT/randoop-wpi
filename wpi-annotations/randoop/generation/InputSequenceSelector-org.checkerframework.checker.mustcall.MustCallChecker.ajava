@@ -1,0 +1,32 @@
+package randoop.generation;
+
+import randoop.sequence.ExecutableSequence;
+import randoop.sequence.Sequence;
+import randoop.util.SimpleList;
+
+/**
+ * Interface for selecting sequences as input for creating new sequences.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public abstract class InputSequenceSelector {
+
+    /**
+     * Choose a sequence used as input for creating a new sequence.
+     *
+     * @param candidates sequences to choose from
+     * @return the chosen sequence
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public abstract @org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence selectInputSequence(@org.checkerframework.checker.mustcall.qual.MustCall({}) InputSequenceSelector this, @org.checkerframework.checker.mustcall.qual.MustCall({}) SimpleList<Sequence> candidates);
+
+    /**
+     * A hook that is called after a new sequence has been created and executed.
+     *
+     * <p>The default implementation does nothing. Subclasses may override it to add behavior.
+     *
+     * @param eSeq the recently executed sequence which is new and unique, and has just been executed
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public void createdExecutableSequence(@org.checkerframework.checker.mustcall.qual.MustCall({}) InputSequenceSelector this, @org.checkerframework.checker.mustcall.qual.MustCall({}) ExecutableSequence eSeq) {
+    }
+}

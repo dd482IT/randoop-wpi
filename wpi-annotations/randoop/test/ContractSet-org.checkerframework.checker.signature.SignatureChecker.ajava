@@ -37,7 +37,7 @@ public class ContractSet {
      *
      * @param contract the contract
      */
-    public void add(ObjectContract contract) {
+    public void add(@org.checkerframework.checker.signature.qual.SignatureUnknown ContractSet this, @org.checkerframework.checker.signature.qual.SignatureUnknown ObjectContract contract) {
         int arity = contract.getArity();
         while (arity >= contractMap.size()) {
             contractMap.add(new ArrayList<>(1));

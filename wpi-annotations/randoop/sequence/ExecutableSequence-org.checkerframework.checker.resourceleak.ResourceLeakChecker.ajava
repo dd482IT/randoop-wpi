@@ -123,7 +123,7 @@ public class ExecutableSequence {
      * @param sequence the underlying sequence for this executable sequence
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "size" })
-    public ExecutableSequence(Sequence sequence) {
+    public ExecutableSequence(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence sequence) {
         this.sequence = sequence;
         this.executionResults = new Execution(sequence);
     }
@@ -245,7 +245,7 @@ public class ExecutableSequence {
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "initialize" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "execute", "reset" })
-    public void execute(ExecutionVisitor visitor, TestCheckGenerator gen) {
+    public void execute(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutionVisitor visitor, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TestCheckGenerator gen) {
         // TODO: Setting the third argument to false would mask fewer errors.  Doing so causes 3 Randoop
         // system tests to fail (because some sequence throws an exception before the last statement).
         // One is innocuous:  java.lang.OutOfMemoryError due to creation of a very large object --
@@ -453,7 +453,7 @@ public class ExecutableSequence {
      * @return the {@code TestChecks} generated from the most recent execution
      */
     @org.checkerframework.dataflow.qual.Pure
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TestChecks<?> getChecks() {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TestChecks<?> getChecks(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "execute", "getNonExecutedIndex", "getResult", "hasFailure", "hasInvalidBehavior", "hasNonExecutedStatements", "reset" }) ExecutableSequence this) {
         return checks;
     }
 
@@ -464,6 +464,8 @@ public class ExecutableSequence {
      * @return the result of executing the index-th element of the sequence, if that element's
      *     execution completed normally
      */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.executionResults" }, methods = { "get" })
+    @org.checkerframework.dataflow.qual.Pure
     private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object getValue(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getResult" }) ExecutableSequence this,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int index) {
         ExecutionOutcome result = getResult(index);
         if (result instanceof NormalExecution) {
@@ -566,14 +568,14 @@ public class ExecutableSequence {
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getResult" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.executionResults" }, methods = { "get" })
     @org.checkerframework.dataflow.qual.Pure
-    private  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isNormalExecution(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence this,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int i) {
+    private  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isNormalExecution(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "execute", "getNonExecutedIndex", "getResult", "hasFailure", "hasInvalidBehavior", "hasNonExecutedStatements", "reset" }) ExecutableSequence this,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int i) {
         return getResult(i) instanceof NormalExecution;
     }
 
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getResult", "isNormalExecution" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.sequence" }, methods = { "size" })
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int getNonNormalExecutionIndex(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence this) {
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int getNonNormalExecutionIndex(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "execute", "getNonExecutedIndex", "getResult", "hasFailure", "hasInvalidBehavior", "hasNonExecutedStatements", "reset" }) ExecutableSequence this) {
         for (int i = 0; i < this.sequence.size(); i++) {
             if (!isNormalExecution(i)) {
                 return i;
@@ -585,7 +587,7 @@ public class ExecutableSequence {
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getNonNormalExecutionIndex", "getResult", "isNormalExecution" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.sequence" }, methods = { "size" })
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isNormalExecution() {
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isNormalExecution(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "execute", "getNonExecutedIndex", "getResult", "hasFailure", "hasInvalidBehavior", "hasNonExecutedStatements", "reset" }) ExecutableSequence this) {
         return getNonNormalExecutionIndex() == -1;
     }
 
@@ -636,7 +638,7 @@ public class ExecutableSequence {
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getNonExecutedIndex", "getResult" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.sequence" }, methods = { "size" })
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasNonExecutedStatements() {
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasNonExecutedStatements(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "execute", "reset" }) ExecutableSequence this) {
         return getNonExecutedIndex() != -1;
     }
 
@@ -649,7 +651,7 @@ public class ExecutableSequence {
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getResult" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.sequence" }, methods = { "size" })
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int getNonExecutedIndex(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence this) {
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int getNonExecutedIndex(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "execute", "reset" }) ExecutableSequence this) {
         // Starting from the end of the sequence is always faster to find
         // non-executed statements.
         for (int i = this.sequence.size() - 1; i >= 0; i--) {
@@ -685,7 +687,7 @@ public class ExecutableSequence {
      * @return true if there is a null input value in this sequence, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasNullInput() {
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasNullInput(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getResult" }) ExecutableSequence this) {
         return hasNullInput;
     }
 
@@ -717,7 +719,7 @@ public class ExecutableSequence {
      * @param c the class covered by the execution of this sequence
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.executionResults" }, methods = { "addCoveredClass" })
-    public void addCoveredClass(Class<?> c) {
+    public void addCoveredClass(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getMethod" }) Class<?> c) {
         executionResults.addCoveredClass(c);
     }
 

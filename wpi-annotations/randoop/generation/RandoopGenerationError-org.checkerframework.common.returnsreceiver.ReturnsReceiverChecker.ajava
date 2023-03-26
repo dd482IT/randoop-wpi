@@ -8,17 +8,17 @@ import randoop.operation.TypedOperation;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
 public class RandoopGenerationError extends Error {
 
-    private static final long serialVersionUID = -2655768762421700468L;
+    private static final   long serialVersionUID = -2655768762421700468L;
 
     /**
      * The operation.
      */
-    private final TypedOperation operation;
+    private final  TypedOperation operation;
 
     /**
      * The exception that was thrown.
      */
-    private final Throwable exception;
+    private final  Throwable exception;
 
     /**
      * Create a {@link RandoopGenerationError} representing an error that occurs during the generation
@@ -27,7 +27,7 @@ public class RandoopGenerationError extends Error {
      * @param operation the actual operation
      * @param exception the exception thrown during generation
      */
-    RandoopGenerationError(TypedOperation operation, Throwable exception) {
+    RandoopGenerationError( TypedOperation operation,  Throwable exception) {
         this.operation = operation;
         this.exception = exception;
     }
@@ -38,7 +38,8 @@ public class RandoopGenerationError extends Error {
      *
      * @return the name of the reflection object for the operation
      */
-    public String getOperationName() {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public  String getOperationName() {
         return operation.getOperation().getReflectionObject().toString();
     }
 
@@ -47,7 +48,8 @@ public class RandoopGenerationError extends Error {
      *
      * @return the {@code String} representation of the operation
      */
-    public String getInstantiatedOperation( RandoopGenerationError this) {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public  String getInstantiatedOperation( RandoopGenerationError this) {
         return operation.toString();
     }
 
@@ -56,7 +58,8 @@ public class RandoopGenerationError extends Error {
      *
      * @return the {@code Throwable} for this error
      */
-    public Throwable getException() {
+    @org.checkerframework.dataflow.qual.Pure
+    public  Throwable getException() {
         return exception;
     }
 }

@@ -79,7 +79,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      *
      * @param execSpec the specification to use for this object
      */
-    public void setExecutableSpecification(ExecutableSpecification execSpec) {
+    public void setExecutableSpecification(@org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation this, @org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSpecification execSpec) {
         this.execSpec = execSpec;
     }
 
@@ -178,7 +178,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      * @return a string with the fully-qualified operation name and input type-tuple
      */
     @org.checkerframework.dataflow.qual.Pure
-    public @org.checkerframework.checker.signature.qual.SignatureUnknown String getSignatureString() {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String getSignatureString(@org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation this) {
         return getName() + inputTypes;
     }
 
@@ -220,7 +220,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      * @return true if at least one input or output type has a wildcard, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    public abstract  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasWildcardTypes();
+    public abstract  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasWildcardTypes(@org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation this);
 
     /**
      * Indicate whether this operation is generic. An operation is generic if any of its input and
@@ -356,7 +356,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      * @param constructor the reflective constructor object
      * @return the typed operation for the constructor
      */
-    public static @org.checkerframework.checker.signature.qual.SignatureUnknown TypedClassOperation forConstructor(Constructor<?> constructor) {
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown TypedClassOperation forConstructor(@org.checkerframework.checker.signature.qual.SignatureUnknown Constructor<?> constructor) {
         ConstructorCall op = new ConstructorCall(constructor);
         ClassOrInterfaceType declaringType = ClassOrInterfaceType.forClass(constructor.getDeclaringClass());
         List<Type> paramTypes = CollectionsPlume.mapList(Type::forType, constructor.getGenericParameterTypes());
@@ -464,7 +464,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      * @param declaringType the declaring type for the field
      * @return an operation to access the given field of the declaring type
      */
-    public static @org.checkerframework.checker.signature.qual.SignatureUnknown TypedClassOperation createGetterForField(Field field, ClassOrInterfaceType declaringType) {
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown TypedClassOperation createGetterForField(@org.checkerframework.checker.signature.qual.SignatureUnknown Field field, @org.checkerframework.checker.signature.qual.SignatureUnknown ClassOrInterfaceType declaringType) {
         Type fieldType = Type.forType(field.getGenericType());
         AccessibleField accessibleField = new AccessibleField(field, declaringType);
         List<Type> inputTypes = new ArrayList<>(1);
@@ -481,7 +481,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      * @param declaringType the declaring type of the field
      * @return an operation to set the value of the given field of the declaring type
      */
-    public static @org.checkerframework.checker.signature.qual.SignatureUnknown TypedClassOperation createSetterForField(Field field, ClassOrInterfaceType declaringType) {
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown TypedClassOperation createSetterForField(@org.checkerframework.checker.signature.qual.SignatureUnknown Field field, @org.checkerframework.checker.signature.qual.SignatureUnknown ClassOrInterfaceType declaringType) {
         Type fieldType = Type.forType(field.getGenericType());
         AccessibleField accessibleField = new AccessibleField(field, declaringType);
         List<Type> inputTypes = new ArrayList<>(2);
@@ -532,7 +532,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      * @param size the size of the created array
      * @return the array creation operation
      */
-    public static @org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation createInitializedArrayCreation(ArrayType arrayType, int size) {
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation createInitializedArrayCreation(@org.checkerframework.checker.signature.qual.SignatureUnknown ArrayType arrayType,  @org.checkerframework.checker.signature.qual.SignatureUnknown int size) {
         List<Type> typeList = Collections.nCopies(size, arrayType.getComponentType());
         TypeTuple inputTypes = new TypeTuple(typeList);
         return new TypedTermOperation(new InitializedArrayCreation(arrayType, size), inputTypes, arrayType);
@@ -544,7 +544,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      * @param arrayType the desired array type
      * @return an operation to create an array of the given type
      */
-    public static @org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation createArrayCreation(ArrayType arrayType) {
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation createArrayCreation(@org.checkerframework.checker.signature.qual.SignatureUnknown ArrayType arrayType) {
         List<Type> typeList = Collections.singletonList(JavaTypes.INT_TYPE);
         TypeTuple inputTypes = new TypeTuple(typeList);
         return new TypedTermOperation(new ArrayCreation(arrayType), inputTypes, arrayType);
@@ -557,7 +557,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      * @param toType the resulting type
      * @return an operation that casts the input type to the result type
      */
-    public static @org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation createCast(Type fromType, Type toType) {
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation createCast(@org.checkerframework.checker.signature.qual.SignatureUnknown Type fromType, @org.checkerframework.checker.signature.qual.SignatureUnknown Type toType) {
         List<Type> typeList = Collections.singletonList(fromType);
         TypeTuple inputTypes = new TypeTuple(typeList);
         return new TypedTermOperation(new UncheckedCast(toType), inputTypes, toType);
@@ -569,7 +569,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      * @param arrayType the type of the array
      * @return an operation that
      */
-    public static @org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation createArrayElementAssignment(ArrayType arrayType) {
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation createArrayElementAssignment(@org.checkerframework.checker.signature.qual.SignatureUnknown ArrayType arrayType) {
         List<Type> typeList = new ArrayList<>(3);
         typeList.add(arrayType);
         typeList.add(JavaTypes.INT_TYPE);
@@ -641,7 +641,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
          * @param ranking value associated with the operation
          * @param operation wrapped operation
          */
-        public RankedTypeOperation(double ranking, TypedClassOperation operation) {
+        public RankedTypeOperation( @org.checkerframework.checker.signature.qual.SignatureUnknown double ranking, @org.checkerframework.checker.signature.qual.SignatureUnknown TypedClassOperation operation) {
             this.ranking = ranking;
             this.operation = operation;
         }

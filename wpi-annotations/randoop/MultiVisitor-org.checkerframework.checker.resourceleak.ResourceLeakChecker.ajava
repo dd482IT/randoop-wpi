@@ -22,11 +22,12 @@ public class MultiVisitor implements ExecutionVisitor {
     /**
      * The list of visitors.
      */
-    private final List<ExecutionVisitor> visitors = new ArrayList<>();
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ExecutionVisitor> visitors = new ArrayList<>();
 
     /**
      * Creates a new MultiVisitor.
      */
+    @org.checkerframework.dataflow.qual.SideEffectFree
     public MultiVisitor() {
     }
 
@@ -35,7 +36,8 @@ public class MultiVisitor implements ExecutionVisitor {
      *
      * @param visitors the list of visitors
      */
-    public MultiVisitor(List<ExecutionVisitor> visitors) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.visitors" }, methods = { "addAll" })
+    public MultiVisitor(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "size" }) List<ExecutionVisitor> visitors) {
         this.visitors.addAll(visitors);
     }
 
@@ -45,7 +47,8 @@ public class MultiVisitor implements ExecutionVisitor {
      * @param visitors the visitors to compose
      * @return a visitor that has the effect of all the visitors in the argument
      */
-    public static ExecutionVisitor createMultiVisitor(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ExecutionVisitor> visitors) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "size" })
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutionVisitor createMultiVisitor(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ExecutionVisitor> visitors) {
         switch(visitors.size()) {
             case 0:
                 return new DummyVisitor();
@@ -60,25 +63,33 @@ public class MultiVisitor implements ExecutionVisitor {
      * Calls the initialize method for each of the visitors, in the order in which the visitors were
      * given during construction of this MultiVisitor.
      */
-    public void initialize(ExecutableSequence eseq) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.visitors" }, methods = { "iterator" })
+    @org.checkerframework.dataflow.qual.Pure
+    public void initialize(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence eseq) {
         for (ExecutionVisitor visitor : visitors) {
             visitor.initialize(eseq);
         }
     }
 
-    public void visitAfterStatement(ExecutableSequence eseq, int i) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.visitors" }, methods = { "iterator" })
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitAfterStatement(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence eseq,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int i) {
         for (ExecutionVisitor visitor : visitors) {
             visitor.visitAfterStatement(eseq, i);
         }
     }
 
-    public void visitBeforeStatement(ExecutableSequence eseq, int i) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.visitors" }, methods = { "iterator" })
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitBeforeStatement(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence eseq,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int i) {
         for (ExecutionVisitor visitor : visitors) {
             visitor.visitBeforeStatement(eseq, i);
         }
     }
 
-    public void visitAfterSequence(ExecutableSequence eseq) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.visitors" }, methods = { "iterator" })
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitAfterSequence(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence eseq) {
         for (ExecutionVisitor visitor : visitors) {
             visitor.visitAfterSequence(eseq);
         }

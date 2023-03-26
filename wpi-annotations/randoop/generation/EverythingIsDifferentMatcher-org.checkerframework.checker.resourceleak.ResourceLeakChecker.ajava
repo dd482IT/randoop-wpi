@@ -1,0 +1,17 @@
+package randoop.generation;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class EverythingIsDifferentMatcher implements StateMatcher {
+
+    private  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int size = 0;
+
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean add(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EverythingIsDifferentMatcher this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object object) {
+        size++;
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int size(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EverythingIsDifferentMatcher this) {
+        return size;
+    }
+}

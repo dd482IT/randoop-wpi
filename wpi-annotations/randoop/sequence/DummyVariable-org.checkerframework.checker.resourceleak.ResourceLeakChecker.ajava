@@ -1,0 +1,61 @@
+package randoop.sequence;
+
+import randoop.types.Type;
+
+/**
+ * A dummy variable, to ensure that parameter lists are the expected length.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class DummyVariable extends Variable {
+
+    /**
+     * The only DummyVariable that exists.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) DummyVariable DUMMY = new DummyVariable();
+
+    /**
+     * Create a DummyVariable.
+     */
+    private DummyVariable() {
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) DummyVariable this) {
+        return "dummy";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean equals(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) DummyVariable this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object o) {
+        return o == this;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int hashCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) DummyVariable this) {
+        return 0;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public Type getType(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) DummyVariable this) {
+        throw new Error("Not implemented");
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public Statement getDeclaringStatement(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getName", "getType", "shouldInlineLiterals" }) DummyVariable this) {
+        throw new Error("Not implemented");
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public int getDeclIndex(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) DummyVariable this) {
+        throw new Error("Not implemented");
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) DummyVariable this) {
+        return "dummy";
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public boolean shouldInlineLiterals(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getName", "getType" }) DummyVariable this) {
+        throw new Error("Not implemented");
+    }
+}

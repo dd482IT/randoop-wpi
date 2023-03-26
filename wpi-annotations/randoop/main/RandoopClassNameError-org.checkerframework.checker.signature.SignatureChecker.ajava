@@ -10,12 +10,12 @@ import randoop.Globals;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
 public class RandoopClassNameError extends Error {
 
-    private static final long serialVersionUID = -3625971508842588810L;
+    private static final  @org.checkerframework.checker.signature.qual.SignatureUnknown long serialVersionUID = -3625971508842588810L;
 
     /**
      * The erroneous class name.
      */
-    public String className;
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String className;
 
     /**
      * Create a new RandoopClassNameError.
@@ -34,7 +34,7 @@ public class RandoopClassNameError extends Error {
      * @param message the detail message
      * @param cause the underlying exception
      */
-    public RandoopClassNameError(String className, String message, Throwable cause) {
+    public RandoopClassNameError(@org.checkerframework.checker.signature.qual.SignatureUnknown String className, @org.checkerframework.checker.signature.qual.SignatureUnknown String message, @org.checkerframework.checker.signature.qual.SignatureUnknown Throwable cause) {
         super(message + Globals.lineSep + "Classpath:" + Globals.lineSep + ReflectionPlume.classpathToString(), cause);
         this.className = className;
     }

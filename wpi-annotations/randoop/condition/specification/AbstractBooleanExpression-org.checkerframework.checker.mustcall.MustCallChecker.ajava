@@ -1,0 +1,89 @@
+package randoop.condition.specification;
+
+import com.google.gson.annotations.SerializedName;
+import java.util.Objects;
+
+/**
+ * Abstract class representing boolean expressions that occur in {@link SpecificationClause}
+ * objects.
+ *
+ * @see Guard
+ * @see Property
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.mustcall.MustCallChecker")
+public abstract class AbstractBooleanExpression {
+
+    // NOTE: changing field names or @SerializedName annotations could affect integration with other
+    // tools
+    /**
+     * The text of the Java code for this expression.
+     */
+    private final @org.checkerframework.checker.mustcall.qual.MustCall({}) String conditionSource;
+
+    /**
+     * The description of the expression. Used as the descriptive text in test assertions.
+     */
+    private final @org.checkerframework.checker.mustcall.qual.MustCall({}) String description;
+
+    /**
+     * Gson serialization requires a default constructor.
+     */
+    private AbstractBooleanExpression() {
+        this.conditionSource = "";
+        this.description = "";
+    }
+
+    /**
+     * Creates a {@link AbstractBooleanExpression} with the given description and condition source
+     * code.
+     *
+     * @param description the description of this boolean condition
+     * @param conditionSource the text of the Java code for the created condition
+     */
+    AbstractBooleanExpression(@org.checkerframework.checker.mustcall.qual.MustCall({}) String description, @org.checkerframework.checker.mustcall.qual.MustCall({}) String conditionSource) {
+        this.description = description;
+        this.conditionSource = conditionSource;
+    }
+
+    /**
+     * Return the description of this {@link AbstractBooleanExpression}.
+     *
+     * @return the description of this condition
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String getDescription(@org.checkerframework.checker.mustcall.qual.MustCall({}) AbstractBooleanExpression this) {
+        return description;
+    }
+
+    /**
+     * Return the condition text for this {@link AbstractBooleanExpression}.
+     *
+     * @return the Java source code for this condition
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String getConditionSource(@org.checkerframework.checker.mustcall.qual.MustCall({}) AbstractBooleanExpression this) {
+        return conditionSource;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean equals(@org.checkerframework.checker.mustcall.qual.MustCall({}) AbstractBooleanExpression this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof AbstractBooleanExpression)) {
+            return false;
+        }
+        AbstractBooleanExpression other = (AbstractBooleanExpression) object;
+        return this.description.equals(other.description) && this.conditionSource.equals(other.conditionSource);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) int hashCode(@org.checkerframework.checker.mustcall.qual.MustCall({}) AbstractBooleanExpression this) {
+        return Objects.hash(this.description, this.conditionSource);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toString(@org.checkerframework.checker.mustcall.qual.MustCall({}) AbstractBooleanExpression this) {
+        return "{ \"description\": \"" + description + "\", \"conditionSource\": \"" + conditionSource + "\" }";
+    }
+}

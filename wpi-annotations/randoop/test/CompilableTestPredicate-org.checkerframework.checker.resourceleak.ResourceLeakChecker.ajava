@@ -50,7 +50,7 @@ public class CompilableTestPredicate implements Closeable, Predicate<ExecutableS
     /**
      * The {@link GenTests} instance that created this predicate.
      */
-    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenTests genTests;
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests genTests;
 
     /**
      * Creates a predicate using the given {@link JUnitCreator} to construct the test class for each
@@ -59,7 +59,7 @@ public class CompilableTestPredicate implements Closeable, Predicate<ExecutableS
      * @param junitCreator the {@link JUnitCreator} for this Randoop run
      * @param genTests the {@link GenTests} instance to report compilation failures
      */
-    public CompilableTestPredicate(JUnitCreator junitCreator, GenTests genTests) {
+    public CompilableTestPredicate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) JUnitCreator junitCreator, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests genTests) {
         List<String> compilerOptions = new ArrayList<>(6);
         // only need to know an error exists:
         compilerOptions.add("-Xmaxerrs");

@@ -56,7 +56,7 @@ public class TypeInstantiator {
      * @param operation the generic operation to instantiate
      * @return an instantiated version of the operation
      */
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isGeneric" }) TypedClassOperation instantiate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedClassOperation operation) {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isGeneric" }) TypedClassOperation instantiate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeInstantiator this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedClassOperation operation) {
         assert operation.isGeneric() || operation.hasWildcardTypes() : "operation " + operation + " must be generic or have wildcards";
         // if declaring type of operation is generic, select instantiation
         ClassOrInterfaceType declaringType = operation.getDeclaringType();
@@ -295,7 +295,7 @@ public class TypeInstantiator {
      * @see #selectSubstitution(List, Substitution)
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "iterator", "size" })
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "allExtendingSubstitutions", "candidateTypes", "selectSubstitution" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "allExtendingSubstitutions", "candidateTypes", "getLowerBound", "getUpperBound", "selectSubstitution" })
     private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Substitution selectSubstitution(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypeInstantiator this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<TypeVariable> typeParameters) {
         Substitution substitution = new Substitution();
         return selectSubstitution(typeParameters, substitution);

@@ -137,13 +137,13 @@ public class GenTests extends GenInputsAbstract {
      */
     public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String TEST_METHOD_NAME_PREFIX = "test";
 
-    private BlockStmt afterAllFixtureBody;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) BlockStmt afterAllFixtureBody;
 
-    private BlockStmt afterEachFixtureBody;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) BlockStmt afterEachFixtureBody;
 
-    private BlockStmt beforeAllFixtureBody;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) BlockStmt beforeAllFixtureBody;
 
-    private BlockStmt beforeEachFixtureBody;
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) BlockStmt beforeEachFixtureBody;
 
     static {
         notes = new ArrayList<>(4);
@@ -167,7 +167,8 @@ public class GenTests extends GenInputsAbstract {
         super(command, pitch, commandGrammar, where, summary, notes, input, output, example, options);
     }
 
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean handle(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) [] args) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "checkOptionsValid", "createTestOutputPredicate", "getFixtureCode" })
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean handle(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) [] args) {
         try {
             String[] nonargs = options.parse(args);
             if (nonargs.length > 0) {
@@ -528,7 +529,9 @@ public class GenTests extends GenInputsAbstract {
      *     during test generation
      * @param accessibilityPredicate accessibility predicate for side-effect-free methods
      */
-    private void processAndOutputFlakyMethods(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ExecutableSequence> flakySequences, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ExecutableSequence> sequences, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "add", "addAll", "keySet" }) MultiMap<Type, TypedClassOperation> sideEffectFreeMethodsByType, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OmitMethodsPredicate omitMethodsPredicate, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AccessibilityPredicate accessibilityPredicate) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "isEmpty" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "countSequencesPerOperation", "getOperationsInSequence" })
+    private void processAndOutputFlakyMethods(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ExecutableSequence> flakySequences, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isEmpty" }) List<ExecutableSequence> sequences, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "add", "addAll", "keySet" }) MultiMap<Type, TypedClassOperation> sideEffectFreeMethodsByType, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OmitMethodsPredicate omitMethodsPredicate, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AccessibilityPredicate accessibilityPredicate) {
         if (flakySequences.isEmpty()) {
             return;
         }
@@ -584,7 +587,8 @@ public class GenTests extends GenInputsAbstract {
      * @param sequences test sequences (error or regression), numbered sequentially
      * @return the sequences corresponding to the test names
      */
-    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ExecutableSequence> testNamesToSequences(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Iterable<String> testNames, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ExecutableSequence> sequences) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "iterator" })
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ExecutableSequence> testNamesToSequences(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Iterable<String> testNames, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isEmpty" }) List<ExecutableSequence> sequences) {
         List<ExecutableSequence> result = new ArrayList<>();
         for (String testName : testNames) {
             int testNum = Integer.parseInt(testName.substring(TEST_METHOD_NAME_PREFIX.length()));
@@ -604,7 +608,9 @@ public class GenTests extends GenInputsAbstract {
      * @return a map from operation to the number of sequences in which the operation occurs at least
      *     once
      */
-    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Map<TypedClassOperation, Integer> countSequencesPerOperation(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ExecutableSequence> sequences, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiMap<Type, TypedClassOperation> assertableSideEffectFreeMethods) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "isEmpty", "iterator" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getOperationsInSequence" })
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Map<TypedClassOperation, Integer> countSequencesPerOperation(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isEmpty" }) List<ExecutableSequence> sequences, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiMap<Type, TypedClassOperation> assertableSideEffectFreeMethods) {
         // Map from method call operations to number of sequences it occurs in.
         Map<TypedClassOperation, Integer> numSequencesUsedIn = new HashMap<>();
         for (ExecutableSequence es : sequences) {
@@ -634,7 +640,7 @@ public class GenTests extends GenInputsAbstract {
      * @param es an ExecutableSequence
      * @return the set of method call operations in {@code es}
      */
-    private Set<TypedClassOperation> getOperationsInSequence(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence es) {
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<TypedClassOperation> getOperationsInSequence(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutableSequence es) {
         HashSet<TypedClassOperation> ops = new HashSet<>();
         SimpleList<Statement> statements = es.sequence.statements;
         for (int i = 0; i < statements.size(); i++) {
@@ -653,7 +659,8 @@ public class GenTests extends GenInputsAbstract {
      * @param classpath the classpath to replace
      * @return a version of classpath with relative paths replaced by absolute paths
      */
-    private String convertClasspathToAbsolute(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String classpath) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "split" })
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String convertClasspathToAbsolute(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String classpath) {
         String[] relpaths = classpath.split(File.pathSeparator);
         int length = relpaths.length;
         String[] abspaths = new String[length];
@@ -684,7 +691,8 @@ public class GenTests extends GenInputsAbstract {
      * @param classNamePrefix the prefix for the class name
      * @param testKind a {@code String} indicating the kind of tests for logging and error messages
      */
-    private void writeTestFiles(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) JUnitCreator junitCreator, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ExecutableSequence> testSequences, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CodeWriter codeWriter, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String classNamePrefix, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String testKind) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "isEmpty" })
+    private void writeTestFiles(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) JUnitCreator junitCreator, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<ExecutableSequence> testSequences, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) CodeWriter codeWriter, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String classNamePrefix, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String testKind) {
         if (testSequences.isEmpty()) {
             if (GenInputsAbstract.progressdisplay) {
                 System.out.printf("%nNo " + testKind.toLowerCase() + " tests to output.%n");
@@ -748,7 +756,7 @@ public class GenTests extends GenInputsAbstract {
      *
      * @return true if all fixtures were read without error, false, otherwise
      */
-    private boolean getFixtureCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenTests this) {
+    private  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean getFixtureCode(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests this) {
         boolean badFixtureText = false;
         try {
             afterAllFixtureBody = JUnitCreator.parseFixture(getFileText(GenInputsAbstract.junit_after_all));
@@ -783,7 +791,8 @@ public class GenTests extends GenInputsAbstract {
      * @param file the file to read from, may be null (in which case this returns an empty list)
      * @return contents of the file, as a list of Patterns
      */
-    private List<Pattern> readPatterns(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Path file) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "toFile" })
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<Pattern> readPatterns(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Path file) {
         if (file != null) {
             try (EntryReader er = new EntryReader(file.toFile(), "^#.*", null)) {
                 return readPatterns(er);
@@ -800,7 +809,8 @@ public class GenTests extends GenInputsAbstract {
      * @param filename the resource from which to read
      * @return contents of the resource, as a list of Patterns
      */
-    private List<Pattern> readPatternsFromResource(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String filename) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "readPatterns" })
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<Pattern> readPatternsFromResource(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String filename) {
         try (InputStream inputStream = GenTests.class.getResourceAsStream(filename)) {
             return readPatterns(inputStream, filename);
         } catch (IOException e) {
@@ -815,7 +825,8 @@ public class GenTests extends GenInputsAbstract {
      * @param filename the file name to use in diagnostic messages
      * @return contents of the file, as a list of Patterns
      */
-    private List<Pattern> readPatterns(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InputStream is, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String filename) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "readPatterns" })
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<Pattern> readPatterns(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) InputStream is, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String filename) {
         // Read method omissions from user-provided file
         try (EntryReader er = new EntryReader(is, filename, "^#.*", null)) {
             return readPatterns(er);
@@ -830,7 +841,8 @@ public class GenTests extends GenInputsAbstract {
      * @param er the EntryReader to read from
      * @return contents of the file, as a list of Patterns
      */
-    private List<Pattern> readPatterns(EntryReader er) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "iterator" })
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<Pattern> readPatterns(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EntryReader er) {
         List<Pattern> result = new ArrayList<>();
         for (String line : er) {
             String trimmed = line.trim();
@@ -853,7 +865,7 @@ public class GenTests extends GenInputsAbstract {
      * @param signatures the list of signature strings
      * @return the list of patterns for the signature strings
      */
-    private List<Pattern> createPatternsFromSignatures(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<String> signatures) {
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<Pattern> createPatternsFromSignatures(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<String> signatures) {
         return CollectionsPlume.mapList(GenTests::signatureToPattern, signatures);
     }
 
@@ -864,7 +876,9 @@ public class GenTests extends GenInputsAbstract {
      * @param signatureString the string representation of a signature
      * @return the pattern to match {@code signatureString}
      */
-    private static Pattern signatureToPattern(String signatureString) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "replaceAll" })
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    private static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern signatureToPattern(String signatureString) {
         String patternString = signatureString.replaceAll(" ", "").replaceAll("\\.", "\\\\.").replaceAll("\\(", "\\\\(").replaceAll("\\)", "\\\\)").replaceAll("\\$", "\\\\$").replaceAll("\\[", "\\\\[").replaceAll("\\]", "\\\\]");
         return Pattern.compile(patternString);
     }
@@ -878,6 +892,7 @@ public class GenTests extends GenInputsAbstract {
      * @param explorer the test generator
      * @param e the sequence exception
      */
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "getError", "getSequence", "getStatement", "getSubsequence" })
     private void printSequenceExceptionError(AbstractGenerator explorer, SequenceExceptionError e) {
         StringJoiner msg = new StringJoiner(Globals.lineSep);
         msg.add("");
@@ -951,7 +966,7 @@ public class GenTests extends GenInputsAbstract {
      * @param includePattern the pattern for method name inclusion
      * @return the predicate
      */
-    public Predicate<ExecutableSequence> createTestOutputPredicate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "add" }) Set<Sequence> excludeSet, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<Class<?>> coveredClasses, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern includePattern) {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Predicate<ExecutableSequence> createTestOutputPredicate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "add" }) Set<Sequence> excludeSet, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<Class<?>> coveredClasses, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern includePattern) {
         if (GenInputsAbstract.dont_output_tests) {
             return new AlwaysFalse<>();
         }
@@ -1002,7 +1017,7 @@ public class GenTests extends GenInputsAbstract {
      *     during test generation
      * @return the {@code TestCheckGenerator} that reflects command line arguments
      */
-    public static TestCheckGenerator createTestCheckGenerator(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AccessibilityPredicate accessibility, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ContractSet contracts, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "add", "addAll", "keySet" }) MultiMap<Type, TypedClassOperation> sideEffectFreeMethodsByType, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OmitMethodsPredicate omitMethodsPredicate) {
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TestCheckGenerator createTestCheckGenerator(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AccessibilityPredicate accessibility, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ContractSet contracts, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "add", "addAll", "keySet" }) MultiMap<Type, TypedClassOperation> sideEffectFreeMethodsByType, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) OmitMethodsPredicate omitMethodsPredicate) {
         // Start with checking for invalid exceptions.
         TestCheckGenerator testGen = new ValidityCheckingGenerator(GenInputsAbstract.flaky_test_behavior == FlakyTestAction.HALT);
         // Extend with contract checker.
@@ -1038,7 +1053,7 @@ public class GenTests extends GenInputsAbstract {
      * @param filename the file to read
      * @return the contents of {@code filename}, as a list of strings
      */
-    private static List<String> getFileText(String filename) {
+    private static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) List<String> getFileText(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String filename) {
         if (filename == null) {
             return null;
         }
@@ -1058,7 +1073,8 @@ public class GenTests extends GenInputsAbstract {
      * @throws randoop.main.RandoopBug if there is an error locating the specification files
      * @return the list of JDK specification files
      */
-    private Collection<? extends Path> getJDKSpecificationFiles(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenTests this) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getResourceDirectoryPath" })
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Collection<? extends Path> getJDKSpecificationFiles(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests this) {
         List<Path> fileList = new ArrayList<>();
         final String specificationDirectory = "/specifications/jdk/";
         Path directoryPath = getResourceDirectoryPath(specificationDirectory);
@@ -1086,7 +1102,7 @@ public class GenTests extends GenInputsAbstract {
      * @throws randoop.main.RandoopBug if an error occurs when locating the directory
      * @return the {@code Path} for the resource directory
      */
-    private Path getResourceDirectoryPath(String resourceDirectory) {
+    private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Path getResourceDirectoryPath(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String resourceDirectory) {
         URI directoryURI;
         try {
             directoryURI = GenTests.class.getResource(resourceDirectory).toURI();
@@ -1108,7 +1124,7 @@ public class GenTests extends GenInputsAbstract {
     /**
      * Increments the count of sequence compilation failures.
      */
-    public void incrementSequenceCompileFailureCount(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenTests this) {
+    public void incrementSequenceCompileFailureCount(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenTests this) {
         this.sequenceCompileFailureCount++;
     }
 }

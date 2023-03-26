@@ -22,7 +22,7 @@ public final class SizeToArrayLength extends ObjectContract {
     }
 
     @org.checkerframework.dataflow.qual.SideEffectFree
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SizeToArrayLength this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objects) {
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean evaluate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getInputTypes" }) SizeToArrayLength this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... objects) {
         assert objects != null && objects.length == 1;
         Object o = objects[0];
         if (o instanceof Collection) {

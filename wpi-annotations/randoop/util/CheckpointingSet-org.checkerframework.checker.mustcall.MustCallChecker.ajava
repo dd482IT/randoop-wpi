@@ -13,13 +13,14 @@ public class CheckpointingSet<E> implements Set<E> {
 
     // This uses a MultiMap just because that is an existing checkpointing data structure.
     // The value is always true in this mapping, never false.
-    public final CheckpointingMultiMap<E, Boolean> map;
+    public final @org.checkerframework.checker.mustcall.qual.MustCall({}) CheckpointingMultiMap<E, Boolean> map;
 
     public CheckpointingSet() {
         this.map = new CheckpointingMultiMap<>();
     }
 
-    public boolean add(E elt) {
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean add(@org.checkerframework.checker.mustcall.qual.MustCall({}) CheckpointingSet<E> this, E elt) {
         if (elt == null)
             throw new IllegalArgumentException("arg cannot be null.");
         if (contains(elt))
@@ -27,13 +28,15 @@ public class CheckpointingSet<E> implements Set<E> {
         return map.add(elt, Boolean.TRUE);
     }
 
-    public boolean contains(Object elt) {
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean contains(@org.checkerframework.checker.mustcall.qual.MustCall({}) CheckpointingSet<E> this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Object elt) {
         if (elt == null)
             throw new IllegalArgumentException("arg cannot be null.");
         return map.containsKey(elt);
     }
 
-    public boolean remove(Object elt) {
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean remove(@org.checkerframework.checker.mustcall.qual.MustCall({}) CheckpointingSet<E> this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Object elt) {
         if (elt == null) {
             throw new IllegalArgumentException("arg cannot be null.");
         }
@@ -41,7 +44,8 @@ public class CheckpointingSet<E> implements Set<E> {
         return map.remove(eltCasted, Boolean.TRUE);
     }
 
-    public int size() {
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) int size(@org.checkerframework.checker.mustcall.qual.MustCall({}) CheckpointingSet<E> this) {
         return map.size();
     }
 
@@ -59,43 +63,53 @@ public class CheckpointingSet<E> implements Set<E> {
         map.undoToLastMark();
     }
 
-    public String toString() {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String toString(@org.checkerframework.checker.mustcall.qual.MustCall({}) CheckpointingSet<E> this) {
         return map.keySet().toString();
     }
 
-    public void clear() {
+    @org.checkerframework.dataflow.qual.Pure
+    public void clear(@org.checkerframework.checker.mustcall.qual.MustCall({}) CheckpointingSet<E> this) {
         throw new UnsupportedOperationException("not yet implemented");
     }
 
-    public boolean addAll(Collection<? extends E> c) {
+    @org.checkerframework.dataflow.qual.Pure
+    public boolean addAll(@org.checkerframework.checker.mustcall.qual.MustCall({}) CheckpointingSet<E> this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Collection<? extends E> c) {
         throw new UnsupportedOperationException("not yet implemented");
     }
 
-    public boolean removeAll(Collection<?> c) {
+    @org.checkerframework.dataflow.qual.Pure
+    public boolean removeAll(@org.checkerframework.checker.mustcall.qual.MustCall({}) CheckpointingSet<E> this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Collection<?> c) {
         throw new UnsupportedOperationException("not yet implemented");
     }
 
-    public boolean retainAll(Collection<?> c) {
+    @org.checkerframework.dataflow.qual.Pure
+    public boolean retainAll(@org.checkerframework.checker.mustcall.qual.MustCall({}) CheckpointingSet<E> this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Collection<?> c) {
         throw new UnsupportedOperationException("not yet implemented");
     }
 
-    public boolean containsAll(Collection<?> c) {
+    @org.checkerframework.dataflow.qual.Pure
+    public boolean containsAll(@org.checkerframework.checker.mustcall.qual.MustCall({}) CheckpointingSet<E> this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Collection<?> c) {
         throw new UnsupportedOperationException("not yet implemented");
     }
 
-    public <T> T[] toArray(T[] a) {
+    @org.checkerframework.dataflow.qual.Pure
+    public <T> T[] toArray(@org.checkerframework.checker.mustcall.qual.MustCall({}) CheckpointingSet<E> this, T @org.checkerframework.checker.mustcall.qual.MustCall({}) [] a) {
         throw new UnsupportedOperationException("not yet implemented");
     }
 
-    public Object[] toArray() {
+    @org.checkerframework.dataflow.qual.Pure
+    public Object[] toArray(@org.checkerframework.checker.mustcall.qual.MustCall({}) CheckpointingSet<E> this) {
         throw new UnsupportedOperationException("not yet implemented");
     }
 
-    public Iterator<E> iterator() {
+    @org.checkerframework.dataflow.qual.Pure
+    public Iterator<E> iterator(@org.checkerframework.checker.mustcall.qual.MustCall({}) CheckpointingSet<E> this) {
         throw new UnsupportedOperationException("not yet implemented");
     }
 
-    public boolean isEmpty() {
+    @org.checkerframework.dataflow.qual.Pure
+    public boolean isEmpty(@org.checkerframework.checker.mustcall.qual.MustCall({}) CheckpointingSet<E> this) {
         // return map.isEmpty();
         throw new UnsupportedOperationException("not yet implemented");
     }

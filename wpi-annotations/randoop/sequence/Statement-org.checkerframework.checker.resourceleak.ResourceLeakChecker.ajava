@@ -164,7 +164,7 @@ public final class Statement {
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.operation" }, methods = { "isMessage" })
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isMethodCall() {
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isMethodCall(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Statement this) {
         return operation.isMessage();
     }
 

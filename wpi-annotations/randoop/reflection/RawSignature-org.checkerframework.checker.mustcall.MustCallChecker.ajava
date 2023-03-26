@@ -179,7 +179,7 @@ public class RawSignature {
      *     same as the number of parameter types in this signature
      * @return the parameter declarations for this signature using the given parameter names
      */
-    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String getDeclarationArguments(List<String> parameterNames) {
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) String getDeclarationArguments(@org.checkerframework.checker.mustcall.qual.MustCall({}) RawSignature this, @org.checkerframework.checker.mustcall.qual.MustCall({}) List<String> parameterNames) {
         if (parameterNames.size() != parameterTypes.length) {
             String message = String.format("Number of parameter names %d (%s) must match the number of parameter types %d (%s) for %s", parameterNames.size(), parameterNames, parameterTypes.length, Arrays.toString(parameterTypes), this);
             throw new IllegalArgumentException(message);
@@ -226,7 +226,7 @@ public class RawSignature {
      * @param c a class
      * @return an identifier name produced from the class
      */
-    public static @org.checkerframework.checker.mustcall.qual.MustCall({}) String classToIdentifier(Class<?> c) {
+    public static @org.checkerframework.checker.mustcall.qual.MustCall({}) String classToIdentifier(@org.checkerframework.checker.mustcall.qual.MustCall({}) Class<?> c) {
         return classNameToIdentifier(c.getSimpleName());
     }
 

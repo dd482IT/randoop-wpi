@@ -1,0 +1,26 @@
+package randoop.generation;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class EqualsMethodMatcher implements StateMatcher {
+
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<Object> cache = new LinkedHashSet<>();
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.cache" }, methods = { "add" })
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean add(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EqualsMethodMatcher this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object object) {
+        try {
+            return this.cache.add(object);
+        } catch (Throwable e) {
+            // This could happen, because we're actually running code under test.
+            return false;
+        }
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.cache" }, methods = { "size" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int size(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) EqualsMethodMatcher this) {
+        return this.cache.size();
+    }
+}

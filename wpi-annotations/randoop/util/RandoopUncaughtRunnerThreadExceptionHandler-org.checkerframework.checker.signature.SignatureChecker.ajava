@@ -1,0 +1,19 @@
+package randoop.util;
+
+import java.lang.Thread.UncaughtExceptionHandler;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class RandoopUncaughtRunnerThreadExceptionHandler implements UncaughtExceptionHandler {
+
+    private static @org.checkerframework.checker.signature.qual.SignatureUnknown RandoopUncaughtRunnerThreadExceptionHandler singleInstance = new RandoopUncaughtRunnerThreadExceptionHandler();
+
+    @org.checkerframework.dataflow.qual.Pure
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown UncaughtExceptionHandler getHandler() {
+        return singleInstance;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void uncaughtException(@org.checkerframework.checker.signature.qual.SignatureUnknown RandoopUncaughtRunnerThreadExceptionHandler this, @org.checkerframework.checker.signature.qual.SignatureUnknown Thread t, @org.checkerframework.checker.signature.qual.SignatureUnknown Throwable e) {
+        // Do nothing.
+    }
+}

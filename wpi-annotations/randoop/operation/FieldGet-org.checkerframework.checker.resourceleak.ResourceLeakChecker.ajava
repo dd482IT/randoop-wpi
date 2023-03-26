@@ -46,7 +46,7 @@ public class FieldGet extends CallableOperation {
      * @throws RandoopBug if field access throws bug exception
      * @throws SequenceExecutionException if field access has a type exception
      */
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.field" }, methods = { "getValue" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.field" }, methods = { "getValue", "isStatic" })
     public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExecutionOutcome execute(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) FieldGet this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Object @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) [] statementInput) {
         // either 0 or 1 inputs. If none use null, otherwise give object.
         Object input = statementInput.length == 0 ? null : statementInput[0];

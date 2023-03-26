@@ -1,0 +1,53 @@
+package randoop.reflection;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+/**
+ * Default implementation of the {@code ClassVisitor} class. All methods do nothing.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class DefaultClassVisitor implements ClassVisitor {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "visitBefore" }) DefaultClassVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "toString" }) Class<?> c, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "logPrintf" }) ReflectionManager reflectionManager) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "visitBefore" }) DefaultClassVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "toGenericString" }) Constructor<?> c) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "visitBefore" }) DefaultClassVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "toGenericString" }) Method m) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "visitBefore" }) DefaultClassVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getName", "toGenericString" }) Field f) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visit(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "visitBefore" }) DefaultClassVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Enum<?> e) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitBefore(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) DefaultClassVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getName" }) Class<?> c) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public void visitAfter(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "visitBefore" }) DefaultClassVisitor this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getName", "isEnum" }) Class<?> c) {
+        // default is to do nothing
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "getClass" })
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String toString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) DefaultClassVisitor this) {
+        return getClass().toString();
+    }
+}

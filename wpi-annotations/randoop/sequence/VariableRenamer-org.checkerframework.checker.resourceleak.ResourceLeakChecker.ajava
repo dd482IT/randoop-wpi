@@ -20,12 +20,12 @@ class VariableRenamer {
     /**
      * The sequence in which every variable will be renamed.
      */
-    public final Sequence sequence;
+    public final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Sequence sequence;
 
     /**
      * Maximum depth to concatenate parameterized type names.
      */
-    private static final int VAR_NAME_MAX_DEPTH = 2;
+    private static final  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int VAR_NAME_MAX_DEPTH = 2;
 
     public VariableRenamer(Sequence sequence) {
         assert sequence != null : "The given sequence to rename cannot be null";
@@ -48,7 +48,7 @@ class VariableRenamer {
      * @return a variable name based on its type, with the first character lowercase and the final
      *     character not a digit
      */
-    static String getVariableName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type type) {
+    static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getVariableName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type type) {
         String varName = getVariableName(type, VAR_NAME_MAX_DEPTH);
         // Preserve camel case.
         if (Character.isUpperCase(varName.charAt(0))) {
@@ -70,7 +70,7 @@ class VariableRenamer {
      * @return a variable name based on its type and is camel cased. The first character may be
      *     uppercase.
      */
-    private static String getVariableName(Type type, int depth) {
+    private static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String getVariableName(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type type,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int depth) {
         // Special cases.
         if (type.isVoid()) {
             return "void";
@@ -141,7 +141,9 @@ class VariableRenamer {
      * @param variableName the name of the variable
      * @return capitalized form of variable name
      */
-    private static String capitalizeString(String variableName) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "substring" })
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    private static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String capitalizeString(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String variableName) {
         return variableName.substring(0, 1).toUpperCase() + variableName.substring(1);
     }
 
@@ -152,7 +154,9 @@ class VariableRenamer {
      * @param variableName the name of the variable
      * @return variableName with the first letter lowercased
      */
-    private static String lowercaseFirstCharacter(String variableName) {
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "charAt", "substring" })
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    private static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String lowercaseFirstCharacter(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "charAt" }) String variableName) {
         return variableName.substring(0, 1).toLowerCase() + variableName.substring(1);
     }
 }

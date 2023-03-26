@@ -59,7 +59,7 @@ public final class Execution {
     }
 
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.coveredClasses" }, methods = { "add" })
-    void addCoveredClass(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Execution this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Class<?> c) {
+    void addCoveredClass(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Execution this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getMethod" }) Class<?> c) {
         coveredClasses.add(c);
     }
 

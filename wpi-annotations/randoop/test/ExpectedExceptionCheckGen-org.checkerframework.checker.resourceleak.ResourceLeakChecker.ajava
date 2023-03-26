@@ -28,7 +28,7 @@ public class ExpectedExceptionCheckGen {
      *
      * @param accessibility a predicate to determine accessibility of exception classes
      */
-    public ExpectedExceptionCheckGen(AccessibilityPredicate accessibility) {
+    public ExpectedExceptionCheckGen(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) AccessibilityPredicate accessibility) {
         this.accessibility = accessibility;
     }
 
@@ -43,6 +43,7 @@ public class ExpectedExceptionCheckGen {
      *     checked, and an {@code EmptyExceptionCheck} otherwise
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getException" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.accessibility" }, methods = { "isAccessible" })
     @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExceptionCheck getExceptionCheck(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExpectedExceptionCheckGen this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ExceptionalExecution exec, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getResult" }) ExecutableSequence eseq,  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int statementIndex) {
         Throwable e = exec.getException();
         String catchClassName = getCatchClassName(e.getClass(), accessibility);

@@ -350,10 +350,9 @@ public class JDKTypes {
      * @param type the (abstract) Collections type
      * @return a concrete Collection type implementing the given type
      */
-    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "getGenericClassType" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "randoop.types.JDKTypes.COLLECTION_TYPE" }, methods = { "equals", "isObject" })
-    @org.checkerframework.dataflow.qual.Deterministic
-    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenericClassType getImplementingTypeForCollection(ParameterizedType type) {
+    @org.checkerframework.dataflow.qual.Pure
+    public static @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenericClassType getImplementingTypeForCollection(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "getGenericClassType", "getPackage", "getRuntimeClass", "isArray", "isParameterized" }) ParameterizedType type) {
         GenericClassType genericType = type.getGenericClassType();
         if (!genericType.isSubtypeOf(COLLECTION_TYPE) && !genericType.isSubtypeOf(MAP_TYPE)) {
             throw new IllegalArgumentException("type must be a JDK Collections type, got " + type);

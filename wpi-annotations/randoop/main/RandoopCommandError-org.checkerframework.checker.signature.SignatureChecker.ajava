@@ -1,0 +1,32 @@
+package randoop.main;
+
+/**
+ * Indicates a user error in a command supplied to Randoop. Randoop prints the message and also
+ * prints how to get help.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class RandoopCommandError extends RandoopUsageError {
+
+    private static final  @org.checkerframework.checker.signature.qual.SignatureUnknown long serialVersionUID = 1L;
+
+    /**
+     * Creates a {@link RandoopCommandError} with the given message.
+     *
+     * @param message the exception message
+     */
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public RandoopCommandError(@org.checkerframework.checker.signature.qual.SignatureUnknown String message) {
+        super(message);
+    }
+
+    /**
+     * Creates a {@link RandoopCommandError} with the given message and causing exception.
+     *
+     * @param message the exception message
+     * @param cause the causing exception
+     */
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    RandoopCommandError(String message, Throwable cause) {
+        super(message, cause);
+    }
+}

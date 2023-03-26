@@ -108,7 +108,7 @@ public final class Sequence {
      * @param c the type for initialized variable
      * @return the sequence consisting of the initialization
      */
-    public static @org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence zero(Type c) {
+    public static @org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence zero(@org.checkerframework.checker.mustcall.qual.MustCall({}) Type c) {
         return new Sequence().extend(TypedOperation.createNullOrZeroInitializationForType(c), new ArrayList<Variable>(0));
     }
 
@@ -118,7 +118,7 @@ public final class Sequence {
      * @param value non-null reference to a primitive or String value
      * @return a {@link Sequence} consisting of a statement created with the object
      */
-    public static @org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence createSequenceForPrimitive(Object value) {
+    public static @org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence createSequenceForPrimitive(@org.checkerframework.checker.mustcall.qual.MustCall({}) Object value) {
         if (value == null)
             throw new IllegalArgumentException("value is null");
         Type type = Type.forValue(value);
@@ -142,13 +142,13 @@ public final class Sequence {
      * @param indexes the indices of the inputs to the operation; same length as inputSequences
      * @return the sequence that applies the operation to the given inputs
      */
-    public static @org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence createSequence(TypedOperation operation, List<Sequence> inputSequences, List<Integer> indexes) {
+    public static @org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence createSequence(@org.checkerframework.checker.mustcall.qual.MustCall({}) TypedOperation operation, @org.checkerframework.checker.mustcall.qual.MustCall({}) List<Sequence> inputSequences, @org.checkerframework.checker.mustcall.qual.MustCall({}) List<Integer> indexes) {
         Sequence inputSequence = Sequence.concatenate(inputSequences);
         List<Variable> inputs = CollectionsPlume.mapList(inputSequence::getVariable, indexes);
         return inputSequence.extend(operation, inputs);
     }
 
-    public static @org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence createSequence(TypedOperation operation, TupleSequence elementsSequence) {
+    public static @org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence createSequence(@org.checkerframework.checker.mustcall.qual.MustCall({}) TypedOperation operation, @org.checkerframework.checker.mustcall.qual.MustCall({}) TupleSequence elementsSequence) {
         List<Variable> inputs = CollectionsPlume.mapList(elementsSequence.sequence::getVariable, elementsSequence.getOutputIndices());
         return elementsSequence.sequence.extend(operation, inputs);
     }
@@ -240,7 +240,7 @@ public final class Sequence {
      * @return the number of method calls in this sequence
      */
     @org.checkerframework.dataflow.qual.Pure
-    public final  @org.checkerframework.checker.mustcall.qual.MustCall({}) int numMethodCalls() {
+    public final  @org.checkerframework.checker.mustcall.qual.MustCall({}) int numMethodCalls(@org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence this) {
         int result = 0;
         for (int i = 0; i < statements.size(); i++) {
             Statement statement = statements.get(i);
@@ -372,7 +372,7 @@ public final class Sequence {
     private @org.checkerframework.checker.mustcall.qual.MustCall({}) BitSet activeFlags;
 
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean hasActiveFlags() {
+    public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean hasActiveFlags(@org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence this) {
         return !activeFlags.isEmpty();
     }
 
@@ -385,11 +385,11 @@ public final class Sequence {
         activeFlags.set(0, this.size());
     }
 
-    public void clearAllActiveFlags() {
+    public void clearAllActiveFlags(@org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence this) {
         activeFlags.clear(0, this.size());
     }
 
-    public void clearActiveFlag(int i) {
+    public void clearActiveFlag(@org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence this,  @org.checkerframework.checker.mustcall.qual.MustCall({}) int i) {
         activeFlags.clear(i);
     }
 
@@ -762,7 +762,7 @@ public final class Sequence {
      * @param i the statement index
      * @return the absolute indices for the input variables in the given statement
      */
-    public @org.checkerframework.checker.mustcall.qual.MustCall({}) List<Integer> getInputsAsAbsoluteIndices(int i) {
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) List<Integer> getInputsAsAbsoluteIndices(@org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence this,  @org.checkerframework.checker.mustcall.qual.MustCall({}) int i) {
         return CollectionsPlume.mapList((RelativeNegativeIndex relIndex) -> getVariableForInput(i, relIndex).index, this.statements.get(i).inputs);
     }
 
@@ -971,6 +971,7 @@ public final class Sequence {
      *
      * @return true if this sequence is a single primitive initialization statement, false otherwise
      */
+    @org.checkerframework.dataflow.qual.Pure
     public  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean isNonreceiver(@org.checkerframework.checker.mustcall.qual.MustCall({}) Sequence this) {
         return (size() == 1 && getStatement(0).isNonreceivingInitialization());
     }

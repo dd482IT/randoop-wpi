@@ -115,6 +115,7 @@ public class AccessibleField {
      * @throws RandoopBug if field access throws {@link IllegalArgumentException} or {@link
      *     IllegalAccessException}.
      */
+    @org.checkerframework.dataflow.qual.SideEffectFree
     public @org.checkerframework.checker.mustcall.qual.MustCall({}) Object getValue(@org.checkerframework.checker.mustcall.qual.MustCall({}) AccessibleField this, @org.checkerframework.checker.mustcall.qual.MustCall({}) Object object) {
         Object ret;
         try {

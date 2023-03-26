@@ -1,0 +1,28 @@
+package randoop.generation;
+
+import randoop.operation.TypedOperation;
+import randoop.sequence.Sequence;
+
+/**
+ * An interface for selecting an operation for the {@link ForwardGenerator} to use in constructing a
+ * new test sequence.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public interface TypedOperationSelector {
+
+    /**
+     * Select a method, from the set of methods under test, to use to create a new test sequence.
+     *
+     * @return the selected method
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public abstract @org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperation selectOperation(@org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperationSelector this);
+
+    /**
+     * Take action based on the given {@link Sequence} was classified as a regression test.
+     *
+     * @param sequence newly created sequence that was classified as a regression test
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public abstract void newRegressionTestHook(@org.checkerframework.checker.signature.qual.SignatureUnknown TypedOperationSelector this, @org.checkerframework.checker.signature.qual.SignatureUnknown Sequence sequence);
+}

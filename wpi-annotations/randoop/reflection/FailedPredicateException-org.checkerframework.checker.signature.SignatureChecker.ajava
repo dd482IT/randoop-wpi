@@ -1,0 +1,31 @@
+package randoop.reflection;
+
+/**
+ * Represents when a user provides a signature that is excluded by a predicate.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class FailedPredicateException extends Exception {
+
+    private static final  @org.checkerframework.checker.signature.qual.SignatureUnknown long serialVersionUID = 1L;
+
+    /**
+     * Create a new FailedPredicateException.
+     *
+     * @param message the detail message
+     */
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public FailedPredicateException(@org.checkerframework.checker.signature.qual.SignatureUnknown String message) {
+        super(message);
+    }
+
+    /**
+     * Create a new FailedPredicateException.
+     *
+     * @param message the detail message
+     * @param cause the cause
+     */
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public FailedPredicateException(String message, Throwable cause) {
+        super(message, cause);
+    }
+}

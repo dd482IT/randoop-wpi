@@ -17,6 +17,7 @@ import randoop.main.RandoopBug;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
 public final class ReflectionExecutor {
 
+    @org.checkerframework.dataflow.qual.SideEffectFree
     private ReflectionExecutor() {
         throw new Error("Do not instantiate");
     }
@@ -35,7 +36,7 @@ public final class ReflectionExecutor {
     public static boolean usethreads = false;
 
     // Default for call_timeout, in milliseconds. Should only be accessed by method checkOptionsValid.
-    public static int CALL_TIMEOUT_DEFAULT = 5000;
+    public static  @org.checkerframework.checker.signature.qual.SignatureUnknown int CALL_TIMEOUT_DEFAULT = 5000;
 
     /**
      * After this many milliseconds, a non-returning method call, and its associated test, are stopped
@@ -44,13 +45,13 @@ public final class ReflectionExecutor {
     public static int call_timeout = CALL_TIMEOUT_DEFAULT;
 
     // Execution statistics.
-    private static long normal_exec_duration = 0;
+    private static  @org.checkerframework.checker.signature.qual.SignatureUnknown long normal_exec_duration = 0;
 
-    private static int normal_exec_count = 0;
+    private static  @org.checkerframework.checker.signature.qual.SignatureUnknown int normal_exec_count = 0;
 
-    private static long excep_exec_duration = 0;
+    private static  @org.checkerframework.checker.signature.qual.SignatureUnknown long excep_exec_duration = 0;
 
-    private static int excep_exec_count = 0;
+    private static  @org.checkerframework.checker.signature.qual.SignatureUnknown int excep_exec_count = 0;
 
     public static void resetStatistics() {
         normal_exec_duration = 0;
@@ -59,19 +60,23 @@ public final class ReflectionExecutor {
         excep_exec_count = 0;
     }
 
-    public static int normalExecs() {
+    @org.checkerframework.dataflow.qual.Pure
+    public static  @org.checkerframework.checker.signature.qual.SignatureUnknown int normalExecs() {
         return normal_exec_count;
     }
 
-    public static int excepExecs() {
+    @org.checkerframework.dataflow.qual.Pure
+    public static  @org.checkerframework.checker.signature.qual.SignatureUnknown int excepExecs() {
         return excep_exec_count;
     }
 
-    public static double normalExecAvgMillis() {
+    @org.checkerframework.dataflow.qual.Pure
+    public static  @org.checkerframework.checker.signature.qual.SignatureUnknown double normalExecAvgMillis() {
         return ((normal_exec_duration / (double) normal_exec_count) / Math.pow(10, 6));
     }
 
-    public static double excepExecAvgMillis() {
+    @org.checkerframework.dataflow.qual.Pure
+    public static  @org.checkerframework.checker.signature.qual.SignatureUnknown double excepExecAvgMillis() {
         return ((excep_exec_duration / (double) excep_exec_count) / Math.pow(10, 6));
     }
 
@@ -82,7 +87,7 @@ public final class ReflectionExecutor {
      * @param code the {@link ReflectionCode} to be executed
      * @return the execution result
      */
-    public static ExecutionOutcome executeReflectionCode(@org.checkerframework.checker.signature.qual.SignatureUnknown ReflectionCode code) {
+    public static @org.checkerframework.checker.signature.qual.SignatureUnknown ExecutionOutcome executeReflectionCode(@org.checkerframework.checker.signature.qual.SignatureUnknown ReflectionCode code) {
         long start = System.nanoTime();
         if (usethreads) {
             try {
@@ -120,7 +125,7 @@ public final class ReflectionExecutor {
      * @param code the {@link ReflectionCode} to be executed
      * @throws TimeoutExceededException if execution times out
      */
-    private static void executeReflectionCodeThreaded(ReflectionCode code) throws TimeoutExceededException {
+    private static void executeReflectionCodeThreaded(@org.checkerframework.checker.signature.qual.SignatureUnknown ReflectionCode code) throws TimeoutExceededException {
         RunnerThread runnerThread = new RunnerThread(null);
         runnerThread.setup(code);
         try {
@@ -147,7 +152,7 @@ public final class ReflectionExecutor {
      *
      * @param code the {@link ReflectionCode} to be executed
      */
-    private static void executeReflectionCodeUnThreaded(ReflectionCode code) {
+    private static void executeReflectionCodeUnThreaded(@org.checkerframework.checker.signature.qual.SignatureUnknown ReflectionCode code) {
         try {
             code.runReflectionCode();
             return;

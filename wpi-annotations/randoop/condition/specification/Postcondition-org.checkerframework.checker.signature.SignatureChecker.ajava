@@ -1,0 +1,93 @@
+package randoop.condition.specification;
+
+import java.util.Objects;
+
+/**
+ * A {@link Postcondition} is a specification clause of a contract on the outcome of the invocation
+ * of an operation. The specification consists of a {@link Guard} and a {@link Property}. For an
+ * invocation of the operation, if the {@link Guard} evaluates to true, then the {@link Property}
+ * must also be true.
+ *
+ * <p>The JSON serialization of this class is used to read the specifications for an operation given
+ * using the {@code --specifications} command-line option. The JSON should include a JSON object
+ * labeled by the name of each field of this class, as in
+ *
+ * <pre>
+ *   {
+ *     "property": {
+ *        "conditionText": {@code "result >= 0"},
+ *        "description": "received value is non-negative"
+ *      },
+ *     "description": "returns non-negative received value",
+ *     "guard": {
+ *        "conditionText": "true",
+ *        "description": ""
+ *      }
+ *   }
+ * </pre>
+ *
+ * See the classes {@link Guard} and {@link Property} for details on specifying those objects.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class Postcondition extends SpecificationClause {
+
+    // NOTE: changing field names or @SerializedName annotations could affect integration with other
+    // tools
+    /**
+     * The post-condition.
+     */
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown Property property;
+
+    /**
+     * Gson serialization requires a default constructor.
+     */
+    @org.checkerframework.framework.qual.EnsuresQualifier(expression = { "this.property" }, qualifier = org.checkerframework.checker.signature.qual.SignatureBottom.class)
+    private Postcondition() {
+        super();
+        this.property = null;
+    }
+
+    /**
+     * Creates a {@link Postcondition} with the given guard and property.
+     *
+     * @param description the description of the specification
+     * @param guard the {@link Guard} for the constructed specification
+     * @param property the {@link Property} for the constructed specification
+     */
+    public Postcondition(String description, Guard guard, Property property) {
+        super(description, guard);
+        this.property = property;
+    }
+
+    /**
+     * Gets the {@link Property} (post-condition) for this specification.
+     *
+     * @return the property for this specification
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown Property getProperty(@org.checkerframework.checker.signature.qual.SignatureUnknown Postcondition this) {
+        return property;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean equals(@org.checkerframework.checker.signature.qual.SignatureUnknown Postcondition this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof Postcondition)) {
+            return false;
+        }
+        Postcondition other = (Postcondition) object;
+        return super.equals(other) && ((this.property != null && other.property != null && this.property.equals(other.property)) || (this.property == null && other.property == null));
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int hashCode(@org.checkerframework.checker.signature.qual.SignatureUnknown Postcondition this) {
+        return Objects.hash(super.hashCode(), this.property);
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toString(@org.checkerframework.checker.signature.qual.SignatureUnknown Postcondition this) {
+        return "{ \"description\": \"" + getDescription() + "\", \"guard\": \"" + getGuard() + ", \"property\": " + property + "\" }";
+    }
+}

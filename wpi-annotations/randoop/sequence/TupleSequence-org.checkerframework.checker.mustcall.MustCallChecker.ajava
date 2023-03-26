@@ -88,7 +88,7 @@ public final class TupleSequence {
      * @param elementType the type of elements
      * @return a sequence with subsequences that create element values for a collection
      */
-    public static @org.checkerframework.checker.mustcall.qual.MustCall({}) TupleSequence createElementsSequence(SimpleList<Sequence> candidates, int length, Type elementType) {
+    public static @org.checkerframework.checker.mustcall.qual.MustCall({}) TupleSequence createElementsSequence(@org.checkerframework.checker.mustcall.qual.MustCall({}) SimpleList<Sequence> candidates,  @org.checkerframework.checker.mustcall.qual.MustCall({}) int length, @org.checkerframework.checker.mustcall.qual.MustCall({}) Type elementType) {
         List<Sequence> sequences = new ArrayList<>(length);
         List<Integer> variables = new ArrayList<>(length);
         for (int i = 0; i < length; i++) {

@@ -172,7 +172,7 @@ public class GenericClassType extends ParameterizedType {
      * @return a type which is this type parameterized by the given type arguments
      * @see #substitute(Substitution)
      */
-    public @org.checkerframework.checker.mustcall.qual.MustCall({}) InstantiatedType instantiate(ReferenceType... typeArguments) {
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) InstantiatedType instantiate(@org.checkerframework.checker.mustcall.qual.MustCall({}) GenericClassType this, @org.checkerframework.checker.mustcall.qual.MustCall({}) ReferenceType@org.checkerframework.checker.mustcall.qual.MustCall({}) ... typeArguments) {
         if (typeArguments.length != this.getTypeParameters().size()) {
             throw new IllegalArgumentException("number of arguments and parameters must match");
         }
@@ -192,7 +192,7 @@ public class GenericClassType extends ParameterizedType {
      * @return the type that is this type instantiated by the given type arguments
      * @see #substitute(Substitution)
      */
-    public @org.checkerframework.checker.mustcall.qual.MustCall({}) InstantiatedType instantiate(List<ReferenceType> typeArguments) {
+    public @org.checkerframework.checker.mustcall.qual.MustCall({}) InstantiatedType instantiate(@org.checkerframework.checker.mustcall.qual.MustCall({}) GenericClassType this, @org.checkerframework.checker.mustcall.qual.MustCall({}) List<ReferenceType> typeArguments) {
         if (typeArguments.size() != this.getTypeParameters().size()) {
             throw new IllegalArgumentException("number of arguments and parameters must match");
         }

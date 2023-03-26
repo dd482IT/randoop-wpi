@@ -14,6 +14,7 @@ import randoop.types.Type;
 @org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
 public class FieldParser {
 
+    @org.checkerframework.dataflow.qual.SideEffectFree
     private FieldParser() {
         throw new Error("Do not instantiate");
     }
@@ -28,7 +29,7 @@ public class FieldParser {
      * @return the {@link AccessibleField} for the given class and field name
      * @throws OperationParseException if either name is malformed or incorrect
      */
-    public static AccessibleField parse( String descr,  String classname,  String fieldname) throws OperationParseException {
+    public static  AccessibleField parse( String descr,  String classname,  String fieldname) throws OperationParseException {
         String errorPrefix = "Error when parsing field " + descr + ".";
         ClassOrInterfaceType classType;
         try {
@@ -57,7 +58,7 @@ public class FieldParser {
      * @param fieldName field name for which to search the class
      * @return field of the class with the given name
      */
-    private static Field fieldForName(Class<?> type, String fieldName) {
+    private static  Field fieldForName( Class<?> type,  String fieldName) {
         for (Field f : type.getDeclaredFields()) {
             if (fieldName.equals(f.getName())) {
                 return f;

@@ -1,0 +1,115 @@
+package randoop.util;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class KeyToMultiSet<K, V> {
+
+    private final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Map<K, MultiSet<V>> map;
+
+    public KeyToMultiSet() {
+        map = new LinkedHashMap<>();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "keySet" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "add" })
+    public void addAll(Map<? extends K, ? extends V> m) {
+        for (K t1 : m.keySet()) {
+            add(t1, m.get(t1));
+        }
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#2" }, methods = { "iterator" })
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this" }, methods = { "add" })
+    public void addAll(K key, Collection<? extends V> values) {
+        for (V t2 : values) {
+            add(key, t2);
+        }
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "computeIfAbsent", "put" })
+    public void add(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) KeyToMultiSet<K, V> this, K key, V value) {
+        MultiSet<V> values = map.computeIfAbsent(key, __ -> new MultiSet<>());
+        map.put(key, values);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "get" })
+    public void remove(K key, V value) {
+        MultiSet<V> values = map.get(key);
+        if (values == null) {
+            throw new IllegalStateException("No values where found when trying to remove from multiset. Key: " + key + " Variable: " + value);
+        }
+        values.remove(value);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "get", "remove" })
+    public void remove(K key) {
+        MultiSet<V> values = map.get(key);
+        if (values == null) {
+            throw new IllegalStateException("No values where found when trying to remove from multiset. Key: " + key);
+        }
+        map.remove(key);
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "get" })
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<V> getVariables(K key) {
+        MultiSet<V> values = map.get(key);
+        if (values == null) {
+            return Collections.emptySet();
+        }
+        return values.getElements();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "keySet" })
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<K> keySet() {
+        return map.keySet();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "containsKey" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean contains(K obj) {
+        return map.containsKey(obj);
+    }
+
+    // Removes all keys with an empty set
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "entrySet" })
+    public void clean() {
+        for (Iterator<Map.Entry<K, MultiSet<V>>> iter = map.entrySet().iterator(); iter.hasNext(); ) {
+            Map.Entry<K, MultiSet<V>> element = iter.next();
+            if (element.getValue().isEmpty()) {
+                iter.remove();
+            }
+        }
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "values" })
+    public void removeAllInstances(Set<V> values) {
+        for (MultiSet<V> multiSet : map.values()) {
+            multiSet.removeAllInstances(values);
+        }
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "clear" })
+    public void clear() {
+        map.clear();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "size" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) int size() {
+        return map.size();
+    }
+
+    @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.map" }, methods = { "isEmpty" })
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isEmpty() {
+        return map.isEmpty();
+    }
+}

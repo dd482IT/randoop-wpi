@@ -71,7 +71,7 @@ public class SubTypeSet {
      *
      * @param c the type to be added
      */
-    public void add(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SubTypeSet this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isClassOrInterfaceType" }) Type c) {
+    public void add(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) SubTypeSet this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Type c) {
         if (c == null)
             throw new IllegalArgumentException("c cannot be null.");
         if (types.contains(c)) {

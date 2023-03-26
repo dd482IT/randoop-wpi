@@ -1,0 +1,24 @@
+package randoop.generation;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class EqualsMethodMatcher implements StateMatcher {
+
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown Set<Object> cache = new LinkedHashSet<>();
+
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean add(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsMethodMatcher this, @org.checkerframework.checker.signature.qual.SignatureUnknown Object object) {
+        try {
+            return this.cache.add(object);
+        } catch (Throwable e) {
+            // This could happen, because we're actually running code under test.
+            return false;
+        }
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int size(@org.checkerframework.checker.signature.qual.SignatureUnknown EqualsMethodMatcher this) {
+        return this.cache.size();
+    }
+}

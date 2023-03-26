@@ -249,7 +249,7 @@ public class ArrayType extends ReferenceType {
      *
      * @return true if the element type is parameterized; false otherwise
      */
-    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasParameterizedElementType() {
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean hasParameterizedElementType(@org.checkerframework.checker.signature.qual.SignatureUnknown ArrayType this) {
         return getElementType().isParameterized();
     }
 
@@ -260,7 +260,7 @@ public class ArrayType extends ReferenceType {
      *
      * @return the non-parameterized form of this array type
      */
-    public @org.checkerframework.checker.signature.qual.SignatureUnknown ArrayType getRawTypeArray() {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown ArrayType getRawTypeArray(@org.checkerframework.checker.signature.qual.SignatureUnknown ArrayType this) {
         Type rawElementType;
         if (this.componentType.isArray()) {
             rawElementType = ((ArrayType) componentType).getRawTypeArray();

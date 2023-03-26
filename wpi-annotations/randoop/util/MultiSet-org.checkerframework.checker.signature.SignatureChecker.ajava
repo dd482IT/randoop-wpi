@@ -1,0 +1,48 @@
+package randoop.util;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class MultiSet<E> {
+
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown Map<E, Integer> frequencyMap;
+
+    public MultiSet() {
+        frequencyMap = new LinkedHashMap<>();
+    }
+
+    public void add(E obj) {
+        Integer i = frequencyMap.getOrDefault(obj, 0);
+        frequencyMap.put(obj, i + 1);
+    }
+
+    public void remove(@org.checkerframework.checker.signature.qual.SignatureUnknown MultiSet<E> this, E obj) {
+        Integer i = frequencyMap.get(obj);
+        if (i == null || i < 1) {
+            throw new IllegalStateException("Variable not found when trying to remove from multiset. Variable: " + obj);
+        }
+        if (i == 1) {
+            frequencyMap.remove(obj);
+        } else {
+            frequencyMap.put(obj, i - 1);
+        }
+    }
+
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown Set<E> getElements(@org.checkerframework.checker.signature.qual.SignatureUnknown MultiSet<E> this) {
+        return frequencyMap.keySet();
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isEmpty(@org.checkerframework.checker.signature.qual.SignatureUnknown MultiSet<E> this) {
+        return frequencyMap.isEmpty();
+    }
+
+    public void removeAllInstances(@org.checkerframework.checker.signature.qual.SignatureUnknown MultiSet<E> this, @org.checkerframework.checker.signature.qual.SignatureUnknown Set<E> values) {
+        for (E value : values) {
+            frequencyMap.remove(value);
+        }
+    }
+}

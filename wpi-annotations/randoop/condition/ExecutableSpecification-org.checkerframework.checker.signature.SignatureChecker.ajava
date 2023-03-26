@@ -165,7 +165,7 @@ public class ExecutableSpecification {
      *
      * @param parentExecSpec the {@link ExecutableSpecification} to which to link
      */
-    void addParent(ExecutableSpecification parentExecSpec) {
+    void addParent(@org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSpecification this, @org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSpecification parentExecSpec) {
         parentList.add(parentExecSpec);
     }
 
@@ -176,7 +176,7 @@ public class ExecutableSpecification {
      * @return true if there are no guard expressions, or property or throws pairs in this or the
      *     parent list, false otherwise
      */
-    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isEmpty() {
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isEmpty(@org.checkerframework.checker.signature.qual.SignatureUnknown ExecutableSpecification this) {
         if (!(preExpressions.isEmpty() && guardPropertyPairs.isEmpty() && guardThrowsPairs.isEmpty())) {
             return false;
         }

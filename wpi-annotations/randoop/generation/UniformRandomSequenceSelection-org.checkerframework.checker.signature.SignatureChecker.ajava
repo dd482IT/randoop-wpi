@@ -1,0 +1,22 @@
+package randoop.generation;
+
+import randoop.sequence.Sequence;
+import randoop.util.Randomness;
+import randoop.util.SimpleList;
+
+/**
+ * Select sequences uniformly at random.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class UniformRandomSequenceSelection extends InputSequenceSelector {
+
+    /**
+     * Pick randomly with uniform probability, a sequence from the candidate list.
+     *
+     * @param candidates sequences to choose from
+     * @return the chosen sequence
+     */
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown Sequence selectInputSequence(@org.checkerframework.checker.signature.qual.SignatureUnknown UniformRandomSequenceSelection this, @org.checkerframework.checker.signature.qual.SignatureUnknown SimpleList<Sequence> candidates) {
+        return Randomness.randomMember(candidates);
+    }
+}

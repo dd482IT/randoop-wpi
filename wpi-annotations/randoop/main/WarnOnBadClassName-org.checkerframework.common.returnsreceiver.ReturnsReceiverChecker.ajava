@@ -1,0 +1,17 @@
+package randoop.main;
+
+/**
+ * WarnOnBadClassName is used to handle a bad class name error by printing a warning to standard
+ * out, and is used to suppress an exception.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker")
+public class WarnOnBadClassName implements ClassNameErrorHandler {
+
+    public void handle( WarnOnBadClassName this,  String className) {
+        System.out.format("Warning: no class \"%s\" found on the classpath%n", className);
+    }
+
+    public void handle( WarnOnBadClassName this,  String classname,  Throwable e) {
+        System.out.format("Warning: loading class \"%s\" resulted in exception: %s%n", classname, e);
+    }
+}

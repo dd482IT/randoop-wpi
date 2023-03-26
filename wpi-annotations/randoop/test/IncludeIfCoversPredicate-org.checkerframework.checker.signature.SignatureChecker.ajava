@@ -21,7 +21,7 @@ public class IncludeIfCoversPredicate implements Predicate<ExecutableSequence> {
      *
      * @param coveredClasses the set of classes to be covered
      */
-    public IncludeIfCoversPredicate(Set<Class<?>> coveredClasses) {
+    public IncludeIfCoversPredicate(@org.checkerframework.checker.signature.qual.SignatureUnknown Set<Class<?>> coveredClasses) {
         this.coveredClasses = coveredClasses;
     }
 

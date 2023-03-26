@@ -39,7 +39,7 @@ public interface SimpleList<E> {
      * @return the number of elements in this list
      */
     @org.checkerframework.dataflow.qual.Pure
-    public int size(@org.checkerframework.checker.signature.qual.SignatureUnknown SimpleList<E> this);
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int size(@org.checkerframework.checker.signature.qual.SignatureUnknown SimpleList<E> this);
 
     /**
      * Test if this list is empty.
@@ -47,7 +47,7 @@ public interface SimpleList<E> {
      * @return true if this list is empty, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    public boolean isEmpty(@org.checkerframework.checker.signature.qual.SignatureUnknown SimpleList<E> this);
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isEmpty(@org.checkerframework.checker.signature.qual.SignatureUnknown SimpleList<E> this);
 
     /**
      * Return the element at the given position of this list.
@@ -69,7 +69,7 @@ public interface SimpleList<E> {
      * @return the sublist containing this index
      */
     @org.checkerframework.dataflow.qual.Pure
-    public SimpleList<E> getSublist(@org.checkerframework.checker.signature.qual.SignatureUnknown SimpleList<E> this,  @org.checkerframework.checker.signature.qual.SignatureUnknown int index);
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown SimpleList<E> getSublist(@org.checkerframework.checker.signature.qual.SignatureUnknown SimpleList<E> this,  @org.checkerframework.checker.signature.qual.SignatureUnknown int index);
 
     // TODO: Replace some uses of this, such as direct implementations of toString.
     /**
@@ -78,5 +78,5 @@ public interface SimpleList<E> {
      * @return {@link java.util.List} for this list
      */
     @org.checkerframework.dataflow.qual.Pure
-    public abstract List<E> toJDKList();
+    public abstract @org.checkerframework.checker.signature.qual.SignatureUnknown List<E> toJDKList(@org.checkerframework.checker.signature.qual.SignatureUnknown SimpleList<E> this);
 }

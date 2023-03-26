@@ -893,7 +893,7 @@ public abstract class GenInputsAbstract extends CommandHandler {
      */
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "randoop.main.GenInputsAbstract.literals_file" }, methods = { "isEmpty" })
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "randoop.main.GenInputsAbstract.testclass" }, methods = { "isEmpty" })
-    public void checkOptionsValid(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) GenInputsAbstract this) {
+    public void checkOptionsValid(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "handles" }) GenInputsAbstract this) {
         if (alias_ratio < 0 || alias_ratio > 1) {
             throw new RandoopUsageError("--alias-ratio must be between 0 and 1, inclusive.");
         }

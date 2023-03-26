@@ -155,7 +155,7 @@ public class TypeTuple implements Iterable<Type>, Comparable<TypeTuple> {
      * @return true if the tuple has no components, false otherwise
      */
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isEmpty() {
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isEmpty(@org.checkerframework.checker.signature.qual.SignatureUnknown TypeTuple this) {
         return list.isEmpty();
     }
 

@@ -1,0 +1,29 @@
+package randoop.reflection;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.signature.SignatureChecker")
+public class EverythingAllowedPredicate implements ReflectionPredicate {
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean test(@org.checkerframework.checker.signature.qual.SignatureUnknown EverythingAllowedPredicate this, @org.checkerframework.checker.signature.qual.SignatureUnknown Class<?> c) {
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean test(@org.checkerframework.checker.signature.qual.SignatureUnknown EverythingAllowedPredicate this, @org.checkerframework.checker.signature.qual.SignatureUnknown Method m) {
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean test(@org.checkerframework.checker.signature.qual.SignatureUnknown EverythingAllowedPredicate this, @org.checkerframework.checker.signature.qual.SignatureUnknown Constructor<?> m) {
+        return true;
+    }
+
+    @org.checkerframework.dataflow.qual.Pure
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean test(@org.checkerframework.checker.signature.qual.SignatureUnknown EverythingAllowedPredicate this, @org.checkerframework.checker.signature.qual.SignatureUnknown Field f) {
+        return true;
+    }
+}

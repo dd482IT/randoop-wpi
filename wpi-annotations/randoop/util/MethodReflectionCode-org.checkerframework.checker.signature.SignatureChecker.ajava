@@ -15,17 +15,17 @@ public final class MethodReflectionCode extends ReflectionCode {
     /**
      * The method to be called.
      */
-    private final Method method;
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown Method method;
 
     /**
      * The receiver, or null for a static method.
      */
-    private final Object receiver;
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown Object receiver;
 
     /**
      * The arguments that the method is applied to.
      */
-    private final Object[] inputs;
+    private final @org.checkerframework.checker.signature.qual.SignatureUnknown Object @org.checkerframework.checker.signature.qual.SignatureUnknown [] inputs;
 
     /**
      * Create a new MethodReflectionCode to represent a method invocation.
@@ -49,11 +49,12 @@ public final class MethodReflectionCode extends ReflectionCode {
         }
     }
 
-    private boolean isInstanceMethod() {
+    @org.checkerframework.framework.qual.RequiresQualifier(expression = { "this.receiver" }, qualifier = org.checkerframework.checker.signature.qual.SignatureBottom.class)
+    private  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean isInstanceMethod(@org.checkerframework.checker.signature.qual.SignatureUnknown MethodReflectionCode this) {
         return !Modifier.isStatic(method.getModifiers());
     }
 
-    public void runReflectionCodeRaw() {
+    public void runReflectionCodeRaw(@org.checkerframework.checker.signature.qual.SignatureUnknown MethodReflectionCode this) {
         Log.logPrintf("runReflectionCodeRaw: %s%n", method);
         try {
             this.retval = this.method.invoke(this.receiver, this.inputs);
@@ -83,7 +84,8 @@ public final class MethodReflectionCode extends ReflectionCode {
         }
     }
 
-    public String toString() {
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown String toString(@org.checkerframework.checker.signature.qual.SignatureUnknown MethodReflectionCode this) {
         return "Call to " + method + " receiver: " + receiver + " args: " + Arrays.toString(inputs) + status();
     }
 }

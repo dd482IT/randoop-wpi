@@ -16,7 +16,7 @@ public class IncludeTestPredicate implements Predicate<ExecutableSequence> {
      */
     private @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern testClasses;
 
-    public IncludeTestPredicate(Pattern testClasses) {
+    public IncludeTestPredicate(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern testClasses) {
         this.testClasses = testClasses;
     }
 

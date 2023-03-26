@@ -20,7 +20,7 @@ public class MultiSet<E> {
     }
 
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.frequencyMap" }, methods = { "get" })
-    public void remove(E obj) {
+    public void remove(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiSet<E> this, E obj) {
         Integer i = frequencyMap.get(obj);
         if (i == null || i < 1) {
             throw new IllegalStateException("Variable not found when trying to remove from multiset. Variable: " + obj);
@@ -34,18 +34,18 @@ public class MultiSet<E> {
 
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.frequencyMap" }, methods = { "keySet" })
     @org.checkerframework.dataflow.qual.SideEffectFree
-    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<E> getElements() {
+    public @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<E> getElements(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiSet<E> this) {
         return frequencyMap.keySet();
     }
 
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "this.frequencyMap" }, methods = { "isEmpty" })
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isEmpty() {
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean isEmpty(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiSet<E> this) {
         return frequencyMap.isEmpty();
     }
 
     @org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods(value = { "#1" }, methods = { "iterator" })
-    public void removeAllInstances(Set<E> values) {
+    public void removeAllInstances(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) MultiSet<E> this, @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Set<E> values) {
         for (E value : values) {
             frequencyMap.remove(value);
         }

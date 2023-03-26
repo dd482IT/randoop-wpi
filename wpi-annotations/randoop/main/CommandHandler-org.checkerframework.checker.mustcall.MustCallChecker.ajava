@@ -65,12 +65,12 @@ public abstract class CommandHandler {
     }
 
     @org.checkerframework.dataflow.qual.SideEffectFree
-    public final  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean handles(String command) {
+    public final  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean handles(@org.checkerframework.checker.mustcall.qual.MustCall({}) CommandHandler this, @org.checkerframework.checker.mustcall.qual.MustCall({}) String command) {
         return command != null && command.toUpperCase().equals(fcommand.toUpperCase());
     }
 
     @org.checkerframework.dataflow.qual.Pure
-    public abstract  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean handle(String[] args);
+    public abstract  @org.checkerframework.checker.mustcall.qual.MustCall({}) boolean handle(@org.checkerframework.checker.mustcall.qual.MustCall({}) CommandHandler this, @org.checkerframework.checker.mustcall.qual.MustCall({}) String @org.checkerframework.checker.mustcall.qual.MustCall({}) [] args);
 
     /**
      * Prints out formatted text in (google code) Wiki format.
@@ -127,7 +127,7 @@ public abstract class CommandHandler {
         }
     }
 
-    public final void usageMessage(PrintStream out) {
+    public final void usageMessage(@org.checkerframework.checker.mustcall.qual.MustCall({}) CommandHandler this, @org.checkerframework.checker.mustcall.qual.MustCall({}) PrintStream out) {
         out.println();
         if (!fcommand.trim().equals("")) {
             out.print(Util.hangingParagraph("COMMAND: " + fcommand, Globals.COLWIDTH, Globals.INDENTWIDTH));

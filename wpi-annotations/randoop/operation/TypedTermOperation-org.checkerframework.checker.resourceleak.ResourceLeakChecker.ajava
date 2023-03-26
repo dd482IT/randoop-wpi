@@ -25,7 +25,7 @@ class TypedTermOperation extends TypedOperation {
     }
 
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasWildcardTypes(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) TypedTermOperation this) {
+    public  @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) boolean hasWildcardTypes(@org.checkerframework.checker.calledmethods.qual.CalledMethods({ "isGeneric" }) TypedTermOperation this) {
         return false;
     }
 

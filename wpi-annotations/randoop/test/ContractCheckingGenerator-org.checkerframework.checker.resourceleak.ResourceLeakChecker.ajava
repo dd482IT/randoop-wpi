@@ -42,7 +42,7 @@ public final class ContractCheckingGenerator extends TestCheckGenerator {
      * @param contracts expected to be unary contracts, i.e. for each contract {@code c}, {@code
      *     c.getArity() == 1}.
      */
-    public ContractCheckingGenerator(ContractSet contracts) {
+    public ContractCheckingGenerator(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ContractSet contracts) {
         this.contracts = contracts;
     }
 

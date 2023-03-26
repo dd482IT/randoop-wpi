@@ -32,7 +32,7 @@ public class SubTypeSet {
      */
     private  @org.checkerframework.checker.signature.qual.SignatureUnknown boolean supportsCheckpoints;
 
-    public SubTypeSet(boolean supportsCheckpoints) {
+    public SubTypeSet( @org.checkerframework.checker.signature.qual.SignatureUnknown boolean supportsCheckpoints) {
         if (supportsCheckpoints) {
             this.supportsCheckpoints = true;
             this.subTypes = new CheckpointingMultiMap<>();
@@ -71,7 +71,7 @@ public class SubTypeSet {
      *
      * @param c the type to be added
      */
-    public void add(Type c) {
+    public void add(@org.checkerframework.checker.signature.qual.SignatureUnknown SubTypeSet this, @org.checkerframework.checker.signature.qual.SignatureUnknown Type c) {
         if (c == null)
             throw new IllegalArgumentException("c cannot be null.");
         if (types.contains(c)) {
@@ -113,7 +113,7 @@ public class SubTypeSet {
      * @param type the query type
      * @return the set of types that can be used in place of the query type
      */
-    public @org.checkerframework.checker.signature.qual.SignatureUnknown Set<Type> getMatches(Type type) {
+    public @org.checkerframework.checker.signature.qual.SignatureUnknown Set<Type> getMatches(@org.checkerframework.checker.signature.qual.SignatureUnknown SubTypeSet this, @org.checkerframework.checker.signature.qual.SignatureUnknown Type type) {
         if (!subTypes.keySet().contains(type)) {
             addQueryType(type);
         }
@@ -126,7 +126,7 @@ public class SubTypeSet {
      * @return the size of the set
      */
     @org.checkerframework.dataflow.qual.Pure
-    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int size() {
+    public  @org.checkerframework.checker.signature.qual.SignatureUnknown int size(@org.checkerframework.checker.signature.qual.SignatureUnknown SubTypeSet this) {
         return types.size();
     }
 }
