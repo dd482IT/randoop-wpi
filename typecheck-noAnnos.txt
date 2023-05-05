@@ -1,77 +1,1556 @@
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:92: warning: [builder:required.method.not.called] @MustCall method close may not have been invoked on temp-var-4 or any of its aliases.
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:92: warning: [builder:required.method.not.called] @MustCall method close may not have been invoked on temp-var-4 or any of its aliases.
         Files.newBufferedReader(replacementFile, StandardCharsets.UTF_8),
                                ^
   The type of object is: java.io.BufferedReader.
   Reason for going out of scope: possible exceptional exit due to readReplacements(Files.newBufferedReader(replacementFile, StandardCharsets.UTF_8), replacementFile.toString()) with exception type randoop.instrument.ReplacementFileException
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:287: warning: [signature:argument] incompatible argument for parameter packagename of addPackage.
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:287: warning: [signature:argument] incompatible argument for parameter packagename of addPackage.
         Signatures.addPackage(originalPackage, classname),
                               ^
   found   : @SignatureUnknown String
   required: @DotSeparatedIdentifiers String
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:287: warning: [signature:argument] incompatible argument for parameter classname of addPackage.
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:287: warning: [signature:argument] incompatible argument for parameter classname of addPackage.
         Signatures.addPackage(originalPackage, classname),
                                                ^
   found   : @SignatureUnknown String
   required: @BinaryName String
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:288: warning: [signature:argument] incompatible argument for parameter packagename of addPackage.
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:288: warning: [signature:argument] incompatible argument for parameter packagename of addPackage.
         Signatures.addPackage(replacementPackage, classname));
                               ^
   found   : @SignatureUnknown String
   required: @DotSeparatedIdentifiers String
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:288: warning: [signature:argument] incompatible argument for parameter classname of addPackage.
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:288: warning: [signature:argument] incompatible argument for parameter classname of addPackage.
         Signatures.addPackage(replacementPackage, classname));
                                                   ^
   found   : @SignatureUnknown String
   required: @BinaryName String
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:347: warning: [signature:argument] incompatible argument for parameter className of ObjectType.
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:347: warning: [signature:argument] incompatible argument for parameter className of ObjectType.
           && replacement.getParameterTypes()[0].equals(new ObjectType(originalClassname))) {
                                                                       ^
   found   : @SignatureUnknown String
   required: @BinaryName String
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:134: warning: [signature:unneeded.suppression] warning suppression "signature:assignment" is not used by SignatureChecker
+              @SuppressWarnings("signature:assignment") // regex match enforces
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:136: warning: [signature:unneeded.suppression] warning suppression "signature:assignment" is not used by SignatureChecker
+              @SuppressWarnings("signature:assignment") // regex match enforces
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:459: warning: [signature:unneeded.suppression] warning suppression "signature:assignment" is not used by SignatureChecker
+        @SuppressWarnings("signature:assignment") // add identifier to dot-separated
         ^
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/MethodSignature.java:100: warning: [signature:argument] incompatible argument for parameter classname of fqBinaryNameToType.
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileReader.java:461: warning: [signature:unneeded.suppression] warning suppression "signature:assignment" is not used by SignatureChecker
+        @SuppressWarnings("signature:assignment") // add identifier to dot-separated
+        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/MethodSignature.java:169: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.paramTypes[i].getSignature not allowed in deterministic side-effect-free method
+          result = this.paramTypes[i].getSignature().compareTo(m.paramTypes[i].getSignature());
+                                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/MethodSignature.java:169: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.paramTypes[i].getSignature not allowed in deterministic side-effect-free method
+          result = this.paramTypes[i].getSignature().compareTo(m.paramTypes[i].getSignature());
+                                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/MethodSignature.java:169: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.paramTypes[i].getSignature not allowed in deterministic side-effect-free method
+          result = this.paramTypes[i].getSignature().compareTo(m.paramTypes[i].getSignature());
+                                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/MethodSignature.java:169: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting m.paramTypes[i].getSignature not allowed in deterministic side-effect-free method
+          result = this.paramTypes[i].getSignature().compareTo(m.paramTypes[i].getSignature());
+                                                                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/MethodSignature.java:169: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting m.paramTypes[i].getSignature not allowed in deterministic side-effect-free method
+          result = this.paramTypes[i].getSignature().compareTo(m.paramTypes[i].getSignature());
+                                                                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/MethodSignature.java:169: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting m.paramTypes[i].getSignature not allowed in deterministic side-effect-free method
+          result = this.paramTypes[i].getSignature().compareTo(m.paramTypes[i].getSignature());
+                                                                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/MethodSignature.java:100: warning: [signature:argument] incompatible argument for parameter classname of fqBinaryNameToType.
       paramTypes[i] = BcelUtil.fqBinaryNameToType(params[i]);
                                                         ^
   found   : @SignatureUnknown String
   required: @FqBinaryName String
-
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplaceCallAgent.java:134: warning: [builder:required.method.not.called] @MustCall method close may not have been invoked on temp-var-316 or any of its aliases.
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/MethodSignature.java:169: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.paramTypes[i].getSignature not allowed in deterministic side-effect-free method
+          result = this.paramTypes[i].getSignature().compareTo(m.paramTypes[i].getSignature());
+                                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/MethodSignature.java:169: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting m.paramTypes[i].getSignature not allowed in deterministic side-effect-free method
+          result = this.paramTypes[i].getSignature().compareTo(m.paramTypes[i].getSignature());
+                                                                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/MethodSignature.java:130: warning: [signature:unneeded.suppression] warning suppression "signature:assignment" is not used by SignatureChecker
+    @SuppressWarnings("signature:assignment") // dynamically checked just below
+    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileException.java:37: warning: [returnsreceiver:purity.not.deterministic.call] call to non-deterministic method String.format not allowed in deterministic method
+    return String.format(
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileException.java:37: warning: [mustcall:purity.not.deterministic.call] call to non-deterministic method String.format not allowed in deterministic method
+    return String.format(
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileException.java:37: warning: [builder:purity.not.deterministic.call] call to non-deterministic method String.format not allowed in deterministic method
+    return String.format(
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplacementFileException.java:37: warning: [signature:purity.not.deterministic.call] call to non-deterministic method String.format not allowed in deterministic method
+    return String.format(
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/agent/replacecall/src/main/java/randoop/instrument/ReplaceCallAgent.java:134: warning: [builder:required.method.not.called] @MustCall method close may not have been invoked on temp-var-316 or any of its aliases.
                   Files.newBufferedReader(dont_transform, StandardCharsets.UTF_8),
                                          ^
   The type of object is: java.io.BufferedReader.
   Reason for going out of scope: possible exceptional exit due to loadExclusions(Files.newBufferedReader(dont_transform, StandardCharsets.UTF_8), dont_transform.toString()) with exception type java.io.IOException
-13 warnings
+25 warnings
 
 > Task :compileJava
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:105: warning: [signature:argument] incompatible argument for parameter fqBinaryName of getArrayElementType.
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ReflectionArrayCreation.java:36: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting elementType.getBinaryName not allowed in side-effect-free method
+    return "Array.newInstance(" + elementType.getBinaryName() + ", " + length + ")";
+                                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ReflectionArrayCreation.java:36: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting elementType.getBinaryName not allowed in side-effect-free method
+    return "Array.newInstance(" + elementType.getBinaryName() + ", " + length + ")";
+                                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ReflectionArrayCreation.java:36: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting elementType.getBinaryName not allowed in side-effect-free method
+    return "Array.newInstance(" + elementType.getBinaryName() + ", " + length + ")";
+                                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ReflectionArrayCreation.java:36: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting elementType.getBinaryName not allowed in side-effect-free method
+    return "Array.newInstance(" + elementType.getBinaryName() + ", " + length + ")";
+                                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:268: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting this.getBinaryName not allowed in side-effect-free method
+    return this.getBinaryName();
+                             ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:268: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting this.getBinaryName not allowed in side-effect-free method
+    return this.getBinaryName();
+                             ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:268: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting this.getBinaryName not allowed in side-effect-free method
+    return this.getBinaryName();
+                             ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:579: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getCanonicalName not allowed in deterministic side-effect-free method
+    String name1 = this.getCanonicalName();
+                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:579: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getCanonicalName not allowed in deterministic side-effect-free method
+    String name1 = this.getCanonicalName();
+                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:579: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getCanonicalName not allowed in deterministic side-effect-free method
+    String name1 = this.getCanonicalName();
+                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:580: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting type.getCanonicalName not allowed in deterministic side-effect-free method
+    String name2 = type.getCanonicalName();
+                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:580: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting type.getCanonicalName not allowed in deterministic side-effect-free method
+    String name2 = type.getCanonicalName();
+                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:580: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting type.getCanonicalName not allowed in deterministic side-effect-free method
+    String name2 = type.getCanonicalName();
+                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:582: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getCanonicalName not allowed in deterministic side-effect-free method
+      return this.getCanonicalName().compareTo(type.getCanonicalName());
+                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:582: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getCanonicalName not allowed in deterministic side-effect-free method
+      return this.getCanonicalName().compareTo(type.getCanonicalName());
+                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:582: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getCanonicalName not allowed in deterministic side-effect-free method
+      return this.getCanonicalName().compareTo(type.getCanonicalName());
+                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:582: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting type.getCanonicalName not allowed in deterministic side-effect-free method
+      return this.getCanonicalName().compareTo(type.getCanonicalName());
+                                                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:582: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting type.getCanonicalName not allowed in deterministic side-effect-free method
+      return this.getCanonicalName().compareTo(type.getCanonicalName());
+                                                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:582: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting type.getCanonicalName not allowed in deterministic side-effect-free method
+      return this.getCanonicalName().compareTo(type.getCanonicalName());
+                                                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:584: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getRuntimeClass not allowed in deterministic side-effect-free method
+    return this.getRuntimeClass().getName().compareTo(type.getRuntimeClass().getName());
+                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:584: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getRuntimeClass not allowed in deterministic side-effect-free method
+    return this.getRuntimeClass().getName().compareTo(type.getRuntimeClass().getName());
+                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:584: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getRuntimeClass not allowed in deterministic side-effect-free method
+    return this.getRuntimeClass().getName().compareTo(type.getRuntimeClass().getName());
+                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:584: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting type.getRuntimeClass not allowed in deterministic side-effect-free method
+    return this.getRuntimeClass().getName().compareTo(type.getRuntimeClass().getName());
+                                                                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:584: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting type.getRuntimeClass not allowed in deterministic side-effect-free method
+    return this.getRuntimeClass().getName().compareTo(type.getRuntimeClass().getName());
+                                                                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:584: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting type.getRuntimeClass not allowed in deterministic side-effect-free method
+    return this.getRuntimeClass().getName().compareTo(type.getRuntimeClass().getName());
+                                                                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:105: warning: [signature:argument] incompatible argument for parameter fqBinaryName of getArrayElementType.
     @ClassGetName String baseTypeName = Signatures.getArrayElementType(fullyQualifiedName);
                                                                        ^
   found   : @SignatureUnknown String
   required: @FqBinaryName String
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/compile/SequenceCompiler.java:83: warning: [builder:required.method.not.called] @MustCall method close may not have been invoked on temp-var-1277 or any of its aliases.
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:268: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting this.getBinaryName not allowed in side-effect-free method
+    return this.getBinaryName();
+                             ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:579: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getCanonicalName not allowed in deterministic side-effect-free method
+    String name1 = this.getCanonicalName();
+                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:580: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting type.getCanonicalName not allowed in deterministic side-effect-free method
+    String name2 = type.getCanonicalName();
+                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:582: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getCanonicalName not allowed in deterministic side-effect-free method
+      return this.getCanonicalName().compareTo(type.getCanonicalName());
+                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:582: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting type.getCanonicalName not allowed in deterministic side-effect-free method
+      return this.getCanonicalName().compareTo(type.getCanonicalName());
+                                                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:584: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getRuntimeClass not allowed in deterministic side-effect-free method
+    return this.getRuntimeClass().getName().compareTo(type.getRuntimeClass().getName());
+                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/Type.java:584: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting type.getRuntimeClass not allowed in deterministic side-effect-free method
+    return this.getRuntimeClass().getName().compareTo(type.getRuntimeClass().getName());
+                                                                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:184: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.size not allowed in deterministic side-effect-free method
+    if (this.size() < tuple.size()) {
+                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:184: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.size not allowed in deterministic side-effect-free method
+    if (this.size() < tuple.size()) {
+                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:184: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.size not allowed in deterministic side-effect-free method
+    if (this.size() < tuple.size()) {
+                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:184: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting tuple.size not allowed in deterministic side-effect-free method
+    if (this.size() < tuple.size()) {
+                                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:184: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting tuple.size not allowed in deterministic side-effect-free method
+    if (this.size() < tuple.size()) {
+                                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:184: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting tuple.size not allowed in deterministic side-effect-free method
+    if (this.size() < tuple.size()) {
+                                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:187: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.size not allowed in deterministic side-effect-free method
+    if (this.size() > tuple.size()) {
+                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:187: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.size not allowed in deterministic side-effect-free method
+    if (this.size() > tuple.size()) {
+                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:187: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.size not allowed in deterministic side-effect-free method
+    if (this.size() > tuple.size()) {
+                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:187: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting tuple.size not allowed in deterministic side-effect-free method
+    if (this.size() > tuple.size()) {
+                                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:187: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting tuple.size not allowed in deterministic side-effect-free method
+    if (this.size() > tuple.size()) {
+                                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:187: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting tuple.size not allowed in deterministic side-effect-free method
+    if (this.size() > tuple.size()) {
+                                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:191: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.size not allowed in deterministic side-effect-free method
+    for (int i = 0; i < this.size() && result == 0; i++) {
+                                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:191: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.size not allowed in deterministic side-effect-free method
+    for (int i = 0; i < this.size() && result == 0; i++) {
+                                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:191: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.size not allowed in deterministic side-effect-free method
+    for (int i = 0; i < this.size() && result == 0; i++) {
+                                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:184: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.size not allowed in deterministic side-effect-free method
+    if (this.size() < tuple.size()) {
+                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:184: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting tuple.size not allowed in deterministic side-effect-free method
+    if (this.size() < tuple.size()) {
+                                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:187: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.size not allowed in deterministic side-effect-free method
+    if (this.size() > tuple.size()) {
+                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:187: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting tuple.size not allowed in deterministic side-effect-free method
+    if (this.size() > tuple.size()) {
+                                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/TypeTuple.java:191: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.size not allowed in deterministic side-effect-free method
+    for (int i = 0; i < this.size() && result == 0; i++) {
+                                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Variable.java:31: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting this.getName not allowed in side-effect-free method
+    return this.getName();
+                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Variable.java:31: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting this.getName not allowed in side-effect-free method
+    return this.getName();
+                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Variable.java:31: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting this.getName not allowed in side-effect-free method
+    return this.getName();
+                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Variable.java:117: warning: [returnsreceiver:purity.not.deterministic.call] call to non-deterministic method Integer.valueOf not allowed in deterministic method
+    return Integer.valueOf(this.index).compareTo(o.index);
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Variable.java:117: warning: [mustcall:purity.not.deterministic.call] call to non-deterministic method Integer.valueOf not allowed in deterministic method
+    return Integer.valueOf(this.index).compareTo(o.index);
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Variable.java:117: warning: [builder:purity.not.deterministic.call] call to non-deterministic method Integer.valueOf not allowed in deterministic method
+    return Integer.valueOf(this.index).compareTo(o.index);
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Variable.java:31: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting this.getName not allowed in side-effect-free method
+    return this.getName();
+                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Variable.java:117: warning: [signature:purity.not.deterministic.call] call to non-deterministic method Integer.valueOf not allowed in deterministic method
+    return Integer.valueOf(this.index).compareTo(o.index);
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:358: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting toCodeString not allowed in side-effect-free method
+    return toCodeString();
+                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:358: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting toCodeString not allowed in side-effect-free method
+    return toCodeString();
+                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:358: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting toCodeString not allowed in side-effect-free method
+    return toCodeString();
+                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:571: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getStatementsWithInputs not allowed in deterministic side-effect-free method
+    if (this.getStatementsWithInputs().size() != other.getStatementsWithInputs().size()) {
+                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:571: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getStatementsWithInputs not allowed in deterministic side-effect-free method
+    if (this.getStatementsWithInputs().size() != other.getStatementsWithInputs().size()) {
+                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:571: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getStatementsWithInputs not allowed in deterministic side-effect-free method
+    if (this.getStatementsWithInputs().size() != other.getStatementsWithInputs().size()) {
+                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:571: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getStatementsWithInputs().size not allowed in deterministic side-effect-free method
+    if (this.getStatementsWithInputs().size() != other.getStatementsWithInputs().size()) {
+                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:571: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getStatementsWithInputs().size not allowed in deterministic side-effect-free method
+    if (this.getStatementsWithInputs().size() != other.getStatementsWithInputs().size()) {
+                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:571: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getStatementsWithInputs().size not allowed in deterministic side-effect-free method
+    if (this.getStatementsWithInputs().size() != other.getStatementsWithInputs().size()) {
+                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:571: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.getStatementsWithInputs not allowed in deterministic side-effect-free method
+    if (this.getStatementsWithInputs().size() != other.getStatementsWithInputs().size()) {
+                                                                              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:571: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.getStatementsWithInputs not allowed in deterministic side-effect-free method
+    if (this.getStatementsWithInputs().size() != other.getStatementsWithInputs().size()) {
+                                                                              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:571: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.getStatementsWithInputs not allowed in deterministic side-effect-free method
+    if (this.getStatementsWithInputs().size() != other.getStatementsWithInputs().size()) {
+                                                                              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:571: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.getStatementsWithInputs().size not allowed in deterministic side-effect-free method
+    if (this.getStatementsWithInputs().size() != other.getStatementsWithInputs().size()) {
+                                                                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:571: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.getStatementsWithInputs().size not allowed in deterministic side-effect-free method
+    if (this.getStatementsWithInputs().size() != other.getStatementsWithInputs().size()) {
+                                                                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:571: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.getStatementsWithInputs().size not allowed in deterministic side-effect-free method
+    if (this.getStatementsWithInputs().size() != other.getStatementsWithInputs().size()) {
+                                                                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:572: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting verifyNotEqual not allowed in deterministic side-effect-free method
+      verifyNotEqual("size", other);
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:572: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting verifyNotEqual not allowed in deterministic side-effect-free method
+      verifyNotEqual("size", other);
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:572: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting verifyNotEqual not allowed in deterministic side-effect-free method
+      verifyNotEqual("size", other);
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:575: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.statements.size not allowed in deterministic side-effect-free method
+    for (int i = 0; i < this.statements.size(); i++) {
+                                            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:575: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.statements.size not allowed in deterministic side-effect-free method
+    for (int i = 0; i < this.statements.size(); i++) {
+                                            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:575: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.statements.size not allowed in deterministic side-effect-free method
+    for (int i = 0; i < this.statements.size(); i++) {
+                                            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:576: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.statements.get not allowed in deterministic side-effect-free method
+      Statement thisStatement = this.statements.get(i);
+                                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:576: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.statements.get not allowed in deterministic side-effect-free method
+      Statement thisStatement = this.statements.get(i);
+                                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:576: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.statements.get not allowed in deterministic side-effect-free method
+      Statement thisStatement = this.statements.get(i);
+                                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:577: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.statements.get not allowed in deterministic side-effect-free method
+      Statement otherStatement = other.statements.get(i);
+                                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:577: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.statements.get not allowed in deterministic side-effect-free method
+      Statement otherStatement = other.statements.get(i);
+                                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:577: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.statements.get not allowed in deterministic side-effect-free method
+      Statement otherStatement = other.statements.get(i);
+                                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:579: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.statements.get not allowed in deterministic side-effect-free method
+        assert this.statements.get(i) == thisStatement;
+                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:579: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.statements.get not allowed in deterministic side-effect-free method
+        assert this.statements.get(i) == thisStatement;
+                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:579: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.statements.get not allowed in deterministic side-effect-free method
+        assert this.statements.get(i) == thisStatement;
+                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:580: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.statements.get not allowed in deterministic side-effect-free method
+        assert other.statements.get(i) == otherStatement;
+                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:580: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.statements.get not allowed in deterministic side-effect-free method
+        assert other.statements.get(i) == otherStatement;
+                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:580: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.statements.get not allowed in deterministic side-effect-free method
+        assert other.statements.get(i) == otherStatement;
+                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:583: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting verifyNotEqual not allowed in deterministic side-effect-free method
+        verifyNotEqual("statement index " + i, other);
+                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:583: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting verifyNotEqual not allowed in deterministic side-effect-free method
+        verifyNotEqual("statement index " + i, other);
+                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:583: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting verifyNotEqual not allowed in deterministic side-effect-free method
+        verifyNotEqual("statement index " + i, other);
+                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:358: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting toCodeString not allowed in side-effect-free method
+    return toCodeString();
+                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:571: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getStatementsWithInputs().size not allowed in deterministic side-effect-free method
+    if (this.getStatementsWithInputs().size() != other.getStatementsWithInputs().size()) {
+                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:571: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getStatementsWithInputs not allowed in deterministic side-effect-free method
+    if (this.getStatementsWithInputs().size() != other.getStatementsWithInputs().size()) {
+                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:571: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.getStatementsWithInputs().size not allowed in deterministic side-effect-free method
+    if (this.getStatementsWithInputs().size() != other.getStatementsWithInputs().size()) {
+                                                                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:571: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.getStatementsWithInputs not allowed in deterministic side-effect-free method
+    if (this.getStatementsWithInputs().size() != other.getStatementsWithInputs().size()) {
+                                                                              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:572: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting verifyNotEqual not allowed in deterministic side-effect-free method
+      verifyNotEqual("size", other);
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:575: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.statements.size not allowed in deterministic side-effect-free method
+    for (int i = 0; i < this.statements.size(); i++) {
+                                            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:576: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.statements.get not allowed in deterministic side-effect-free method
+      Statement thisStatement = this.statements.get(i);
+                                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:577: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.statements.get not allowed in deterministic side-effect-free method
+      Statement otherStatement = other.statements.get(i);
+                                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:579: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.statements.get not allowed in deterministic side-effect-free method
+        assert this.statements.get(i) == thisStatement;
+                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:580: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.statements.get not allowed in deterministic side-effect-free method
+        assert other.statements.get(i) == otherStatement;
+                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/Sequence.java:583: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting verifyNotEqual not allowed in deterministic side-effect-free method
+        verifyNotEqual("statement index " + i, other);
+                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:101: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting getOperation not allowed in deterministic side-effect-free method
+    return getOperation().equals(op.getOperation())
+                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:101: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting getOperation not allowed in deterministic side-effect-free method
+    return getOperation().equals(op.getOperation())
+                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:101: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting getOperation not allowed in deterministic side-effect-free method
+    return getOperation().equals(op.getOperation())
+                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:101: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting op.getOperation not allowed in deterministic side-effect-free method
+    return getOperation().equals(op.getOperation())
+                                                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:101: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting op.getOperation not allowed in deterministic side-effect-free method
+    return getOperation().equals(op.getOperation())
+                                                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:101: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting op.getOperation not allowed in deterministic side-effect-free method
+    return getOperation().equals(op.getOperation())
+                                                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:129: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getName not allowed in deterministic side-effect-free method
+    result = this.getName().compareTo(other.getName());
+                         ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:129: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getName not allowed in deterministic side-effect-free method
+    result = this.getName().compareTo(other.getName());
+                         ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:129: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getName not allowed in deterministic side-effect-free method
+    result = this.getName().compareTo(other.getName());
+                         ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:129: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.getName not allowed in deterministic side-effect-free method
+    result = this.getName().compareTo(other.getName());
+                                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:129: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.getName not allowed in deterministic side-effect-free method
+    result = this.getName().compareTo(other.getName());
+                                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:129: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.getName not allowed in deterministic side-effect-free method
+    result = this.getName().compareTo(other.getName());
+                                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:144: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting thisOp.getDeclaringType not allowed in deterministic side-effect-free method
+      result = thisOp.getDeclaringType().compareTo(otherOp.getDeclaringType());
+                                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:144: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting thisOp.getDeclaringType not allowed in deterministic side-effect-free method
+      result = thisOp.getDeclaringType().compareTo(otherOp.getDeclaringType());
+                                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:144: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting thisOp.getDeclaringType not allowed in deterministic side-effect-free method
+      result = thisOp.getDeclaringType().compareTo(otherOp.getDeclaringType());
+                                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:144: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting otherOp.getDeclaringType not allowed in deterministic side-effect-free method
+      result = thisOp.getDeclaringType().compareTo(otherOp.getDeclaringType());
+                                                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:144: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting otherOp.getDeclaringType not allowed in deterministic side-effect-free method
+      result = thisOp.getDeclaringType().compareTo(otherOp.getDeclaringType());
+                                                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:144: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting otherOp.getDeclaringType not allowed in deterministic side-effect-free method
+      result = thisOp.getDeclaringType().compareTo(otherOp.getDeclaringType());
+                                                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:164: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting getOperation not allowed in deterministic side-effect-free method
+    return Objects.hash(getOperation(), inputTypes, outputType);
+                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:164: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting getOperation not allowed in deterministic side-effect-free method
+    return Objects.hash(getOperation(), inputTypes, outputType);
+                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:164: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting getOperation not allowed in deterministic side-effect-free method
+    return Objects.hash(getOperation(), inputTypes, outputType);
+                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:170: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting getName not allowed in side-effect-free method
+    return StringsPlume.escapeJava(getName())
+                                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:170: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting getName not allowed in side-effect-free method
+    return StringsPlume.escapeJava(getName())
+                                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:170: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting getName not allowed in side-effect-free method
+    return StringsPlume.escapeJava(getName())
+                                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:101: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting getOperation not allowed in deterministic side-effect-free method
+    return getOperation().equals(op.getOperation())
+                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:101: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting op.getOperation not allowed in deterministic side-effect-free method
+    return getOperation().equals(op.getOperation())
+                                                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:129: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.getName not allowed in deterministic side-effect-free method
+    result = this.getName().compareTo(other.getName());
+                         ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:129: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.getName not allowed in deterministic side-effect-free method
+    result = this.getName().compareTo(other.getName());
+                                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:144: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting thisOp.getDeclaringType not allowed in deterministic side-effect-free method
+      result = thisOp.getDeclaringType().compareTo(otherOp.getDeclaringType());
+                                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:144: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting otherOp.getDeclaringType not allowed in deterministic side-effect-free method
+      result = thisOp.getDeclaringType().compareTo(otherOp.getDeclaringType());
+                                                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:164: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting getOperation not allowed in deterministic side-effect-free method
+    return Objects.hash(getOperation(), inputTypes, outputType);
+                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedOperation.java:170: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting getName not allowed in side-effect-free method
+    return StringsPlume.escapeJava(getName())
+                                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedClassOperation.java:157: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting this.isGeneric not allowed in side-effect-free method
+    if (this.isGeneric()) {
+                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedClassOperation.java:157: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting this.isGeneric not allowed in side-effect-free method
+    if (this.isGeneric()) {
+                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedClassOperation.java:157: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting this.isGeneric not allowed in side-effect-free method
+    if (this.isGeneric()) {
+                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedClassOperation.java:158: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting this.getTypeParameters not allowed in side-effect-free method
+      String b = "<" + StringsPlume.join(",", this.getTypeParameters()) + ">" + " ";
+                                                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedClassOperation.java:158: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting this.getTypeParameters not allowed in side-effect-free method
+      String b = "<" + StringsPlume.join(",", this.getTypeParameters()) + ">" + " ";
+                                                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedClassOperation.java:158: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting this.getTypeParameters not allowed in side-effect-free method
+      String b = "<" + StringsPlume.join(",", this.getTypeParameters()) + ">" + " ";
+                                                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedClassOperation.java:157: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting this.isGeneric not allowed in side-effect-free method
+    if (this.isGeneric()) {
+                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/TypedClassOperation.java:158: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting this.getTypeParameters not allowed in side-effect-free method
+      String b = "<" + StringsPlume.join(",", this.getTypeParameters()) + ">" + " ";
+                                                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/ClassOrInterfaceType.java:111: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.isNestedClass not allowed in deterministic side-effect-free method
+    return !(this.isNestedClass() && otherType.isNestedClass())
+                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/ClassOrInterfaceType.java:111: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.isNestedClass not allowed in deterministic side-effect-free method
+    return !(this.isNestedClass() && otherType.isNestedClass())
+                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/ClassOrInterfaceType.java:111: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.isNestedClass not allowed in deterministic side-effect-free method
+    return !(this.isNestedClass() && otherType.isNestedClass())
+                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/ClassOrInterfaceType.java:111: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting otherType.isNestedClass not allowed in deterministic side-effect-free method
+    return !(this.isNestedClass() && otherType.isNestedClass())
+                                                            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/ClassOrInterfaceType.java:111: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting otherType.isNestedClass not allowed in deterministic side-effect-free method
+    return !(this.isNestedClass() && otherType.isNestedClass())
+                                                            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/ClassOrInterfaceType.java:111: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting otherType.isNestedClass not allowed in deterministic side-effect-free method
+    return !(this.isNestedClass() && otherType.isNestedClass())
+                                                            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/ClassOrInterfaceType.java:111: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting this.isNestedClass not allowed in deterministic side-effect-free method
+    return !(this.isNestedClass() && otherType.isNestedClass())
+                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/ClassOrInterfaceType.java:111: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting otherType.isNestedClass not allowed in deterministic side-effect-free method
+    return !(this.isNestedClass() && otherType.isNestedClass())
+                                                            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:126: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+    StringJoiner result = new StringJoiner(System.lineSeparator());
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:126: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+    StringJoiner result = new StringJoiner(System.lineSeparator());
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:126: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+    StringJoiner result = new StringJoiner(System.lineSeparator());
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:127: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting sequence.size not allowed in side-effect-free method
+    for (int i = 0; i < sequence.size(); i++) {
+                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:127: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting sequence.size not allowed in side-effect-free method
+    for (int i = 0; i < sequence.size(); i++) {
+                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:127: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting sequence.size not allowed in side-effect-free method
+    for (int i = 0; i < sequence.size(); i++) {
+                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:128: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+      StringBuilder b = new StringBuilder();
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:128: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+      StringBuilder b = new StringBuilder();
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:128: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+      StringBuilder b = new StringBuilder();
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:129: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting sequence.appendCode not allowed in side-effect-free method
+      sequence.appendCode(b, i);
+                         ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:129: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting sequence.appendCode not allowed in side-effect-free method
+      sequence.appendCode(b, i);
+                         ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:129: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting sequence.appendCode not allowed in side-effect-free method
+      sequence.appendCode(b, i);
+                         ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:132: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting executionResults.size not allowed in side-effect-free method
+      if (executionResults.size() > i) {
+                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:132: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting executionResults.size not allowed in side-effect-free method
+      if (executionResults.size() > i) {
+                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:132: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting executionResults.size not allowed in side-effect-free method
+      if (executionResults.size() > i) {
+                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:133: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting b.append not allowed in side-effect-free method
+        b.append(" // ");
+                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:133: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting b.append not allowed in side-effect-free method
+        b.append(" // ");
+                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:133: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting b.append not allowed in side-effect-free method
+        b.append(" // ");
+                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:134: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting b.append not allowed in side-effect-free method
+        b.append(executionResults.get(i).toString());
+                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:134: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting b.append not allowed in side-effect-free method
+        b.append(executionResults.get(i).toString());
+                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:134: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting b.append not allowed in side-effect-free method
+        b.append(executionResults.get(i).toString());
+                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:134: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting executionResults.get not allowed in side-effect-free method
+        b.append(executionResults.get(i).toString());
+                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:134: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting executionResults.get not allowed in side-effect-free method
+        b.append(executionResults.get(i).toString());
+                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:134: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting executionResults.get not allowed in side-effect-free method
+        b.append(executionResults.get(i).toString());
+                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:136: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting result.add not allowed in side-effect-free method
+      result.add(b.toString());
+                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:136: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting result.add not allowed in side-effect-free method
+      result.add(b.toString());
+                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:136: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting result.add not allowed in side-effect-free method
+      result.add(b.toString());
+                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:137: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting sequence.size not allowed in side-effect-free method
+      if ((i == sequence.size() - 1) && (checks != null)) {
+                             ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:137: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting sequence.size not allowed in side-effect-free method
+      if ((i == sequence.size() - 1) && (checks != null)) {
+                             ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:137: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting sequence.size not allowed in side-effect-free method
+      if ((i == sequence.size() - 1) && (checks != null)) {
+                             ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:138: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting checks.checks not allowed in side-effect-free method
+        for (Check check : checks.checks()) {
+                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:138: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting checks.checks not allowed in side-effect-free method
+        for (Check check : checks.checks()) {
+                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:138: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting checks.checks not allowed in side-effect-free method
+        for (Check check : checks.checks()) {
+                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:139: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting result.add not allowed in side-effect-free method
+          result.add(check.toString());
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:139: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting result.add not allowed in side-effect-free method
+          result.add(check.toString());
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:139: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting result.add not allowed in side-effect-free method
+          result.add(check.toString());
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:127: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting sequence.size not allowed in side-effect-free method
+    for (int i = 0; i < sequence.size(); i++) {
+                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:129: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting sequence.appendCode not allowed in side-effect-free method
+      sequence.appendCode(b, i);
+                         ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:132: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting executionResults.size not allowed in side-effect-free method
+      if (executionResults.size() > i) {
+                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:133: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting b.append not allowed in side-effect-free method
+        b.append(" // ");
+                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:134: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting b.append not allowed in side-effect-free method
+        b.append(executionResults.get(i).toString());
+                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:134: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting executionResults.get not allowed in side-effect-free method
+        b.append(executionResults.get(i).toString());
+                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:136: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting result.add not allowed in side-effect-free method
+      result.add(b.toString());
+                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:137: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting sequence.size not allowed in side-effect-free method
+      if ((i == sequence.size() - 1) && (checks != null)) {
+                             ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:138: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting checks.checks not allowed in side-effect-free method
+        for (Check check : checks.checks()) {
+                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:139: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting result.add not allowed in side-effect-free method
+          result.add(check.toString());
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:126: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+    StringJoiner result = new StringJoiner(System.lineSeparator());
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/sequence/ExecutableSequence.java:128: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+      StringBuilder b = new StringBuilder();
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/ExceptionCheck.java:73: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting exception.getClass().getCanonicalName not allowed in side-effect-free method
+        + exception.getClass().getCanonicalName()
+                                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/ExceptionCheck.java:73: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting exception.getClass().getCanonicalName not allowed in side-effect-free method
+        + exception.getClass().getCanonicalName()
+                                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/ExceptionCheck.java:73: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting exception.getClass().getCanonicalName not allowed in side-effect-free method
+        + exception.getClass().getCanonicalName()
+                                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/ExceptionCheck.java:73: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting exception.getClass().getCanonicalName not allowed in side-effect-free method
+        + exception.getClass().getCanonicalName()
+                                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/reflection/RawSignature.java:136: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting CollectionsPlume.mapList not allowed in side-effect-free method
+    List<String> typeNames = CollectionsPlume.mapList(Class::getCanonicalName, parameterTypes);
+                                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/reflection/RawSignature.java:136: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting CollectionsPlume.mapList not allowed in side-effect-free method
+    List<String> typeNames = CollectionsPlume.mapList(Class::getCanonicalName, parameterTypes);
+                                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/reflection/RawSignature.java:136: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting CollectionsPlume.mapList not allowed in side-effect-free method
+    List<String> typeNames = CollectionsPlume.mapList(Class::getCanonicalName, parameterTypes);
+                                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/reflection/RawSignature.java:136: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting CollectionsPlume.mapList not allowed in side-effect-free method
+    List<String> typeNames = CollectionsPlume.mapList(Class::getCanonicalName, parameterTypes);
+                                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/compile/SequenceCompiler.java:83: warning: [builder:required.method.not.called] @MustCall method close may not have been invoked on temp-var-1277 or any of its aliases.
     this.fileManager = compiler.getStandardFileManager(null, null, null);
                                                       ^
   The type of object is: javax.tools.StandardJavaFileManager.
   Reason for going out of scope: regular method exit
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/compile/SequenceCompiler.java:209: warning: [signature:argument] incompatible argument for parameter name of loadClass.
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/compile/SequenceCompiler.java:209: warning: [signature:argument] incompatible argument for parameter name of loadClass.
       Class<?> cls = cl.loadClass(className);
                                   ^
   found   : @SignatureUnknown String
   required: @BinaryName String
-
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/CompilableTestPredicate.java:64: warning: [builder:required.method.not.called] @MustCall method close may not have been invoked on temp-var-3557 or any of its aliases.
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/compile/SequenceCompiler.java:225: warning: [signature:unneeded.suppression] warning suppression "signature:assignment" is not used by SignatureChecker
+    @SuppressWarnings("signature:assignment") // string concatenation
+    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/InstantiatedType.java:57: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.getGenericClassType not allowed in deterministic side-effect-free method
+    return genericType.equals(other.getGenericClassType())
+                                                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/InstantiatedType.java:57: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.getGenericClassType not allowed in deterministic side-effect-free method
+    return genericType.equals(other.getGenericClassType())
+                                                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/InstantiatedType.java:57: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.getGenericClassType not allowed in deterministic side-effect-free method
+    return genericType.equals(other.getGenericClassType())
+                                                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/InstantiatedType.java:57: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting other.getGenericClassType not allowed in deterministic side-effect-free method
+    return genericType.equals(other.getGenericClassType())
+                                                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/GuardThrowsPair.java:34: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting guard.getContractSource not allowed in side-effect-free method
+        + guard.getContractSource()
+                                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/GuardThrowsPair.java:34: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting guard.getContractSource not allowed in side-effect-free method
+        + guard.getContractSource()
+                                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/GuardThrowsPair.java:34: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting guard.getContractSource not allowed in side-effect-free method
+        + guard.getContractSource()
+                                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/GuardThrowsPair.java:36: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting throwsClause.getExceptionType not allowed in side-effect-free method
+        + throwsClause.getExceptionType()
+                                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/GuardThrowsPair.java:36: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting throwsClause.getExceptionType not allowed in side-effect-free method
+        + throwsClause.getExceptionType()
+                                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/GuardThrowsPair.java:36: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting throwsClause.getExceptionType not allowed in side-effect-free method
+        + throwsClause.getExceptionType()
+                                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/GuardThrowsPair.java:34: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting guard.getContractSource not allowed in side-effect-free method
+        + guard.getContractSource()
+                                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/GuardThrowsPair.java:36: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting throwsClause.getExceptionType not allowed in side-effect-free method
+        + throwsClause.getExceptionType()
+                                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:60: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+    StringJoiner b = new StringJoiner(", ", constructor.getName() + "(", ")");
+                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:60: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+    StringJoiner b = new StringJoiner(", ", constructor.getName() + "(", ")");
+                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:60: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+    StringJoiner b = new StringJoiner(", ", constructor.getName() + "(", ")");
+                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:60: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting constructor.getName not allowed in side-effect-free method
+    StringJoiner b = new StringJoiner(", ", constructor.getName() + "(", ")");
+                                                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:60: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting constructor.getName not allowed in side-effect-free method
+    StringJoiner b = new StringJoiner(", ", constructor.getName() + "(", ")");
+                                                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:60: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting constructor.getName not allowed in side-effect-free method
+    StringJoiner b = new StringJoiner(", ", constructor.getName() + "(", ")");
+                                                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:61: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting constructor.getParameterTypes not allowed in side-effect-free method
+    Class<?>[] types = constructor.getParameterTypes();
+                                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:61: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting constructor.getParameterTypes not allowed in side-effect-free method
+    Class<?>[] types = constructor.getParameterTypes();
+                                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:61: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting constructor.getParameterTypes not allowed in side-effect-free method
+    Class<?>[] types = constructor.getParameterTypes();
+                                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:63: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting b.add not allowed in side-effect-free method
+      b.add(c.getName());
+           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:63: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting b.add not allowed in side-effect-free method
+      b.add(c.getName());
+           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:63: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting b.add not allowed in side-effect-free method
+      b.add(c.getName());
+           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:142: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.assign.field] field assignment not allowed in deterministic side-effect-free method
+      hashCodeComputed = true;
+      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:142: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.assign.field] field assignment not allowed in deterministic side-effect-free method
+      hashCodeComputed = true;
+      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:142: warning: [builder:purity.not.deterministic.not.sideeffectfree.assign.field] field assignment not allowed in deterministic side-effect-free method
+      hashCodeComputed = true;
+      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:143: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.assign.field] field assignment not allowed in deterministic side-effect-free method
+      hashCodeCached = this.constructor.hashCode();
+      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:143: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.assign.field] field assignment not allowed in deterministic side-effect-free method
+      hashCodeCached = this.constructor.hashCode();
+      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:143: warning: [builder:purity.not.deterministic.not.sideeffectfree.assign.field] field assignment not allowed in deterministic side-effect-free method
+      hashCodeCached = this.constructor.hashCode();
+      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:60: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting constructor.getName not allowed in side-effect-free method
+    StringJoiner b = new StringJoiner(", ", constructor.getName() + "(", ")");
+                                                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:61: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting constructor.getParameterTypes not allowed in side-effect-free method
+    Class<?>[] types = constructor.getParameterTypes();
+                                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:63: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting b.add not allowed in side-effect-free method
+      b.add(c.getName());
+           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:60: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+    StringJoiner b = new StringJoiner(", ", constructor.getName() + "(", ")");
+                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:142: warning: [signature:purity.not.deterministic.not.sideeffectfree.assign.field] field assignment not allowed in deterministic side-effect-free method
+      hashCodeComputed = true;
+      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ConstructorCall.java:143: warning: [signature:purity.not.deterministic.not.sideeffectfree.assign.field] field assignment not allowed in deterministic side-effect-free method
+      hashCodeCached = this.constructor.hashCode();
+      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/EnumConstant.java:40: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting equalsEnumConstant not allowed in deterministic side-effect-free method
+    return equalsEnumConstant(e);
+                             ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/EnumConstant.java:40: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting equalsEnumConstant not allowed in deterministic side-effect-free method
+    return equalsEnumConstant(e);
+                             ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/EnumConstant.java:40: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting equalsEnumConstant not allowed in deterministic side-effect-free method
+    return equalsEnumConstant(e);
+                             ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/EnumConstant.java:40: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting equalsEnumConstant not allowed in deterministic side-effect-free method
+    return equalsEnumConstant(e);
+                             ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/InitializedArrayCreation.java:80: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting elementType.getBinaryName not allowed in side-effect-free method
+    return elementType.getBinaryName() + "[" + length + "]";
+                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/InitializedArrayCreation.java:80: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting elementType.getBinaryName not allowed in side-effect-free method
+    return elementType.getBinaryName() + "[" + length + "]";
+                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/InitializedArrayCreation.java:80: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting elementType.getBinaryName not allowed in side-effect-free method
+    return elementType.getBinaryName() + "[" + length + "]";
+                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/InitializedArrayCreation.java:80: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting elementType.getBinaryName not allowed in side-effect-free method
+    return elementType.getBinaryName() + "[" + length + "]";
+                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ArrayCreation.java:59: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+    StringBuilder result = new StringBuilder(elementType.getBinaryName());
+                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ArrayCreation.java:59: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+    StringBuilder result = new StringBuilder(elementType.getBinaryName());
+                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ArrayCreation.java:59: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+    StringBuilder result = new StringBuilder(elementType.getBinaryName());
+                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ArrayCreation.java:59: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting elementType.getBinaryName not allowed in side-effect-free method
+    StringBuilder result = new StringBuilder(elementType.getBinaryName());
+                                                                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ArrayCreation.java:59: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting elementType.getBinaryName not allowed in side-effect-free method
+    StringBuilder result = new StringBuilder(elementType.getBinaryName());
+                                                                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ArrayCreation.java:59: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting elementType.getBinaryName not allowed in side-effect-free method
+    StringBuilder result = new StringBuilder(elementType.getBinaryName());
+                                                                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ArrayCreation.java:61: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting result.append not allowed in side-effect-free method
+      result.append("[]");
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ArrayCreation.java:61: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting result.append not allowed in side-effect-free method
+      result.append("[]");
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ArrayCreation.java:61: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting result.append not allowed in side-effect-free method
+      result.append("[]");
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ArrayCreation.java:59: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting elementType.getBinaryName not allowed in side-effect-free method
+    StringBuilder result = new StringBuilder(elementType.getBinaryName());
+                                                                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ArrayCreation.java:61: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting result.append not allowed in side-effect-free method
+      result.append("[]");
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/operation/ArrayCreation.java:59: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+    StringBuilder result = new StringBuilder(elementType.getBinaryName());
+                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/contract/EnumValue.java:41: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting value.name not allowed in side-effect-free method
+    return "randoop.contract.EnumValue = " + value.name();
+                                                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/contract/EnumValue.java:41: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting value.name not allowed in side-effect-free method
+    return "randoop.contract.EnumValue = " + value.name();
+                                                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/contract/EnumValue.java:41: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting value.name not allowed in side-effect-free method
+    return "randoop.contract.EnumValue = " + value.name();
+                                                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/contract/EnumValue.java:41: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting value.name not allowed in side-effect-free method
+    return "randoop.contract.EnumValue = " + value.name();
+                                                       ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/WildcardType.java:86: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting this.getUpperTypeBound not allowed in side-effect-free method
+      if (this.getUpperTypeBound().isObject()) {
+                                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/WildcardType.java:86: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting this.getUpperTypeBound not allowed in side-effect-free method
+      if (this.getUpperTypeBound().isObject()) {
+                                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/WildcardType.java:86: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting this.getUpperTypeBound not allowed in side-effect-free method
+      if (this.getUpperTypeBound().isObject()) {
+                                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/WildcardType.java:86: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting this.getUpperTypeBound().isObject not allowed in side-effect-free method
+      if (this.getUpperTypeBound().isObject()) {
+                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/WildcardType.java:86: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting this.getUpperTypeBound().isObject not allowed in side-effect-free method
+      if (this.getUpperTypeBound().isObject()) {
+                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/WildcardType.java:86: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting this.getUpperTypeBound().isObject not allowed in side-effect-free method
+      if (this.getUpperTypeBound().isObject()) {
+                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/WildcardType.java:89: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting this.getUpperTypeBound not allowed in side-effect-free method
+      return "? extends " + this.getUpperTypeBound().toString();
+                                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/WildcardType.java:89: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting this.getUpperTypeBound not allowed in side-effect-free method
+      return "? extends " + this.getUpperTypeBound().toString();
+                                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/WildcardType.java:89: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting this.getUpperTypeBound not allowed in side-effect-free method
+      return "? extends " + this.getUpperTypeBound().toString();
+                                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/WildcardType.java:91: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting this.getLowerTypeBound not allowed in side-effect-free method
+    return "? super " + this.getLowerTypeBound().toString();
+                                              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/WildcardType.java:91: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting this.getLowerTypeBound not allowed in side-effect-free method
+    return "? super " + this.getLowerTypeBound().toString();
+                                              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/WildcardType.java:91: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting this.getLowerTypeBound not allowed in side-effect-free method
+    return "? super " + this.getLowerTypeBound().toString();
+                                              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/WildcardType.java:86: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting this.getUpperTypeBound().isObject not allowed in side-effect-free method
+      if (this.getUpperTypeBound().isObject()) {
+                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/WildcardType.java:86: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting this.getUpperTypeBound not allowed in side-effect-free method
+      if (this.getUpperTypeBound().isObject()) {
+                                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/WildcardType.java:89: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting this.getUpperTypeBound not allowed in side-effect-free method
+      return "? extends " + this.getUpperTypeBound().toString();
+                                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/WildcardType.java:91: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting this.getLowerTypeBound not allowed in side-effect-free method
+    return "? super " + this.getLowerTypeBound().toString();
+                                              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/CaptureTypeVariable.java:92: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting getBinaryName not allowed in side-effect-free method
+    return getBinaryName() + " of " + wildcard;
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/CaptureTypeVariable.java:92: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting getBinaryName not allowed in side-effect-free method
+    return getBinaryName() + " of " + wildcard;
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/CaptureTypeVariable.java:92: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting getBinaryName not allowed in side-effect-free method
+    return getBinaryName() + " of " + wildcard;
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/CaptureTypeVariable.java:92: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting getBinaryName not allowed in side-effect-free method
+    return getBinaryName() + " of " + wildcard;
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/ExplicitTypeVariable.java:36: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting isAssignableFrom not allowed in deterministic side-effect-free method
+      return isAssignableFrom(null);
+                             ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/ExplicitTypeVariable.java:36: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting isAssignableFrom not allowed in deterministic side-effect-free method
+      return isAssignableFrom(null);
+                             ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/ExplicitTypeVariable.java:36: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting isAssignableFrom not allowed in deterministic side-effect-free method
+      return isAssignableFrom(null);
+                             ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/ExplicitTypeVariable.java:36: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting isAssignableFrom not allowed in deterministic side-effect-free method
+      return isAssignableFrom(null);
+                             ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/LazyReferenceBound.java:32: warning: [returnsreceiver:purity.not.deterministic.call] call to non-deterministic method this.toString not allowed in deterministic method
+    return Objects.hash(this.toString());
+                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/LazyReferenceBound.java:32: warning: [mustcall:purity.not.deterministic.call] call to non-deterministic method this.toString not allowed in deterministic method
+    return Objects.hash(this.toString());
+                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/LazyReferenceBound.java:32: warning: [builder:purity.not.deterministic.call] call to non-deterministic method this.toString not allowed in deterministic method
+    return Objects.hash(this.toString());
+                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/types/LazyReferenceBound.java:32: warning: [signature:purity.not.deterministic.call] call to non-deterministic method this.toString not allowed in deterministic method
+    return Objects.hash(this.toString());
+                                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/ExceptionalExecution.java:37: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting exception.getStackTrace not allowed in side-effect-free method
+        exception.getClass().getName(), exception.getStackTrace()[0]);
+                                                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/ExceptionalExecution.java:37: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting exception.getStackTrace not allowed in side-effect-free method
+        exception.getClass().getName(), exception.getStackTrace()[0]);
+                                                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/ExceptionalExecution.java:37: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting exception.getStackTrace not allowed in side-effect-free method
+        exception.getClass().getName(), exception.getStackTrace()[0]);
+                                                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/ExceptionalExecution.java:37: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting exception.getStackTrace not allowed in side-effect-free method
+        exception.getClass().getName(), exception.getStackTrace()[0]);
+                                                               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/MissingExceptionCheck.java:59: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+        new StringBuilder("MissingExceptionCheck at line " + index + Globals.lineSep);
+        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/MissingExceptionCheck.java:59: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+        new StringBuilder("MissingExceptionCheck at line " + index + Globals.lineSep);
+        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/MissingExceptionCheck.java:59: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+        new StringBuilder("MissingExceptionCheck at line " + index + Globals.lineSep);
+        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/MissingExceptionCheck.java:61: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting result.append not allowed in side-effect-free method
+      result.append(set.toString()).append(Globals.lineSep);
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/MissingExceptionCheck.java:61: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting result.append not allowed in side-effect-free method
+      result.append(set.toString()).append(Globals.lineSep);
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/MissingExceptionCheck.java:61: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting result.append not allowed in side-effect-free method
+      result.append(set.toString()).append(Globals.lineSep);
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/MissingExceptionCheck.java:61: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting result.append(set.toString()).append not allowed in side-effect-free method
+      result.append(set.toString()).append(Globals.lineSep);
+                                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/MissingExceptionCheck.java:61: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting result.append(set.toString()).append not allowed in side-effect-free method
+      result.append(set.toString()).append(Globals.lineSep);
+                                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/MissingExceptionCheck.java:61: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting result.append(set.toString()).append not allowed in side-effect-free method
+      result.append(set.toString()).append(Globals.lineSep);
+                                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/MissingExceptionCheck.java:61: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting result.append(set.toString()).append not allowed in side-effect-free method
+      result.append(set.toString()).append(Globals.lineSep);
+                                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/MissingExceptionCheck.java:61: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting result.append not allowed in side-effect-free method
+      result.append(set.toString()).append(Globals.lineSep);
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/MissingExceptionCheck.java:59: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+        new StringBuilder("MissingExceptionCheck at line " + index + Globals.lineSep);
+        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/ContractSet.java:52: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+    StringJoiner contractString = new StringJoiner(System.lineSeparator());
+                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/ContractSet.java:52: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+    StringJoiner contractString = new StringJoiner(System.lineSeparator());
+                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/ContractSet.java:52: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+    StringJoiner contractString = new StringJoiner(System.lineSeparator());
+                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/ContractSet.java:57: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting contractString.add not allowed in side-effect-free method
+        contractString.add(String.format("    arity %d: %s", i, contractList));
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/ContractSet.java:57: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting contractString.add not allowed in side-effect-free method
+        contractString.add(String.format("    arity %d: %s", i, contractList));
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/ContractSet.java:57: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting contractString.add not allowed in side-effect-free method
+        contractString.add(String.format("    arity %d: %s", i, contractList));
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/ContractSet.java:57: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting contractString.add not allowed in side-effect-free method
+        contractString.add(String.format("    arity %d: %s", i, contractList));
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/ContractSet.java:52: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+    StringJoiner contractString = new StringJoiner(System.lineSeparator());
+                                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/NoExceptionCheck.java:44: warning: [returnsreceiver:purity.not.deterministic.call] call to non-deterministic method Integer.valueOf not allowed in deterministic method
+    return Integer.valueOf(statementIdx).hashCode();
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/NoExceptionCheck.java:44: warning: [mustcall:purity.not.deterministic.call] call to non-deterministic method Integer.valueOf not allowed in deterministic method
+    return Integer.valueOf(statementIdx).hashCode();
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/NoExceptionCheck.java:44: warning: [builder:purity.not.deterministic.call] call to non-deterministic method Integer.valueOf not allowed in deterministic method
+    return Integer.valueOf(statementIdx).hashCode();
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/NoExceptionCheck.java:44: warning: [signature:purity.not.deterministic.call] call to non-deterministic method Integer.valueOf not allowed in deterministic method
+    return Integer.valueOf(statementIdx).hashCode();
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/PostConditionCheck.java:63: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+    StringJoiner sj = new StringJoiner(" && ");
+                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/PostConditionCheck.java:63: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+    StringJoiner sj = new StringJoiner(" && ");
+                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/PostConditionCheck.java:63: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+    StringJoiner sj = new StringJoiner(" && ");
+                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/PostConditionCheck.java:65: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting sj.add not allowed in side-effect-free method
+      sj.add(condition.getContractSource());
+            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/PostConditionCheck.java:65: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting sj.add not allowed in side-effect-free method
+      sj.add(condition.getContractSource());
+            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/PostConditionCheck.java:65: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting sj.add not allowed in side-effect-free method
+      sj.add(condition.getContractSource());
+            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/PostConditionCheck.java:65: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting condition.getContractSource not allowed in side-effect-free method
+      sj.add(condition.getContractSource());
+                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/PostConditionCheck.java:65: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting condition.getContractSource not allowed in side-effect-free method
+      sj.add(condition.getContractSource());
+                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/PostConditionCheck.java:65: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting condition.getContractSource not allowed in side-effect-free method
+      sj.add(condition.getContractSource());
+                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/PostConditionCheck.java:65: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting sj.add not allowed in side-effect-free method
+      sj.add(condition.getContractSource());
+            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/PostConditionCheck.java:65: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting condition.getContractSource not allowed in side-effect-free method
+      sj.add(condition.getContractSource());
+                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/PostConditionCheck.java:63: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+    StringJoiner sj = new StringJoiner(" && ");
+                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/test/CompilableTestPredicate.java:64: warning: [builder:required.method.not.called] @MustCall method close may not have been invoked on temp-var-3557 or any of its aliases.
     this.compiler = new SequenceCompiler(compilerOptions);
                     ^
   The type of object is: randoop.compile.SequenceCompiler.
   Reason for going out of scope: regular method exit
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/Globals.java:21: warning: [builder:required.method.not.called] @MustCall method close may not have been invoked on temp-var-4648 or any of its aliases.
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ListOfLists.java:116: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting toJDKList not allowed in side-effect-free method
+    return toJDKList().toString();
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ListOfLists.java:116: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting toJDKList not allowed in side-effect-free method
+    return toJDKList().toString();
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ListOfLists.java:116: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting toJDKList not allowed in side-effect-free method
+    return toJDKList().toString();
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ListOfLists.java:116: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting toJDKList not allowed in side-effect-free method
+    return toJDKList().toString();
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/Globals.java:21: warning: [builder:required.method.not.called] @MustCall method close may not have been invoked on temp-var-4648 or any of its aliases.
   public static PrintStream blackHole = new PrintStream(new NullOutputStream());
                                                         ^
   The type of object is: randoop.Globals.NullOutputStream.
   Reason for going out of scope: regular method exit
-/Users/daniel/Documents/njit/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/SpecificationCollection.java:89: warning: [builder:required.method.not.called] @MustCall method close may not have been invoked on temp-var-5787 or any of its aliases.
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/MethodReflectionCode.java:92: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting status not allowed in side-effect-free method
+        + status();
+                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/MethodReflectionCode.java:92: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting status not allowed in side-effect-free method
+        + status();
+                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/MethodReflectionCode.java:92: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting status not allowed in side-effect-free method
+        + status();
+                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/MethodReflectionCode.java:92: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting status not allowed in side-effect-free method
+        + status();
+                ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CountDownTimer.java:35: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting elapsedTime not allowed in side-effect-free method
+    return "elapsed: " + elapsedTime() + ", remaining: " + remainingTime();
+                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CountDownTimer.java:35: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting elapsedTime not allowed in side-effect-free method
+    return "elapsed: " + elapsedTime() + ", remaining: " + remainingTime();
+                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CountDownTimer.java:35: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting elapsedTime not allowed in side-effect-free method
+    return "elapsed: " + elapsedTime() + ", remaining: " + remainingTime();
+                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CountDownTimer.java:35: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting remainingTime not allowed in side-effect-free method
+    return "elapsed: " + elapsedTime() + ", remaining: " + remainingTime();
+                                                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CountDownTimer.java:35: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting remainingTime not allowed in side-effect-free method
+    return "elapsed: " + elapsedTime() + ", remaining: " + remainingTime();
+                                                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CountDownTimer.java:35: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting remainingTime not allowed in side-effect-free method
+    return "elapsed: " + elapsedTime() + ", remaining: " + remainingTime();
+                                                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CountDownTimer.java:35: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting elapsedTime not allowed in side-effect-free method
+    return "elapsed: " + elapsedTime() + ", remaining: " + remainingTime();
+                                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CountDownTimer.java:35: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting remainingTime not allowed in side-effect-free method
+    return "elapsed: " + elapsedTime() + ", remaining: " + remainingTime();
+                                                                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:93: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+      StringJoiner sb = new StringJoiner(randoop.Globals.lineSep);
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:93: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+      StringJoiner sb = new StringJoiner(randoop.Globals.lineSep);
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:93: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+      StringJoiner sb = new StringJoiner(randoop.Globals.lineSep);
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:95: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+      sb.add("START CLASSLITERALS for " + classname);
+            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:95: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+      sb.add("START CLASSLITERALS for " + classname);
+            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:95: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+      sb.add("START CLASSLITERALS for " + classname);
+            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:97: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("int:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:97: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("int:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:97: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("int:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:100: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("long:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:100: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("long:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:100: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("long:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:103: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("float:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:103: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("float:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:103: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("float:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:106: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("double:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:106: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("double:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:106: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("double:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:109: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("String:\"" + x + "\"");
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:109: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("String:\"" + x + "\"");
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:109: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("String:\"" + x + "\"");
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:112: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("Class:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:112: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("Class:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:112: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("Class:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:114: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+      sb.add("%nEND CLASSLITERALS for " + classname);
+            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:114: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+      sb.add("%nEND CLASSLITERALS for " + classname);
+            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:114: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+      sb.add("%nEND CLASSLITERALS for " + classname);
+            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:95: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+      sb.add("START CLASSLITERALS for " + classname);
+            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:97: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("int:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:100: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("long:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:103: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("float:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:106: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("double:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:109: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("String:\"" + x + "\"");
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:112: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+        sb.add("Class:" + x);
+              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:114: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting sb.add not allowed in side-effect-free method
+      sb.add("%nEND CLASSLITERALS for " + classname);
+            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ClassFileConstants.java:93: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting StringJoiner not allowed in side-effect-free method
+      StringJoiner sb = new StringJoiner(randoop.Globals.lineSep);
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ConstructorReflectionCode.java:63: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting status not allowed in side-effect-free method
+    return "Call to " + constructor + ", args: " + Arrays.toString(inputs) + status();
+                                                                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ConstructorReflectionCode.java:63: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting status not allowed in side-effect-free method
+    return "Call to " + constructor + ", args: " + Arrays.toString(inputs) + status();
+                                                                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ConstructorReflectionCode.java:63: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting status not allowed in side-effect-free method
+    return "Call to " + constructor + ", args: " + Arrays.toString(inputs) + status();
+                                                                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ConstructorReflectionCode.java:63: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting status not allowed in side-effect-free method
+    return "Call to " + constructor + ", args: " + Arrays.toString(inputs) + status();
+                                                                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/OneMoreElementList.java:71: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting toJDKList not allowed in side-effect-free method
+    return toJDKList().toString();
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/OneMoreElementList.java:71: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting toJDKList not allowed in side-effect-free method
+    return toJDKList().toString();
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/OneMoreElementList.java:71: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting toJDKList not allowed in side-effect-free method
+    return toJDKList().toString();
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/OneMoreElementList.java:71: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting toJDKList not allowed in side-effect-free method
+    return toJDKList().toString();
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ObjectContractReflectionCode.java:27: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting status not allowed in side-effect-free method
+    return "Check of ObjectContract " + c + " args: " + Arrays.toString(objs) + status();
+                                                                                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ObjectContractReflectionCode.java:27: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting status not allowed in side-effect-free method
+    return "Check of ObjectContract " + c + " args: " + Arrays.toString(objs) + status();
+                                                                                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ObjectContractReflectionCode.java:27: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting status not allowed in side-effect-free method
+    return "Check of ObjectContract " + c + " args: " + Arrays.toString(objs) + status();
+                                                                                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/ObjectContractReflectionCode.java:27: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting status not allowed in side-effect-free method
+    return "Check of ObjectContract " + c + " args: " + Arrays.toString(objs) + status();
+                                                                                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CheckpointingSet.java:31: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting map.containsKey not allowed in deterministic side-effect-free method
+    return map.containsKey(elt);
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CheckpointingSet.java:31: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting map.containsKey not allowed in deterministic side-effect-free method
+    return map.containsKey(elt);
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CheckpointingSet.java:31: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting map.containsKey not allowed in deterministic side-effect-free method
+    return map.containsKey(elt);
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CheckpointingSet.java:47: warning: [returnsreceiver:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting map.size not allowed in deterministic side-effect-free method
+    return map.size();
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CheckpointingSet.java:47: warning: [mustcall:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting map.size not allowed in deterministic side-effect-free method
+    return map.size();
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CheckpointingSet.java:47: warning: [builder:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting map.size not allowed in deterministic side-effect-free method
+    return map.size();
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CheckpointingSet.java:62: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting map.keySet not allowed in side-effect-free method
+    return map.keySet().toString();
+                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CheckpointingSet.java:62: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting map.keySet not allowed in side-effect-free method
+    return map.keySet().toString();
+                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CheckpointingSet.java:62: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting map.keySet not allowed in side-effect-free method
+    return map.keySet().toString();
+                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CheckpointingSet.java:31: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting map.containsKey not allowed in deterministic side-effect-free method
+    return map.containsKey(elt);
+                          ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CheckpointingSet.java:47: warning: [signature:purity.not.deterministic.not.sideeffectfree.call] call to non-deterministic side-effecting map.size not allowed in deterministic side-effect-free method
+    return map.size();
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/util/CheckpointingSet.java:62: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting map.keySet not allowed in side-effect-free method
+    return map.keySet().toString();
+                     ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/execution/RunCommand.java:141: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+      StringBuilder sb = new StringBuilder();
+                         ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/execution/RunCommand.java:141: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+      StringBuilder sb = new StringBuilder();
+                         ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/execution/RunCommand.java:141: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+      StringBuilder sb = new StringBuilder();
+                         ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/execution/RunCommand.java:142: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting sb.append not allowed in side-effect-free method
+      sb.append(
+               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/execution/RunCommand.java:142: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting sb.append not allowed in side-effect-free method
+      sb.append(
+               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/execution/RunCommand.java:142: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting sb.append not allowed in side-effect-free method
+      sb.append(
+               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/execution/RunCommand.java:146: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting describeLines not allowed in side-effect-free method
+      describeLines("stdout", standardOutputLines, sb);
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/execution/RunCommand.java:146: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting describeLines not allowed in side-effect-free method
+      describeLines("stdout", standardOutputLines, sb);
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/execution/RunCommand.java:146: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting describeLines not allowed in side-effect-free method
+      describeLines("stdout", standardOutputLines, sb);
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/execution/RunCommand.java:147: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting describeLines not allowed in side-effect-free method
+      describeLines("stderr", errorOutputLines, sb);
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/execution/RunCommand.java:147: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting describeLines not allowed in side-effect-free method
+      describeLines("stderr", errorOutputLines, sb);
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/execution/RunCommand.java:147: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting describeLines not allowed in side-effect-free method
+      describeLines("stderr", errorOutputLines, sb);
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/execution/RunCommand.java:142: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting sb.append not allowed in side-effect-free method
+      sb.append(
+               ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/execution/RunCommand.java:146: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting describeLines not allowed in side-effect-free method
+      describeLines("stdout", standardOutputLines, sb);
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/execution/RunCommand.java:147: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting describeLines not allowed in side-effect-free method
+      describeLines("stderr", errorOutputLines, sb);
+                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/execution/RunCommand.java:141: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+      StringBuilder sb = new StringBuilder();
+                         ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/output/SourceBuilder.java:34: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+    StringBuilder builder = new StringBuilder();
+                            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/output/SourceBuilder.java:34: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+    StringBuilder builder = new StringBuilder();
+                            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/output/SourceBuilder.java:34: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+    StringBuilder builder = new StringBuilder();
+                            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/output/SourceBuilder.java:35: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting toLines not allowed in side-effect-free method
+    for (String line : toLines()) {
+                              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/output/SourceBuilder.java:35: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting toLines not allowed in side-effect-free method
+    for (String line : toLines()) {
+                              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/output/SourceBuilder.java:35: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting toLines not allowed in side-effect-free method
+    for (String line : toLines()) {
+                              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/output/SourceBuilder.java:36: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting builder.append not allowed in side-effect-free method
+      builder.append(line).append(Globals.lineSep);
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/output/SourceBuilder.java:36: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting builder.append not allowed in side-effect-free method
+      builder.append(line).append(Globals.lineSep);
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/output/SourceBuilder.java:36: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting builder.append not allowed in side-effect-free method
+      builder.append(line).append(Globals.lineSep);
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/output/SourceBuilder.java:36: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting builder.append(line).append not allowed in side-effect-free method
+      builder.append(line).append(Globals.lineSep);
+                                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/output/SourceBuilder.java:36: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting builder.append(line).append not allowed in side-effect-free method
+      builder.append(line).append(Globals.lineSep);
+                                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/output/SourceBuilder.java:36: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting builder.append(line).append not allowed in side-effect-free method
+      builder.append(line).append(Globals.lineSep);
+                                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/output/SourceBuilder.java:35: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting toLines not allowed in side-effect-free method
+    for (String line : toLines()) {
+                              ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/output/SourceBuilder.java:36: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting builder.append(line).append not allowed in side-effect-free method
+      builder.append(line).append(Globals.lineSep);
+                                 ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/output/SourceBuilder.java:36: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting builder.append not allowed in side-effect-free method
+      builder.append(line).append(Globals.lineSep);
+                    ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/output/SourceBuilder.java:34: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting StringBuilder not allowed in side-effect-free method
+    StringBuilder builder = new StringBuilder();
+                            ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/Precondition.java:40: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting getDescription not allowed in side-effect-free method
+    return "{ \"description\": \"" + getDescription() + "\", \"guard\": \"" + getGuard() + "\" }";
+                                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/Precondition.java:40: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting getDescription not allowed in side-effect-free method
+    return "{ \"description\": \"" + getDescription() + "\", \"guard\": \"" + getGuard() + "\" }";
+                                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/Precondition.java:40: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting getDescription not allowed in side-effect-free method
+    return "{ \"description\": \"" + getDescription() + "\", \"guard\": \"" + getGuard() + "\" }";
+                                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/Precondition.java:40: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting getGuard not allowed in side-effect-free method
+    return "{ \"description\": \"" + getDescription() + "\", \"guard\": \"" + getGuard() + "\" }";
+                                                                                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/Precondition.java:40: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting getGuard not allowed in side-effect-free method
+    return "{ \"description\": \"" + getDescription() + "\", \"guard\": \"" + getGuard() + "\" }";
+                                                                                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/Precondition.java:40: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting getGuard not allowed in side-effect-free method
+    return "{ \"description\": \"" + getDescription() + "\", \"guard\": \"" + getGuard() + "\" }";
+                                                                                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/Precondition.java:40: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting getDescription not allowed in side-effect-free method
+    return "{ \"description\": \"" + getDescription() + "\", \"guard\": \"" + getGuard() + "\" }";
+                                                   ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/Precondition.java:40: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting getGuard not allowed in side-effect-free method
+    return "{ \"description\": \"" + getDescription() + "\", \"guard\": \"" + getGuard() + "\" }";
+                                                                                      ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/Postcondition.java:91: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting getDescription not allowed in side-effect-free method
+        + getDescription()
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/Postcondition.java:91: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting getDescription not allowed in side-effect-free method
+        + getDescription()
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/Postcondition.java:91: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting getDescription not allowed in side-effect-free method
+        + getDescription()
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/Postcondition.java:93: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting getGuard not allowed in side-effect-free method
+        + getGuard()
+                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/Postcondition.java:93: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting getGuard not allowed in side-effect-free method
+        + getGuard()
+                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/Postcondition.java:93: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting getGuard not allowed in side-effect-free method
+        + getGuard()
+                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/Postcondition.java:91: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting getDescription not allowed in side-effect-free method
+        + getDescription()
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/Postcondition.java:93: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting getGuard not allowed in side-effect-free method
+        + getGuard()
+                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/ThrowsCondition.java:87: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting getDescription not allowed in side-effect-free method
+        + getDescription()
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/ThrowsCondition.java:87: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting getDescription not allowed in side-effect-free method
+        + getDescription()
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/ThrowsCondition.java:87: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting getDescription not allowed in side-effect-free method
+        + getDescription()
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/ThrowsCondition.java:89: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting getGuard not allowed in side-effect-free method
+        + getGuard()
+                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/ThrowsCondition.java:89: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting getGuard not allowed in side-effect-free method
+        + getGuard()
+                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/ThrowsCondition.java:89: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting getGuard not allowed in side-effect-free method
+        + getGuard()
+                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/ThrowsCondition.java:87: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting getDescription not allowed in side-effect-free method
+        + getDescription()
+                        ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/specification/ThrowsCondition.java:89: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting getGuard not allowed in side-effect-free method
+        + getGuard()
+                  ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/condition/SpecificationCollection.java:89: warning: [builder:required.method.not.called] @MustCall method close may not have been invoked on temp-var-5787 or any of its aliases.
     this.compiler = new SequenceCompiler();
                     ^
   The type of object is: randoop.compile.SequenceCompiler.
   Reason for going out of scope: regular method exit
-7 warnings
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/generation/ForwardGenerator.java:951: warning: [returnsreceiver:purity.not.sideeffectfree.call] call to side-effecting getErrorTestSequences not allowed in side-effect-free method
+                    + getErrorTestSequences().size(),
+                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/generation/ForwardGenerator.java:951: warning: [mustcall:purity.not.sideeffectfree.call] call to side-effecting getErrorTestSequences not allowed in side-effect-free method
+                    + getErrorTestSequences().size(),
+                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/generation/ForwardGenerator.java:951: warning: [builder:purity.not.sideeffectfree.call] call to side-effecting getErrorTestSequences not allowed in side-effect-free method
+                    + getErrorTestSequences().size(),
+                                           ^
+/Users/daniel/Documents/NJIT/WPI-Research/experiments-live/randoop-wpi/src/main/java/randoop/generation/ForwardGenerator.java:951: warning: [signature:purity.not.sideeffectfree.call] call to side-effecting getErrorTestSequences not allowed in side-effect-free method
+                    + getErrorTestSequences().size(),
+                                           ^
+483 warnings
