@@ -240,7 +240,9 @@ compileJava.options.compilerArgs = [
   '-g',
   //'-Werror',
   '-Xlint',
-  '-Xlint:-classfile'
+  '-Xlint:-classfile',
+  "-Xmx64G".toString()
+  
 ]
 compileTestJava.options.compilerArgs = [
   '-g',
@@ -331,6 +333,8 @@ allprojects {
 }
 allprojects { subproject ->
   tasks.withType(JavaCompile).configureEach { t ->
+    options.compilerArgs << "-Xmaxerrs" << "1000"
+    options.compilerArgs << "-Xmaxwarns" << "1000"
     if (t.name.equals('compileTestInputJava') || t.name.equals('compileTestJava')) {
       options.errorprone.enabled = false
     } else {
