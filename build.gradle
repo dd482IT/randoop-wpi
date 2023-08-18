@@ -99,7 +99,7 @@ allprojects { subproject ->
       '-Xlint:-processing',
       '-Ainfer=ajava',
       '-AshowPrefixInWarningMessages',
-      '-Aajava=/home/d/dd482/WPITEMP-randoop',
+      '-Aajava=/tmp/WPITEMP-randoop',
     ]
   }
 
